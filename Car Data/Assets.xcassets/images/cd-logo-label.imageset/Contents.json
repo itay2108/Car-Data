@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cd-logo-label.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

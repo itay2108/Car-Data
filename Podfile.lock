@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (4.9.1)
+  - Hero (1.5.0)
+  - IQKeyboardManagerSwift (6.5.10)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - PaddingLabel (1.2)
+  - Realm (10.27.0):
+    - Realm/Headers (= 10.27.0)
+  - Realm/Headers (10.27.0)
+  - RealmSwift (10.27.0):
+    - Realm (= 10.27.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Hero
+  - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
+  - PaddingLabel
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Hero
+    - IQKeyboardManagerSwift
+    - NVActivityIndicatorView
+    - PaddingLabel
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
+  Realm: 9ca328bd7e700cc19703799785e37f77d1a130f2
+  RealmSwift: 271de77b09a73c5e46ee3252283878153bd5d288
+
+PODFILE CHECKSUM: cdff3b4e431bdd5a4855b9cd7f5abe7716d3a476
+
+COCOAPODS: 1.11.3
