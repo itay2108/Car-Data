@@ -62,7 +62,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLa-Jp-vt6" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                <rect key="frame" x="87" y="159" width="240.5" height="59"/>
+                                <rect key="frame" x="99" y="159" width="216.5" height="58"/>
                                 <color key="backgroundColor" name="cd-yellow"/>
                                 <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
                                 <color key="textColor" name="cd-text-dark"/>
@@ -87,7 +87,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BBC-dg-oM6">
-                                <rect key="frame" x="20" y="290" width="374" height="606"/>
+                                <rect key="frame" x="20" y="289" width="374" height="607"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -123,7 +123,7 @@
     </scenes>
     <designables>
         <designable name="HLa-Jp-vt6">
-            <size key="intrinsicContentSize" width="240.5" height="59"/>
+            <size key="intrinsicContentSize" width="216.5" height="58"/>
         </designable>
     </designables>
     <resources>

@@ -47,7 +47,6 @@
 		BCD4D7772848DE3B000D24D0 /* CDTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D7762848DE3B000D24D0 /* CDTableView.swift */; };
 		BCD4D7792848E56D000D24D0 /* CDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D7782848E56D000D24D0 /* CDLabel.swift */; };
 		BCD4D77B2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */; };
-		BCD4D77E284926F7000D24D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCD4D77D284926F7000D24D0 /* Main.storyboard */; };
 		BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD52767284A2DBE00DA60FC /* DataViewController.swift */; };
 		BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD52769284A45E900DA60FC /* UIViewController+ErrorAlert.swift */; };
 		BCD5276C284A52F300DA60FC /* CDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD5276B284A52F300DA60FC /* CDError.swift */; };
@@ -59,6 +58,7 @@
 		BCF3281A284B46D5003A5162 /* CDParameterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF32818284B46D5003A5162 /* CDParameterTableViewCell.swift */; };
 		BCF3281B284B46D5003A5162 /* CDParameterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF32819284B46D5003A5162 /* CDParameterTableViewCell.xib */; };
 		BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */; };
+		BCF3281F284B80AC003A5162 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF3281E284B80AC003A5162 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +129,6 @@
 		BCD4D7762848DE3B000D24D0 /* CDTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTableView.swift; sourceTree = "<group>"; };
 		BCD4D7782848E56D000D24D0 /* CDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDLabel.swift; sourceTree = "<group>"; };
 		BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+ReuseIdentifier.swift"; sourceTree = "<group>"; };
-		BCD4D77D284926F7000D24D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BCD52767284A2DBE00DA60FC /* DataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewController.swift; sourceTree = "<group>"; };
 		BCD52769284A45E900DA60FC /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
 		BCD5276B284A52F300DA60FC /* CDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDError.swift; sourceTree = "<group>"; };
@@ -141,6 +140,7 @@
 		BCF32818284B46D5003A5162 /* CDParameterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDParameterTableViewCell.swift; sourceTree = "<group>"; };
 		BCF32819284B46D5003A5162 /* CDParameterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CDParameterTableViewCell.xib; sourceTree = "<group>"; };
 		BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+SafeBounds.swift"; sourceTree = "<group>"; };
+		BCF3281E284B80AC003A5162 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +301,7 @@
 		BCAEB3A1284675B300FA0981 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				BCD4D77D284926F7000D24D0 /* Main.storyboard */,
+				BCF3281E284B80AC003A5162 /* Main.storyboard */,
 				BCAEB373284670A000FA0981 /* MainViewController.swift */,
 				BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */,
 				BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */,
@@ -473,11 +473,11 @@
 				BCAD15782848D9F90004A49F /* Data.storyboard in Resources */,
 				BCAEB3A92846776300FA0981 /* Rubik-Black.ttf in Resources */,
 				BCAEB37C284670A000FA0981 /* LaunchScreen.storyboard in Resources */,
-				BCD4D77E284926F7000D24D0 /* Main.storyboard in Resources */,
 				BCAEB379284670A000FA0981 /* Assets.xcassets in Resources */,
 				BCAEB3A72846775C00FA0981 /* Rubik-ExtraBold.ttf in Resources */,
 				BCF3281B284B46D5003A5162 /* CDParameterTableViewCell.xib in Resources */,
 				BCAEB3AF2846778100FA0981 /* Rubik-Regular.ttf in Resources */,
+				BCF3281F284B80AC003A5162 /* Main.storyboard in Resources */,
 				BCAEB3AB2846776D00FA0981 /* Rubik-Light.ttf in Resources */,
 				BCAEB3B12846778700FA0981 /* Rubik-SemiBold.ttf in Resources */,
 				BCF32817284ACE2D003A5162 /* DataSectionTableViewCell.xib in Resources */,
