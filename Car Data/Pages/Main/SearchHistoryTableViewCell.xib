@@ -45,20 +45,20 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rf4-t1-Kyu">
-                                <rect key="frame" x="155" y="10.5" width="112" height="35"/>
+                                <rect key="frame" x="149" y="10.5" width="118" height="35"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="I6o-Cy-IGQ">
-                                        <rect key="frame" x="6.5" y="0.0" width="105.5" height="16.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="16.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPM-5y-Mef">
-                                                <rect key="frame" x="0.0" y="0.0" width="28.5" height="16.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="16.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USk-PY-nq6" customClass="PaddingLabel" customModule="PaddingLabel">
-                                                <rect key="frame" x="28.5" y="0.0" width="72" height="16.5"/>
-                                                <color key="backgroundColor" name="AccentColor"/>
+                                                <rect key="frame" x="35" y="0.0" width="78" height="16.5"/>
+                                                <color key="backgroundColor" name="cd-yellow"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="AyX-wr-ddU"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="78" id="AyX-wr-ddU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="13"/>
                                                 <color key="textColor" name="cd-text-dark"/>
@@ -82,7 +82,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MX5-8h-x3e">
-                                                <rect key="frame" x="100.5" y="0.0" width="5" height="16.5"/>
+                                                <rect key="frame" x="113" y="0.0" width="5" height="16.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="5" id="2iF-oh-avg"/>
@@ -92,7 +92,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Bxy-Bs-Pc7">
-                                        <rect key="frame" x="0.0" y="19" width="112" height="16"/>
+                                        <rect key="frame" x="6" y="19" width="112" height="16"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2012" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6k-GE-YVE">
                                                 <rect key="frame" x="0.0" y="2" width="25" height="12"/>
@@ -189,15 +189,12 @@
     </objects>
     <designables>
         <designable name="USk-PY-nq6">
-            <size key="intrinsicContentSize" width="84.5" height="28.5"/>
+            <size key="intrinsicContentSize" width="68.5" height="15.5"/>
         </designable>
     </designables>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
-        <namedColor name="AccentColor">
-            <color red="0.92199999094009399" green="0.76499998569488525" blue="0.067000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="cd-accent-dark">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -212,6 +209,9 @@
         </namedColor>
         <namedColor name="cd-text-light">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cd-yellow">
+            <color red="0.92156862745098034" green="0.76470588235294112" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

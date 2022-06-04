@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Hero
 
 class MainViewController: CDViewController {
-
+    
     @IBOutlet weak var licensePlateTextFieldContainer: UIView!
     @IBOutlet weak var licensePlateTextField: UITextField!
     @IBOutlet weak var licensePlateTextFieldClearButton: UIButton!
@@ -21,6 +22,7 @@ class MainViewController: CDViewController {
     
     @IBOutlet weak var cameraSearchActionView: UIView!
     @IBOutlet weak var textFieldSearchActionView: UIView!
+    @IBOutlet weak var textFieldSearchActionViewTitleLabel: PaddingLabel!
     
     @IBOutlet weak var searchHistoryTableView: UITableView!
     
@@ -33,10 +35,9 @@ class MainViewController: CDViewController {
     private var keyboardFrameHeight: CGFloat?
     
     private var initialMainContainerPanOffest: CGFloat = 0
-    
+
     private var isPresentingLicensePlate: Bool = false
-    
-    private var licensePlateNumber: String?
+    var shouldStopPresentingLicensePlate: Bool = false
     
     //MARK: - Programmatic views
     
@@ -61,6 +62,16 @@ class MainViewController: CDViewController {
         super.viewDidLoad()
         
         setupObservers()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.heroNavigationAnimationType = .fade
+
+        if shouldStopPresentingLicensePlate {
+            leaveSearchScene()
+        }
     }
     
     deinit {
@@ -91,7 +102,7 @@ class MainViewController: CDViewController {
     
     private func setupMainContainer() {
         mainContainer.addGestureRecognizer(mainContainerPanGR())
-    
+        
         setupFocusView()
         
         setupActionViews()
@@ -108,6 +119,10 @@ class MainViewController: CDViewController {
         
         textFieldSearchActionView.addGestureRecognizer(textFieldSearchTapGR)
         textFieldSearchActionView.addGestureRecognizer(mainContainerPanGR())
+        
+        textFieldSearchActionViewTitleLabel.layer.cornerRadius = 6
+        textFieldSearchActionViewTitleLabel.layer.masksToBounds = true
+        
     }
     
     private func setupFocusView() {
@@ -127,7 +142,7 @@ class MainViewController: CDViewController {
         
         searchHistoryTableView.register(UINib(nibName: SearchHistoryTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryTableViewCell.reuseID)
         
-
+        
     }
     
     
@@ -140,12 +155,12 @@ class MainViewController: CDViewController {
             } completion: { complete in
                 completion?()
             }
-
+            
         } else {
             view.layoutIfNeeded()
             completion?()
         }
-
+        
     }
     
     private func beginSearchScene() {
@@ -156,12 +171,30 @@ class MainViewController: CDViewController {
         }
     }
     
+    private func leaveSearchScene() {
+        reCenterMainContainer(animated: true) { [weak self] in
+            self?.licensePlateTextField.text = nil
+        }
+        
+        dismissFocusView()
+        
+        shouldStopPresentingLicensePlate = false
+    }
+    
     private func insertFocusView() {
         guard !isPresentingLicensePlate else { return }
         
         focusView.fadeIn()
         
         isPresentingLicensePlate = true
+    }
+    
+    private func dismissFocusView() {
+        guard isPresentingLicensePlate else { return }
+        
+        focusView.fadeOut()
+        
+        isPresentingLicensePlate = false
     }
     
     private func mainContainerPanGR() -> UIPanGestureRecognizer {
@@ -179,7 +212,7 @@ class MainViewController: CDViewController {
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         
         if let input = licensePlateTextField.text,
-            LicensePlateManager.licensePlateIsValid(input) {
+           LicensePlateManager.licensePlateIsValid(input) {
             licensePlateTextField.resignFirstResponder()
             
             licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input)
@@ -187,7 +220,7 @@ class MainViewController: CDViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
                 performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
             }
-
+            
         } else {
             UINotificationFeedbackGenerator().notificationOccurred(.warning)
         }
@@ -198,8 +231,9 @@ class MainViewController: CDViewController {
         super.prepare(for: segue, sender: sender)
         
         if let destination = segue.destination as? LoadResultViewController,
-            let licensePlateNumber = licensePlateNumber {
+           let licensePlateNumber = licensePlateNumber {
             destination.licensePlateNumber = licensePlateNumber
+            destination.delegate = self
         }
     }
     
@@ -273,7 +307,7 @@ class MainViewController: CDViewController {
     }
     
     @objc private func cameraActionViewDidTap(_ sender: UITapGestureRecognizer) {
-
+        
         guard mainContainerCenterYAnchor.constant == 0 else { return }
         
         let offset = cameraTriggerContainer.frame.height
@@ -310,7 +344,7 @@ class MainViewController: CDViewController {
             
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         }
-
+        
     }
     
     @objc private func keyboardWillShow(_ notification: NSNotification) {
@@ -322,8 +356,10 @@ class MainViewController: CDViewController {
         if let keyboardFrameHeight = keyboardFrameHeight {
             searchButton.isHidden = false
             
-            searchButtonBottomAnchor.constant += keyboardFrameHeight + 12
-
+            if searchButtonBottomAnchor.constant == 0 {
+                searchButtonBottomAnchor.constant += keyboardFrameHeight + 12
+            }
+            
             updateViewConstraints()
             
             searchButton.fadeIn(duration: 0.16, delay: 0)
@@ -344,6 +380,8 @@ class MainViewController: CDViewController {
         
         licensePlateTextField.text = formattedText
         licensePlateTextFieldClearButton.isHidden = formattedText.count == 0
+        
+        licensePlateNumber = nil
     }
     
     //MARK: - Observers
@@ -363,11 +401,11 @@ extension MainViewController: UITextFieldDelegate {
         
         if textField == licensePlateTextField, textField.text?.count ?? 0 >= 10 {
             if let char = string.cString(using: String.Encoding.utf8) {
-                    let isBackSpace = strcmp(char, "\\b")
-                    if (isBackSpace == -92) {
-                        return true
-                    }
+                let isBackSpace = strcmp(char, "\\b")
+                if (isBackSpace == -92) {
+                    return true
                 }
+            }
             UINotificationFeedbackGenerator().notificationOccurred(.warning)
             return false
         }
@@ -408,3 +446,35 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension MainViewController: LoadResultDelegate {
+    func resultLoader(didFailWith error: Error) {
+        
+        let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
+            
+            self?.licensePlateTextField.text = nil
+            self?.licensePlateTextField.becomeFirstResponder()
+        }
+        
+        let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
+            
+            self?.dismiss(animated: true)
+            
+            self?.performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
+        }
+        
+        let errorDescription: String?
+        
+        if let error = error as? CDError {
+            errorDescription = error.localizedDescription
+        } else {
+            errorDescription = error.localizedDescription
+        }
+        
+        presentErrorAlert(with: error, withDescription: true, customDesription: errorDescription, actions: [retryAction, cancelAction])
+        
+    }
+    
+    func resultLoader(didReceive data: CarData) {
+        leaveSearchScene()
+    }
+}

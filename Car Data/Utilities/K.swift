@@ -29,9 +29,23 @@ struct K {
 
     }
     
+    struct storyBoards {
+       static let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+       static let dataStoryBoard = UIStoryboard(name: "Data", bundle: nil)
+    }
+    
+    struct viewControllerIDs {
+        static let dataVC = "dataViewController"
+    }
+    
     struct segues {
         struct mainStoryboard {
             static let mainToLoadResult = "mainToLoadResult"
+            static let loadResultToData = "loadResultToData"
         }
+    }
+    
+    struct URL {
+        static let basicData = "https://data.gov.il/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3"
     }
 }

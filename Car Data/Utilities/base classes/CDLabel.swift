@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PaddingLabel
 
 @IBDesignable class CDLabel: PaddingLabel {
     //MARK: - IBInspectable preperties

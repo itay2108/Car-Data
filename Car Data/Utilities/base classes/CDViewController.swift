@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import Hero
 
 class CDViewController: UIViewController {
+    
+    var licensePlateNumber: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        hero.isEnabled = true
+        hero.modalAnimationType = .push(direction: .left)
     }
     
 }
