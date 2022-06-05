@@ -243,11 +243,24 @@
                                                     <color key="textColor" name="cd-text-dark"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZiV-jK-ZYQ">
+                                                    <rect key="frame" x="18" y="-5" width="75" height="31.5"/>
+                                                    <color key="tintColor" name="cd-text-dark"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="הצג הכל">
+                                                        <fontDescription key="titleFontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="14"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="Fdi-Yw-dwk" kind="show" id="fZ7-Bc-c1V"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="OgI-N9-XpQ" secondAttribute="trailing" constant="22" id="Xnd-r5-h44"/>
-                                                <constraint firstItem="OgI-N9-XpQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vgj-fj-CyI" secondAttribute="leading" constant="20" symbolic="YES" id="r1E-W6-zOi"/>
+                                                <constraint firstItem="ZiV-jK-ZYQ" firstAttribute="leading" secondItem="Vgj-fj-CyI" secondAttribute="leading" constant="18" id="Xwr-3d-b8m"/>
+                                                <constraint firstItem="ZiV-jK-ZYQ" firstAttribute="centerY" secondItem="OgI-N9-XpQ" secondAttribute="centerY" id="eMv-o9-JnP"/>
+                                                <constraint firstItem="OgI-N9-XpQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZiV-jK-ZYQ" secondAttribute="trailing" constant="8" symbolic="YES" id="r1E-W6-zOi"/>
                                                 <constraint firstItem="OgI-N9-XpQ" firstAttribute="top" secondItem="Vgj-fj-CyI" secondAttribute="top" id="xIG-4d-F8V"/>
                                             </constraints>
                                         </view>
@@ -415,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3II-nE-Cjy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831.8840579710147" y="-336.16071428571428"/>
+            <point key="canvasLocation" x="1832" y="-226"/>
         </scene>
         <!--Data-->
         <scene sceneID="96c-pG-8wR">
@@ -425,7 +438,61 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rF6-hl-Cew" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2739.8550724637685" y="81.696428571428569"/>
+            <point key="canvasLocation" x="2475" y="82"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="mfw-cQ-krG">
+            <objects>
+                <viewController id="Fdi-Yw-dwk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qSv-q3-Z8Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0kd-cN-91T">
+                                <rect key="frame" x="20" y="100" width="374" height="47"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="היסטוריית חיפוש" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDW-TI-BIa">
+                                        <rect key="frame" x="0.0" y="0.0" width="355.5" height="47"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
+                                        <color key="textColor" name="cd-text-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCx-7v-t5S">
+                                        <rect key="frame" x="355.5" y="0.0" width="18.5" height="47"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YCx-7v-t5S" firstAttribute="width" secondItem="0kd-cN-91T" secondAttribute="width" multiplier="0.05" id="gWF-PF-72l"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aFU-Dt-bzV">
+                                <rect key="frame" x="20" y="171" width="374" height="689"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6j8-3e-ncb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aFU-Dt-bzV" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="D5e-rH-HC9"/>
+                            <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="aFU-Dt-bzV" secondAttribute="trailing" constant="20" id="K4o-o4-cJ8"/>
+                            <constraint firstItem="aFU-Dt-bzV" firstAttribute="top" secondItem="0kd-cN-91T" secondAttribute="bottom" constant="24" id="MHL-Cz-WsQ"/>
+                            <constraint firstItem="0kd-cN-91T" firstAttribute="height" secondItem="qSv-q3-Z8Q" secondAttribute="height" multiplier="0.0524554" id="Oiw-qb-0uM"/>
+                            <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="0kd-cN-91T" secondAttribute="trailing" constant="20" id="fqh-nj-Xun"/>
+                            <constraint firstItem="0kd-cN-91T" firstAttribute="top" secondItem="6j8-3e-ncb" secondAttribute="top" constant="12" id="opA-sW-j7B"/>
+                            <constraint firstItem="0kd-cN-91T" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="qRG-vf-Vcn"/>
+                            <constraint firstItem="aFU-Dt-bzV" firstAttribute="bottom" secondItem="qSv-q3-Z8Q" secondAttribute="bottom" constant="-36" id="ta6-cD-MiY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="M5j-ce-tWG"/>
+                    <connections>
+                        <segue destination="HLx-iu-KIc" kind="show" id="OO6-bt-LLE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XRU-sO-KnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1833.3333333333335" y="428.57142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cMr-uC-y1C">
@@ -465,11 +532,15 @@
             <size key="intrinsicContentSize" width="194.5" height="39"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="OO6-bt-LLE"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
-        <image name="cd-logo-label" width="512" height="110"/>
+        <image name="cd-logo-label" width="512" height="104"/>
         <image name="cd-swipe-down" width="512" height="512"/>
         <image name="cd-swipe-up" width="512" height="512"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
         <image name="keyboard.fill" catalog="system" width="128" height="79"/>

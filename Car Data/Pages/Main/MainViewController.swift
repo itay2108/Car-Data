@@ -435,6 +435,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.reuseID) as! SearchHistoryTableViewCell
         
         cell.configure()
+        cell.licensePlateLabel.backgroundColor = K.colors.accents.yellow.withAlphaComponent(0.75)
         
         return cell
     }
