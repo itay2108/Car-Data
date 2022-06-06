@@ -15,6 +15,8 @@ class CDParameterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var parameterValueLabel: UILabel!
     
+    @IBOutlet weak var booleanIndicator: UIImageView!
+    
     func configure(with parameter: CDParameter?) {
         
         mainContainer.layer.cornerRadius = 13
@@ -22,12 +24,29 @@ class CDParameterTableViewCell: UITableViewCell {
         
         parameterNameLabel.text = parameter?.type.rawValue ?? "-"
         
-        if let value = parameter?.value {
+        guard let value = parameter?.value else {
+            parameterValueLabel.text = "-"
+            return
+        }
+        
+        if let boolValue = value as? Bool {
+            parameterValueLabel.isHidden = true
+            booleanIndicator.isHidden = false
+            
+            booleanIndicator.image = boolValue ?
+            UIImage(systemName: "checkmark.circle.fill")
+            : UIImage(systemName: "xmark.circle.fill")
+            
+        } else {
             let text = String(describing: value)
             parameterValueLabel.text = text
-        } else {
-            parameterValueLabel.text = "-"
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        parameterValueLabel.isHidden = false
+        booleanIndicator.isHidden = true
     }
     
 }

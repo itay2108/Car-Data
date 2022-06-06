@@ -22,10 +22,9 @@ class DataSectionTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(withTitle sectionName: String?, parameters: [CDParameter]) {
-        
+    func configure(with section: CDParameterSection) {
 
-        if let sectionName = sectionName {
+        if let sectionName = section.title {
             sectionHeader.text = sectionName
         } else {
             sectionHeader.isHidden = true
@@ -33,7 +32,7 @@ class DataSectionTableViewCell: UITableViewCell {
         
         setupTableView()
         
-        self.parameters = parameters
+        self.parameters = section.parameters
         
         selectionStyle = .none
         

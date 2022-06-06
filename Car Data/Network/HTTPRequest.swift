@@ -11,7 +11,7 @@ import Alamofire
 
 struct HTTPRequest {
     
-    static func get<T: Codable>(from url: URL?, with headers: HTTPHeaders?, decodeWith: T.Type) -> Promise<T> {
+    static func get<T: Codable>(from url: URL?, with headers: HTTPHeaders? = nil, decodeWith: T.Type) -> Promise<T> {
         
         return Promise { fulfill, reject in
             

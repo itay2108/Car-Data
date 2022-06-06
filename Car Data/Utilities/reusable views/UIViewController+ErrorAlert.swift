@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    func presentErrorAlert(with errorInfo: Error, withDescription showsDescription: Bool = true, canRetry: Bool = false, retryHandler: (()->Void)? = nil) {
+    func presentRetryableErrorAlert(with errorInfo: Error, withDescription showsDescription: Bool = true, canRetry: Bool = false, retryHandler: (()->Void)? = nil) {
         
         let alert = UIAlertController(title: "אופס, אירעה שגיאה", message: errorInfo.localizedDescription, preferredStyle: .alert)
         

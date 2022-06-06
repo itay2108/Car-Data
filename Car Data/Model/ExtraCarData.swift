@@ -23,14 +23,14 @@ struct ExtraCarData: Codable {
     let manufacturerFull, manufacturerCountry, manufacturer: String?
     let modelCode: Int?
     let modelNumber: String?
-    let shnatYitzur, registrationGroup, displacement, curbWeight: Int?
+    let modelYear, registrationGroup, displacement, curbWeight: Int?
     let height: Int?
     let wheelDriveCode: Int?
     let wheelDrive: String?
     let ac, abs: Int?
     let airbags, powerSteering, isAutomatic: Int?
-    let windows, sunroof, hasJant: Int?
-    let bodyType, trimLebel: String?
+    let windows, sunroof, hasAlloys: Int?
+    let bodyType, trimLevel: String?
     let fuelCode: Int?
     let fuelType: String?
     let doorCount, horsepower, seatNumber, tcs: Int?
@@ -51,7 +51,8 @@ struct ExtraCarData: Codable {
     let frontDistanceMonitor: Int?
     let blintspotMonitor, adaptiveCruiseControl, pedestrianMonitor: Int?
     let emergencyBreakAssist, reversingCamera, tpms, safetyBeltSensors: Int?
-    let safetyScore, safetyEquipmentScore: Int?
+    let safetyScore: Double?
+    let safetyEquipmentScore: Int?
     let automaticHeadlights, automaticHighBeams: Int?
     let aebs, trafficSignMonitor, motorcycleMonitor: Int?
     let activeLaneKeepAssist, rearEmergencyBreakingSystem, bakaratMehirutISA: Int?
@@ -67,7 +68,7 @@ struct ExtraCarData: Codable {
         case manufacturer = "tozar"
         case modelCode = "degem_cd"
         case modelNumber = "degem_nm"
-        case shnatYitzur = "shnat_yitzur"
+        case modelYear = "shnat_yitzur"
         case registrationGroup = "kvuzat_agra_cd"
         case displacement = "nefah_manoa"
         case curbWeight = "mishkal_kolel"
@@ -81,9 +82,9 @@ struct ExtraCarData: Codable {
         case isAutomatic = "automatic_ind"
         case windows = "mispar_halonot_hashmal"
         case sunroof = "halon_bagg_ind"
-        case hasJant = "galgaley_sagsoget_kala_ind"
+        case hasAlloys = "galgaley_sagsoget_kala_ind"
         case bodyType = "merkav"
-        case trimLebel = "ramat_gimur"
+        case trimLevel = "ramat_gimur"
         case fuelCode = "delek_cd"
         case fuelType = "delek_nm"
         case doorCount = "mispar_dlatot"

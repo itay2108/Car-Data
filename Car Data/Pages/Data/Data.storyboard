@@ -62,7 +62,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLa-Jp-vt6" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                <rect key="frame" x="87" y="159" width="240.5" height="59"/>
+                                <rect key="frame" x="91" y="146" width="232.5" height="59"/>
                                 <color key="backgroundColor" name="cd-yellow"/>
                                 <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
                                 <color key="textColor" name="cd-text-dark"/>
@@ -75,10 +75,10 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
-                                        <real key="value" value="24"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
-                                        <real key="value" value="24"/>
+                                        <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="13"/>
@@ -87,7 +87,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BBC-dg-oM6">
-                                <rect key="frame" x="20" y="290" width="374" height="606"/>
+                                <rect key="frame" x="20" y="277" width="374" height="619"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -101,10 +101,10 @@
                             <constraint firstItem="HLa-Jp-vt6" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MCk-uM-SJO"/>
                             <constraint firstItem="zaB-eP-dnh" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0524554" id="OPu-6z-QF3"/>
                             <constraint firstItem="BBC-dg-oM6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Y9W-nP-zX1"/>
-                            <constraint firstItem="HLa-Jp-vt6" firstAttribute="top" secondItem="zaB-eP-dnh" secondAttribute="bottom" constant="56" id="dNb-TZ-Bux"/>
                             <constraint firstItem="BBC-dg-oM6" firstAttribute="top" secondItem="HLa-Jp-vt6" secondAttribute="bottom" constant="72" id="dkp-lL-nDN"/>
                             <constraint firstItem="zaB-eP-dnh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="oZ7-TK-JAm"/>
                             <constraint firstItem="BBC-dg-oM6" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="qhT-zR-XVg"/>
+                            <constraint firstItem="HLa-Jp-vt6" firstAttribute="centerY" secondItem="zaB-eP-dnh" secondAttribute="centerY" constant="96" id="zKR-fP-9AU"/>
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
@@ -112,8 +112,10 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="dataTableView" destination="BBC-dg-oM6" id="pTo-MJ-Abp"/>
+                        <outlet property="dataTableViewTopAnchor" destination="dkp-lL-nDN" id="hjf-ky-3JX"/>
                         <outlet property="headerTitleLabel" destination="FUM-JK-LE3" id="SIx-JV-pz3"/>
-                        <outlet property="licensePlateLabel" destination="HLa-Jp-vt6" id="h6W-vM-1S4"/>
+                        <outlet property="licensePlateLabel" destination="HLa-Jp-vt6" id="h8W-0X-jmv"/>
+                        <outlet property="licensePlateLabelTopAnchor" destination="zKR-fP-9AU" id="ePa-US-Veg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -123,7 +125,7 @@
     </scenes>
     <designables>
         <designable name="HLa-Jp-vt6">
-            <size key="intrinsicContentSize" width="240.5" height="59"/>
+            <size key="intrinsicContentSize" width="232.5" height="59"/>
         </designable>
     </designables>
     <resources>
