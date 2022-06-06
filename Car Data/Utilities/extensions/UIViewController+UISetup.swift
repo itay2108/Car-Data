@@ -20,4 +20,20 @@ extension UIViewController {
     
     @objc func setupConstraints() { }
     
+    var heightModifier: CGFloat {
+        get {
+            return UIScreen.main.bounds.size.height / 812
+        }
+    }
+    
+    var widthModifier: CGFloat {
+        get {
+            return UIScreen.main.bounds.size.width / 375
+        }
+    }
+    
+    var window: UIWindow? {
+       return UIApplication.shared.windows.first
+    }
+    
 }

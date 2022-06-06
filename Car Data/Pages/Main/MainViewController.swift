@@ -20,11 +20,18 @@ class MainViewController: CDViewController {
     @IBOutlet weak var mainContainer: UIView!
     @IBOutlet weak var mainContainerCenterYAnchor: NSLayoutConstraint!
     
+    @IBOutlet weak var logoTopAnchor: NSLayoutConstraint!
+    @IBOutlet weak var logoHeightAnchor: NSLayoutConstraint!
+    
     @IBOutlet weak var cameraSearchActionView: UIView!
+    @IBOutlet weak var cameraSearchActionViewTitleLabel: UILabel!
     @IBOutlet weak var textFieldSearchActionView: UIView!
     @IBOutlet weak var textFieldSearchActionViewTitleLabel: PaddingLabel!
     
     @IBOutlet weak var searchHistoryTableView: UITableView!
+    @IBOutlet weak var searchHistoryTableViewHeader: UIView!
+    @IBOutlet weak var searchHistoryTableViewTitleLabel: UILabel!
+    @IBOutlet weak var searchHistoryTableViewBottomAnchor: NSLayoutConstraint!
     
     @IBOutlet weak var settingsButton: UIButton!
     
@@ -62,6 +69,7 @@ class MainViewController: CDViewController {
         super.viewDidLoad()
         
         setupObservers()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,6 +93,17 @@ class MainViewController: CDViewController {
         
         setuplicensePlateTextField()
         setupMainContainer()
+        
+        updateViewConstraints()
+    }
+    
+    override func setupConstraints() {
+        super.setupConstraints()
+        
+        logoTopAnchor.constant = (window?.safeAreaInsets.top ?? 0) + 16
+        searchHistoryTableViewBottomAnchor.constant = (window?.safeAreaInsets.bottom ?? 0) + 16
+        
+        logoHeightAnchor.constant *= heightModifier
     }
     
     private func setuplicensePlateTextField() {
@@ -97,6 +116,8 @@ class MainViewController: CDViewController {
         
         licensePlateTextField.attributedPlaceholder =
         NSAttributedString(string: licensePlateTextField.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor: K.colors.text.dark.withAlphaComponent(0.33)])
+        
+        licensePlateTextField.font = Rubik.semiBold.ofSize(36 * heightModifier)
         
     }
     
@@ -114,6 +135,7 @@ class MainViewController: CDViewController {
         
         cameraSearchActionView.addGestureRecognizer(cameraTapGR)
         cameraSearchActionView.addGestureRecognizer(mainContainerPanGR())
+        cameraSearchActionViewTitleLabel.font = Rubik.medium.ofSize(19 * heightModifier)
         
         let textFieldSearchTapGR = UITapGestureRecognizer(target: self, action: #selector(textfieldActionViewDidTap(_:)))
         
@@ -122,6 +144,7 @@ class MainViewController: CDViewController {
         
         textFieldSearchActionViewTitleLabel.layer.cornerRadius = 6
         textFieldSearchActionViewTitleLabel.layer.masksToBounds = true
+        textFieldSearchActionViewTitleLabel.font = Rubik.medium.ofSize(19 * heightModifier)
         
     }
     
@@ -141,6 +164,10 @@ class MainViewController: CDViewController {
         searchHistoryTableView.dataSource = self
         
         searchHistoryTableView.register(UINib(nibName: SearchHistoryTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryTableViewCell.reuseID)
+        
+        searchHistoryTableViewTitleLabel.font = Rubik.regular.ofSize(18 * heightModifier)
+        
+        
         
         
     }
@@ -428,20 +455,20 @@ extension MainViewController: UITextFieldDelegate {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.reuseID) as! SearchHistoryTableViewCell
         
         cell.configure()
-        cell.licensePlateLabel.backgroundColor = K.colors.accents.yellow.withAlphaComponent(0.75)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return (searchHistoryTableView.frame.height - searchHistoryTableViewHeader.frame.height - searchHistoryTableView.contentInset.bottom - searchHistoryTableView.contentInset.top) / 5
     }
     
     

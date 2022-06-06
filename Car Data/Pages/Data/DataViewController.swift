@@ -147,15 +147,15 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
             
             dataTableViewTopAnchor.constant = defaultDataTableTopConstant - (scrollView.contentOffset.y / 8)
             
-            if licensePlateLabelTopAnchor.constant < 0 {
-                licensePlateLabelTopAnchor.constant = 0
+            if licensePlateLabelTopAnchor.constant < 1 {
+                licensePlateLabelTopAnchor.constant = 1
             }
             
             if dataTableViewTopAnchor.constant < 18 {
                 dataTableViewTopAnchor.constant = 18
             }
             
-            headerTitleLabel.isHidden = licensePlateLabelTopAnchor.constant == 0
+            headerTitleLabel.isHidden = licensePlateLabelTopAnchor.constant < 8
             
             let fontModifier: CGFloat = 0.5 + ((0.5 / defaultLicensePlateTopConstant) * licensePlateLabelTopAnchor.constant)
             
