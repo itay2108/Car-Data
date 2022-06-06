@@ -113,4 +113,6 @@ enum CDParameterType: String, CaseIterable {
     case rearEmergencyBreakingSystem = "בלימה אוטומטית בנסיעה לאחור"
     case bakaratMehirutISA = "בקרת מהירות"
     
+    case importType = "סוג ייבוא"
+    
 }

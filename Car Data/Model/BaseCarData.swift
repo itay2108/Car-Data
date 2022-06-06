@@ -29,6 +29,8 @@ struct BaseCarData: Codable {
     let horaatRishum: Int?
     let moedAliyaLakvish, model: String?
     let rank: Double?
+    
+    let importType: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -55,5 +57,36 @@ struct BaseCarData: Codable {
         case moedAliyaLakvish = "moed_aliya_lakvish"
         case model = "kinuy_mishari"
         case rank
+        
+        case importType = "irrelevant"
+    }
+    
+    init(_ importData: ImportCarData) {
+        self.id = importData.id
+        self.plateNumber = importData.plateNumber
+        self.manufacturerCode = Int(importData.manufacturerCode ?? "0")
+        self.modelClass = importData.modelClass
+        self.manufacturer = importData.manufacturer
+        self.modelCode = nil
+        self.modelNumber = importData.modelNumber
+        self.trimLevel = nil
+        self.pollutionLevel = nil
+        self.modelYear = Int(importData.modelYear ?? "0")
+        self.engineModel = importData.engineModel
+        self.lastMOT = importData.lastMOT
+        self.nextMOT = importData.nextMOT
+        self.ownership = nil
+        self.chassis = importData.chassis
+        self.colorCode = nil
+        self.color = nil
+        self.frontTireSize = nil
+        self.rearTireSize = nil
+        self.fuelType = importData.fuelType
+        self.horaatRishum = nil
+        self.moedAliyaLakvish = importData.moedAliyaLakvish
+        self.model = nil
+        self.rank = nil
+        
+        self.importType = importData.importType
     }
 }

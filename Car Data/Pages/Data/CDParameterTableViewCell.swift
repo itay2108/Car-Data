@@ -35,7 +35,7 @@ class CDParameterTableViewCell: UITableViewCell {
             
             booleanIndicator.image = boolValue ?
             UIImage(systemName: "checkmark.circle.fill")
-            : UIImage(systemName: "xmark.circle.fill")
+            : UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(K.colors.accents.light.withAlphaComponent(0.33))
             
         } else {
             let text = String(describing: value)

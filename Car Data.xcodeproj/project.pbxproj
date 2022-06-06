@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6600E17C284E468700351CAF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6600E17B284E468700351CAF /* UIView+Extensions.swift */; };
 		660D591B284D67FA00795114 /* Int+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D591A284D67FA00795114 /* Int+Bool.swift */; };
+		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
@@ -105,6 +106,7 @@
 /* Begin PBXFileReference section */
 		6600E17B284E468700351CAF /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		660D591A284D67FA00795114 /* Int+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bool.swift"; sourceTree = "<group>"; };
+		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				BCC512372849644300E883D0 /* BaseCarData.swift */,
 				66CE0825284CEDC900FF7072 /* DisabilityData.swift */,
 				662CD73C284C9C430084998A /* ExtraCarData.swift */,
+				6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */,
 				BCF32812284AC5E0003A5162 /* CDParameter.swift */,
 			);
 			path = Model;
@@ -540,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCF3281A284B46D5003A5162 /* CDParameterTableViewCell.swift in Sources */,
+				6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */,
 				66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */,
 				BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */,
 				BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */,

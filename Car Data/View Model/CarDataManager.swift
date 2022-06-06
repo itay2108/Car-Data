@@ -29,12 +29,28 @@ struct CarDataManager {
                         .then { extraData in
                         getDisabilityData(from: licensePlateNumber)
                                 .then { hasDisability in
-                            fulfill(CarData(id: licensePlateAsInt, baseData: baseData, extraData: extraData, hasDisablity: hasDisability))
+                            fulfill(CarData(id: licensePlateAsInt, baseData: baseData, extraData: extraData, hasDisablity: hasDisability, isImport: false))
                         }
                     }
                 }
                 .catch { error in
-                    reject(error)
+                    
+                    if let error = (error as? CDError),
+                       error == CDError.notFound {
+                        
+                        getImportCarData(from: licensePlateNumber)
+                        
+                            .then(on: DispatchQueue.global()) { importData in
+                                getDisabilityData(from: licensePlateNumber).then { hasDisability in
+                                    fulfill(CarData(id: licensePlateAsInt, baseData: BaseCarData(importData), extraData: nil, hasDisablity: hasDisability, isImport: true))
+                                }
+                            }
+                            .catch { error in
+                                reject(error)
+                            }
+                    } else {
+                        reject(error)
+                    }
                 }
             
         }
@@ -48,6 +64,36 @@ struct CarDataManager {
             let url = urlManager.url(from: K.URLs.basicData, query: licensePlateNumber)
             
             HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                
+                guard data.success else {
+                    reject(CDError.requestError)
+                    return
+                }
+                
+                guard let plateNumber = Int(licensePlateNumber),
+                    let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) else {
+                    
+                    reject(CDError.notFound)
+                    return
+                }
+                
+                fulfill(result)
+                
+            }.catch { error in
+                reject(error)
+            }
+        }
+        
+        
+    }
+    
+    private func getImportCarData(from licensePlateNumber: String) -> Promise<ImportCarData> {
+        
+        return Promise { fulfill, reject in
+            
+            let url = urlManager.url(from: K.URLs.basicImportData, query: licensePlateNumber)
+            
+            HTTPRequest.get(from: url, decodeWith: ImportCarDataResponse.self).then(on: DispatchQueue.global()) { data in
                 
                 guard data.success else {
                     reject(CDError.requestError)

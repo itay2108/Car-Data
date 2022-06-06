@@ -112,13 +112,13 @@
                                         </state>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="G8z-G0-2uk">
-                                        <rect key="frame" x="38.5" y="121" width="337" height="216"/>
+                                        <rect key="frame" x="41.5" y="121" width="331" height="216"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0j-kX-ky8">
-                                                <rect key="frame" x="0.0" y="0.0" width="337" height="97.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="76" y="4.5" width="185.5" height="77"/>
+                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
                                                                 <rect key="frame" x="64" y="0.0" width="57" height="26"/>
@@ -177,17 +177,17 @@
                                                 </constraints>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8Af-ID-aOT">
-                                                <rect key="frame" x="0.0" y="107" width="337" height="2"/>
+                                                <rect key="frame" x="0.0" y="107" width="331" height="2"/>
                                                 <color key="tintColor" name="cd-accent-light"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="rnK-Eh-ANf"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wab-aW-vI1">
-                                                <rect key="frame" x="0.0" y="118.5" width="337" height="97.5"/>
+                                                <rect key="frame" x="0.0" y="118.5" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KKZ-26-z8D">
-                                                        <rect key="frame" x="97" y="16" width="143.5" height="57"/>
+                                                        <rect key="frame" x="94" y="16" width="143.5" height="57"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זיהוי לוחית מתמונה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVu-Fb-BGK">
                                                                 <rect key="frame" x="0.0" y="0.0" width="143.5" height="23"/>
@@ -275,7 +275,7 @@
                                     <constraint firstItem="eXB-Hw-PKz" firstAttribute="top" secondItem="dE0-0Z-MJA" secondAttribute="top" constant="63" id="o1n-SK-7BY"/>
                                     <constraint firstItem="G8z-G0-2uk" firstAttribute="centerX" secondItem="dE0-0Z-MJA" secondAttribute="centerX" id="rbt-gZ-pXz"/>
                                     <constraint firstItem="rOL-Lq-L37" firstAttribute="height" secondItem="eXB-Hw-PKz" secondAttribute="height" id="rjU-G5-qmi"/>
-                                    <constraint firstItem="G8z-G0-2uk" firstAttribute="width" secondItem="dE0-0Z-MJA" secondAttribute="width" multiplier="0.81401" id="wcA-dU-Rs9"/>
+                                    <constraint firstItem="G8z-G0-2uk" firstAttribute="width" secondItem="dE0-0Z-MJA" secondAttribute="width" multiplier="0.8" id="wcA-dU-Rs9"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="height" secondItem="dE0-0Z-MJA" secondAttribute="height" multiplier="0.550279" priority="750" id="y0R-yP-1wp"/>
                                 </constraints>
                             </view>

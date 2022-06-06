@@ -91,6 +91,26 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Nlz-GE-DiC">
+                                <rect key="frame" x="145.5" y="247" width="123" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לרכב זה אין תו נכה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-UZ-h7p">
+                                        <rect key="frame" x="0.0" y="0.0" width="101" height="16"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="13"/>
+                                        <color key="textColor" name="cd-accent-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-wheelchair" translatesAutoresizingMaskIntoConstraints="NO" id="1LZ-4r-Dpz">
+                                        <rect key="frame" x="107" y="0.0" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="1LZ-4r-Dpz" secondAttribute="height" multiplier="1:1" id="L6h-Ff-MTk"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="EnT-rQ-Cib"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="cd-background"/>
@@ -98,8 +118,10 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zaB-eP-dnh" secondAttribute="trailing" constant="20" id="2VH-Wb-Dlf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BBC-dg-oM6" secondAttribute="trailing" constant="20" id="4B0-k8-jKJ"/>
                             <constraint firstItem="zaB-eP-dnh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Iw9-x4-iRI"/>
+                            <constraint firstItem="Nlz-GE-DiC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="JfD-sb-fnN"/>
                             <constraint firstItem="HLa-Jp-vt6" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MCk-uM-SJO"/>
                             <constraint firstItem="zaB-eP-dnh" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0524554" id="OPu-6z-QF3"/>
+                            <constraint firstItem="BBC-dg-oM6" firstAttribute="top" secondItem="Nlz-GE-DiC" secondAttribute="bottom" constant="14" id="QsK-Re-Lzc"/>
                             <constraint firstItem="BBC-dg-oM6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Y9W-nP-zX1"/>
                             <constraint firstItem="BBC-dg-oM6" firstAttribute="top" secondItem="HLa-Jp-vt6" secondAttribute="bottom" constant="72" id="dkp-lL-nDN"/>
                             <constraint firstItem="zaB-eP-dnh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="oZ7-TK-JAm"/>
@@ -113,6 +135,8 @@
                     <connections>
                         <outlet property="dataTableView" destination="BBC-dg-oM6" id="pTo-MJ-Abp"/>
                         <outlet property="dataTableViewTopAnchor" destination="dkp-lL-nDN" id="hjf-ky-3JX"/>
+                        <outlet property="disabilityLabel" destination="gmG-UZ-h7p" id="xl5-H8-NHz"/>
+                        <outlet property="disabilityStackView" destination="Nlz-GE-DiC" id="4OD-Vh-WJK"/>
                         <outlet property="headerTitleLabel" destination="FUM-JK-LE3" id="SIx-JV-pz3"/>
                         <outlet property="licensePlateLabel" destination="HLa-Jp-vt6" id="h8W-0X-jmv"/>
                         <outlet property="licensePlateLabelTopAnchor" destination="zKR-fP-9AU" id="ePa-US-Veg"/>
@@ -129,8 +153,12 @@
         </designable>
     </designables>
     <resources>
+        <image name="cd-wheelchair" width="512" height="512"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <namedColor name="cd-accent-dark">
+            <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="cd-background">
             <color red="0.92500001192092896" green="0.94099998474121094" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

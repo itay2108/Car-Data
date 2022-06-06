@@ -27,4 +27,10 @@ struct DisabilityData: Codable {
         case disabilityType = "SUG TAV"
         case rank
     }
+    
+}
+
+enum HasDisabilityLabel: String {
+    case yes = "לרכב זה קיים תו נכה"
+    case no = "לרכב זה אין תו נכה"
 }
