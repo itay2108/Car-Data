@@ -29,6 +29,7 @@ class CDParameterTableViewCell: UITableViewCell {
             return
         }
         
+        //handle boolean values (convert to V or X icon)
         if let boolValue = value as? Bool {
             parameterValueLabel.isHidden = true
             booleanIndicator.isHidden = false
@@ -38,15 +39,36 @@ class CDParameterTableViewCell: UITableViewCell {
             : UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysOriginal).withTintColor(K.colors.accents.light.withAlphaComponent(0.33))
             
         } else {
+            //handle non boolean values
             let text = String(describing: value)
             parameterValueLabel.text = text
         }
+        
+        updateMOTbackgroundWarningColor(for: parameter)
+
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         parameterValueLabel.isHidden = false
         booleanIndicator.isHidden = true
+        
+        mainContainer.backgroundColor = K.colors.background
+    }
+    
+    private func updateMOTbackgroundWarningColor(for field: CDParameter?) {
+        
+        if field?.type == .nextMOT,
+           let motDate = (field?.value as? String)?.asDate(inputFormat: .uiFormat) {
+            
+            if motDate.isInThePast() {
+                mainContainer.backgroundColor = K.colors.accents.error
+
+            } else if let daysUntilMOT = Calendar.current.dateComponents([.day], from: Date(), to: motDate).day,
+                daysUntilMOT <= 30 {
+                mainContainer.backgroundColor = K.colors.accents.warning
+            }
+        }
     }
     
 }

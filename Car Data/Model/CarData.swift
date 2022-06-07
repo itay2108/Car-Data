@@ -64,9 +64,9 @@ struct CarData {
         
         var parameters: [CDParameter] = []
         
-        parameters.append(CDParameter(type: .lastMOT, value: baseData.lastMOT))
+        parameters.append(CDParameter(type: .lastMOT, value: baseData.lastMOT?.asDateFormat(inputFormat: .govApiFormat, outputFormat: .uiFormat)))
         parameters.append(CDParameter(type: .registrationGroup, value: extraData?.registrationGroup))
-        parameters.append(CDParameter(type: .nextMOT, value: baseData.nextMOT))
+        parameters.append(CDParameter(type: .nextMOT, value: baseData.nextMOT?.asDateFormat(inputFormat: .govApiFormat, outputFormat: .uiFormat)))
         parameters.append(CDParameter(type: .ownership, value: baseData.ownership))
         parameters.append(CDParameter(type: .chassis, value: baseData.chassis))
         parameters.append(CDParameter(type: .horaatRishum, value: baseData.horaatRishum))

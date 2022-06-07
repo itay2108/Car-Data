@@ -21,23 +21,22 @@ extension LoadResultDelegate {
 
 class LoadResultViewController: CDViewController {
 
+    @IBOutlet weak var closeButton: UIButton!
+    
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     
     @IBOutlet weak var licensePlateLabel: UILabel!
     
-    @IBOutlet weak var lodingLabel: UILabel!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var delegate: LoadResultDelegate?
     
+    var requestTimer: Timer?
+    
     override var licensePlateNumber: String? {
         didSet {
-            CarDataManager().getCarData(from: licensePlateNumber).then { [weak self] data in
-                self?.presentDataVC(using: data)
-            }.catch { [weak self] error in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.navigationController?.popViewController(animated: true)
-                    self?.delegate?.resultLoader(didFailWith: error)
-                }
+            if licensePlateNumber != nil {
+                    getCarData()
             }
         }
     }
@@ -48,7 +47,12 @@ class LoadResultViewController: CDViewController {
         super.viewDidAppear(animated)
         
         //timer
-        
+        awaitForTimeout(after: 7)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        requestTimer?.invalidate()
+        requestTimer = nil
     }
     
     //MARK: - UI Methods
@@ -89,69 +93,51 @@ class LoadResultViewController: CDViewController {
             
         }
     }
+    @IBAction func closeButtonPressed(_ sender: UIButton) {
+        CDTaskMonitor.main.cancelAllTasks()
+        
+        navigationController?.popViewController(animated: true)
+        delegate?.resultLoader(didFailWith: CDError.canceled)
+    }
     
     //MARK: - Data Methods
     
-//    private func getCarData() {
-//        guard let licensePlate = licensePlateNumber else {
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-//
-//                self?.navigationController?.popViewController(animated: true)
-//                self?.delegate?.resultLoader(didFailWith: CDError.noDataProvided)
-//            }
-//
-//           return
-//        }
-//
-//        if let url = URL(string: "\(K.URsL.basicData)&q=\(licensePlate)") {
-//
-//            let request = AF.request(url).validate(statusCode: 200..<300)
-//
-//            request.responseDecodable(of: BaseCarDataRespone.self) { [weak self] afResponse in
-//                do {
-//                    let response = try afResponse.result.get()
-//
-//                    guard response.success else {
-//                        throw CDError.parseError
-//                    }
-//
-//                    let records = response.result.records
-//
-//                    guard records.count > 0,
-//                          let carData = records.first(where: {$0.plateNumber == Int(licensePlate)}) else {
-//                        throw CDError.notFound
-//                    }
-//
-//
-//                    if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
-//
-//                        destination.licensePlateNumber = self?.licensePlateNumber
-//                        destination.data = carData
-//
-//                        self?.delegate?.resultLoader(didReceive: carData)
-//
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            self?.navigationController?.pushViewController(destination, animated: true)
-//
-//                            self?.navigationController?.viewControllers.removeAll(where: { $0 == self })
-//                        }
-//
-//                    } else {
-//                        throw CDError.unknownError
-//                    }
-//
-//
-//                } catch {
-//
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        self?.navigationController?.popViewController(animated: true)
-//                        self?.delegate?.resultLoader(didFailWith: error)
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
+    private func getCarData() {
+        CarDataManager().getCarData(from: licensePlateNumber).then { [weak self] data in
+            self?.presentDataVC(using: data)
+            
+        }.catch { [weak self] error in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self?.navigationController?.popViewController(animated: true)
+                self?.delegate?.resultLoader(didFailWith: error)
+            }
+            
+        }.always { [weak self] in
+            self?.requestTimer?.invalidate()
+            self?.requestTimer = nil
+        }
+    }
+    
+    private func awaitForTimeout(after timeInterval: TimeInterval) {
+        
+        requestTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(dismissBecauseOfTimeout), userInfo: nil, repeats: false)
+        
+    }
+    
+    @objc func dismissBecauseOfTimeout() {
+        
+        closeButton.isHidden = false
+        closeButton.fadeIn()
+        
+        loadingLabel.fadeOut { [weak self] finish in
+            self?.loadingLabel.text = "רק עוד כמה רגעים..."
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self?.loadingLabel.fadeIn()
+            }
+        }
+
+
+    }
 
 }

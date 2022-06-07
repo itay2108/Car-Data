@@ -11,7 +11,9 @@ import Alamofire
 
 struct HTTPRequest {
     
-    static func get<T: Codable>(from url: URL?, with headers: HTTPHeaders? = nil, decodeWith: T.Type) -> Promise<T> {
+    static func get<T: Codable>(from url: URL?, with headers: HTTPHeaders? = nil, decodeWith: T.Type, taskID: String? = nil) -> Promise<T> {
+        
+        let taskID = taskID ?? UUID().uuidString
         
         return Promise { fulfill, reject in
             
@@ -20,7 +22,7 @@ struct HTTPRequest {
                 return
             }
             
-            AF.request(url, headers: headers).validate(statusCode: 200..<300)
+            let request = AF.request(url, headers: headers).validate(statusCode: 200..<300)
             
                 .responseDecodable(of: T.self) { response in
                     
@@ -35,11 +37,19 @@ struct HTTPRequest {
                         reject(CDError.parseError)
                     }
                 }
+            
+
+            CDTaskMonitor.main.add(activeTask: CDTask(id: taskID, request: request))
+            
+        }.always {
+            CDTaskMonitor.main.remove(activeTasksWithID: taskID)
         }
         
     }
     
-    static func post<T: Codable>(data: Dictionary<String, Any>, to url: URL?, decodeResponseWith decoder: T.Type) -> Promise<T> {
+    static func post<T: Codable>(data: Dictionary<String, Any>, to url: URL?, decodeResponseWith decoder: T.Type, taskID: String? = nil) -> Promise<T> {
+        
+        let taskID = taskID ?? UUID().uuidString
         
         return Promise { fulfill, reject in
             
@@ -48,7 +58,7 @@ struct HTTPRequest {
                 return
             }
             
-            AF.request(url, method: .post, parameters: data, encoding: JSONEncoding.default).validate(statusCode: 200..<300)
+            let request = AF.request(url, method: .post, parameters: data, encoding: JSONEncoding.default).validate(statusCode: 200..<300)
             
                 .responseDecodable(of: decoder) { response in
                     guard response.error == nil else {
@@ -62,6 +72,10 @@ struct HTTPRequest {
                         reject(CDError.parseError)
                     }
                 }
+            
+            CDTaskMonitor.main.add(activeTask: CDTask(id: taskID, request: request))
+        }.always {
+            CDTaskMonitor.main.remove(activeTasksWithID: taskID)
         }
         
     }

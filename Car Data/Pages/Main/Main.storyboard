@@ -118,10 +118,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
+                                                        <rect key="frame" x="85" y="4.5" width="161.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="64" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="52" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -139,7 +139,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="185.5" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="161.5" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -296,7 +296,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="cd-background"/>
                         <constraints>
                             <constraint firstItem="YcU-gF-ZIL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0TB-7K-TaO"/>
                             <constraint firstItem="dE0-0Z-MJA" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="DDe-sG-hEq"/>
@@ -391,12 +391,28 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcZ-XO-3aH">
+                                        <rect key="frame" x="350" y="88" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="08e-55-qiN"/>
+                                            <constraint firstAttribute="width" secondItem="mcZ-XO-3aH" secondAttribute="height" multiplier="1:1" id="cLu-fK-vll"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
+                                            <color key="baseForegroundColor" name="cd-text-dark"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="closeButtonPressed:" destination="fHM-cQ-nuc" eventType="touchUpInside" id="h5H-rT-kBV"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="cd-yellow"/>
                                 <constraints>
                                     <constraint firstItem="AWY-5p-jdX" firstAttribute="centerY" secondItem="q4P-0S-jnx" secondAttribute="centerY" id="LPp-2q-atd"/>
                                     <constraint firstItem="AWY-5p-jdX" firstAttribute="centerX" secondItem="q4P-0S-jnx" secondAttribute="centerX" id="YVW-gj-TpF"/>
                                     <constraint firstItem="AWY-5p-jdX" firstAttribute="width" relation="lessThanOrEqual" secondItem="q4P-0S-jnx" secondAttribute="width" multiplier="0.9" id="g4t-QM-Yon"/>
+                                    <constraint firstAttribute="trailing" secondItem="mcZ-XO-3aH" secondAttribute="trailing" constant="16" id="jPp-FP-Ohl"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -411,6 +427,7 @@
                             <constraint firstItem="q4P-0S-jnx" firstAttribute="centerY" secondItem="oHv-F7-sit" secondAttribute="centerY" id="Cjz-q1-AOA"/>
                             <constraint firstItem="q4P-0S-jnx" firstAttribute="width" secondItem="oHv-F7-sit" secondAttribute="width" id="apo-BW-Agq"/>
                             <constraint firstItem="q4P-0S-jnx" firstAttribute="centerX" secondItem="oHv-F7-sit" secondAttribute="centerX" id="cjy-D7-nRz"/>
+                            <constraint firstItem="p2A-19-28S" firstAttribute="top" secondItem="mcZ-XO-3aH" secondAttribute="top" id="nX2-wF-2f1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YJZ-co-Xih"/>
@@ -419,14 +436,15 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="activityIndicator" destination="xAH-fN-7kM" id="hq5-wD-uhp"/>
+                        <outlet property="closeButton" destination="mcZ-XO-3aH" id="kAq-mR-tJq"/>
                         <outlet property="licensePlateLabel" destination="VJ4-5n-trR" id="7KZ-1v-hGE"/>
-                        <outlet property="lodingLabel" destination="1In-es-Zgd" id="j32-2v-Y11"/>
+                        <outlet property="loadingLabel" destination="1In-es-Zgd" id="CLS-16-E7z"/>
                         <segue destination="HLx-iu-KIc" kind="show" identifier="loadResultToData" id="76I-6M-6uO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3II-nE-Cjy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1832" y="-226"/>
+            <point key="canvasLocation" x="1831.8840579710147" y="-226.33928571428569"/>
         </scene>
         <!--Data-->
         <scene sceneID="96c-pG-8wR">
@@ -527,11 +545,11 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="185.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="161.5" height="21.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="OO6-bt-LLE"/>
+        <segue reference="76I-6M-6uO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>

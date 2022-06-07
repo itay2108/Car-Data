@@ -9,10 +9,6 @@ import UIKit
 
 struct LicensePlateManager {
     
-    func requestData(for licensePlateNumber: String?, _ completion: (()->Void)? = nil) {
-        
-    }
-    
     static func maskToLicensePlateFormat(_ text: String) -> String {
         
         //license plate mask logic

@@ -19,6 +19,11 @@
 		66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA4DD7284CD24E00D2C21A /* CDURLManager.swift */; };
 		66CA4DDA284CD45C00D2C21A /* CarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA4DD9284CD45C00D2C21A /* CarData.swift */; };
 		66CE0826284CEDC900FF7072 /* DisabilityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CE0825284CEDC900FF7072 /* DisabilityData.swift */; };
+		BC01BCFB284F5A2800777C57 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BCFA284F5A2800777C57 /* Date+Extensions.swift */; };
+		BC01BCFF284F5EBF00777C57 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BCFE284F5EBF00777C57 /* String+Extensions.swift */; };
+		BC01BD02284F798900777C57 /* CDDateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD01284F798900777C57 /* CDDateFormat.swift */; };
+		BC01BD04284F8A3D00777C57 /* TaskMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */; };
+		BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD05284F8A7300777C57 /* CDTask.swift */; };
 		BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */; };
 		BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */; };
 		BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A46B2848985000D88267 /* LicensePlateManager.swift */; };
@@ -114,6 +119,11 @@
 		66CA4DD7284CD24E00D2C21A /* CDURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDURLManager.swift; sourceTree = "<group>"; };
 		66CA4DD9284CD45C00D2C21A /* CarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarData.swift; sourceTree = "<group>"; };
 		66CE0825284CEDC900FF7072 /* DisabilityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabilityData.swift; sourceTree = "<group>"; };
+		BC01BCFA284F5A2800777C57 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		BC01BCFE284F5EBF00777C57 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		BC01BD01284F798900777C57 /* CDDateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDDateFormat.swift; sourceTree = "<group>"; };
+		BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMonitor.swift; sourceTree = "<group>"; };
+		BC01BD05284F8A7300777C57 /* CDTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTask.swift; sourceTree = "<group>"; };
 		BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC50A46B2848985000D88267 /* LicensePlateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePlateManager.swift; sourceTree = "<group>"; };
@@ -202,8 +212,18 @@
 			children = (
 				66C297D7284B85E700AA2608 /* HTTPRequest.swift */,
 				BCD5276B284A52F300DA60FC /* CDError.swift */,
+				BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */,
+				BC01BD05284F8A7300777C57 /* CDTask.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		BC01BD00284F797200777C57 /* enums */ = {
+			isa = PBXGroup;
+			children = (
+				BC01BD01284F798900777C57 /* CDDateFormat.swift */,
+			);
+			path = enums;
 			sourceTree = "<group>";
 		};
 		BC50A46A2848982900D88267 /* View Model */ = {
@@ -226,6 +246,8 @@
 				BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */,
 				660D591A284D67FA00795114 /* Int+Bool.swift */,
 				6600E17B284E468700351CAF /* UIView+Extensions.swift */,
+				BC01BCFA284F5A2800777C57 /* Date+Extensions.swift */,
+				BC01BCFE284F5EBF00777C57 /* String+Extensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -351,6 +373,7 @@
 			children = (
 				BCAEB39F2846759500FA0981 /* Fonts */,
 				BC8BE3F32847BA3F002838AA /* base classes */,
+				BC01BD00284F797200777C57 /* enums */,
 				BCC5123928496BD000E883D0 /* reusable views */,
 				BC8BE3F22847BA2A002838AA /* extensions */,
 				BC8BE3F62848124C002838AA /* K.swift */,
@@ -553,6 +576,7 @@
 				6600E17C284E468700351CAF /* UIView+Extensions.swift in Sources */,
 				BC8BE3F12847AB95002838AA /* UIView+Fade.swift in Sources */,
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
+				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,
 				BCD5276C284A52F300DA60FC /* CDError.swift in Sources */,
 				BC8BE3F72848124C002838AA /* K.swift in Sources */,
 				BCD5276E284A6C6400DA60FC /* CDNavigationController.swift in Sources */,
@@ -560,8 +584,10 @@
 				BCC512382849644300E883D0 /* BaseCarData.swift in Sources */,
 				BCAEB3B528467CFB00FA0981 /* UIViewController+UISetup.swift in Sources */,
 				BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */,
+				BC01BD02284F798900777C57 /* CDDateFormat.swift in Sources */,
 				BCC5123B28496BE500E883D0 /* PaddingLabel.swift in Sources */,
 				BCAEB374284670A000FA0981 /* MainViewController.swift in Sources */,
+				BC01BCFB284F5A2800777C57 /* Date+Extensions.swift in Sources */,
 				BCD4D77B2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift in Sources */,
 				BCAEB370284670A000FA0981 /* AppDelegate.swift in Sources */,
 				66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */,
@@ -573,11 +599,13 @@
 				BC8BE3F52847BA50002838AA /* CDView.swift in Sources */,
 				BCAEB3B3284679CA00FA0981 /* Rubik.swift in Sources */,
 				BCAEB3B728467D9100FA0981 /* CDViewController.swift in Sources */,
+				BC01BCFF284F5EBF00777C57 /* String+Extensions.swift in Sources */,
 				66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */,
 				BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */,
 				66CE0826284CEDC900FF7072 /* DisabilityData.swift in Sources */,
 				BCD4D7772848DE3B000D24D0 /* CDTableView.swift in Sources */,
 				BC8BE3EF284795EA002838AA /* UIGestureRecognizer+Extensions.swift in Sources */,
+				BC01BD04284F8A3D00777C57 /* TaskMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -97,6 +97,8 @@ class MainViewController: CDViewController {
         updateViewConstraints()
     }
     
+    
+    
     override func setupConstraints() {
         super.setupConstraints()
         
@@ -477,10 +479,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: LoadResultDelegate {
     func resultLoader(didFailWith error: Error) {
         
+        licensePlateTextField.becomeFirstResponder()
+        
+        if (error as? CDError) == CDError.canceled {
+            return
+        }
+        
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
             
             self?.licensePlateTextField.text = nil
-            self?.licensePlateTextField.becomeFirstResponder()
         }
         
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in

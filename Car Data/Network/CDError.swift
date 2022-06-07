@@ -15,6 +15,8 @@ enum CDError: Error {
     case badData
     case serverFailed
     case unknownError
+    case timeout
+    case canceled
     
     var localizedDescription: String {
         switch self {
@@ -30,6 +32,8 @@ enum CDError: Error {
             return "Some of the data is missing in the server"
         case .serverFailed:
             return "There was an error with the remote database"
+        case .timeout:
+            return "The request timed out"
         default:
             return "an unknown error has occured"
         }
