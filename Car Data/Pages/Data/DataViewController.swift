@@ -29,8 +29,8 @@ class DataViewController: CDViewController {
     
     private var initialBackSwipePoint: CGPoint?
     
-    private var thirdOfScreenWidth: CGFloat {
-        return view.frame.width / 3
+    private var quarterOfScreenWidth: CGFloat {
+        return view.frame.width / 4
     }
     
     private var sixthOfScreenHeight: CGFloat {
@@ -157,7 +157,7 @@ class DataViewController: CDViewController {
             }
             
             if initialPoint.x > view.frame.width * 0.8, // swipe began on right 20% of screen
-               currentPoint.x + thirdOfScreenWidth < initialPoint.x, //current point of swipe is more than a third of screen to the left of the initial
+               currentPoint.x + quarterOfScreenWidth < initialPoint.x, //current point of swipe is more than a third of screen to the left of the initial
                currentPoint.y + sixthOfScreenHeight > initialPoint.y, //current point of swipe is not more than a sixth of screen below the initial
                currentPoint.y - sixthOfScreenHeight < initialPoint.y { //current point of swipe is not more than a sixth of screen above the initial
                 
