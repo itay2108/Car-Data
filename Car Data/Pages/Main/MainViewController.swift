@@ -206,9 +206,21 @@ final class MainViewController: CDViewController {
     }
     
     private func beginVisionScene() {
-        let destination = VisionViewController()
         
-        navigationController?.pushViewController(destination, animated: true)
+        navigationController?.heroNavigationAnimationType = .slide(direction: .up)
+        
+        let destination = VisionViewController()
+        destination.delegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.166) { [weak self] in
+            self?.navigationController?.pushViewController(destination, animated: true)
+            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.66) {
+//                self?.reCenterMainContainer(animated: true)
+//            }
+        }
+
+ 
     }
     
     private func leaveSearchScene() {
@@ -305,6 +317,7 @@ final class MainViewController: CDViewController {
         if sender.state == .changed {
             let yTranslation = sender.translation(in: view).y
             
+            //define limit depending on initial position
             var limit = yTranslation > 0 ? licensePlateTextFieldContainer.frame.height : -(cameraTriggerContainer.frame.height)
             
             if initialMainContainerPanOffest != 0 { limit *= 2 }
@@ -321,16 +334,17 @@ final class MainViewController: CDViewController {
             
             updateViewConstraints()
             
+            //define what happens when dragging past limit
             if abs(limit) <= abs(yTranslation) {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 sender.finishCurrentGesture()
                 
                 if mainContainerCenterYAnchor.constant == -cameraTriggerContainer.frame.height {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
-                        self?.reCenterMainContainer(animated: true)
-                    }
-                } else if mainContainerCenterYAnchor.constant == licensePlateTextFieldContainer.frame.height {
+                    //camera trigger
+                    beginVisionScene()
                     
+                } else if mainContainerCenterYAnchor.constant == licensePlateTextFieldContainer.frame.height {
+                    //textfield trigger
                     beginSearchScene()
                 }
             }
@@ -521,5 +535,12 @@ extension MainViewController: LoadResultDelegate {
     
     func resultLoader(didReceive data: CarData) {
         leaveSearchScene()
+    }
+}
+
+
+extension MainViewController: VisionViewDelegate {
+    func visionViewDidCancelSearch() {
+        reCenterMainContainer(animated: true)
     }
 }

@@ -13,6 +13,8 @@ struct K {
         
         static let background = UIColor(named: "cd-background") ?? .white
         
+        static let backgroundDark = UIColor(named: "cd-background-dark") ?? .black
+        
         struct accents {
             static let yellow = UIColor(named: "cd-yellow") ?? .yellow
             
