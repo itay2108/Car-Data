@@ -58,6 +58,8 @@
 		BCAEB3B3284679CA00FA0981 /* Rubik.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEB3B2284679CA00FA0981 /* Rubik.swift */; };
 		BCAEB3B528467CFB00FA0981 /* UIViewController+UISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEB3B428467CFB00FA0981 /* UIViewController+UISetup.swift */; };
 		BCAEB3B728467D9100FA0981 /* CDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAEB3B628467D9100FA0981 /* CDViewController.swift */; };
+		BCB4432F2850844C00792E66 /* VisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4432D2850844C00792E66 /* VisionViewController.swift */; };
+		BCB443302850844C00792E66 /* VisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB4432E2850844C00792E66 /* VisionViewController.xib */; };
 		BCC512382849644300E883D0 /* BaseCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC512372849644300E883D0 /* BaseCarData.swift */; };
 		BCC5123B28496BE500E883D0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5123A28496BE500E883D0 /* PaddingLabel.swift */; };
 		BCC5123E28496CF800E883D0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BCC5123D28496CF800E883D0 /* Alamofire */; };
@@ -155,6 +157,8 @@
 		BCAEB3B2284679CA00FA0981 /* Rubik.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubik.swift; sourceTree = "<group>"; };
 		BCAEB3B428467CFB00FA0981 /* UIViewController+UISetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UISetup.swift"; sourceTree = "<group>"; };
 		BCAEB3B628467D9100FA0981 /* CDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDViewController.swift; sourceTree = "<group>"; };
+		BCB4432D2850844C00792E66 /* VisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionViewController.swift; sourceTree = "<group>"; };
+		BCB4432E2850844C00792E66 /* VisionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisionViewController.xib; sourceTree = "<group>"; };
 		BCC512372849644300E883D0 /* BaseCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCarData.swift; sourceTree = "<group>"; };
 		BCC5123A28496BE500E883D0 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		BCD4D7762848DE3B000D24D0 /* CDTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTableView.swift; sourceTree = "<group>"; };
@@ -360,10 +364,9 @@
 			children = (
 				BCF3281E284B80AC003A5162 /* Main.storyboard */,
 				BCAEB373284670A000FA0981 /* MainViewController.swift */,
-				BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */,
-				BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */,
 				BCAD15742848C5190004A49F /* LoadResultViewController.swift */,
-				66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */,
+				BCB443322850846A00792E66 /* Search History */,
+				BCB443312850845D00792E66 /* Vision */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -379,6 +382,25 @@
 				BC8BE3F62848124C002838AA /* K.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		BCB443312850845D00792E66 /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				BCB4432D2850844C00792E66 /* VisionViewController.swift */,
+				BCB4432E2850844C00792E66 /* VisionViewController.xib */,
+			);
+			path = Vision;
+			sourceTree = "<group>";
+		};
+		BCB443322850846A00792E66 /* Search History */ = {
+			isa = PBXGroup;
+			children = (
+				BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */,
+				BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */,
+				66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */,
+			);
+			path = "Search History";
 			sourceTree = "<group>";
 		};
 		BCC5123928496BD000E883D0 /* reusable views */ = {
@@ -540,6 +562,7 @@
 				BCF32817284ACE2D003A5162 /* DataSectionTableViewCell.xib in Resources */,
 				BCAEB3A82846776000FA0981 /* Rubik-Bold.ttf in Resources */,
 				BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */,
+				BCB443302850844C00792E66 /* VisionViewController.xib in Resources */,
 				BCAEB3AD2846777A00FA0981 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,6 +592,7 @@
 				6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */,
 				66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */,
 				BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */,
+				BCB4432F2850844C00792E66 /* VisionViewController.swift in Sources */,
 				BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */,
 				662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */,
 				66CA4DD6284CCFEF00D2C21A /* CarDataManager.swift in Sources */,

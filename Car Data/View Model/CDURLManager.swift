@@ -31,7 +31,9 @@ struct CDURLManager {
         }
         
         for query in queries {
-            base += "&q=\(query)"
+            let formattedQuery = query.replacingOccurrences(of: " ", with: "%20")
+            
+            base += "&q=\(formattedQuery)"
         }
         
         if let limit = limit {

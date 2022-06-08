@@ -96,6 +96,7 @@ class LoadResultViewController: CDViewController {
             
         }
     }
+    
     @IBAction func closeButtonPressed(_ sender: UIButton) {
         CDTaskMonitor.main.cancelAllTasks()
         
