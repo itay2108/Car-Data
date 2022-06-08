@@ -47,7 +47,7 @@ class LoadResultViewController: CDViewController {
         super.viewDidAppear(animated)
         
         //timer
-        awaitForTimeout(after: 7)
+        respondToLongLoadingTime(after: 6)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,6 +78,9 @@ class LoadResultViewController: CDViewController {
     }
     
     private func presentDataVC(using carData: CarData) {
+        
+        guard self.isViewLoaded else { return }
+        
         if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
             
             destination.licensePlateNumber = licensePlateNumber
@@ -118,13 +121,13 @@ class LoadResultViewController: CDViewController {
         }
     }
     
-    private func awaitForTimeout(after timeInterval: TimeInterval) {
+    private func respondToLongLoadingTime(after timeInterval: TimeInterval) {
         
-        requestTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(dismissBecauseOfTimeout), userInfo: nil, repeats: false)
+        requestTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(refreshUIForLongLoadingTime), userInfo: nil, repeats: false)
         
     }
     
-    @objc func dismissBecauseOfTimeout() {
+    @objc func refreshUIForLongLoadingTime() {
         
         closeButton.isHidden = false
         closeButton.fadeIn()

@@ -162,16 +162,21 @@ class MainViewController: CDViewController {
     }
     
     private func setupSearchHistoryTableView() {
+        
+        searchHistoryTableView.contentInset = UIEdgeInsets(top: 22, left: 0, bottom: 22, right: 0)
+        
+        searchHistoryTableView.layer.cornerRadius = 13
+        searchHistoryTableView.layer.masksToBounds = true
+
+        searchHistoryTableView.backgroundColor = .white
+        searchHistoryTableView.backgroundView?.backgroundColor = .white
+        
         searchHistoryTableView.delegate = self
         searchHistoryTableView.dataSource = self
         
         searchHistoryTableView.register(UINib(nibName: SearchHistoryTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryTableViewCell.reuseID)
         
         searchHistoryTableViewTitleLabel.font = Rubik.regular.ofSize(18 * heightModifier)
-        
-        
-        
-        
     }
     
     
@@ -479,14 +484,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: LoadResultDelegate {
     func resultLoader(didFailWith error: Error) {
         
-        licensePlateTextField.becomeFirstResponder()
-        
         if (error as? CDError) == CDError.canceled {
+            licensePlateTextField.becomeFirstResponder()
             return
         }
         
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
-            
+            self?.licensePlateTextField.becomeFirstResponder()
             self?.licensePlateTextField.text = nil
         }
         
