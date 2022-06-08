@@ -94,11 +94,10 @@ extension VisionViewController: HeroTransitionDelegate, HeroViewControllerDelega
     func heroTransition(_ hero: HeroTransition, didUpdate progress: Double) {}
     
     func heroDidEndAnimatingTo(viewController: UIViewController) {
-        func heroDidCancelAnimatingTo(viewController: UIViewController) {
-            if viewController is MainViewController {
-                delegate?.visionViewDidCancelSearch()
-            }
+        if viewController is MainViewController {
+            delegate?.visionViewDidCancelSearch()
         }
     }
+    
 }
 

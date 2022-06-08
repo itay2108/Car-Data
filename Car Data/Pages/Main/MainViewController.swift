@@ -308,8 +308,17 @@ final class MainViewController: CDViewController {
         
         guard let view = sender.view, !isPresentingLicensePlate else { return }
         
+        //define limit depending on initial position
+        let positiveLimit = licensePlateTextFieldContainer.frame.height
+        
+        let negativeLimit = -(cameraTriggerContainer.frame.height)
+        
         if sender.state == .began {
-            initialMainContainerPanOffest = mainContainerCenterYAnchor.constant
+            
+            if mainContainerCenterYAnchor.constant != 0 {
+                reCenterMainContainer(animated: true)
+                sender.finishCurrentGesture()
+            }
             
             licensePlateTextField.resignFirstResponder()
         }
@@ -317,25 +326,18 @@ final class MainViewController: CDViewController {
         if sender.state == .changed {
             let yTranslation = sender.translation(in: view).y
             
-            //define limit depending on initial position
-            var limit = yTranslation > 0 ? licensePlateTextFieldContainer.frame.height : -(cameraTriggerContainer.frame.height)
-            
-            if initialMainContainerPanOffest != 0 { limit *= 2 }
-            
-            if abs(yTranslation) > abs(limit) {
-                if initialMainContainerPanOffest != 0 {
-                    mainContainerCenterYAnchor.constant = limit / 2
-                } else {
-                    mainContainerCenterYAnchor.constant = limit
-                }
+            if yTranslation >= positiveLimit {
+                mainContainerCenterYAnchor.constant = positiveLimit
+            } else if yTranslation <= negativeLimit {
+                mainContainerCenterYAnchor.constant = negativeLimit
             } else {
-                mainContainerCenterYAnchor.constant = yTranslation + initialMainContainerPanOffest
+                mainContainerCenterYAnchor.constant = yTranslation
             }
             
             updateViewConstraints()
             
             //define what happens when dragging past limit
-            if abs(limit) <= abs(yTranslation) {
+            if yTranslation >= positiveLimit || yTranslation <= negativeLimit  {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 sender.finishCurrentGesture()
                 
@@ -350,7 +352,7 @@ final class MainViewController: CDViewController {
             }
             
         } else if sender.state == .ended {
-            if abs(mainContainerCenterYAnchor.constant) < licensePlateTextFieldContainer.frame.height {
+            if mainContainerCenterYAnchor.constant != negativeLimit && mainContainerCenterYAnchor.constant != positiveLimit {
                 
                 reCenterMainContainer(animated: true)
                 

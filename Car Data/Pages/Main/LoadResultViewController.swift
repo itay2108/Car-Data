@@ -111,6 +111,7 @@ class LoadResultViewController: CDViewController {
             self?.presentDataVC(using: data)
             
         }.catch { [weak self] error in
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self?.navigationController?.popViewController(animated: true)
                 self?.delegate?.resultLoader(didFailWith: error)
