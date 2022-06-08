@@ -8,7 +8,7 @@
 import UIKit
 import Hero
 
-class MainViewController: CDViewController {
+final class MainViewController: CDViewController {
     
     @IBOutlet weak var licensePlateTextFieldContainer: UIView!
     @IBOutlet weak var licensePlateTextField: UITextField!
@@ -203,6 +203,12 @@ class MainViewController: CDViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.licensePlateTextField.becomeFirstResponder()
         }
+    }
+    
+    private func beginVisionScene() {
+        let destination = VisionViewController()
+        
+        navigationController?.pushViewController(destination, animated: true)
     }
     
     private func leaveSearchScene() {
