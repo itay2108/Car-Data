@@ -8,6 +8,25 @@
 import Foundation
 
 public extension String {
+    
+    func excluding(characrers charactersToExclude: String) -> String {
+        
+        var newString = self
+        
+        for character in charactersToExclude {
+            newString = newString.replacingOccurrences(of: String(character), with: "")
+        }
+        
+        return newString
+    }
+    
+    func contains(only allowedCharacters: String) -> Bool {
+        return self.allSatisfy( { "1234567890".contains($0) })
+    }
+    
+    func including(only allowedCharacters: String) -> String {
+        return self.filter { allowedCharacters.contains($0) }
+    }
 
     //MARK: - Pattern Matching
     

@@ -13,6 +13,8 @@ struct K {
         
         static let background = UIColor(named: "cd-background") ?? .white
         
+        static let backgroundDark = UIColor(named: "cd-background-dark") ?? .black
+        
         struct accents {
             static let yellow = UIColor(named: "cd-yellow") ?? .yellow
             
@@ -40,6 +42,7 @@ struct K {
     
     struct viewControllerIDs {
         static let dataVC = "dataViewController"
+        static let loadResult = "loadResult"
     }
     
     struct segues {
@@ -59,5 +62,12 @@ struct K {
     
     struct regex {
         static let date = "^[[:digit:]]{4}[-\\/.]{1}[[:digit:]]{2}[-\\/.]{1}[[:digit:]]{2}[^\"]*?"
+        static let licensePlate = "^(?=.{5,10}$)[[:digit:]]{1,3}[-.•]?[[:digit:]]{1,3}[-.•]?[[:digit:]]{1,3}[^[\\pL]$"
+    }
+    
+    struct queueIDs {
+        static let prefix = "com.gervash.Car-Data"
+        static let captureSession = "com.gervash.Car-Data.CaptureSessionQueue"
+        static let videoOutputSession = "com.gervash.Car-Data.VideoDataOutputQueue"
     }
 }

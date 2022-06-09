@@ -3,14 +3,32 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Regular.ttf">
+            <string>Rubik-Regular</string>
+        </array>
+        <array key="Rubik-SemiBold.ttf">
+            <string>Rubik-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VisionViewController" customModule="Car_Data" customModuleProvider="target">
             <connections>
+                <outlet property="flashButton" destination="un4-ME-O5U" id="npj-No-by1"/>
+                <outlet property="flashButtonHighlightView" destination="c4o-m9-TZ6" id="Uj3-m7-Y1Q"/>
+                <outlet property="instructionLabel" destination="1es-iH-ed7" id="SYQ-J0-1dD"/>
+                <outlet property="licensePlateHeroView" destination="Ows-vM-6rA" id="92Z-Jm-bu9"/>
+                <outlet property="licensePlateLabel" destination="BxU-tx-Qdj" id="iaE-JS-QwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visionFocusView" destination="XpH-yO-byw" id="chD-oY-CHY"/>
+                <outlet property="visionView" destination="YXk-jV-egw" id="skn-D7-ubS"/>
+                <outlet property="visionViewActivityIndicator" destination="BKK-Q2-RHa" id="WVX-6g-fe2"/>
+                <outlet property="visionViewActivityIndicatorCenterYAnchor" destination="NDc-yi-nyc" id="RN8-dX-Xcg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,21 +36,242 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4F4-rv-Kz0">
-                    <rect key="frame" x="151" y="416" width="112" height="64"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXk-jV-egw" customClass="LiveCameraView" customModule="Car_Data" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-yO-byw">
+                    <rect key="frame" x="0.0" y="0.0" width="431" height="896"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                </button>
+                    <color key="backgroundColor" white="0.0" alpha="0.2513075064349648" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-vM-6rA">
+                    <rect key="frame" x="99" y="430.5" width="216.5" height="35"/>
+                    <color key="backgroundColor" name="cd-yellow"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7M1-CK-CCt">
+                    <rect key="frame" x="249" y="762" width="145" height="84"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-Tx-xyZ">
+                            <rect key="frame" x="22.5" y="21" width="100" height="42"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMO-JX-ldn">
+                                    <rect key="frame" x="0.0" y="0.0" width="41" height="42"/>
+                                    <subviews>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-m9-TZ6">
+                                            <rect key="frame" x="0.0" y="0.5" width="41" height="41"/>
+                                            <color key="tintColor" name="cd-yellow"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="un4-ME-O5U">
+                                            <rect key="frame" x="0.0" y="0.0" width="41" height="42"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" name="cd-background"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <imageReference key="image" image="bolt.fill" catalog="system" symbolScale="large"/>
+                                                <backgroundConfiguration key="background"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="flashButtonPressed:" destination="-1" eventType="touchUpInside" id="KDo-xv-xPh"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="leading" secondItem="EMO-JX-ldn" secondAttribute="leading" id="2h1-96-q45"/>
+                                        <constraint firstAttribute="bottom" secondItem="un4-ME-O5U" secondAttribute="bottom" id="4Ku-fx-geF"/>
+                                        <constraint firstAttribute="bottom" secondItem="c4o-m9-TZ6" secondAttribute="bottom" id="9Tc-GN-Isc"/>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="width" secondItem="EMO-JX-ldn" secondAttribute="width" id="9iL-4r-fXj"/>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="top" secondItem="EMO-JX-ldn" secondAttribute="top" id="Hs9-gG-245"/>
+                                        <constraint firstItem="un4-ME-O5U" firstAttribute="top" secondItem="EMO-JX-ldn" secondAttribute="top" id="Lbo-Rj-Nxb"/>
+                                        <constraint firstAttribute="trailing" secondItem="un4-ME-O5U" secondAttribute="trailing" id="XLI-Ll-gAV"/>
+                                        <constraint firstItem="un4-ME-O5U" firstAttribute="leading" secondItem="EMO-JX-ldn" secondAttribute="leading" id="uIC-pP-EbD"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="444-nm-gUZ">
+                                    <rect key="frame" x="59" y="0.0" width="41" height="42"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" name="cd-background"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system"/>
+                                    <connections>
+                                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="tu2-bR-9NB"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="ezC-gg-LIj"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="cd-text-dark"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="Ows-Tx-xyZ" firstAttribute="centerX" secondItem="7M1-CK-CCt" secondAttribute="centerX" id="4gf-zD-bsF"/>
+                        <constraint firstItem="Ows-Tx-xyZ" firstAttribute="width" secondItem="7M1-CK-CCt" secondAttribute="width" multiplier="0.689655" id="EPB-ur-8mt"/>
+                        <constraint firstAttribute="height" constant="84" id="G9f-ou-6uy"/>
+                        <constraint firstItem="Ows-Tx-xyZ" firstAttribute="centerY" secondItem="7M1-CK-CCt" secondAttribute="centerY" id="Vg4-BV-Upz"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="actionView"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uea-qk-ZPl">
+                    <rect key="frame" x="20" y="762" width="84" height="84"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DsM-D2-60z">
+                            <rect key="frame" x="21" y="21" width="42" height="42"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="DsM-D2-60z" secondAttribute="height" multiplier="1:1" id="4lz-qp-Xfb"/>
+                            </constraints>
+                            <color key="tintColor" name="cd-background"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain">
+                                <imageReference key="image" image="paperclip" catalog="system" symbolScale="large"/>
+                                <backgroundConfiguration key="background"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="addFromDeviceButtonPressed:" destination="-1" eventType="touchUpInside" id="QVm-MC-7vr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="cd-text-dark"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="DsM-D2-60z" firstAttribute="centerY" secondItem="Uea-qk-ZPl" secondAttribute="centerY" id="Wdl-IM-h0w"/>
+                        <constraint firstAttribute="height" constant="84" id="eM5-tU-GWk"/>
+                        <constraint firstAttribute="width" secondItem="Uea-qk-ZPl" secondAttribute="height" multiplier="1:1" id="j8m-Xs-kAV"/>
+                        <constraint firstItem="DsM-D2-60z" firstAttribute="centerX" secondItem="Uea-qk-ZPl" secondAttribute="centerX" id="q2d-Ep-kL1"/>
+                        <constraint firstItem="DsM-D2-60z" firstAttribute="height" secondItem="Uea-qk-ZPl" secondAttribute="height" multiplier="0.5" id="q7R-sH-1mL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="actionView"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-tx-Qdj" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
+                    <rect key="frame" x="99" y="418.5" width="216.5" height="59"/>
+                    <color key="backgroundColor" name="cd-yellow"/>
+                    <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
+                    <color key="textColor" name="cd-text-dark"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="licensePlate"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כוונ/י את המצלמה אל לוחית רישוי" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1es-iH-ed7" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
+                    <rect key="frame" x="102.5" y="60" width="209" height="39"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.18576676324503311" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                    <color key="textColor" name="cd-background"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKK-Q2-RHa" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="192.5" y="433.5" width="29.5" height="29.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="BKK-Q2-RHa" secondAttribute="height" multiplier="1:1" id="dkX-Hk-o1u"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="lineSpinFadeLoader"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.52288057709371805" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="cd-text-dark"/>
+            <constraints>
+                <constraint firstItem="YXk-jV-egw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0nr-Wx-hFg"/>
+                <constraint firstItem="BxU-tx-Qdj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1QI-Yb-itB"/>
+                <constraint firstItem="1es-iH-ed7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3eO-Js-IBj"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="41i-f8-FsW"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="width" secondItem="BxU-tx-Qdj" secondAttribute="width" id="4Jb-OG-MOh"/>
+                <constraint firstAttribute="bottom" secondItem="YXk-jV-egw" secondAttribute="bottom" id="6SB-GN-yrd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7M1-CK-CCt" secondAttribute="trailing" constant="20" id="9Lw-0b-lc4"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AN2-Yr-WRI"/>
+                <constraint firstItem="YXk-jV-egw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DF4-4o-2G5"/>
+                <constraint firstItem="BxU-tx-Qdj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="DpX-h3-CbS"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="height" secondItem="BxU-tx-Qdj" secondAttribute="height" multiplier="0.6" id="Eup-Lj-5Uj"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="height" secondItem="BxU-tx-Qdj" secondAttribute="height" multiplier="0.5" id="JEn-3U-KjX"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="NDc-yi-nyc"/>
+                <constraint firstItem="Uea-qk-ZPl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="S2H-Em-c7i"/>
+                <constraint firstItem="Uea-qk-ZPl" firstAttribute="centerY" secondItem="7M1-CK-CCt" secondAttribute="centerY" id="WBZ-Z1-2qL"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZpC-Xc-4D0"/>
+                <constraint firstItem="7M1-CK-CCt" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.35" id="eAu-Uq-CRi"/>
+                <constraint firstItem="1es-iH-ed7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="n2d-UX-Elx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YXk-jV-egw" secondAttribute="trailing" id="rbc-xT-bbu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7M1-CK-CCt" secondAttribute="bottom" constant="16" id="yEc-Bb-vQB"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="131.8840579710145" y="75.669642857142847"/>
         </view>
     </objects>
+    <designables>
+        <designable name="1es-iH-ed7">
+            <size key="intrinsicContentSize" width="209" height="39"/>
+        </designable>
+        <designable name="BxU-tx-Qdj">
+            <size key="intrinsicContentSize" width="216.5" height="59"/>
+        </designable>
+    </designables>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="bolt.fill" catalog="system" width="101" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="paperclip" catalog="system" width="121" height="128"/>
+        <namedColor name="cd-background">
+            <color red="0.92500001192092896" green="0.94099998474121094" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cd-text-dark">
+            <color red="0.23137254901960785" green="0.24313725490196078" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cd-yellow">
+            <color red="0.92199999094009399" green="0.76499998569488525" blue="0.067000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

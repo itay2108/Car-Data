@@ -72,10 +72,18 @@ final class MainViewController: CDViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        licensePlateTextField.attributedPlaceholder = nil
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         navigationController?.heroNavigationAnimationType = .fade
+        
+        licensePlateTextField.attributedPlaceholder =
+        NSAttributedString(string: "הקלד מספר רכב", attributes: [NSAttributedString.Key.foregroundColor: K.colors.text.dark.withAlphaComponent(0.33)])
 
         if shouldStopPresentingLicensePlate {
             leaveSearchScene()
@@ -206,9 +214,21 @@ final class MainViewController: CDViewController {
     }
     
     private func beginVisionScene() {
-        let destination = VisionViewController()
         
-        navigationController?.pushViewController(destination, animated: true)
+        navigationController?.heroNavigationAnimationType = .slide(direction: .up)
+        
+        let destination = VisionViewController()
+        destination.delegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.066) { [weak self] in
+            self?.navigationController?.pushViewController(destination, animated: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) {
+                self?.reCenterMainContainer(animated: false)
+            }
+        }
+
+ 
     }
     
     private func leaveSearchScene() {
@@ -258,6 +278,7 @@ final class MainViewController: CDViewController {
             licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
+
                 performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
             }
             
@@ -294,49 +315,55 @@ final class MainViewController: CDViewController {
     
     @objc private func mainContainerPanGRDidTrigger(_ sender: UIPanGestureRecognizer) {
         
-        guard let view = sender.view, !isPresentingLicensePlate else { return }
+        guard let view = sender.view, !isPresentingLicensePlate else {
+            return
+        }
+        
+        //define limit depending on initial position
+        let positiveLimit = licensePlateTextFieldContainer.frame.height
+        
+        let negativeLimit = -(cameraTriggerContainer.frame.height)
         
         if sender.state == .began {
-            initialMainContainerPanOffest = mainContainerCenterYAnchor.constant
+            
+            if mainContainerCenterYAnchor.constant != 0 {
+                reCenterMainContainer(animated: true)
+                sender.finishCurrentGesture()
+            }
             
             licensePlateTextField.resignFirstResponder()
         }
         
         if sender.state == .changed {
             let yTranslation = sender.translation(in: view).y
-            
-            var limit = yTranslation > 0 ? licensePlateTextFieldContainer.frame.height : -(cameraTriggerContainer.frame.height)
-            
-            if initialMainContainerPanOffest != 0 { limit *= 2 }
-            
-            if abs(yTranslation) > abs(limit) {
-                if initialMainContainerPanOffest != 0 {
-                    mainContainerCenterYAnchor.constant = limit / 2
-                } else {
-                    mainContainerCenterYAnchor.constant = limit
-                }
+
+            if yTranslation >= positiveLimit {
+                mainContainerCenterYAnchor.constant = positiveLimit
+            } else if yTranslation <= negativeLimit {
+                mainContainerCenterYAnchor.constant = negativeLimit
             } else {
-                mainContainerCenterYAnchor.constant = yTranslation + initialMainContainerPanOffest
+                mainContainerCenterYAnchor.constant = yTranslation
             }
             
             updateViewConstraints()
             
-            if abs(limit) <= abs(yTranslation) {
+            //define what happens when dragging past limit
+            if yTranslation >= positiveLimit || yTranslation <= negativeLimit  {
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 sender.finishCurrentGesture()
                 
                 if mainContainerCenterYAnchor.constant == -cameraTriggerContainer.frame.height {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
-                        self?.reCenterMainContainer(animated: true)
-                    }
-                } else if mainContainerCenterYAnchor.constant == licensePlateTextFieldContainer.frame.height {
+                    //camera trigger
+                    beginVisionScene()
                     
+                } else if mainContainerCenterYAnchor.constant == licensePlateTextFieldContainer.frame.height {
+                    //textfield trigger
                     beginSearchScene()
                 }
             }
             
         } else if sender.state == .ended {
-            if abs(mainContainerCenterYAnchor.constant) < licensePlateTextFieldContainer.frame.height {
+            if mainContainerCenterYAnchor.constant != negativeLimit && mainContainerCenterYAnchor.constant != positiveLimit {
                 
                 reCenterMainContainer(animated: true)
                 
@@ -488,7 +515,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: LoadResultDelegate {
-    func resultLoader(didFailWith error: Error) {
+    func resultLoader(didFailWith error: Error, for licensePlate: String?) {
         
         if (error as? CDError) == CDError.canceled {
             licensePlateTextField.becomeFirstResponder()
@@ -496,13 +523,14 @@ extension MainViewController: LoadResultDelegate {
         }
         
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
+            
             self?.licensePlateTextField.becomeFirstResponder()
             self?.licensePlateTextField.text = nil
         }
         
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
             
-            self?.dismiss(animated: true)
+            self?.licensePlateNumber = licensePlate
             
             self?.performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
         }
@@ -521,5 +549,12 @@ extension MainViewController: LoadResultDelegate {
     
     func resultLoader(didReceive data: CarData) {
         leaveSearchScene()
+    }
+}
+
+
+extension MainViewController: VisionViewDelegate {
+    func visionViewDidCancelSearch() {
+        reCenterMainContainer(animated: true)
     }
 }

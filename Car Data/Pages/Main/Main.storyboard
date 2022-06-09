@@ -80,6 +80,9 @@
                                             <constraint firstAttribute="height" constant="36" id="N0r-b4-0U2"/>
                                             <constraint firstAttribute="width" secondItem="SpA-MK-d1v" secondAttribute="height" multiplier="1:1" id="scS-Sv-5Yw"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="cameraMainIcon"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="cd-text-dark"/>
@@ -87,6 +90,9 @@
                                     <constraint firstItem="SpA-MK-d1v" firstAttribute="centerX" secondItem="Np0-wE-hnj" secondAttribute="centerX" id="2gN-Kh-9nx"/>
                                     <constraint firstItem="SpA-MK-d1v" firstAttribute="centerY" secondItem="Np0-wE-hnj" secondAttribute="centerY" constant="-8" id="EAq-RC-qYF"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="cameraContainer"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dE0-0Z-MJA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -351,7 +357,7 @@
         <!--Load Result View Controller-->
         <scene sceneID="1ly-Wz-46g">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="fHM-cQ-nuc" customClass="LoadResultViewController" customModule="Car_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loadResult" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fHM-cQ-nuc" customClass="LoadResultViewController" customModule="Car_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oHv-F7-sit">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
