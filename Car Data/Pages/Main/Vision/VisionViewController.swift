@@ -12,10 +12,12 @@ import AVFoundation
 
 protocol VisionViewDelegate {
     func visionViewDidCancelSearch()
+    func visionView(didDetectPlate licensePlateNumber: String)
 }
 
 extension VisionViewDelegate {
     func visionViewDidCancelSearch() { }
+    func visionView(didDetectPlate licensePlateNumber: String) { }
 }
 
 
@@ -26,6 +28,10 @@ final class VisionViewController: CDViewController {
     @IBOutlet weak var instructionLabel: PaddingLabel!
     
     @IBOutlet weak var licensePlateLabel: PaddingLabel!
+    
+    @IBOutlet weak var flashButton: UIButton!
+    @IBOutlet weak var flashButtonHighlightView: UIImageView!
+    
     
     var delegate: VisionViewDelegate?
     
@@ -65,8 +71,6 @@ final class VisionViewController: CDViewController {
     
     override func setupUI() {
         super.setupUI()
-        
-        Hero.shared.delegate = self
     }
     
     override func setupViews() {
@@ -79,9 +83,19 @@ final class VisionViewController: CDViewController {
     private func setupVisionView() {
         visionView.session = captureSession
         
+        let swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(visionViewDidSwipeDown(_:)))
+        swipeGR.direction = .down
+        visionView.addGestureRecognizer(swipeGR)
+        
         captureSessionQueue.async { [weak self] in
-            self?.setupCaptureSession()
             
+            do {
+                try self?.setupCaptureSession()
+            }
+            catch {
+                self?.presentErrorAlert(with: error)
+            }
+
             // Calculate region of interest now that the camera is setup.
             DispatchQueue.main.async {
                 // Figure out initial ROI.
@@ -120,16 +134,11 @@ final class VisionViewController: CDViewController {
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .down)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.navigationController?.popViewController(animated: true)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self?.visionView.fadeOut(0.2) { finish in
-                    
-                    self?.visionView.session?.stopRunning()
-                }
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
+            self?.visionView.fadeOut(0.1)
         }
+        
+        navigationController?.popViewController(animated: true)
         
     }
     
@@ -137,24 +146,57 @@ final class VisionViewController: CDViewController {
     //MARK: - IB Actions
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        captureSessionQueue.async { [weak self] in
+            self?.visionView.session?.stopRunning()
+        }.then
+        
         animateOut()
     }
     
     @IBAction func flashButtonPressed(_ sender: UIButton) {
-        //toggle flash
+
+        do {
+            let isFlashOn = try toggleFlash()
+            
+            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+            
+            let tint = isFlashOn ? K.colors.text.dark : K.colors.background
+            
+            flashButton.tintColor = tint
+            
+            if isFlashOn {
+                flashButtonHighlightView.isHidden = false
+                flashButtonHighlightView.fadeIn(duration: 0.2, delay: 0)
+            } else {
+                flashButtonHighlightView.fadeOut(0.2) { [weak self] finish in
+                    self?.flashButtonHighlightView.isHidden = true
+                }
+            }
+            
+        } catch {
+            presentErrorAlert(with: error)
+        }
+
     }
     
     @IBAction func addFromDeviceButtonPressed(_ sender: UIButton) {
         
     }
     
+    //MARK: - Selectors
+    
+    @objc func visionViewDidSwipeDown(_ sender: UISwipeGestureRecognizer) {
+        
+        animateOut()
+    }
+    
     //MARK: - Vision Methods
     
-    private func setupCaptureSession() {
+    private func setupCaptureSession() throws {
         
         guard let captureDevice = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .back) else {
-            print("Could not create capture device.")
-            return
+            throw CDError.cameraFailed
         }
 
         self.captureDevice = captureDevice
@@ -172,8 +214,7 @@ final class VisionViewController: CDViewController {
         do {
             deviceInput = try AVCaptureDeviceInput(device: captureDevice)
         } catch {
-            print("Could not create device input. \(error)")
-            return
+            throw CDError.cameraFailed
         }
         
         guard let deviceInput = deviceInput else { return }
@@ -190,21 +231,19 @@ final class VisionViewController: CDViewController {
         if captureSession.canAddOutput(videoDataOutput) {
             
             captureSession.addOutput(videoDataOutput)
-            videoDataOutput.connection(with: AVMediaType.video)?.preferredVideoStabilizationMode = .off
+            videoDataOutput.connection(with: AVMediaType.video)?.preferredVideoStabilizationMode = .auto
         } else {
-            print("Could not add VDO output")
-            return
+            throw CDError.cameraFailed
         }
         
         // Set zoom and autofocus to help focus on very small text.
         do {
             try captureDevice.lockForConfiguration()
-            captureDevice.videoZoomFactor = 2
+            captureDevice.videoZoomFactor = 1.5
             captureDevice.autoFocusRangeRestriction = .near
             captureDevice.unlockForConfiguration()
         } catch {
-            print("Could not set zoom level due to error: \(error)")
-            return
+            throw CDError.cameraFailed
         }
         
         captureSession.startRunning()
@@ -234,6 +273,30 @@ final class VisionViewController: CDViewController {
 //        }
     }
     
+    private func toggleFlash() throws -> Bool {
+        
+        guard let device = AVCaptureDevice.default(for: .video) else {
+            throw CDError.genericCamera
+        }
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                if (device.torchMode == .on) {
+                    device.torchMode = .off
+                } else {
+                    try device.setTorchModeOn(level: 1.0)
+                }
+                device.unlockForConfiguration()
+                return device.torchMode == .on
+            } catch {
+                throw CDError.flashFailed
+            }
+        } else {
+            throw CDError.flashUnavailable
+        }
+    }
+    
 }
 
 //MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
@@ -243,19 +306,5 @@ extension VisionViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         // This is implemented in VisionViewController.
     }
-}
-
-//MARK - HeroTransitionDelegate
-
-extension VisionViewController: HeroTransitionDelegate, HeroViewControllerDelegate {
-    func heroTransition(_ hero: HeroTransition, didUpdate state: HeroTransitionState) {}
-    func heroTransition(_ hero: HeroTransition, didUpdate progress: Double) {}
-    
-    func heroDidEndAnimatingTo(viewController: UIViewController) {
-        if viewController is MainViewController {
-            delegate?.visionViewDidCancelSearch()
-        }
-    }
-    
 }
 

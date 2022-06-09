@@ -212,12 +212,12 @@ final class MainViewController: CDViewController {
         let destination = VisionViewController()
         destination.delegate = self
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.166) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.066) { [weak self] in
             self?.navigationController?.pushViewController(destination, animated: true)
             
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.66) {
-//                self?.reCenterMainContainer(animated: true)
-//            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) {
+                self?.reCenterMainContainer(animated: false)
+            }
         }
 
  
@@ -306,7 +306,9 @@ final class MainViewController: CDViewController {
     
     @objc private func mainContainerPanGRDidTrigger(_ sender: UIPanGestureRecognizer) {
         
-        guard let view = sender.view, !isPresentingLicensePlate else { return }
+        guard let view = sender.view, !isPresentingLicensePlate else {
+            return
+        }
         
         //define limit depending on initial position
         let positiveLimit = licensePlateTextFieldContainer.frame.height
@@ -325,7 +327,7 @@ final class MainViewController: CDViewController {
         
         if sender.state == .changed {
             let yTranslation = sender.translation(in: view).y
-            
+            print(yTranslation)
             if yTranslation >= positiveLimit {
                 mainContainerCenterYAnchor.constant = positiveLimit
             } else if yTranslation <= negativeLimit {

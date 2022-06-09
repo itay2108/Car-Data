@@ -8,15 +8,26 @@
 import Foundation
 
 enum CDError: Error {
+    
+    case unknownError
+    
+    //Network
     case parseError
     case noDataProvided
     case requestError
     case notFound
     case badData
     case serverFailed
-    case unknownError
     case timeout
     case canceled
+    
+    //Device
+    case flashFailed
+    case noFlash
+    case flashUnavailable
+    case cameraFailed
+    case cameraPermissions
+    case genericCamera
     
     var localizedDescription: String {
         switch self {
@@ -34,6 +45,19 @@ enum CDError: Error {
             return "There was an error with the remote database"
         case .timeout:
             return "The request timed out"
+            
+        case .flashFailed:
+            return "Could not toggle flash"
+        case .noFlash:
+            return "This device doesn't have a flash"
+        case .flashUnavailable:
+            return "The flash is currently unavailable"
+        case .cameraFailed:
+            return "Could not start camera session"
+        case .cameraPermissions:
+            return "The app is not allowed to use the camera, please allow camera usage from settings"
+        case .genericCamera:
+            return "Something went wrong when trying to use the camera"
         default:
             return "an unknown error has occured"
         }

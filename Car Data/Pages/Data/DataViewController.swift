@@ -10,7 +10,7 @@ import Hero
 import simd
 
 class DataViewController: CDViewController {
-
+    
     @IBOutlet weak var headerTitleLabel: UILabel!
     
     @IBOutlet weak var licensePlateLabel: PaddingLabel!
@@ -47,7 +47,7 @@ class DataViewController: CDViewController {
         
         defaultLicensePlateTopConstant = licensePlateLabelTopAnchor.constant
         defaultDataTableTopConstant = dataTableViewTopAnchor.constant
-
+        
         updateViewConstraints()
     }
     
@@ -55,9 +55,9 @@ class DataViewController: CDViewController {
         super.viewDidAppear(animated)
         
         self.navigationController?.heroNavigationAnimationType = .slide(direction: .left)
-    
+        
     }
-
+    
     //MARK: - UI Methods
     
     override func setupViews() {
@@ -104,7 +104,7 @@ class DataViewController: CDViewController {
         } else {
             disabilityLabel.isHidden = true
         }
-
+        
     }
     
     private func setupTableView() {
@@ -118,7 +118,7 @@ class DataViewController: CDViewController {
         dataTableView.layer.masksToBounds = true
         
         dataTableView.decelerationRate = .fast
-
+        
     }
     
     private func dismiss(withDelay delay: TimeInterval = 0) {
@@ -132,7 +132,7 @@ class DataViewController: CDViewController {
     }
     
     //MARK: - IB Methods
-
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(withDelay: 0.1)
     }
@@ -156,8 +156,11 @@ class DataViewController: CDViewController {
                 return
             }
             
-            if initialPoint.x > view.frame.width * 0.8, // swipe began on right 20% of screen
-               currentPoint.x + quarterOfScreenWidth < initialPoint.x, //current point of swipe is more than a third of screen to the left of the initial
+            
+            if (initialPoint.x > view.frame.width * 0.9 && // swipe began on right 10% of screen
+                currentPoint.x + (quarterOfScreenWidth / 3) < initialPoint.x) ||
+                (initialPoint.x > view.frame.width * 0.8 && // swipe began on right 20% of screen
+                 currentPoint.x + quarterOfScreenWidth < initialPoint.x), //current point of swipe is more than a quarter of screen to the left of the initial
                currentPoint.y + sixthOfScreenHeight > initialPoint.y, //current point of swipe is not more than a sixth of screen below the initial
                currentPoint.y - sixthOfScreenHeight < initialPoint.y { //current point of swipe is not more than a sixth of screen above the initial
                 

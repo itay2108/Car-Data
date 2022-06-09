@@ -19,6 +19,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VisionViewController" customModule="Car_Data" customModuleProvider="target">
             <connections>
+                <outlet property="flashButton" destination="un4-ME-O5U" id="npj-No-by1"/>
+                <outlet property="flashButtonHighlightView" destination="c4o-m9-TZ6" id="Uj3-m7-Y1Q"/>
                 <outlet property="instructionLabel" destination="1es-iH-ed7" id="SYQ-J0-1dD"/>
                 <outlet property="licensePlateLabel" destination="BxU-tx-Qdj" id="iaE-JS-QwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -85,19 +87,39 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-Tx-xyZ">
                             <rect key="frame" x="22.5" y="21" width="100" height="42"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="un4-ME-O5U">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMO-JX-ldn">
                                     <rect key="frame" x="0.0" y="0.0" width="41" height="42"/>
+                                    <subviews>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="c4o-m9-TZ6">
+                                            <rect key="frame" x="0.0" y="0.5" width="41" height="41"/>
+                                            <color key="tintColor" name="cd-yellow"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="un4-ME-O5U">
+                                            <rect key="frame" x="0.0" y="0.0" width="41" height="42"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" name="cd-background"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain">
+                                                <imageReference key="image" image="bolt.fill" catalog="system" symbolScale="large"/>
+                                                <backgroundConfiguration key="background"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="flashButtonPressed:" destination="-1" eventType="touchUpInside" id="KDo-xv-xPh"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="tintColor" name="cd-background"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain">
-                                        <imageReference key="image" image="bolt.fill" catalog="system" symbolScale="large"/>
-                                        <backgroundConfiguration key="background"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="flashButtonPressed:" destination="-1" eventType="touchUpInside" id="KDo-xv-xPh"/>
-                                    </connections>
-                                </button>
+                                    <constraints>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="leading" secondItem="EMO-JX-ldn" secondAttribute="leading" id="2h1-96-q45"/>
+                                        <constraint firstAttribute="bottom" secondItem="un4-ME-O5U" secondAttribute="bottom" id="4Ku-fx-geF"/>
+                                        <constraint firstAttribute="bottom" secondItem="c4o-m9-TZ6" secondAttribute="bottom" id="9Tc-GN-Isc"/>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="width" secondItem="EMO-JX-ldn" secondAttribute="width" id="9iL-4r-fXj"/>
+                                        <constraint firstItem="c4o-m9-TZ6" firstAttribute="top" secondItem="EMO-JX-ldn" secondAttribute="top" id="Hs9-gG-245"/>
+                                        <constraint firstItem="un4-ME-O5U" firstAttribute="top" secondItem="EMO-JX-ldn" secondAttribute="top" id="Lbo-Rj-Nxb"/>
+                                        <constraint firstAttribute="trailing" secondItem="un4-ME-O5U" secondAttribute="trailing" id="XLI-Ll-gAV"/>
+                                        <constraint firstItem="un4-ME-O5U" firstAttribute="leading" secondItem="EMO-JX-ldn" secondAttribute="leading" id="uIC-pP-EbD"/>
+                                    </constraints>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="444-nm-gUZ">
                                     <rect key="frame" x="59" y="0.0" width="41" height="42"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,6 +222,7 @@
     <resources>
         <image name="bolt.fill" catalog="system" width="101" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="paperclip" catalog="system" width="121" height="128"/>
         <namedColor name="cd-background">
             <color red="0.92500001192092896" green="0.94099998474121094" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
