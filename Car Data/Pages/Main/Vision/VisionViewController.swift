@@ -79,7 +79,12 @@ final class VisionViewController: CDViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        Hero.shared.delegate = nil
+        
+        if captureSession.isRunning {
+            captureSessionQueue.async { [weak self] in
+                self?.captureSession.stopRunning()
+            }
+        }
     }
     
     //MARK: - UI Methods
@@ -249,6 +254,8 @@ final class VisionViewController: CDViewController {
         
         destination.licensePlateNumber = licensePlate
         
+        navigationController?.heroNavigationAnimationType = .fade
+        
         navigationController?.pushViewController(destination, animated: true)
         
         destination.delegate = self
@@ -291,7 +298,8 @@ final class VisionViewController: CDViewController {
     }
     
     @IBAction func flashButtonPressed(_ sender: UIButton) {
-
+        guard captureSession.isRunning else { return }
+        
         do {
             let isFlashOn = try toggleFlash()
             
@@ -542,6 +550,8 @@ extension VisionViewController: LoadResultDelegate {
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
             
             self?.licensePlateHeroView.heroID = ""
+            self?.navigationController?.heroNavigationAnimationType = .slide(direction: .down)
+            
             self?.navigationController?.popViewController(animated: true)
         }
         
