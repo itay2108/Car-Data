@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="הקלד מספר רכב" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bt-4b-x58">
-                                        <rect key="frame" x="91.5" y="62" width="231.5" height="80"/>
+                                        <rect key="frame" x="84" y="62" width="246" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="36"/>
@@ -41,7 +41,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFW-e6-Xw3">
-                                        <rect key="frame" x="339" y="75.5" width="52.5" height="53"/>
+                                        <rect key="frame" x="345" y="75.5" width="53" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FFW-e6-Xw3" secondAttribute="height" multiplier="1:1" id="TB6-3x-GrG"/>
                                         </constraints>
@@ -124,10 +124,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="76" y="4.5" width="179" height="77"/>
+                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="61" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="64" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -145,7 +145,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="179" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="185.5" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -193,16 +193,16 @@
                                                 <rect key="frame" x="0.0" y="118.5" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KKZ-26-z8D">
-                                                        <rect key="frame" x="98" y="16" width="135.5" height="57"/>
+                                                        <rect key="frame" x="94" y="16" width="143.5" height="57"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זיהוי לוחית מתמונה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVu-Fb-BGK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="23"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="143.5" height="23"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="txz-IU-YYx">
-                                                                <rect key="frame" x="40.5" y="31" width="54" height="26"/>
+                                                                <rect key="frame" x="44.5" y="31" width="54" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-down" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-qt-f9e">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17" height="26"/>
@@ -250,7 +250,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפושים אחרונים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-N9-XpQ">
-                                                    <rect key="frame" x="225.5" y="0.0" width="118.5" height="21"/>
+                                                    <rect key="frame" x="222.5" y="0.0" width="121.5" height="21.5"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                     <color key="textColor" name="cd-text-dark"/>
                                                     <nil key="highlightedColor"/>
@@ -357,7 +357,7 @@
         <!--Load Result View Controller-->
         <scene sceneID="1ly-Wz-46g">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="fHM-cQ-nuc" customClass="LoadResultViewController" customModule="Car_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loadResult" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fHM-cQ-nuc" customClass="LoadResultViewController" customModule="Car_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oHv-F7-sit">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -553,11 +553,11 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="179" height="37"/>
+            <size key="intrinsicContentSize" width="185.5" height="37.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="2gs-70-N3O"/>
+        <segue reference="76I-6M-6uO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>

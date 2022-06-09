@@ -159,7 +159,7 @@ class DataViewController: CDViewController {
             
             if (initialPoint.x > view.frame.width * 0.9 && // swipe began on right 10% of screen
                 currentPoint.x + (quarterOfScreenWidth / 3) < initialPoint.x) ||
-                (initialPoint.x > view.frame.width * 0.8 && // swipe began on right 20% of screen
+                (initialPoint.x > view.frame.width * 0.66 && // swipe began on right 33% of screen
                  currentPoint.x + quarterOfScreenWidth < initialPoint.x), //current point of swipe is more than a quarter of screen to the left of the initial
                currentPoint.y + sixthOfScreenHeight > initialPoint.y, //current point of swipe is not more than a sixth of screen below the initial
                currentPoint.y - sixthOfScreenHeight < initialPoint.y { //current point of swipe is not more than a sixth of screen above the initial

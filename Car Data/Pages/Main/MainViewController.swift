@@ -72,10 +72,18 @@ final class MainViewController: CDViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        licensePlateTextField.attributedPlaceholder = nil
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         navigationController?.heroNavigationAnimationType = .fade
+        
+        licensePlateTextField.attributedPlaceholder =
+        NSAttributedString(string: "הקלד מספר רכב", attributes: [NSAttributedString.Key.foregroundColor: K.colors.text.dark.withAlphaComponent(0.33)])
 
         if shouldStopPresentingLicensePlate {
             leaveSearchScene()
@@ -270,6 +278,7 @@ final class MainViewController: CDViewController {
             licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
+
                 performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
             }
             
@@ -506,7 +515,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: LoadResultDelegate {
-    func resultLoader(didFailWith error: Error) {
+    func resultLoader(didFailWith error: Error, for licensePlate: String?) {
         
         if (error as? CDError) == CDError.canceled {
             licensePlateTextField.becomeFirstResponder()
@@ -514,13 +523,14 @@ extension MainViewController: LoadResultDelegate {
         }
         
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
+            
             self?.licensePlateTextField.becomeFirstResponder()
             self?.licensePlateTextField.text = nil
         }
         
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
             
-            self?.dismiss(animated: true)
+            self?.licensePlateNumber = licensePlate
             
             self?.performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
         }

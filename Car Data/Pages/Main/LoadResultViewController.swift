@@ -11,12 +11,12 @@ import Alamofire
 
 protocol LoadResultDelegate {
     func resultLoader(didReceive data: CarData)
-    func resultLoader(didFailWith error: Error)
+    func resultLoader(didFailWith error: Error, for licensePlate: String?)
 }
 
 extension LoadResultDelegate {
     func resultLoader(didReceive data: CarData) { }
-    func resultLoader(didFailWith error: Error) { }
+    func resultLoader(didFailWith error: Error, for licensePlate: String?) { }
 }
 
 class LoadResultViewController: CDViewController {
@@ -101,7 +101,7 @@ class LoadResultViewController: CDViewController {
         CDTaskMonitor.main.cancelAllTasks()
         
         navigationController?.popViewController(animated: true)
-        delegate?.resultLoader(didFailWith: CDError.canceled)
+        delegate?.resultLoader(didFailWith: CDError.canceled, for: licensePlateNumber)
     }
     
     //MARK: - Data Methods
@@ -114,7 +114,7 @@ class LoadResultViewController: CDViewController {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self?.navigationController?.popViewController(animated: true)
-                self?.delegate?.resultLoader(didFailWith: error)
+                self?.delegate?.resultLoader(didFailWith: error, for: self?.licensePlateNumber)
             }
             
         }.always { [weak self] in

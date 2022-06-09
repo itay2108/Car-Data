@@ -42,6 +42,7 @@ struct K {
     
     struct viewControllerIDs {
         static let dataVC = "dataViewController"
+        static let loadResult = "loadResult"
     }
     
     struct segues {

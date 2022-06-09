@@ -22,10 +22,13 @@
                 <outlet property="flashButton" destination="un4-ME-O5U" id="npj-No-by1"/>
                 <outlet property="flashButtonHighlightView" destination="c4o-m9-TZ6" id="Uj3-m7-Y1Q"/>
                 <outlet property="instructionLabel" destination="1es-iH-ed7" id="SYQ-J0-1dD"/>
+                <outlet property="licensePlateHeroView" destination="Ows-vM-6rA" id="92Z-Jm-bu9"/>
                 <outlet property="licensePlateLabel" destination="BxU-tx-Qdj" id="iaE-JS-QwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="visionFocusView" destination="XpH-yO-byw" id="chD-oY-CHY"/>
                 <outlet property="visionView" destination="YXk-jV-egw" id="skn-D7-ubS"/>
+                <outlet property="visionViewActivityIndicator" destination="BKK-Q2-RHa" id="WVX-6g-fe2"/>
+                <outlet property="visionViewActivityIndicatorCenterYAnchor" destination="NDc-yi-nyc" id="RN8-dX-Xcg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -40,53 +43,18 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-yO-byw">
                     <rect key="frame" x="0.0" y="0.0" width="431" height="896"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.16996067880794702" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.2513075064349648" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-tx-Qdj" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                    <rect key="frame" x="99" y="418.5" width="216.5" height="59"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ows-vM-6rA">
+                    <rect key="frame" x="99" y="430.5" width="216.5" height="35"/>
                     <color key="backgroundColor" name="cd-yellow"/>
-                    <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
-                    <color key="textColor" name="cd-text-dark"/>
-                    <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
-                            <real key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
-                            <real key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
-                            <real key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                            <real key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="6"/>
-                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כוונ/י את המצלמה אל לוחית רישוי" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1es-iH-ed7" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                    <rect key="frame" x="102.5" y="60" width="209" height="39"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.18576676324503311" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
-                    <color key="textColor" name="cd-background"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                            <real key="value" value="12"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
-                            <real key="value" value="10"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7M1-CK-CCt">
                     <rect key="frame" x="249" y="762" width="145" height="84"/>
                     <subviews>
@@ -193,6 +161,65 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="actionView"/>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-tx-Qdj" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
+                    <rect key="frame" x="99" y="418.5" width="216.5" height="59"/>
+                    <color key="backgroundColor" name="cd-yellow"/>
+                    <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
+                    <color key="textColor" name="cd-text-dark"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="licensePlate"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כוונ/י את המצלמה אל לוחית רישוי" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1es-iH-ed7" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
+                    <rect key="frame" x="102.5" y="60" width="209" height="39"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.18576676324503311" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                    <color key="textColor" name="cd-background"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKK-Q2-RHa" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="192.5" y="433.5" width="29.5" height="29.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="BKK-Q2-RHa" secondAttribute="height" multiplier="1:1" id="dkX-Hk-o1u"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="lineSpinFadeLoader"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="color">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.52288057709371805" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="cd-text-dark"/>
@@ -200,12 +227,19 @@
                 <constraint firstItem="YXk-jV-egw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="0nr-Wx-hFg"/>
                 <constraint firstItem="BxU-tx-Qdj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="1QI-Yb-itB"/>
                 <constraint firstItem="1es-iH-ed7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3eO-Js-IBj"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="41i-f8-FsW"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="width" secondItem="BxU-tx-Qdj" secondAttribute="width" id="4Jb-OG-MOh"/>
                 <constraint firstAttribute="bottom" secondItem="YXk-jV-egw" secondAttribute="bottom" id="6SB-GN-yrd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7M1-CK-CCt" secondAttribute="trailing" constant="20" id="9Lw-0b-lc4"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AN2-Yr-WRI"/>
                 <constraint firstItem="YXk-jV-egw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DF4-4o-2G5"/>
                 <constraint firstItem="BxU-tx-Qdj" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="DpX-h3-CbS"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="height" secondItem="BxU-tx-Qdj" secondAttribute="height" multiplier="0.6" id="Eup-Lj-5Uj"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="height" secondItem="BxU-tx-Qdj" secondAttribute="height" multiplier="0.5" id="JEn-3U-KjX"/>
+                <constraint firstItem="BKK-Q2-RHa" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="NDc-yi-nyc"/>
                 <constraint firstItem="Uea-qk-ZPl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="S2H-Em-c7i"/>
                 <constraint firstItem="Uea-qk-ZPl" firstAttribute="centerY" secondItem="7M1-CK-CCt" secondAttribute="centerY" id="WBZ-Z1-2qL"/>
+                <constraint firstItem="Ows-vM-6rA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZpC-Xc-4D0"/>
                 <constraint firstItem="7M1-CK-CCt" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.35" id="eAu-Uq-CRi"/>
                 <constraint firstItem="1es-iH-ed7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="n2d-UX-Elx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YXk-jV-egw" secondAttribute="trailing" id="rbc-xT-bbu"/>
