@@ -61,7 +61,7 @@ struct K {
     
     struct regex {
         static let date = "^[[:digit:]]{4}[-\\/.]{1}[[:digit:]]{2}[-\\/.]{1}[[:digit:]]{2}[^\"]*?"
-        static let licensePlate = "^(?=.{5,10}$)[[:digit:]]{1,3}[-.]?[[:digit:]]{1,3}[-.]?[[:digit:]]{1,3}[^[\\pL]$"
+        static let licensePlate = "^(?=.{5,10}$)[[:digit:]]{1,3}[-.•]?[[:digit:]]{1,3}[-.•]?[[:digit:]]{1,3}[^[\\pL]$"
     }
     
     struct queueIDs {

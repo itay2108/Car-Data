@@ -24,6 +24,7 @@
                 <outlet property="instructionLabel" destination="1es-iH-ed7" id="SYQ-J0-1dD"/>
                 <outlet property="licensePlateLabel" destination="BxU-tx-Qdj" id="iaE-JS-QwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visionFocusView" destination="XpH-yO-byw" id="chD-oY-CHY"/>
                 <outlet property="visionView" destination="YXk-jV-egw" id="skn-D7-ubS"/>
             </connections>
         </placeholder>
@@ -36,8 +37,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-yO-byw">
+                    <rect key="frame" x="0.0" y="0.0" width="431" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.16996067880794702" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-tx-Qdj" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                    <rect key="frame" x="111" y="419" width="192.5" height="58"/>
+                    <rect key="frame" x="99" y="418.5" width="216.5" height="59"/>
                     <color key="backgroundColor" name="cd-yellow"/>
                     <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
                     <color key="textColor" name="cd-text-dark"/>
@@ -61,7 +67,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="כוונ/י את המצלמה אל לוחית רישוי" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1es-iH-ed7" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                    <rect key="frame" x="106" y="60" width="202.5" height="38.5"/>
+                    <rect key="frame" x="102.5" y="60" width="209" height="39"/>
                     <color key="backgroundColor" white="0.0" alpha="0.18576676324503311" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                     <color key="textColor" name="cd-background"/>
@@ -213,10 +219,10 @@
     </objects>
     <designables>
         <designable name="1es-iH-ed7">
-            <size key="intrinsicContentSize" width="202.5" height="38.5"/>
+            <size key="intrinsicContentSize" width="209" height="39"/>
         </designable>
         <designable name="BxU-tx-Qdj">
-            <size key="intrinsicContentSize" width="192.5" height="58"/>
+            <size key="intrinsicContentSize" width="216.5" height="59"/>
         </designable>
     </designables>
     <resources>

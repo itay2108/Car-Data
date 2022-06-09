@@ -66,6 +66,7 @@
 		BCC512382849644300E883D0 /* BaseCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC512372849644300E883D0 /* BaseCarData.swift */; };
 		BCC5123B28496BE500E883D0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC5123A28496BE500E883D0 /* PaddingLabel.swift */; };
 		BCC5123E28496CF800E883D0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BCC5123D28496CF800E883D0 /* Alamofire */; };
+		BCD3875D2852392F00AE1149 /* VNRecognitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD3875C2852392F00AE1149 /* VNRecognitionHandler.swift */; };
 		BCD4D7772848DE3B000D24D0 /* CDTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D7762848DE3B000D24D0 /* CDTableView.swift */; };
 		BCD4D7792848E56D000D24D0 /* CDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D7782848E56D000D24D0 /* CDLabel.swift */; };
 		BCD4D77B2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */; };
@@ -167,6 +168,7 @@
 		BCB4432E2850844C00792E66 /* VisionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisionViewController.xib; sourceTree = "<group>"; };
 		BCC512372849644300E883D0 /* BaseCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCarData.swift; sourceTree = "<group>"; };
 		BCC5123A28496BE500E883D0 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		BCD3875C2852392F00AE1149 /* VNRecognitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VNRecognitionHandler.swift; sourceTree = "<group>"; };
 		BCD4D7762848DE3B000D24D0 /* CDTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTableView.swift; sourceTree = "<group>"; };
 		BCD4D7782848E56D000D24D0 /* CDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDLabel.swift; sourceTree = "<group>"; };
 		BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+ReuseIdentifier.swift"; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				BCB4432E2850844C00792E66 /* VisionViewController.xib */,
 				66AB522428512FCB009CD347 /* LiveCameraView.swift */,
 				66AB5226285131C8009CD347 /* StringTracker.swift */,
+				BCD3875C2852392F00AE1149 /* VNRecognitionHandler.swift */,
 			);
 			path = Vision;
 			sourceTree = "<group>";
@@ -627,6 +630,7 @@
 				BCAEB370284670A000FA0981 /* AppDelegate.swift in Sources */,
 				66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */,
 				660D591B284D67FA00795114 /* Int+Bool.swift in Sources */,
+				BCD3875D2852392F00AE1149 /* VNRecognitionHandler.swift in Sources */,
 				BCF32816284ACE2D003A5162 /* DataSectionTableViewCell.swift in Sources */,
 				BCAEB372284670A000FA0981 /* SceneDelegate.swift in Sources */,
 				BCAD15752848C5190004A49F /* LoadResultViewController.swift in Sources */,

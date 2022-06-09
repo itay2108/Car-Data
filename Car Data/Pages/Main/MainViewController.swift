@@ -327,7 +327,7 @@ final class MainViewController: CDViewController {
         
         if sender.state == .changed {
             let yTranslation = sender.translation(in: view).y
-            print(yTranslation)
+
             if yTranslation >= positiveLimit {
                 mainContainerCenterYAnchor.constant = positiveLimit
             } else if yTranslation <= negativeLimit {

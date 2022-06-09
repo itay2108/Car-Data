@@ -65,7 +65,7 @@ extension String {
         
         // Potential number found. Strip out punctuation, whitespace and country
         // prefix.
-        var phoneNumberDigits = ""
+        var licensePlateDigits = ""
         let substring = String(self[range])
         let nsrange = NSRange(substring.startIndex..., in: substring)
         do {
@@ -75,7 +75,7 @@ extension String {
                 for rangeInd in 1 ..< match.numberOfRanges {
                     let range = match.range(at: rangeInd)
                     let matchString = (substring as NSString).substring(with: range)
-                    phoneNumberDigits += matchString as String
+                    licensePlateDigits += matchString as String
                 }
             }
         } catch {
@@ -83,14 +83,14 @@ extension String {
         }
         
         // Must be not more than 8 digits.
-        guard phoneNumberDigits.count <= 8 else {
+        guard licensePlateDigits.count <= 8 else {
             return nil
         }
         
         // Substitute commonly misrecognized characters, for example: 'S' -> '5' or 'l' -> '1'
         var result = ""
-        let allowedChars = "0123456789-."
-        for var char in phoneNumberDigits {
+        let allowedChars = "0123456789-.•"
+        for var char in licensePlateDigits {
             char = char.getSimilarCharacterIfNotIn(allowedChars: allowedChars)
             guard allowedChars.contains(char) else {
                 return nil

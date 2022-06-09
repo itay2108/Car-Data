@@ -24,6 +24,7 @@ extension VisionViewDelegate {
 final class VisionViewController: CDViewController {
 
     @IBOutlet weak var visionView: LiveCameraView!
+    @IBOutlet weak var visionFocusView: UIView!
     
     @IBOutlet weak var instructionLabel: PaddingLabel!
     
@@ -49,10 +50,11 @@ final class VisionViewController: CDViewController {
     var bufferAspectRatio: Double!
     
     var regionOfInterest = CGRect(x: 0, y: 0, width: 1, height: 1)
+    let visionFocusMaskLayer = CAShapeLayer()
     
     private var request: VNRecognizeTextRequest?
     
-    private let numberTracker = StringTracker()
+    private let stringTracker = StringTracker()
     
     //MARK: - Life Cycle
     
@@ -81,11 +83,9 @@ final class VisionViewController: CDViewController {
     }
     
     private func setupVisionView() {
-        visionView.session = captureSession
+        request = VNRecognizeTextRequest(completionHandler: handle(request:error:))
         
-        let swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(visionViewDidSwipeDown(_:)))
-        swipeGR.direction = .down
-        visionView.addGestureRecognizer(swipeGR)
+        visionView.session = captureSession
         
         captureSessionQueue.async { [weak self] in
             
@@ -102,11 +102,25 @@ final class VisionViewController: CDViewController {
                 self?.calculateRegionOfInterest()
             }
         }
+        
+        setupVisionFocusView()
     }
     
     private func setupInstructionLabel() {
         instructionLabel.layer.cornerRadius = 6
         instructionLabel.layer.masksToBounds = true
+    }
+    
+    private func setupVisionFocusView() {
+        visionFocusMaskLayer.backgroundColor = UIColor.clear.cgColor
+        visionFocusMaskLayer.fillRule = .evenOdd
+        visionFocusView.layer.mask = visionFocusMaskLayer
+        
+        let swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(visionViewDidSwipeDown(_:)))
+        swipeGR.direction = .down
+        visionView.addGestureRecognizer(swipeGR)
+        
+        updateVisionFocusViewCutout()
     }
     
     private func animateIn() {
@@ -149,7 +163,7 @@ final class VisionViewController: CDViewController {
         
         captureSessionQueue.async { [weak self] in
             self?.visionView.session?.stopRunning()
-        }.then
+        }
         
         animateOut()
     }
@@ -239,7 +253,7 @@ final class VisionViewController: CDViewController {
         // Set zoom and autofocus to help focus on very small text.
         do {
             try captureDevice.lockForConfiguration()
-            captureDevice.videoZoomFactor = 1.5
+            captureDevice.videoZoomFactor = 1.2
             captureDevice.autoFocusRangeRestriction = .near
             captureDevice.unlockForConfiguration()
         } catch {
@@ -250,13 +264,10 @@ final class VisionViewController: CDViewController {
     }
     
     func calculateRegionOfInterest() {
-        // In landscape orientation the desired ROI is specified as the ratio of
-        // buffer width to height. When the UI is rotated to portrait, keep the
-        // vertical size the same (in buffer pixels). Also try to keep the
-        // horizontal size the same up to a maximum ratio.
-        let desiredHeightRatio = 0.33
-        let desiredWidthRatio = 0.6
-        let maxPortraitWidth = 0.8
+
+        let desiredHeightRatio = 1.16
+        let desiredWidthRatio = 0.16
+        let maxPortraitWidth = 0.5
         
         // Figure out size of ROI.
         let size = CGSize(width: min(desiredWidthRatio * bufferAspectRatio, maxPortraitWidth), height: desiredHeightRatio / bufferAspectRatio)
@@ -265,12 +276,22 @@ final class VisionViewController: CDViewController {
         regionOfInterest.origin = CGPoint(x: (1 - size.width) / 2, y: (1 - size.height) / 2)
         regionOfInterest.size = size
         
+        
 //        // Update the cutout to match the new ROI.
-//        DispatchQueue.main.async {
-//            // Wait for the next run cycle before updating the cutout. This
-//            // ensures that the preview layer already has its new orientation.
-//            self.updateCutout()
-//        }
+        DispatchQueue.main.async { [weak self] in
+            self?.updateVisionFocusViewCutout()
+        }
+    }
+    
+    func updateVisionFocusViewCutout() {
+            // Figure out where the cutout ends up in layer coordinates.
+        
+        let cutout = visionView.videoPreviewLayer.layerRectConverted(fromMetadataOutputRect: regionOfInterest)
+            
+            // Create the mask.
+            let path = UIBezierPath(roundedRect: visionFocusView.frame, cornerRadius: 13)
+            path.append(UIBezierPath(roundedRect: cutout, cornerRadius: 13))
+            visionFocusMaskLayer.path = path.cgPath
     }
     
     private func toggleFlash() throws -> Bool {
@@ -301,10 +322,42 @@ final class VisionViewController: CDViewController {
 
 //MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
 
-extension VisionViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func handle(request: VNRequest, error: Error?) {
+        
+        guard let observations =
+                request.results as? [VNRecognizedTextObservation] else {
+            return
+        }
+        let recognizedStrings = observations.compactMap { observation in
+            // Return the string of the top VNRecognizedText instance.
+            return observation.topCandidates(1).first?.string
+        }
+        
+        // Process the recognized strings.
+        print(recognizedStrings)
+    }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // This is implemented in VisionViewController.
+        
+        if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
+           let request = request {
+            // Configure for running in real-time.
+            request.recognitionLevel = .fast
+            // Language correction won't help recognizing phone numbers. It also
+            // makes recognition slower.
+            request.usesLanguageCorrection = false
+            // Only run on the region of interest for maximum speed.
+            request.regionOfInterest = regionOfInterest
+            
+            let requestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up, options: [:])
+            do {
+                try requestHandler.perform([request])
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 
