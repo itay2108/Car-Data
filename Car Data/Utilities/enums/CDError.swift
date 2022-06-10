@@ -21,13 +21,17 @@ enum CDError: Error {
     case timeout
     case canceled
     
-    //Device
+    //Camera
     case flashFailed
     case noFlash
     case flashUnavailable
     case cameraFailed
     case cameraPermissions
     case genericCamera
+    
+    //PDF
+    case urlFailed
+    case pdfFailed
     
     var localizedDescription: String {
         switch self {
@@ -58,6 +62,12 @@ enum CDError: Error {
             return "The app is not allowed to use the camera, please allow camera usage from settings"
         case .genericCamera:
             return "Something went wrong when trying to use the camera"
+            
+        case .urlFailed:
+            return "Could not initialize a write url for data"
+        case .pdfFailed:
+            return "Could not render PDF"
+            
         default:
             return "an unknown error has occured"
         }

@@ -80,6 +80,7 @@
 		BCF3281B284B46D5003A5162 /* CDParameterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF32819284B46D5003A5162 /* CDParameterTableViewCell.xib */; };
 		BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */; };
 		BCF3281F284B80AC003A5162 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF3281E284B80AC003A5162 /* Main.storyboard */; };
+		BCFD173C28536556000EAFCE /* UIViewController+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFD173B28536556000EAFCE /* UIViewController+PDF.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,7 @@
 		BCF32819284B46D5003A5162 /* CDParameterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CDParameterTableViewCell.xib; sourceTree = "<group>"; };
 		BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+SafeBounds.swift"; sourceTree = "<group>"; };
 		BCF3281E284B80AC003A5162 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BCFD173B28536556000EAFCE /* UIViewController+PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PDF.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				66C297D7284B85E700AA2608 /* HTTPRequest.swift */,
-				BCD5276B284A52F300DA60FC /* CDError.swift */,
 				BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */,
 				BC01BD05284F8A7300777C57 /* CDTask.swift */,
 			);
@@ -232,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				BC01BD01284F798900777C57 /* CDDateFormat.swift */,
+				BCD5276B284A52F300DA60FC /* CDError.swift */,
 			);
 			path = enums;
 			sourceTree = "<group>";
@@ -249,15 +251,16 @@
 		BC8BE3F22847BA2A002838AA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BCAEB3B428467CFB00FA0981 /* UIViewController+UISetup.swift */,
-				BC8BE3EE284795EA002838AA /* UIGestureRecognizer+Extensions.swift */,
-				BC8BE3F02847AB95002838AA /* UIView+Fade.swift */,
-				BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */,
-				BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */,
 				660D591A284D67FA00795114 /* Int+Bool.swift */,
-				6600E17B284E468700351CAF /* UIView+Extensions.swift */,
 				BC01BCFA284F5A2800777C57 /* Date+Extensions.swift */,
 				BC01BCFE284F5EBF00777C57 /* String+Extensions.swift */,
+				BCF3281C284B52E6003A5162 /* Collection+SafeBounds.swift */,
+				6600E17B284E468700351CAF /* UIView+Extensions.swift */,
+				BC8BE3F02847AB95002838AA /* UIView+Fade.swift */,
+				BCAEB3B428467CFB00FA0981 /* UIViewController+UISetup.swift */,
+				BCFD173B28536556000EAFCE /* UIViewController+PDF.swift */,
+				BC8BE3EE284795EA002838AA /* UIGestureRecognizer+Extensions.swift */,
+				BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */,
 				66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */,
 				BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */,
+				BCFD173C28536556000EAFCE /* UIViewController+PDF.swift in Sources */,
 				BCB4432F2850844C00792E66 /* VisionViewController.swift in Sources */,
 				BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */,
 				662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */,

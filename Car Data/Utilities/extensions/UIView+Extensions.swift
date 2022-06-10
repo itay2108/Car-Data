@@ -19,4 +19,12 @@ public extension UIView {
             return UIScreen.main.bounds.size.width / 375
         }
     }
+    
+    
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
 }

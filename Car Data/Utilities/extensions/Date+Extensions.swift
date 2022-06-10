@@ -16,4 +16,11 @@ extension Date {
     func isInThePast() -> Bool {
         return self < Date()
     }
+    
+    func asString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "y-MM-dd-HH-mm-ss"
+        
+        return formatter.string(from: self)
+    }
 }

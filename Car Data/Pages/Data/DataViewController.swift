@@ -137,6 +137,10 @@ class DataViewController: CDViewController {
         dismiss(withDelay: 0.1)
     }
     
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
+        
+        captureDataToPDF()
+    }
     //MARK: - Selectors
     
     @objc private func headerTitleDidTap(_ sender: UITapGestureRecognizer) {
@@ -173,6 +177,70 @@ class DataViewController: CDViewController {
     @objc private func licensePlateLabelDidTap(_ sender: UITapGestureRecognizer) {
         
         dataTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    //MARK: - Sharing Methods
+    
+    private func captureDataToPDF() {
+        
+        guard let data = data,
+              let plateNumber = licensePlateNumber else {
+            return
+        }
+        
+        dataTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        
+        do {
+            try render(pdfWithName: "\(plateNumber)-\(Date().asString())",
+                       withHeader: pdfHeaderImage(with: plateNumber),
+                       from: dataTableView,
+                       numberOfCells: data.sections.count)
+        } catch {
+            presentErrorAlert(with: error)
+        }
+    }
+    
+    private func pdfHeaderImage(with plateNumber: String) -> UIImage {
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: dataTableView.frame.width, height: view.frame.height / 4))
+        view.backgroundColor = K.colors.background
+        
+        let logoView = UIImageView(frame: CGRect(x: view.frame.maxX - (view.frame.width / 4) - 16, y: 16, width: view.frame.width / 4, height: view.frame.height / 6))
+        logoView.image = UIImage(named: "cd-logo-label")
+        
+        logoView.contentMode = .scaleAspectFit
+
+        view.addSubview(logoView)
+
+        
+        let licensePlateLabel = PaddingLabel(frame:
+                                                CGRect(x: 0,
+                                                       y: 0,
+                                                       width: view.frame.width * 0.5,
+                                                       height: view.frame.height * 0.3))
+        
+        licensePlateLabel.center = CGPoint(x: view.center.x, y: view.center.y + logoView.frame.height / 2)
+        
+        licensePlateLabel.backgroundColor = K.colors.accents.yellow
+        licensePlateLabel.textColor = K.colors.text.dark
+        
+        licensePlateLabel.text = LicensePlateManager.maskToLicensePlateFormat(plateNumber)
+        licensePlateLabel.textAlignment = .center
+        licensePlateLabel.font = Rubik.semiBold.ofSize(view.frame.height * 0.38)
+        licensePlateLabel.adjustsFontSizeToFitWidth = true
+        
+        licensePlateLabel.leftInset = 24
+        licensePlateLabel.rightInset = 24
+        
+        licensePlateLabel.layer.masksToBounds = true
+        licensePlateLabel.layer.cornerRadius = 13
+        
+        view.addSubview(licensePlateLabel)
+        
+        licensePlateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        licensePlateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        return view.asImage()
     }
     
 }
