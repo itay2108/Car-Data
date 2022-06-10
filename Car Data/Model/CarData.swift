@@ -19,6 +19,8 @@ struct CarData {
     
     let isImport: Bool
     
+    let numberOfVehiclesWithIdenticalModel: Int
+    
     var sections: [CDParameterSection] {
         return [baseSection(), specSection(), motSection(), extraSection(), safetySection()].compactMap( { $0.parameters.count == 0 ? nil : $0 })
     }
@@ -84,6 +86,11 @@ struct CarData {
         parameters.append(CDParameter(type: .manufacturerCountry, value: extraData?.manufacturerCountry))
         parameters.append(CDParameter(type: .market, value: extraData?.market))
         parameters.append(CDParameter(type: .engineModel, value: baseData.engineModel))
+        
+        if numberOfVehiclesWithIdenticalModel > 0  {
+            parameters.append(CDParameter(type: .numberOfIdenticalVehicles, value: numberOfVehiclesWithIdenticalModel))
+        }
+
         parameters.append(CDParameter(type: .doorCount, value: extraData?.doorCount))
         parameters.append(CDParameter(type: .seatNumber, value: extraData?.seatNumber))
         parameters.append(CDParameter(type: .windows, value: extraData?.windows))

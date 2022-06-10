@@ -29,7 +29,9 @@ struct CarDataManager {
                         .then { extraData in
                         getDisabilityData(from: licensePlateNumber)
                                 .then { hasDisability in
-                            fulfill(CarData(id: licensePlateAsInt, baseData: baseData, extraData: extraData, hasDisablity: hasDisability, isImport: false))
+                                    getnumberOfVehiclesWithIdenticalModel(from: baseData).then { numberOfIdenticalVehicles in
+                                        fulfill(CarData(id: licensePlateAsInt, baseData: baseData, extraData: extraData, hasDisablity: hasDisability, isImport: false, numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles))
+                                    }
                         }
                     }
                 }
@@ -42,7 +44,7 @@ struct CarDataManager {
                         
                             .then(on: DispatchQueue.global()) { importData in
                                 getDisabilityData(from: licensePlateNumber).then { hasDisability in
-                                    fulfill(CarData(id: licensePlateAsInt, baseData: BaseCarData(importData), extraData: nil, hasDisablity: hasDisability, isImport: true))
+                                    fulfill(CarData(id: licensePlateAsInt, baseData: BaseCarData(importData), extraData: nil, hasDisablity: hasDisability, isImport: true, numberOfVehiclesWithIdenticalModel: 0))
                                 }
                             }
                             .catch { error in
@@ -161,6 +163,32 @@ struct CarDataManager {
             HTTPRequest.get(from: url, decodeWith: DisabilityDataRespone.self).then(on: DispatchQueue.global())  { data in
                 
                 fulfill(data.result.records.count > 0)
+            }.catch { error in
+                reject(error)
+            }
+        }
+        
+    }
+    
+    private func getnumberOfVehiclesWithIdenticalModel(from baseData: BaseCarData) -> Promise<Int> {
+        
+        return Promise { fulfill, reject in
+            
+            guard let manufacturerCode = baseData.manufacturerCode,
+                  let modelCode = baseData.modelCode,
+                  let modelNumber = baseData.modelNumber,
+                  let trimLevel = baseData.trimLevel else {
+                reject(CDError.badData)
+                return
+            }
+            
+            let queries = [String(manufacturerCode), String(modelCode), modelNumber, trimLevel]
+            
+            let url = urlManager.url(from: K.URLs.basicData, queries: queries, limit: 9999)
+            
+            HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global())  { data in
+                
+                fulfill(data.result.records.count)
             }.catch { error in
                 reject(error)
             }

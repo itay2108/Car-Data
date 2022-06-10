@@ -524,15 +524,18 @@ extension MainViewController: LoadResultDelegate {
         
         let cancelAction = UIAlertAction(title: "ביטול", style: .cancel) { [weak self] action in
             
-            self?.licensePlateTextField.becomeFirstResponder()
-            self?.licensePlateTextField.text = nil
+            self?.focusView.fadeOut()
+            
+            self?.reCenterMainContainer(animated: true, duration: 0.5) {
+                self?.licensePlateTextField.text = nil
+                self?.isPresentingLicensePlate = false
+            }
+
         }
         
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
             
-            self?.licensePlateNumber = licensePlate
-            
-            self?.performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
+            self?.licensePlateTextField.becomeFirstResponder()
         }
         
         let errorDescription: String?

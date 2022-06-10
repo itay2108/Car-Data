@@ -115,4 +115,6 @@ enum CDParameterType: String, CaseIterable {
     
     case importType = "סוג ייבוא"
     
+    case numberOfIdenticalVehicles = "כמות מהדגם המדויק בכביש"
+    
 }
