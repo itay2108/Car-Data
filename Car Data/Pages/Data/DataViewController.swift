@@ -157,7 +157,7 @@ class DataViewController: CDViewController {
         blurView?.isUserInteractionEnabled = false
         
         if let urlPath = captureDataToPDF() {
-            let message = "בדקתי בקאר דאטה על רכב מספר \(licensePlate)"
+            let message = "בדקתי בקאר דאטה על רכב מספר \(licensePlate), הנה הנתונים שלו."
             let activityContoller = UIActivityViewController(activityItems: [message, urlPath], applicationActivities: nil)
             
             activityContoller.completionWithItemsHandler = { [weak self] (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
@@ -231,7 +231,7 @@ class DataViewController: CDViewController {
         dataTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         
         do {
-            let pathForPDF = try render(pdfWithName: plateNumber,
+            let pathForPDF = try render(pdfWithName: "נתונים לרכב \(data.extraData?.manufacturer ?? "") \(data.baseData.model ?? "") - \(plateNumber)",
                        withHeader: pdfHeaderImage(with: plateNumber),
                        from: dataTableView,
                        numberOfCells: data.sections.count)
