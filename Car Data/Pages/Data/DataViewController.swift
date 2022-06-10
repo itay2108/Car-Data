@@ -22,6 +22,8 @@ class DataViewController: CDViewController {
     @IBOutlet weak var dataTableView: UITableView!
     @IBOutlet weak var dataTableViewTopAnchor: NSLayoutConstraint!
     
+    private var blurView: UIVisualEffectView?
+    
     var data: CarData?
     
     private var defaultLicensePlateTopConstant: CGFloat = 96
@@ -139,7 +141,43 @@ class DataViewController: CDViewController {
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         
-        captureDataToPDF()
+        guard let licensePlate = licensePlateNumber else {
+            presentErrorAlert(with: CDError.pdfNoData)
+            return
+        }
+        
+        blurView = blurView()
+        
+        if let blurView = blurView {
+            view.addSubview(blurView)
+            blurView.fadeIn()
+        }
+        
+        
+        blurView?.isUserInteractionEnabled = false
+        
+        if let urlPath = captureDataToPDF() {
+            let message = "בדקתי בקאר דאטה על רכב מספר \(licensePlate)"
+            let activityContoller = UIActivityViewController(activityItems: [message, urlPath], applicationActivities: nil)
+            
+            activityContoller.completionWithItemsHandler = { [weak self] (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
+                self?.blurView?.fadeOut()
+                self?.blurView = nil
+                
+                do {
+                    try CDURLManager.deleteFile(from: urlPath)
+                } catch {
+                    self?.presentErrorAlert(with: error)
+                }
+
+            }
+            
+            present(activityContoller, animated: true)
+            
+        } else {
+            blurView?.fadeOut()
+            blurView = nil
+        }
     }
     //MARK: - Selectors
     
@@ -181,22 +219,29 @@ class DataViewController: CDViewController {
     
     //MARK: - Sharing Methods
     
-    private func captureDataToPDF() {
+    private func captureDataToPDF() -> URL? {
         
         guard let data = data,
               let plateNumber = licensePlateNumber else {
-            return
+            return nil
         }
+        
+        let initialOffset = dataTableView.contentOffset
         
         dataTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         
         do {
-            try render(pdfWithName: "\(plateNumber)-\(Date().asString())",
+            let pathForPDF = try render(pdfWithName: plateNumber,
                        withHeader: pdfHeaderImage(with: plateNumber),
                        from: dataTableView,
                        numberOfCells: data.sections.count)
+            
+            dataTableView.setContentOffset(initialOffset, animated: false)
+            
+            return pathForPDF
         } catch {
             presentErrorAlert(with: error)
+            return nil
         }
     }
     
@@ -219,7 +264,7 @@ class DataViewController: CDViewController {
                                                        width: view.frame.width * 0.5,
                                                        height: view.frame.height * 0.3))
         
-        licensePlateLabel.center = CGPoint(x: view.center.x, y: view.center.y + logoView.frame.height / 2)
+        licensePlateLabel.center = CGPoint(x: view.center.x, y: view.center.y + logoView.frame.height / 4)
         
         licensePlateLabel.backgroundColor = K.colors.accents.yellow
         licensePlateLabel.textColor = K.colors.text.dark
@@ -237,8 +282,26 @@ class DataViewController: CDViewController {
         
         view.addSubview(licensePlateLabel)
         
-        licensePlateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        licensePlateLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        let disabilityLabelInternal = UILabel(frame: CGRect(x: 0, y: 0, width: licensePlateLabel.frame.width / 2, height: 16))
+        
+        disabilityLabelInternal.font = Rubik.medium.ofSize(licensePlateLabel.font.pointSize / 4)
+        disabilityLabelInternal.adjustsFontSizeToFitWidth = true
+        disabilityLabelInternal.textColor = K.colors.text.light
+        
+        disabilityLabelInternal.text = self.disabilityLabel.text
+        disabilityLabelInternal.contentMode = .center
+        
+        disabilityLabelInternal.textAlignment = .center
+        view.addSubview(disabilityLabelInternal)
+        
+        disabilityLabelInternal.center = CGPoint(x: view.center.x, y: view.frame.maxY - 24)
+        
+        let disabilityIcon = UIImageView(frame: CGRect(x: disabilityLabelInternal.frame.maxX + 6, y: disabilityLabelInternal.frame.minY + 2, width: disabilityLabelInternal.frame.height / 1.25, height: disabilityLabelInternal.frame.height / 1.25))
+        
+        disabilityIcon.image = UIImage(named: "cd-wheelchair")
+        disabilityIcon.contentMode = .scaleAspectFit
+        
+        view.addSubview(disabilityIcon)
         
         return view.asImage()
     }

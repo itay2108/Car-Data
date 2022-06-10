@@ -9,13 +9,13 @@ import UIKit
 
 public extension UIViewController {
     
-    func render(pdfWithName fileName: String, withHeader header: UIImage? = nil, from tableView: UITableView, section sectionNumber: Int = 0, numberOfCells: Int) throws {
+    func render(pdfWithName fileName: String, withHeader header: UIImage? = nil, from tableView: UITableView, section sectionNumber: Int = 0, numberOfCells: Int) throws -> URL? {
         
         guard let docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last else {
             throw CDError.urlFailed
         }
-        let fileURL = docURL.appendingPathComponent("\(fileName).pdf")
         
+        let fileURL = docURL.appendingPathComponent("\(fileName).pdf")
         
         var pdfPages: [UIImage] = []
         
@@ -60,7 +60,6 @@ public extension UIViewController {
             throw CDError.pdfFailed
         }
         
-       
-
+       return fileURL
     }
 }

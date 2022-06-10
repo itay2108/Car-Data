@@ -32,6 +32,8 @@ enum CDError: Error {
     //PDF
     case urlFailed
     case pdfFailed
+    case deletionFailed
+    case pdfNoData
     
     var localizedDescription: String {
         switch self {
@@ -67,7 +69,10 @@ enum CDError: Error {
             return "Could not initialize a write url for data"
         case .pdfFailed:
             return "Could not render PDF"
-            
+        case .deletionFailed:
+            return "Could not delete file at specified URL"
+        case .pdfNoData:
+            return "Could not find license plate number to share"
         default:
             return "an unknown error has occured"
         }

@@ -42,4 +42,14 @@ struct CDURLManager {
         
         return URL(string: base)
     }
+    
+    static func deleteFile(from url: URL) throws {
+        if FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.removeItem(atPath: url.path)
+            } catch {
+                throw CDError.deletionFailed
+            }
+        }
+    }
 }

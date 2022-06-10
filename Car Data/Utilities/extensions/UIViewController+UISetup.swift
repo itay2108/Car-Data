@@ -36,4 +36,13 @@ extension UIViewController {
        return UIApplication.shared.windows.first
     }
     
+    func blurView() -> UIVisualEffectView {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        
+        blurView.frame = view.bounds
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        return blurView
+    }
 }
