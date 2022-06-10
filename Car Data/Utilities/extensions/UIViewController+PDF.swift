@@ -15,6 +15,10 @@ public extension UIViewController {
             throw CDError.urlFailed
         }
         
+        let initialOffset = tableView.contentOffset
+        
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        
         let fileURL = docURL.appendingPathComponent("\(fileName).pdf")
         
         var pdfPages: [UIImage] = []
@@ -32,10 +36,6 @@ public extension UIViewController {
         }
         
         var totalPageHeight: CGFloat = 0
-        
-        if let header = header {
-            totalPageHeight += header.size.height
-        }
         
         for page in pdfPages {
             totalPageHeight += page.size.height
@@ -59,6 +59,8 @@ public extension UIViewController {
         } catch {
             throw CDError.pdfFailed
         }
+        
+        tableView.setContentOffset(initialOffset, animated: false)
         
        return fileURL
     }

@@ -226,17 +226,11 @@ class DataViewController: CDViewController {
             return nil
         }
         
-        let initialOffset = dataTableView.contentOffset
-        
-        dataTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-        
         do {
             let pathForPDF = try render(pdfWithName: "נתונים לרכב \(data.extraData?.manufacturer ?? "") \(data.baseData.model ?? "") - \(plateNumber)",
                        withHeader: pdfHeaderImage(with: plateNumber),
                        from: dataTableView,
                        numberOfCells: data.sections.count)
-            
-            dataTableView.setContentOffset(initialOffset, animated: false)
             
             return pathForPDF
         } catch {

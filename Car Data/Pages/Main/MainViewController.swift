@@ -383,15 +383,12 @@ final class MainViewController: CDViewController {
         
         UIView.animate(withDuration: 0.33) { [weak self] in
             self?.view.layoutIfNeeded()
-        } completion: {  finish in
+        } completion: {  [weak self] finish in
             
             UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             
             //Open Camera
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) { [weak self] in
-                self?.reCenterMainContainer(animated: true)
-            }
+            self?.beginVisionScene()
         }
     }
     
