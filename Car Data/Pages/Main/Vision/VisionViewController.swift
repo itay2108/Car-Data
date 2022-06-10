@@ -140,8 +140,11 @@ final class VisionViewController: CDViewController {
         let swipeGR = UISwipeGestureRecognizer(target: self, action: #selector(visionViewDidSwipeDown(_:)))
         swipeGR.direction = .down
         
+        let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(visionViewDidPinch(_:)))
+        
         visionFocusView.isUserInteractionEnabled = true
         visionFocusView.addGestureRecognizer(swipeGR)
+        visionFocusView.addGestureRecognizer(pinchGR)
         
         updateVisionFocusViewCutout()
     }
@@ -335,6 +338,34 @@ final class VisionViewController: CDViewController {
         animateOut()
     }
     
+    @objc func visionViewDidPinch(_ sender: UIPinchGestureRecognizer) {
+        
+        captureSessionQueue.async { [weak self] in
+            
+            guard let device = self?.captureDevice else { return }
+
+            if sender.state == .changed {
+
+                let maxZoomFactor =  min(device.activeFormat.videoMaxZoomFactor, 5)
+                let pinchVelocityDividerFactor: CGFloat = 10.0
+
+                do {
+
+                    try device.lockForConfiguration()
+                    defer { device.unlockForConfiguration() }
+
+                    let desiredZoomFactor = device.videoZoomFactor + atan2(sender.velocity, pinchVelocityDividerFactor)
+                    device.videoZoomFactor = max(1.0, min(desiredZoomFactor, maxZoomFactor))
+
+                } catch {
+                    print(error)
+                }
+            }
+
+        }
+
+    }
+    
     //MARK: - Vision Methods
     
     private func setupCaptureSession() throws {
@@ -496,7 +527,6 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
             
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {
-                
                 
                 if !didDetectInitialLicensePlate {
                     didDetectFirstSample()

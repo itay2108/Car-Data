@@ -63,7 +63,7 @@ struct LicensePlateManager {
         
         let plateNumber = rawText.filter { "0123456789".contains($0) }
         
-        if plateNumber.count < 5 || plateNumber.count > 8 || plateNumber.first == "0" {
+        if plateNumber.count < 6 || plateNumber.count > 8 || plateNumber.first == "0" {
             return false
         }
         
