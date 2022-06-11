@@ -32,11 +32,15 @@ extension UIViewController {
     
     func presentErrorAlert(with errorInfo: Error, withDescription showsDescription: Bool = true, customDesription: String? = nil, actions: [UIAlertAction]? = nil) {
         
-        let alert = UIAlertController(title: "אופס, אירעה שגיאה", message: errorInfo.localizedDescription, preferredStyle: .alert)
+        let alert = UIAlertController(title: "משהו השתבש", message: errorInfo.localizedDescription, preferredStyle: .alert)
         
         if !showsDescription { alert.message = nil }
         if let customDesription = customDesription {
             alert.message = customDesription
+        }
+        
+        if let error = errorInfo as? CDError {
+            alert.message = error.localizedDescription
         }
         
         let dismissAction = UIAlertAction(title: "הבנתי", style: .cancel)

@@ -12,6 +12,8 @@ class CDViewController: UIViewController {
     
     var licensePlateNumber: String?
     
+    var heroNavigationControllerDelegateCache: UINavigationControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

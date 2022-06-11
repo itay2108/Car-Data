@@ -29,6 +29,11 @@ enum CDError: Error {
     case cameraPermissions
     case genericCamera
     
+    //Vision
+    case noImageForRecognition
+    case noRequestForRecognition
+    case noResultsForImageRecognition
+    
     //PDF
     case urlFailed
     case pdfFailed
@@ -64,6 +69,13 @@ enum CDError: Error {
             return "The app is not allowed to use the camera, please allow camera usage from settings"
         case .genericCamera:
             return "Something went wrong when trying to use the camera"
+            
+        case .noImageForRecognition:
+            return "No image was provided for recognition in the correct format"
+        case .noRequestForRecognition:
+            return "recognition request was not found"
+        case .noResultsForImageRecognition:
+            return "Could not find a license plate in this image. Try zooming in on the license plate number for better results."
             
         case .urlFailed:
             return "Could not initialize a write url for data"

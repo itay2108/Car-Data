@@ -67,6 +67,17 @@ struct LicensePlateManager {
             return false
         }
         
+
+        if let beforeLastDigit = plateNumber.dropLast().last,
+           let beforeLastDigitAsInt = Int(String(beforeLastDigit)) {
+            
+            if plateNumber.count == 8 && beforeLastDigitAsInt > 1 {
+                return false
+            }
+        }
+
+        //if plateNumber.count == 8 && beforeLastDigit
+        
         return true
     }
     

@@ -12,7 +12,6 @@
 		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
 		66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB522428512FCB009CD347 /* LiveCameraView.swift */; };
-		66AB5227285131C8009CD347 /* StringTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB5226285131C8009CD347 /* StringTracker.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
 		66CA4DD2284CCD3D00D2C21A /* FBLPromises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD1284CCD3D00D2C21A /* FBLPromises */; };
@@ -120,7 +119,6 @@
 		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
 		66AB522428512FCB009CD347 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
-		66AB5226285131C8009CD347 /* StringTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTracker.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
 		66CA4DD5284CCFEF00D2C21A /* CarDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDataManager.swift; sourceTree = "<group>"; };
@@ -399,7 +397,6 @@
 				BCB4432D2850844C00792E66 /* VisionViewController.swift */,
 				BCB4432E2850844C00792E66 /* VisionViewController.xib */,
 				66AB522428512FCB009CD347 /* LiveCameraView.swift */,
-				66AB5226285131C8009CD347 /* StringTracker.swift */,
 				BCD3875C2852392F00AE1149 /* VNRecognitionHandler.swift */,
 			);
 			path = Vision;
@@ -643,7 +640,6 @@
 				BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */,
 				66CE0826284CEDC900FF7072 /* DisabilityData.swift in Sources */,
 				BCD4D7772848DE3B000D24D0 /* CDTableView.swift in Sources */,
-				66AB5227285131C8009CD347 /* StringTracker.swift in Sources */,
 				BC8BE3EF284795EA002838AA /* UIGestureRecognizer+Extensions.swift in Sources */,
 				BC01BD04284F8A3D00777C57 /* TaskMonitor.swift in Sources */,
 			);

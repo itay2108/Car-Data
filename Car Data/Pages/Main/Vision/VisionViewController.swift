@@ -38,35 +38,68 @@ final class VisionViewController: CDViewController {
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var flashButtonHighlightView: UIImageView!
     
+    @IBOutlet weak var addFromDeviceButton: UIButton!
+    
     var delegate: VisionViewDelegate?
     
     //Live Preview Parameters
     
     private let captureSession = AVCaptureSession()
-    let captureSessionQueue = DispatchQueue(label: K.queueIDs.captureSession)
+    private let captureSessionQueue = DispatchQueue(label: K.queueIDs.captureSession)
     
-    var captureDevice: AVCaptureDevice?
+    private var captureDevice: AVCaptureDevice?
     
-    var videoDataOutput = AVCaptureVideoDataOutput()
-    let videoDataOutputQueue = DispatchQueue(label: K.queueIDs.videoOutputSession)
+    private var videoDataOutput = AVCaptureVideoDataOutput()
+    private let videoDataOutputQueue = DispatchQueue(label: K.queueIDs.videoOutputSession)
+    
+    private var bufferAspectRatio: Double!
+    
+    //Static Vision Parameter
+    private var isDetectingFromStaticImage: Bool = false
+    
+    private lazy var imagePicker: UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+       return imagePicker
+    }()
+    
+    private lazy var staticRecognitionImageView: UIImageView = {
+        let imageView = UIImageView(frame: view.frame)
+        imageView.center = view.center
+        
+        imageView.backgroundColor = .clear
+        
+        imageView.contentMode = .scaleAspectFit
+        
+        imageView.alpha = 0.0
+        
+        return imageView
+    }()
     
     //Vision Parameters
-    var bufferAspectRatio: Double!
     
-    var regionOfInterest = CGRect(x: 0, y: 0, width: 1, height: 1)
-    let visionFocusMaskLayer = CAShapeLayer()
+    private var regionOfInterest = CGRect(x: 0, y: 0, width: 1, height: 1)
+    private let visionFocusMaskLayer = CAShapeLayer()
     
-    var visionBlurView: UIVisualEffectView?
+    private lazy var visionBlurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let visionBlurView = UIVisualEffectView(effect: blurEffect)
+        
+        visionBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        return visionBlurView
+    }()
     
-    private var request: VNRecognizeTextRequest?
-    
-    //vision detections that match plate rules get added to this array. when array contains enough samples, use the most frequent sample. if no frequent, use the longest sample.
+    private var recognitionrequest: VNRecognizeTextRequest?
+
     private var didDetectInitialLicensePlate: Bool = false
     
     private var timeSinceLastSampleDetection: Int = 0
     private var sampleFrequencyTimer: Timer?
     
+    //vision detections that match plate rules get added to this array. when array contains enough samples, use the most frequent sample. if no frequent, use the longest sample.
     private var potentialPlateNumbers: [String] = []
+    
     private var licensePlateSampleThreshold: Int = 15
     
     //MARK: - Life Cycle
@@ -75,6 +108,11 @@ final class VisionViewController: CDViewController {
         super.viewDidAppear(animated)
 
         animateIn()
+        
+        didDetectInitialLicensePlate = false
+        potentialPlateNumbers.removeAll()
+        
+        addFromDeviceButton.isEnabled = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -102,7 +140,7 @@ final class VisionViewController: CDViewController {
     }
     
     private func setupVisionView() {
-        request = VNRecognizeTextRequest(completionHandler: handle(request:error:))
+        recognitionrequest = VNRecognizeTextRequest(completionHandler: handle(request:error:))
         
         visionView.session = captureSession
         
@@ -111,15 +149,15 @@ final class VisionViewController: CDViewController {
             do {
                 try self?.setupCaptureSession()
                 
-                self?.animateInstructionIn()
             }
             catch {
                 self?.presentErrorAlert(with: error)
             }
 
-            // Calculate region of interest now that the camera is setup.
+            // Calculate region of interest now that the camera is setup & show instructions.
             DispatchQueue.main.async {
-                // Figure out initial ROI.
+                self?.animateInstructionIn()
+                
                 self?.calculateRegionOfInterest()
             }
         }
@@ -154,6 +192,8 @@ final class VisionViewController: CDViewController {
         licensePlateLabel.layer.masksToBounds = true
     }
     
+    //MARK: Animation Methods
+    
     private func animateIn() {
         
         visionView.fadeIn()
@@ -178,24 +218,51 @@ final class VisionViewController: CDViewController {
         
     }
     
-    private func animateSuccess(_ completion: (()->Void)? = nil) {
-        visionViewActivityIndicator.stopAnimating()
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-        visionBlurView = UIVisualEffectView(effect: blurEffect)
-        
-        guard let visionBlurView = visionBlurView else {
-            return
+    private func animatePauseSession(_ completion: (()->Void)? = nil) {
+        for view in view.subviews {
+            if view == visionBlurView {
+                view.removeFromSuperview()
+            }
         }
         
+        visionViewActivityIndicator.stopAnimating()
+        
         visionBlurView.frame = view.bounds
-        visionBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         view.insertSubview(visionBlurView, belowSubview: licensePlateLabel)
         
-        visionBlurView.fadeIn() { [weak self] in
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        visionBlurView.fadeIn { [weak self] in
+            self?.captureSessionQueue.async {
+                self?.captureSession.stopRunning()
+            }
             
+            self?.instructionLabel.isHidden = true
             self?.visionFocusView.isHidden = true
+            completion?()
+        }
+    }
+    
+    private func animateResumeSession(_ completion: (()->Void)? = nil) {
+        
+        visionFocusView.isHidden = false
+        instructionLabel.isHidden = false
+        
+        isDetectingFromStaticImage = false
+        
+        visionBlurView.fadeOut(0.1) { [weak self] finish in
+            self?.visionBlurView.removeFromSuperview()
+            completion?()
+        }
+        
+        captureSessionQueue.async { [weak self] in
+            self?.captureSession.startRunning()
+        }
+    }
+    
+    private func animateSuccess(_ completion: (()->Void)? = nil) {
+        
+        animatePauseSession { [weak self] in
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
             
             self?.licensePlateLabel.isHidden = false
             
@@ -231,6 +298,8 @@ final class VisionViewController: CDViewController {
         DispatchQueue.main.async { [weak self] in
             self?.sampleFrequencyTimer?.invalidate()
             self?.instructionLabel.isHidden = true
+            
+            self?.addFromDeviceButton.isEnabled = false
         }
 
         
@@ -288,6 +357,20 @@ final class VisionViewController: CDViewController {
         }
     }
     
+    //Static License Plate Detection
+    
+    private func didSelect(imageForPlateRecognition image: UIImage) {
+        
+        potentialPlateNumbers.removeAll()
+        isDetectingFromStaticImage = true
+        
+        do {
+            try recognizeLicensePlateNumber(in: image.cgImage)
+        } catch {
+            presentErrorAlert(with: error)
+        }
+    }
+    
     
     //MARK: - IB Actions
     
@@ -328,6 +411,15 @@ final class VisionViewController: CDViewController {
     }
     
     @IBAction func addFromDeviceButtonPressed(_ sender: UIButton) {
+        heroNavigationControllerDelegateCache = navigationController?.delegate
+        imagePicker.delegate = self
+        
+        animatePauseSession()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) { [weak self] in
+            guard let self = self else { return }
+            self.present(self.imagePicker, animated: true)
+        }
         
     }
     
@@ -376,13 +468,8 @@ final class VisionViewController: CDViewController {
 
         self.captureDevice = captureDevice
 
-        if captureDevice.supportsSessionPreset(.hd4K3840x2160) {
-            captureSession.sessionPreset = AVCaptureSession.Preset.hd4K3840x2160
-            bufferAspectRatio = 3840.0 / 2160.0
-        } else {
-            captureSession.sessionPreset = AVCaptureSession.Preset.hd1920x1080
-            bufferAspectRatio = 1920.0 / 1080.0
-        }
+        captureSession.sessionPreset = AVCaptureSession.Preset.hd1920x1080
+        bufferAspectRatio = 1920.0 / 1080.0
         
         var deviceInput: AVCaptureDeviceInput?
         
@@ -482,6 +569,29 @@ final class VisionViewController: CDViewController {
         }
     }
     
+    //Detection Methods
+    
+    private func checkForPotentialPlateNumbers(in strings: [String]) {
+        for string in strings {
+            let cleanString = string.including(only: "1234567890")
+            
+            if  cleanString.contains(only: "1234567890"),
+                LicensePlateManager.licensePlateIsValid(cleanString) {
+                
+                if !didDetectInitialLicensePlate {
+                    didDetectFirstSample()
+                }
+                
+                potentialPlateNumbers.append(cleanString)
+                
+                timeSinceLastSampleDetection = 0
+                
+                attemptMostProbablePlateNumber()
+                
+            }
+        }
+    }
+    
     private func attemptMostProbablePlateNumber() {
         guard potentialPlateNumbers.count >= licensePlateSampleThreshold else {
             return
@@ -503,6 +613,26 @@ final class VisionViewController: CDViewController {
         potentialPlateNumbers.removeAll()
     }
     
+    private func recognizeLicensePlateNumber(in image: CGImage?) throws {
+        
+        guard let image = image else {
+            throw CDError.noImageForRecognition
+        }
+        
+        //similar to regular recognition request but does not use sample cound guard, and runs only once so it can output failure
+        let staticRecognitionrequest = VNRecognizeTextRequest(completionHandler: handleImage(request:error:))
+        
+        let handler = VNImageRequestHandler(cgImage: image)
+        
+        do {
+            //calls handle(request:error:) defined in VNRecognitionHandler extension
+            try handler.perform([staticRecognitionrequest])
+        } catch {
+            throw error
+        }
+    }
+        
+    
 }
 
 //MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
@@ -522,24 +652,60 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
         }
         
         // Process the recognized strings.
-        for string in recognizedStrings {
-            let cleanString = string.excluding(characrers: "-.,;:•")
+        checkForPotentialPlateNumbers(in: recognizedStrings)
+    }
+    
+    func handleImage(request: VNRequest, error: Error?) {
+        guard let observations =
+                request.results as? [VNRecognizedTextObservation] else {
+            return
+        }
+        
+        var recognizedStrings: [VNRecognizedText] = []
+        
+        for observation in observations {
+            let observationCandidates = observation.topCandidates(3)
+            
+            for candidate in observationCandidates {
+                recognizedStrings.append(candidate)
+            }
+        }
+        
+        var potentialStaticNumbers: [String] = []
+        
+        for candidate in recognizedStrings {
+            var cleanString = candidate.string.including(only: "1234567890")
+            
+            if candidate.confidence <= 0.5, cleanString.count == 7, candidate.string.last == "0" {
+                cleanString += "1"
+            }
             
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {
                 
-                if !didDetectInitialLicensePlate {
-                    didDetectFirstSample()
+                potentialStaticNumbers.append(cleanString)
+            }
+        }
+        
+        guard potentialStaticNumbers.count > 0 else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.animateResumeSession {
+                    self?.presentErrorAlert(with: CDError.noResultsForImageRecognition)
                 }
-                
-                potentialPlateNumbers.append(cleanString)
-                
-                timeSinceLastSampleDetection = 0
-                
-
-                
-                if potentialPlateNumbers.count >= licensePlateSampleThreshold {
-                    attemptMostProbablePlateNumber()
+            }
+            return
+        }
+        
+        let countedSet = NSCountedSet(array: potentialStaticNumbers)
+        
+        if let mostFrequent = countedSet.max(by: { countedSet.count(for: $0) < countedSet.count(for: $1) }) as? String,
+            LicensePlateManager.licensePlateIsValid(mostFrequent) {
+            
+            didDetect(plate: mostFrequent)
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.animateResumeSession {
+                    self?.presentErrorAlert(with: CDError.noResultsForImageRecognition)
                 }
             }
         }
@@ -548,7 +714,7 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
         if let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
-           let request = request {
+           let request = recognitionrequest {
             // Configure for running in real-time.
             request.recognitionLevel = .accurate
             // Language correction won't help recognizing phone numbers. It also
@@ -564,6 +730,26 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
                 presentErrorAlert(with: CDError.genericCamera)
             }
         }
+    }
+}
+
+extension VisionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            
+            didSelect(imageForPlateRecognition: image)
+        }
+        
+        picker.dismiss(animated: true)
+        
+        navigationController?.delegate = heroNavigationControllerDelegateCache
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        picker.dismiss(animated: true)
+        
+        animateResumeSession()
     }
 }
 
@@ -587,11 +773,14 @@ extension VisionViewController: LoadResultDelegate {
         
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
             
-            self?.visionFocusView.isHidden = false
-            self?.visionFocusView.fadeIn()
-            self?.visionBlurView?.fadeOut()
+            self?.staticRecognitionImageView.fadeOut() { finish in
+                self?.staticRecognitionImageView.removeFromSuperview()
+            }
             
-            self?.didDetectInitialLicensePlate = false
+            self?.animateResumeSession {
+                self?.didDetectInitialLicensePlate = false
+            }
+
         }
         
         let errorDescription: String?
