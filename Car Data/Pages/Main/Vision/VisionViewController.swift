@@ -674,11 +674,11 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
         var potentialStaticNumbers: [String] = []
         
         for candidate in recognizedStrings {
-            var cleanString = candidate.string.including(only: "1234567890")
+            let cleanString = candidate.string.including(only: "1234567890")
             
-            if candidate.confidence <= 0.5, cleanString.count == 7, candidate.string.last == "0" {
-                cleanString += "1"
-            }
+//            if candidate.confidence <= 0.5, cleanString.count == 7, candidate.string.last == "0" {
+//                cleanString += "1"
+//            }
             
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {
