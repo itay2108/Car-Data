@@ -11,6 +11,7 @@
 		660D591B284D67FA00795114 /* Int+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D591A284D67FA00795114 /* Int+Bool.swift */; };
 		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
+		66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E42855565E00C0EB88 /* TotaledCarData.swift */; };
 		66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB522428512FCB009CD347 /* LiveCameraView.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
@@ -118,6 +119,7 @@
 		660D591A284D67FA00795114 /* Int+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bool.swift"; sourceTree = "<group>"; };
 		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
+		66A520E42855565E00C0EB88 /* TotaledCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotaledCarData.swift; sourceTree = "<group>"; };
 		66AB522428512FCB009CD347 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				66CE0825284CEDC900FF7072 /* DisabilityData.swift */,
 				662CD73C284C9C430084998A /* ExtraCarData.swift */,
 				6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */,
+				66A520E42855565E00C0EB88 /* TotaledCarData.swift */,
 				BCF32812284AC5E0003A5162 /* CDParameter.swift */,
 			);
 			path = Model;
@@ -635,6 +638,7 @@
 				BC8BE3F52847BA50002838AA /* CDView.swift in Sources */,
 				BCAEB3B3284679CA00FA0981 /* Rubik.swift in Sources */,
 				BCAEB3B728467D9100FA0981 /* CDViewController.swift in Sources */,
+				66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */,
 				BC01BCFF284F5EBF00777C57 /* String+Extensions.swift in Sources */,
 				66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */,
 				BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */,

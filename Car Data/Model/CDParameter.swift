@@ -117,4 +117,6 @@ enum CDParameterType: String, CaseIterable {
     
     case numberOfIdenticalVehicles = "כמות מהדגם המדויק בכביש"
     
+    case totalLossDate = "תאריך הורדה מהכביש"
+    
 }

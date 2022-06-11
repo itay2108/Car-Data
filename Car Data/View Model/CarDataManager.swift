@@ -26,15 +26,27 @@ struct CarDataManager {
             
                 .then(on: DispatchQueue.global()) { baseData in
                     getExtraCarData(from: baseData)
+                    
                         .then { extraData in
-                        getDisabilityData(from: licensePlateNumber)
+                            getDisabilityData(from: licensePlateNumber)
+                            
                                 .then { hasDisability in
-                                    getnumberOfVehiclesWithIdenticalModel(from: baseData).then { numberOfIdenticalVehicles in
-                                        fulfill(CarData(id: licensePlateAsInt, baseData: baseData, extraData: extraData, hasDisablity: hasDisability, isImport: false, numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles))
-                                    }
+                                    getnumberOfVehiclesWithIdenticalModel(from: baseData)
+                                    
+                                        .then { numberOfIdenticalVehicles in
+                                            
+                                            fulfill(CarData(id: licensePlateAsInt,
+                                                            baseData: baseData,
+                                                            extraData: extraData,
+                                                            hasDisablity: hasDisability,
+                                                            isImport: false,
+                                                            isMotorcycle: false,
+                                                            numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles))
+                                        }
+                                }
                         }
-                    }
                 }
+            
                 .catch { error in
                     
                     if let error = (error as? CDError),
@@ -43,13 +55,48 @@ struct CarDataManager {
                         getImportCarData(from: licensePlateNumber)
                         
                             .then(on: DispatchQueue.global()) { importData in
-                                getDisabilityData(from: licensePlateNumber).then { hasDisability in
-                                    fulfill(CarData(id: licensePlateAsInt, baseData: BaseCarData(importData), extraData: nil, hasDisablity: hasDisability, isImport: true, numberOfVehiclesWithIdenticalModel: 0))
-                                }
+                                getDisabilityData(from: licensePlateNumber)
+                                
+                                    .then { hasDisability in
+                                        
+                                        fulfill(CarData(id: licensePlateAsInt,
+                                                        baseData: BaseCarData(importData),
+                                                        extraData: nil,
+                                                        hasDisablity: hasDisability,
+                                                        isImport: true,
+                                                        isMotorcycle: false,
+                                                        numberOfVehiclesWithIdenticalModel: 0))
+                                    }
                             }
                             .catch { error in
-                                reject(error)
+                                
+                                
+                                if let error = (error as? CDError),
+                                   error == CDError.notFound {
+                                    
+                                    getMotoCarData(from: licensePlateNumber)
+                                    
+                                        .then(on: DispatchQueue.global()) { data in
+                                            getDisabilityData(from: licensePlateNumber)
+                                            
+                                                .then { hasDisability in
+                                                    
+                                                    fulfill(CarData(id: licensePlateAsInt,
+                                                                    baseData: data,
+                                                                    extraData: nil,
+                                                                    hasDisablity: hasDisability,
+                                                                    isImport: false,
+                                                                    isMotorcycle: true,
+                                                                    numberOfVehiclesWithIdenticalModel: 0))
+                                                }
+                                        }
+                                        .catch { error in
+                                            reject(error)
+                                        }
+                                    
+                                }
                             }
+                        
                     } else {
                         reject(error)
                     }
@@ -72,15 +119,40 @@ struct CarDataManager {
                     return
                 }
                 
-                guard let plateNumber = Int(licensePlateNumber),
-                    let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) else {
+                //if available from basic database -
+                if let plateNumber = Int(licensePlateNumber),
+                   let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) {
                     
-                    reject(CDError.notFound)
-                    return
+                    fulfill(result)
+                    
+                    //else if not available but plate number is valid, try to get from inactive vehicles database -
+                } else if let plateNumber = Int(licensePlateNumber),
+                          let inactiveURL = urlManager.url(from: K.URLs.inactiveData, query: licensePlateNumber) {
+                    
+                    HTTPRequest.get(from: inactiveURL, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                        if let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) {
+                            fulfill(result)
+                            
+                            //else if not available but plate number is valid, try to get from totaled vehicles database -
+                        } else if let plateNumber = Int(licensePlateNumber),
+                                  let totaledURL = urlManager.url(from: K.URLs.totaledData, query: licensePlateNumber) {
+                            
+                            HTTPRequest.get(from: totaledURL, decodeWith: TotaledCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                                if let result = data.result.records.first(where: { $0.misparRechev == plateNumber }) {
+                                    fulfill(BaseCarData(result))
+                                    
+                                    //else reject promise
+                                } else {
+                                    reject(CDError.notFound)
+                                }
+                            }.catch { error in
+                                reject(error)
+                            }
+                            
+                        }
+                    }
+
                 }
-                
-                fulfill(result)
-                
             }.catch { error in
                 reject(error)
             }
@@ -103,7 +175,7 @@ struct CarDataManager {
                 }
                 
                 guard let plateNumber = Int(licensePlateNumber),
-                    let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) else {
+                      let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) else {
                     
                     reject(CDError.notFound)
                     return
@@ -116,6 +188,34 @@ struct CarDataManager {
             }
         }
         
+    }
+    
+    private func getMotoCarData(from licensePlateNumber: String) -> Promise<BaseCarData> {
+        
+        return Promise { fulfill, reject in
+            
+            let url = urlManager.url(from: K.URLs.motoData, query: licensePlateNumber)
+            
+            HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                
+                guard data.success else {
+                    reject(CDError.requestError)
+                    return
+                }
+                
+                guard let plateNumber = Int(licensePlateNumber),
+                      let result = data.result.records.first(where: { $0.plateNumber == plateNumber }) else {
+                    
+                    reject(CDError.notFound)
+                    return
+                }
+                
+                fulfill(result)
+                
+            }.catch { error in
+                reject(error)
+            }
+        }
         
     }
     

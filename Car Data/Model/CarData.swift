@@ -18,6 +18,7 @@ struct CarData {
     let hasDisablity: Bool
     
     let isImport: Bool
+    let isMotorcycle: Bool
     
     let numberOfVehiclesWithIdenticalModel: Int
     
@@ -29,7 +30,7 @@ struct CarData {
         var parameters: [CDParameter] = []
         
         parameters.append(CDParameter(type: .manufacturer, value: extraData?.manufacturer ?? baseData.manufacturer))
-        parameters.append(CDParameter(type: .model, value: baseData.model))
+        parameters.append(CDParameter(type: .model, value: baseData.model ?? baseData.modelNumber))
         parameters.append(CDParameter(type: .trimLevel, value: baseData.trimLevel))
         parameters.append(CDParameter(type: .modelYear, value: baseData.modelYear))
         parameters.append(CDParameter(type: .moedAliyaLakvish, value: baseData.moedAliyaLakvish))
@@ -48,11 +49,17 @@ struct CarData {
     func specSection() -> CDParameterSection {
         var parameters: [CDParameter] = []
         
-        parameters.append(CDParameter(type: .displacement, value: extraData?.displacement))
+        if isMotorcycle,
+           let motoDisplacement = baseData.motoDisplacement {
+            parameters.append(CDParameter(type: .displacement, value: Int(motoDisplacement)))
+        } else {
+            parameters.append(CDParameter(type: .displacement, value: extraData?.displacement))
+        }
+        
         parameters.append(CDParameter(type: .isAutomatic, value: extraData?.isAutomatic?.booleanValue()))
         parameters.append(CDParameter(type: .wheelDrive, value: extraData?.wheelDrive))
         parameters.append(CDParameter(type: .fuelType, value: baseData.fuelType))
-        parameters.append(CDParameter(type: .horsepower, value: extraData?.horsepower))
+        parameters.append(CDParameter(type: .horsepower, value: extraData?.horsepower ?? baseData.motoHorsePower))
         parameters.append(CDParameter(type: .curbWeight, value: extraData?.curbWeight))
         parameters.append(CDParameter(type: .rearTireSize, value: baseData.rearTireSize))
         parameters.append(CDParameter(type: .frontTireSize, value: baseData.frontTireSize))
@@ -72,6 +79,8 @@ struct CarData {
         parameters.append(CDParameter(type: .ownership, value: baseData.ownership))
         parameters.append(CDParameter(type: .chassis, value: baseData.chassis))
         parameters.append(CDParameter(type: .horaatRishum, value: baseData.horaatRishum))
+        
+        parameters.append(CDParameter(type: .totalLossDate, value: baseData.totalLossDate?.asDateFormat(inputFormat: .govApiFormat, outputFormat: .uiFormat)))
         
         parameters = parameters.compactMap( { ($0.value == nil || $0.value as? String == "") ? nil : $0 })
         

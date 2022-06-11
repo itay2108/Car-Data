@@ -45,6 +45,7 @@ class CDParameterTableViewCell: UITableViewCell {
         }
         
         updateMOTbackgroundWarningColor(for: parameter)
+        updateTotalLossWarningColor(for: parameter)
 
     }
     
@@ -68,6 +69,14 @@ class CDParameterTableViewCell: UITableViewCell {
                 daysUntilMOT <= 30 {
                 mainContainer.backgroundColor = K.colors.accents.warning
             }
+        }
+    }
+    
+    private func updateTotalLossWarningColor(for field: CDParameter?) {
+        
+        if field?.type == .totalLossDate {
+            
+            mainContainer.backgroundColor = K.colors.accents.error
         }
     }
     

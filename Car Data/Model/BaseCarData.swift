@@ -30,7 +30,14 @@ struct BaseCarData: Codable {
     let moedAliyaLakvish, model: String?
     let rank: Double?
     
+    //import data
     let importType: String?
+    
+    //motorcycle data
+    let motoHorsePower: Double?
+    let motoDisplacement: Double?
+    
+    let totalLossDate: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -59,6 +66,11 @@ struct BaseCarData: Codable {
         case rank
         
         case importType = "irrelevant"
+        
+        case motoHorsePower = "hespek"
+        case motoDisplacement = "nefach_manoa"
+        
+        case totalLossDate = "bitul_dt"
     }
     
     init(_ importData: ImportCarData) {
@@ -88,5 +100,49 @@ struct BaseCarData: Codable {
         self.rank = nil
         
         self.importType = importData.importType
+        
+        self.motoHorsePower = nil
+        self.motoDisplacement = nil
+        self.totalLossDate = nil
+    }
+    
+    
+    init(_ totaledData: TotaledCarData) {
+        self.id = totaledData.id
+        self.plateNumber = totaledData.misparRechev
+        self.manufacturerCode = totaledData.tozeretCD
+        self.modelClass = totaledData.sugRechevNm
+        self.manufacturer = totaledData.tozeretNm
+        self.modelCode = totaledData.degemCD
+        self.modelNumber = totaledData.degemNm
+        self.trimLevel = totaledData.ramatGimur
+        self.pollutionLevel = totaledData.kvutzatZihum
+        self.modelYear = totaledData.shnatYitzur
+        self.engineModel = totaledData.degemManoa
+        self.lastMOT = nil
+        self.nextMOT = nil
+        self.ownership = nil
+        self.chassis = totaledData.misgeret
+        self.colorCode = nil
+        self.color = totaledData.tzevaRechev
+        self.frontTireSize = totaledData.zmigAhori
+        self.rearTireSize = totaledData.zmigKidmi
+        self.fuelType = totaledData.sugDelekNm
+        self.horaatRishum = totaledData.horaatRishum
+        
+        if let moedAliyaLakvish = totaledData.moedAliyaLakvish {
+            self.moedAliyaLakvish = String(moedAliyaLakvish)
+        } else {
+            self.moedAliyaLakvish = nil
+        }
+        
+        self.model = totaledData.kinuyMishari
+        self.rank = totaledData.rank
+        
+        self.importType = nil
+        
+        self.motoHorsePower = nil
+        self.motoDisplacement = nil
+        self.totalLossDate = totaledData.bitulDt
     }
 }
