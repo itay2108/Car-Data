@@ -676,10 +676,6 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
         for candidate in recognizedStrings {
             let cleanString = candidate.string.including(only: "1234567890")
             
-//            if candidate.confidence <= 0.5, cleanString.count == 7, candidate.string.last == "0" {
-//                cleanString += "1"
-//            }
-            
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {
                 
