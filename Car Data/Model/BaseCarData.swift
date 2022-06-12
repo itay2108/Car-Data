@@ -145,4 +145,39 @@ struct BaseCarData: Codable {
         self.motoDisplacement = nil
         self.totalLossDate = totaledData.bitulDt
     }
+    
+    init(_ heavyData: HeavyCarData) {
+        self.id = heavyData.id
+        self.plateNumber = heavyData.misparRechev
+        self.manufacturerCode = heavyData.tozeretCD
+        self.modelClass = nil
+        self.manufacturer = heavyData.tozeretNm
+        self.modelCode = nil
+        self.modelNumber = heavyData.degemNm
+        self.trimLevel = nil
+        self.pollutionLevel = nil
+        self.modelYear = heavyData.shnatYitzur
+        self.engineModel = heavyData.degemManoa
+        self.lastMOT = nil
+        self.nextMOT = nil
+        self.ownership = nil
+        self.chassis = heavyData.misparShilda
+        self.colorCode = nil
+        self.color = nil
+        self.frontTireSize = nil
+        self.rearTireSize = nil
+        self.fuelType = heavyData.sugDelekNm
+        self.horaatRishum = heavyData.horaatRishum
+        
+        self.moedAliyaLakvish = heavyData.moedAliyaLakvish
+        
+        self.model = nil
+        self.rank = heavyData.rank
+        
+        self.importType = nil
+        
+        self.motoHorsePower = nil
+        self.motoDisplacement = nil
+        self.totalLossDate = nil
+    }
 }

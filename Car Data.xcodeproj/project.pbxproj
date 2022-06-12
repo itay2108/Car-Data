@@ -12,6 +12,7 @@
 		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
 		66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E42855565E00C0EB88 /* TotaledCarData.swift */; };
+		66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E62855D41700C0EB88 /* HeavyCarData.swift */; };
 		66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB522428512FCB009CD347 /* LiveCameraView.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
@@ -120,6 +121,7 @@
 		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
 		66A520E42855565E00C0EB88 /* TotaledCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotaledCarData.swift; sourceTree = "<group>"; };
+		66A520E62855D41700C0EB88 /* HeavyCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavyCarData.swift; sourceTree = "<group>"; };
 		66AB522428512FCB009CD347 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */,
 				66A520E42855565E00C0EB88 /* TotaledCarData.swift */,
 				BCF32812284AC5E0003A5162 /* CDParameter.swift */,
+				66A520E62855D41700C0EB88 /* HeavyCarData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				BC8BE3F12847AB95002838AA /* UIView+Fade.swift in Sources */,
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
 				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,
+				66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */,
 				BCD5276C284A52F300DA60FC /* CDError.swift in Sources */,
 				66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */,
 				BC8BE3F72848124C002838AA /* K.swift in Sources */,

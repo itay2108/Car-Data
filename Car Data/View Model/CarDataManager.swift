@@ -41,17 +41,18 @@ struct CarDataManager {
                                                             hasDisablity: hasDisability,
                                                             isImport: false,
                                                             isMotorcycle: false,
+                                                            isHeavy: false,
                                                             numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles))
                                         }
                                 }
                         }
                 }
-            
+                //base data does hold alternative databases, but some vehicle categories don't contain extra data and get handled here:
                 .catch { error in
                     
                     if let error = (error as? CDError),
                        error == CDError.notFound {
-                        
+                        //import data
                         getImportCarData(from: licensePlateNumber)
                         
                             .then(on: DispatchQueue.global()) { importData in
@@ -65,11 +66,12 @@ struct CarDataManager {
                                                         hasDisablity: hasDisability,
                                                         isImport: true,
                                                         isMotorcycle: false,
+                                                        isHeavy: false,
                                                         numberOfVehiclesWithIdenticalModel: 0))
                                     }
                             }
                             .catch { error in
-                                
+                                //motorcycle data
                                 
                                 if let error = (error as? CDError),
                                    error == CDError.notFound {
@@ -80,28 +82,69 @@ struct CarDataManager {
                                             getDisabilityData(from: licensePlateNumber)
                                             
                                                 .then { hasDisability in
-                                                    
-                                                    fulfill(CarData(id: licensePlateAsInt,
-                                                                    baseData: data,
-                                                                    extraData: nil,
-                                                                    hasDisablity: hasDisability,
-                                                                    isImport: false,
-                                                                    isMotorcycle: true,
-                                                                    numberOfVehiclesWithIdenticalModel: 0))
+                                                    getnumberOfVehiclesWithIdenticalModel(from: data, isMotorcycle: true)
+                                                        
+                                                        .then { identicalVehicles in
+                                                            
+                                                            fulfill(CarData(id: licensePlateAsInt,
+                                                                            baseData: data,
+                                                                            extraData: nil,
+                                                                            hasDisablity: hasDisability,
+                                                                            isImport: false,
+                                                                            isMotorcycle: true,
+                                                                            isHeavy: false,
+                                                                            numberOfVehiclesWithIdenticalModel: identicalVehicles))
+                                                        }.catch { error in
+                                                            reject(error)
+                                                        }
+
+                                                }.catch { error in
+                                                    reject(error)
                                                 }
                                         }
                                         .catch { error in
-                                            reject(error)
+                                            //heavy (bus & trailer) data
+                                            
+                                            if let error = (error as? CDError),
+                                               error == CDError.notFound {
+                                                
+                                                getHeavyCarData(from: licensePlateNumber)
+                                                
+                                                    .then(on: DispatchQueue.global()) { data in
+                                                        let baseData = BaseCarData(data)
+                                                        getDisabilityData(from: licensePlateNumber)
+                                                        
+                                                            .then { hasDisability in
+                                                                getnumberOfVehiclesWithIdenticalModel(from: baseData, isHeavy: true)
+                                                                    
+                                                                    .then { identicalVehicles in
+                                                                    
+                                                                    fulfill(CarData(id: licensePlateAsInt,
+                                                                                    baseData: BaseCarData(data),
+                                                                                    extraData: nil,
+                                                                                    hasDisablity: hasDisability,
+                                                                                    isImport: false,
+                                                                                    isMotorcycle: true,
+                                                                                    isHeavy: true,
+                                                                                    numberOfVehiclesWithIdenticalModel: identicalVehicles))
+                                                                    }.catch { error in
+                                                                        reject(error)
+                                                                    }
+                                                            }.catch { error in
+                                                                reject(error)
+                                                            }
+                                                    }
+                                                    .catch { error in
+                                                        reject(error)
+                                                    }
+                                            }
                                         }
-                                    
+                                } else {
+                                    reject(error)
                                 }
                             }
-                        
-                    } else {
-                        reject(error)
                     }
                 }
-            
         }
         
     }
@@ -142,16 +185,24 @@ struct CarDataManager {
                                     fulfill(BaseCarData(result))
                                     
                                     //else reject promise
-                                } else {
-                                    reject(CDError.notFound)
+                                } else if let plateNumber = Int(licensePlateNumber),
+                                          let totaledURL = urlManager.url(from: K.URLs.totaledData, query: licensePlateNumber) {
+                                    
+                                    HTTPRequest.get(from: totaledURL, decodeWith: TotaledCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                                        if let result = data.result.records.first(where: { $0.misparRechev == plateNumber }) {
+                                            fulfill(BaseCarData(result))
+                                            
+                                            //else reject promise
+                                        } else {
+                                            reject(CDError.notFound)
+                                        }
+                                    }
                                 }
-                            }.catch { error in
-                                reject(error)
                             }
                             
                         }
                     }
-
+                    
                 }
             }.catch { error in
                 reject(error)
@@ -219,13 +270,42 @@ struct CarDataManager {
         
     }
     
-    private func getExtraCarData(from baseData: BaseCarData) -> Promise<ExtraCarData> {
+    private func getHeavyCarData(from licensePlateNumber: String) -> Promise<HeavyCarData> {
+        
+        return Promise { fulfill, reject in
+            
+            let url = urlManager.url(from: K.URLs.heavyData, query: licensePlateNumber)
+            
+            HTTPRequest.get(from: url, decodeWith: HeavyCarDataRespone.self).then(on: DispatchQueue.global()) { data in
+                
+                guard data.success else {
+                    reject(CDError.requestError)
+                    return
+                }
+                
+                guard let plateNumber = Int(licensePlateNumber),
+                      let result = data.result.records.first(where: { $0.misparRechev == plateNumber }) else {
+                    
+                    reject(CDError.notFound)
+                    return
+                }
+                
+                fulfill(result)
+                
+            }.catch { error in
+                reject(error)
+            }
+        }
+        
+    }
+    
+    private func getExtraCarData(from baseData: BaseCarData) -> Promise<ExtraCarData?> {
         
         return Promise { fulfill, reject in
             
             guard let modelCode = baseData.modelCode,
                   let modelNumber = baseData.modelNumber else {
-                reject(CDError.badData)
+                fulfill(nil)
                 return
             }
             
@@ -236,13 +316,13 @@ struct CarDataManager {
             HTTPRequest.get(from: url, decodeWith: ExtraCarDataRespone.self).then(on: DispatchQueue.global())  { data in
                 
                 guard data.success else {
-                    reject(CDError.requestError)
+                    fulfill(nil)
                     return
                 }
                 
                 guard let result = data.result.records.first else {
                     
-                    reject(CDError.notFound)
+                    fulfill(nil)
                     return
                 }
                 
@@ -264,34 +344,65 @@ struct CarDataManager {
                 
                 fulfill(data.result.records.count > 0)
             }.catch { error in
-                reject(error)
+                fulfill(false)
             }
         }
         
     }
     
-    private func getnumberOfVehiclesWithIdenticalModel(from baseData: BaseCarData) -> Promise<Int> {
+    private func getnumberOfVehiclesWithIdenticalModel(from baseData: BaseCarData, isMotorcycle: Bool = false, isHeavy: Bool = false) -> Promise<Int> {
         
         return Promise { fulfill, reject in
             
             guard let manufacturerCode = baseData.manufacturerCode,
-                  let modelCode = baseData.modelCode,
-                  let modelNumber = baseData.modelNumber,
-                  let trimLevel = baseData.trimLevel else {
-                reject(CDError.badData)
+                  let modelNumber = baseData.modelNumber else {
+                fulfill(0)
                 return
             }
             
-            let queries = [String(manufacturerCode), String(modelCode), modelNumber, trimLevel]
+            var queries = [String(manufacturerCode), modelNumber]
             
-            let url = urlManager.url(from: K.URLs.basicData, queries: queries, limit: 9999)
-            
-            HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global())  { data in
-                
-                fulfill(data.result.records.count)
-            }.catch { error in
-                reject(error)
+            if let trimLevel = baseData.trimLevel {
+                queries.append(trimLevel)
             }
+            
+            if let modelCode = baseData.modelCode {
+                queries.append(String(modelCode))
+            }
+            
+            if !isMotorcycle && !isHeavy {
+                let url = urlManager.url(from: K.URLs.basicData, queries: queries, limit: 9999)
+                
+                HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global())  { data in
+                    
+                    fulfill(data.result.records.count)
+                }.catch { error in
+                    fulfill(0)
+                }
+            } else if isMotorcycle {
+                
+                let url = urlManager.url(from: K.URLs.motoData, queries: queries, limit: 9999)
+                
+                HTTPRequest.get(from: url, decodeWith: BaseCarDataRespone.self).then(on: DispatchQueue.global())  { data in
+                    
+                    fulfill(data.result.records.count)
+                }.catch { error in
+                    fulfill(0)
+                }
+                
+            } else if isHeavy {
+                let url = urlManager.url(from: K.URLs.heavyData, queries: queries, limit: 9999)
+                
+                HTTPRequest.get(from: url, decodeWith: HeavyCarDataRespone.self).then(on: DispatchQueue.global())  { data in
+                    
+                    fulfill(data.result.records.count)
+                }.catch { error in
+                    fulfill(0)
+                }
+            } else {
+                fulfill(0)
+            }
+            
         }
         
     }

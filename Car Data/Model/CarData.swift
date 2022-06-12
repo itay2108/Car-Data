@@ -19,6 +19,7 @@ struct CarData {
     
     let isImport: Bool
     let isMotorcycle: Bool
+    let isHeavy: Bool
     
     let numberOfVehiclesWithIdenticalModel: Int
     
@@ -135,7 +136,7 @@ struct CarData {
         parameters.append(CDParameter(type: .trafficSignMonitor, value: extraData?.trafficSignMonitor?.booleanValue()))
         parameters.append(CDParameter(type: .motorcycleMonitor, value: extraData?.motorcycleMonitor?.booleanValue()))
         
-        if isImport {
+        if isImport || isHeavy || isMotorcycle {
             parameters = parameters.compactMap( { ($0.value == nil || $0.value as? String == "") ? nil : $0 })
         }
         
