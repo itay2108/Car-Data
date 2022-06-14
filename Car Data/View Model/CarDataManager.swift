@@ -185,21 +185,10 @@ struct CarDataManager {
                                     fulfill(BaseCarData(result))
                                     
                                     //else reject promise
-                                } else if let plateNumber = Int(licensePlateNumber),
-                                          let totaledURL = urlManager.url(from: K.URLs.totaledData, query: licensePlateNumber) {
-                                    
-                                    HTTPRequest.get(from: totaledURL, decodeWith: TotaledCarDataRespone.self).then(on: DispatchQueue.global()) { data in
-                                        if let result = data.result.records.first(where: { $0.misparRechev == plateNumber }) {
-                                            fulfill(BaseCarData(result))
-                                            
-                                            //else reject promise
-                                        } else {
-                                            reject(CDError.notFound)
-                                        }
-                                    }
+                                } else {
+                                    reject(CDError.notFound)
                                 }
                             }
-                            
                         }
                     }
                     

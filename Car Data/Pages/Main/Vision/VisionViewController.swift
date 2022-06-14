@@ -60,6 +60,9 @@ final class VisionViewController: CDViewController {
     private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
+        
+        imagePicker.modalPresentationStyle = .fullScreen
+        
        return imagePicker
     }()
     
@@ -738,7 +741,6 @@ extension VisionViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         picker.dismiss(animated: true)
         
-        navigationController?.delegate = heroNavigationControllerDelegateCache
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -747,6 +749,7 @@ extension VisionViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         animateResumeSession()
     }
+    
 }
 
 extension VisionViewController: LoadResultDelegate {
