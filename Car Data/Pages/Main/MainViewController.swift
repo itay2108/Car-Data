@@ -33,7 +33,7 @@ final class MainViewController: CDViewController {
     @IBOutlet weak var searchHistoryTableViewTitleLabel: UILabel!
     @IBOutlet weak var searchHistoryTableViewBottomAnchor: NSLayoutConstraint!
     
-    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var preferencesButton: UIButton!
     
     @IBOutlet weak var cameraTriggerContainer: UIView!
     
@@ -287,6 +287,19 @@ final class MainViewController: CDViewController {
         }
         
     }
+    
+    @IBAction func preferencesButtonTapped(_ sender: UIButton) {
+        
+        guard let destination = K.storyBoards.preferencesStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.preferencesVC) as? PreferencesViewController else {
+            presentErrorAlert(with: CDError.unknownError)
+            return
+        }
+        
+        navigationController?.heroModalAnimationType = .slide(direction: .up)
+        
+        present(destination, animated: true)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)

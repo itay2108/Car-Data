@@ -116,6 +116,9 @@
                                             <imageReference key="image" image="gear.circle.fill" catalog="system" symbolScale="large"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="preferencesButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aN9-zv-8tv"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="G8z-G0-2uk">
                                         <rect key="frame" x="41.5" y="121" width="331" height="216"/>
@@ -336,13 +339,13 @@
                         <outlet property="logoTopAnchor" destination="o1n-SK-7BY" id="Y4b-5V-ttN"/>
                         <outlet property="mainContainer" destination="dE0-0Z-MJA" id="j2s-xI-qru"/>
                         <outlet property="mainContainerCenterYAnchor" destination="HlM-tK-BeF" id="arj-Tw-mKy"/>
+                        <outlet property="preferencesButton" destination="rOL-Lq-L37" id="zvS-K1-Wi1"/>
                         <outlet property="searchButton" destination="YcU-gF-ZIL" id="eZQ-C6-HxE"/>
                         <outlet property="searchButtonBottomAnchor" destination="ZYa-kU-Kci" id="YPi-7a-5nn"/>
                         <outlet property="searchHistoryTableView" destination="Bwu-qh-sI5" id="HRZ-dh-KWP"/>
                         <outlet property="searchHistoryTableViewBottomAnchor" destination="hbh-SW-2la" id="rYW-XS-X2C"/>
                         <outlet property="searchHistoryTableViewHeader" destination="Vgj-fj-CyI" id="25o-0Y-8eh"/>
                         <outlet property="searchHistoryTableViewTitleLabel" destination="OgI-N9-XpQ" id="nbl-Cb-pbi"/>
-                        <outlet property="settingsButton" destination="rOL-Lq-L37" id="sbz-9f-CPY"/>
                         <outlet property="textFieldSearchActionView" destination="IXe-Rm-g37" id="02M-Up-52Z"/>
                         <outlet property="textFieldSearchActionViewTitleLabel" destination="IXe-Rm-g37" id="Jnh-Pp-Fg4"/>
                         <segue destination="fHM-cQ-nuc" kind="show" identifier="mainToLoadResult" id="bqN-Ea-fIA"/>

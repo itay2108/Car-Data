@@ -38,11 +38,13 @@ struct K {
     struct storyBoards {
        static let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
        static let dataStoryBoard = UIStoryboard(name: "Data", bundle: nil)
+       static let preferencesStoryBoard = UIStoryboard(name: "Preferences", bundle: nil)
     }
     
     struct viewControllerIDs {
         static let dataVC = "dataViewController"
         static let loadResult = "loadResult"
+        static let preferencesVC = "Preferences"
     }
     
     struct segues {
