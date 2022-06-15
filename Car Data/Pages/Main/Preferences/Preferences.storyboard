@@ -54,7 +54,7 @@
                         <sections>
                             <tableViewSection headerTitle="נתוני רכב" id="fcG-35-cKv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
                                         <rect key="frame" x="20" y="103.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ffh-b5-wpc" id="Xnf-Zz-pKv">

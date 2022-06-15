@@ -28,6 +28,7 @@
 		BC01BD02284F798900777C57 /* CDDateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD01284F798900777C57 /* CDDateFormat.swift */; };
 		BC01BD04284F8A3D00777C57 /* TaskMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */; };
 		BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC01BD05284F8A7300777C57 /* CDTask.swift */; };
+		BC4792492859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */; };
 		BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */; };
 		BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */; };
 		BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A46B2848985000D88267 /* LicensePlateManager.swift */; };
@@ -138,6 +139,7 @@
 		BC01BD01284F798900777C57 /* CDDateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDDateFormat.swift; sourceTree = "<group>"; };
 		BC01BD03284F8A3D00777C57 /* TaskMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskMonitor.swift; sourceTree = "<group>"; };
 		BC01BD05284F8A7300777C57 /* CDTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTask.swift; sourceTree = "<group>"; };
+		BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPreferenceTableViewCell.swift; sourceTree = "<group>"; };
 		BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC50A46B2848985000D88267 /* LicensePlateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePlateManager.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			children = (
 				BCFD17432858BCB5000EAFCE /* PreferencesViewController.swift */,
 				BCFD17472858BD7C000EAFCE /* Preferences.storyboard */,
+				BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				BCAEB370284670A000FA0981 /* AppDelegate.swift in Sources */,
 				66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */,
 				660D591B284D67FA00795114 /* Int+Bool.swift in Sources */,
+				BC4792492859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift in Sources */,
 				BCD3875D2852392F00AE1149 /* VNRecognitionHandler.swift in Sources */,
 				BCF32816284ACE2D003A5162 /* DataSectionTableViewCell.swift in Sources */,
 				BCAEB372284670A000FA0981 /* SceneDelegate.swift in Sources */,

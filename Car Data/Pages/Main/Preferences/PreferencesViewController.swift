@@ -18,8 +18,10 @@ class PreferencesViewController: CDTableViewController {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        super.tableView(tableView, didSelectRowAt: indexPath)
+        print((tableView.cellForRow(at: indexPath) as? UITableViewCell)?.textLabel?.text)
     }
     
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 14.5
+    }
 }
