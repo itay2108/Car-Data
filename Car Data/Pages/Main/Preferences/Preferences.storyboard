@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eno-mv-ex7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -38,23 +39,37 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הגדרות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-Uu-5rA">
-                                    <rect key="frame" x="319" y="22" width="63" height="24"/>
-                                    <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
-                                    <color key="textColor" name="cd-text-dark"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="TzV-gi-C5R">
+                                    <rect key="frame" x="313.5" y="11.5" width="80.5" height="31"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="הגדרות" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-Uu-5rA">
+                                            <rect key="frame" x="0.0" y="0.0" width="63" height="31"/>
+                                            <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
+                                            <color key="textColor" name="cd-text-dark"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1i-9q-f05">
+                                            <rect key="frame" x="65" y="0.0" width="15.5" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="d1i-9q-f05" secondAttribute="height" multiplier="1:2" id="4pv-8m-epy"/>
+                                            </constraints>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system"/>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="zwc-Uu-5rA" secondAttribute="bottom" constant="8" id="IMx-Mb-Mqz"/>
-                                <constraint firstAttribute="trailing" secondItem="zwc-Uu-5rA" secondAttribute="trailing" constant="32" id="ZPU-yz-v2u"/>
+                                <constraint firstItem="TzV-gi-C5R" firstAttribute="centerY" secondItem="Oyo-o1-TK6" secondAttribute="centerY" id="9ap-Ov-j0j"/>
+                                <constraint firstAttribute="trailing" secondItem="TzV-gi-C5R" secondAttribute="trailing" constant="20" id="NVE-cj-E2I"/>
+                                <constraint firstItem="TzV-gi-C5R" firstAttribute="height" secondItem="Oyo-o1-TK6" secondAttribute="height" multiplier="0.574074" id="QB4-6C-I3b"/>
                             </constraints>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="נתוני רכב" id="fcG-35-cKv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
                                         <rect key="frame" x="20" y="103.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ffh-b5-wpc" id="Xnf-Zz-pKv">
@@ -80,6 +95,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-text-dark"/>
+                                        <connections>
+                                            <segue destination="eSx-Jl-7pB" kind="show" id="aal-bT-IdM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ilR-EE-99x" detailTextLabel="ii9-tN-AVb" style="IBUITableViewCellStyleValue1" id="DDr-Lo-n6U">
                                         <rect key="frame" x="20" y="147" width="374" height="43.5"/>
@@ -107,6 +125,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-accent-light"/>
+                                        <connections>
+                                            <segue destination="eSx-Jl-7pB" kind="show" id="E6A-xU-a3P"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -283,6 +304,7 @@
                             <outlet property="delegate" destination="eno-mv-ex7" id="9ZX-0M-9AS"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="zr6-5l-nbw"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
@@ -298,10 +320,43 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBA-pE-r3o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="547.82608695652175" y="90.401785714285708"/>
+            <point key="canvasLocation" x="1457.9710144927537" y="90.401785714285708"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="BdH-pa-caD">
+            <objects>
+                <tableViewController id="eSx-Jl-7pB" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tEP-pS-VmL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="73Y-40-sBS">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="73Y-40-sBS" id="ilQ-c8-pV9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eSx-Jl-7pB" id="6ZW-Vj-9eC"/>
+                            <outlet property="delegate" destination="eSx-Jl-7pB" id="AfV-0k-vrB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ycy-Ru-XyV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="imP-uV-xqp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2377" y="-268"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="aal-bT-IdM"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="cd-accent-dark">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -326,5 +381,8 @@
         <namedColor name="cd-yellow">
             <color red="0.92199999094009399" green="0.76499998569488525" blue="0.067000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

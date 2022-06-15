@@ -295,9 +295,7 @@ final class MainViewController: CDViewController {
             return
         }
         
-        navigationController?.heroModalAnimationType = .slide(direction: .up)
-        
-        present(destination, animated: true)
+        navigationController?.pushViewController(destination, animated: true)
     }
     
     

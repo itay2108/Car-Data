@@ -9,13 +9,19 @@ import UIKit
 import Hero
 
 class CDNavigationController: UINavigationController {
+    
+    var navigationAnimationType: HeroDefaultAnimationType = .fade {
+        didSet {
+            hero.navigationAnimationType = navigationAnimationType
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBar.isHidden = true
         hero.isEnabled = true
-        hero.navigationAnimationType = .fade
+        hero.navigationAnimationType = navigationAnimationType
         // Do any additional setup after loading the view.
     }
     
