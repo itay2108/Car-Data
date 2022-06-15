@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="הקלד מספר רכב" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bt-4b-x58">
-                                        <rect key="frame" x="91.5" y="62" width="231.5" height="80"/>
+                                        <rect key="frame" x="84" y="62" width="246" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="36"/>
@@ -41,7 +41,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFW-e6-Xw3">
-                                        <rect key="frame" x="339" y="75.5" width="52.5" height="53"/>
+                                        <rect key="frame" x="345" y="75.5" width="53" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FFW-e6-Xw3" secondAttribute="height" multiplier="1:1" id="TB6-3x-GrG"/>
                                         </constraints>
@@ -127,10 +127,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="88" y="4.5" width="155" height="77"/>
+                                                        <rect key="frame" x="85" y="4.5" width="161.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="49" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="52" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -148,7 +148,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="155" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="161.5" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -196,16 +196,16 @@
                                                 <rect key="frame" x="0.0" y="118.5" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KKZ-26-z8D">
-                                                        <rect key="frame" x="98" y="16" width="135.5" height="57"/>
+                                                        <rect key="frame" x="94" y="16" width="143.5" height="57"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זיהוי לוחית מתמונה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVu-Fb-BGK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="23"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="143.5" height="23"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="txz-IU-YYx">
-                                                                <rect key="frame" x="40.5" y="31" width="54" height="26"/>
+                                                                <rect key="frame" x="44.5" y="31" width="54" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-down" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-qt-f9e">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17" height="26"/>
@@ -253,7 +253,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפושים אחרונים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-N9-XpQ">
-                                                    <rect key="frame" x="225.5" y="0.0" width="118.5" height="21"/>
+                                                    <rect key="frame" x="222.5" y="0.0" width="121.5" height="21.5"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                     <color key="textColor" name="cd-text-dark"/>
                                                     <nil key="highlightedColor"/>
@@ -349,8 +349,8 @@
                         <outlet property="textFieldSearchActionView" destination="IXe-Rm-g37" id="02M-Up-52Z"/>
                         <outlet property="textFieldSearchActionViewTitleLabel" destination="IXe-Rm-g37" id="Jnh-Pp-Fg4"/>
                         <segue destination="fHM-cQ-nuc" kind="show" identifier="mainToLoadResult" id="bqN-Ea-fIA"/>
-                        <segue destination="HLx-iu-KIc" kind="show" id="2gs-70-N3O"/>
-                        <segue destination="Fdi-Yw-dwk" kind="show" id="qJF-vB-1vP"/>
+                        <segue destination="HLx-iu-KIc" kind="show" identifier="mainToData" id="2gs-70-N3O"/>
+                        <segue destination="Fdi-Yw-dwk" kind="show" identifier="mainToSearchHistory" id="qJF-vB-1vP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -514,7 +514,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="M5j-ce-tWG"/>
                     <connections>
-                        <segue destination="HLx-iu-KIc" kind="show" id="OO6-bt-LLE"/>
+                        <segue destination="HLx-iu-KIc" kind="show" identifier="searchHistoryToData" id="OO6-bt-LLE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRU-sO-KnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -556,11 +556,11 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="155" height="21"/>
+            <size key="intrinsicContentSize" width="161.5" height="21.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="2gs-70-N3O"/>
+        <segue reference="OO6-bt-LLE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>

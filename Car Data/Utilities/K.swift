@@ -45,12 +45,16 @@ struct K {
         static let dataVC = "dataViewController"
         static let loadResult = "loadResult"
         static let preferencesVC = "Preferences"
+        static let parameterSelectionVC = "ParameterSelection"
+        static let mainToSearchHistory = "mainToSearchHistory"
+        static let searchHistoryToData = "searchHistoryToData"
     }
     
     struct segues {
         struct mainStoryboard {
             static let mainToLoadResult = "mainToLoadResult"
             static let loadResultToData = "loadResultToData"
+            static let mainToData = "mainToData"
         }
     }
     

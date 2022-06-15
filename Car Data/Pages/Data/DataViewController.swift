@@ -29,14 +29,8 @@ class DataViewController: CDViewController {
     private var defaultLicensePlateTopConstant: CGFloat = 96
     private var defaultDataTableTopConstant: CGFloat = 72
     
-    private var initialBackSwipePoint: CGPoint?
-    
-    private var quarterOfScreenWidth: CGFloat {
-        return view.frame.width / 4
-    }
-    
-    private var sixthOfScreenHeight: CGFloat {
-        return view.frame.height / 6
+    override var allowsSwipeLeftToPopViewController: Bool {
+        return true
     }
     
     //MARK: - Life Cycle
@@ -66,7 +60,6 @@ class DataViewController: CDViewController {
         super.setupViews()
         
         setupHeader()
-        setupMainView()
         setupLicensePlateLabel()
         setupDisabilityLabel()
         setupTableView()
@@ -76,11 +69,6 @@ class DataViewController: CDViewController {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(headerTitleDidTap(_:)))
         headerTitleLabel.addGestureRecognizer(tapGR)
         headerTitleLabel.isUserInteractionEnabled = true
-    }
-    
-    private func setupMainView() {
-        let swipeGR = UIPanGestureRecognizer(target: self, action: #selector(screenDidSwipeToDismiss(_:)))
-        view.addGestureRecognizer(swipeGR)
     }
     
     private func setupLicensePlateLabel() {
@@ -123,20 +111,16 @@ class DataViewController: CDViewController {
         
     }
     
-    private func dismiss(withDelay delay: TimeInterval = 0) {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
-            self?.licensePlateLabel.heroID = nil
-            
-            self?.navigationController?.popToRootViewController(animated: true)
-        }
-        
-    }
-    
     //MARK: - IB Methods
     
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(withDelay: 0.1)
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        
+        licensePlateLabel.heroID = nil
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -183,33 +167,6 @@ class DataViewController: CDViewController {
     
     @objc private func headerTitleDidTap(_ sender: UITapGestureRecognizer) {
         dismiss(withDelay: 0.1)
-    }
-    
-    @objc private func screenDidSwipeToDismiss(_ sender: UIPanGestureRecognizer) {
-        
-        if sender.state == .began {
-            initialBackSwipePoint = sender.location(in: view)
-        }
-        
-        if sender.state == .changed || sender.state == .ended {
-            let currentPoint = sender.location(in: view)
-            
-            guard let initialPoint = initialBackSwipePoint else {
-                return
-            }
-            
-            
-            if (initialPoint.x > view.frame.width * 0.9 && // swipe began on right 10% of screen
-                currentPoint.x + (quarterOfScreenWidth / 3) < initialPoint.x) ||
-                (initialPoint.x > view.frame.width * 0.66 && // swipe began on right 33% of screen
-                 currentPoint.x + quarterOfScreenWidth < initialPoint.x), //current point of swipe is more than a quarter of screen to the left of the initial
-               currentPoint.y + sixthOfScreenHeight > initialPoint.y, //current point of swipe is not more than a sixth of screen below the initial
-               currentPoint.y - sixthOfScreenHeight < initialPoint.y { //current point of swipe is not more than a sixth of screen above the initial
-                
-                dismiss()
-                sender.finishCurrentGesture()
-            }
-        }
     }
     
     @objc private func licensePlateLabelDidTap(_ sender: UITapGestureRecognizer) {
