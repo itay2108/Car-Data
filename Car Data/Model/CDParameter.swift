@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct CDParameterSection {
     let title: String?
@@ -17,8 +18,8 @@ struct CDParameter {
     let value: Any?
 }
 
-enum CDParameterType: String, CaseIterable {
-    case id = "מספר מזהה"
+enum CDParameterType: String, CaseIterable, PersistableEnum {
+    
     case plateNumber = "מספר רכב"
     case manufacturerCode = "קוד יצרן"
     case modelClass = "סוג דגם"
@@ -41,7 +42,6 @@ enum CDParameterType: String, CaseIterable {
     case horaatRishum = "הוראת רישום"
     case moedAliyaLakvish = "מועד עליה לכביש"
     case model = "דגם"
-    case rank = "דירוג"
     
     
 
@@ -118,5 +118,41 @@ enum CDParameterType: String, CaseIterable {
     case numberOfIdenticalVehicles = "כמות מהדגם המדויק בכביש"
     
     case totalLossDate = "תאריך הורדה מהכביש"
+    
+    //MARK: - Sections
+    
+    static private func basicSection() -> [CDParameterType] {
+        return [.manufacturer, .model, .trimLevel, .modelYear, .moedAliyaLakvish, .color]
+    }
+    
+    static private func specSection() -> [CDParameterType] {
+        return [.displacement, .isAutomatic, .wheelDrive, .fuelType, .horsepower, .curbWeight, .rearTireSize, .frontTireSize]
+    }
+    
+    static private func motSection() -> [CDParameterType] {
+        return [.lastMOT, .registrationGroup, .nextMOT, .ownership, .horaatRishum, .totalLossDate]
+    }
+    
+    static private func extraSection() -> [CDParameterType] {
+        return [.bodyType, .manufacturerCountry, .market, .engineModel, .numberOfIdenticalVehicles, .doorCount, .seatNumber, .windows, .ac, .sunroof, .hasAlloys, .towingCapacity, .towingCapacityNoBrakes, .catalyticConverter]
+    }
+    
+    static private func safetySection() -> [CDParameterType] {
+        return [.safetyScore, .airbags, .abs, .tcs, .frontDistanceMonitor, .adaptiveCruiseControl, .blintspotMonitor, .pedestrianMonitor, .aebs, .reversingCamera, .tpms, .safetyBeltSensors, .automaticHeadlights, .automaticHighBeams, .trafficSignMonitor, .motorcycleMonitor]
+    }
+    
+    static func allSections() -> [[CDParameterType]] {
+        return [basicSection(), specSection(), motSection(), extraSection(), safetySection()]
+    }
+    
+    func isDynamic() -> Bool {
+        for section in CDParameterType.allSections() {
+            if section.contains(self) {
+                return true
+            }
+        }
+        
+        return false
+    }
     
 }

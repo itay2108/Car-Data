@@ -22,15 +22,12 @@ class CDParameterSelectionTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var uiSwitch: YapLiquidSwitch = {
-       let uiSwitch = YapLiquidSwitch()
+    lazy var uiSwitch: UISwitch = {
+        let uiSwitch = UISwitch(frame: CGRect(x: 0, y: 0, width: 48 * widthModifier, height: 28 * heightModifier))
         
-        uiSwitch.offColor = .lightGray
-        uiSwitch.onColor = K.colors.accents.light
+        uiSwitch.onTintColor = K.colors.accents.dark
         
         uiSwitch.contentMode = .scaleAspectFit
-        
-        uiSwitch.translatesAutoresizingMaskIntoConstraints = false
         
         return uiSwitch
     }()
@@ -49,6 +46,9 @@ class CDParameterSelectionTableViewCell: UITableViewCell {
         setupViews()
         setupConstraints()
         
+        uiSwitch.transform = CGAffineTransform(scaleX: 0.66, y: 0.66)
+        uiSwitch.center = CGPoint(x: (48 * widthModifier / 2) + 16, y: frame.maxY / 2 + 8)
+        
         selectionStyle = .none
     }
     
@@ -58,10 +58,6 @@ class CDParameterSelectionTableViewCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        uiSwitch.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 24).isActive = true
-        uiSwitch.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.28).isActive = true
-        uiSwitch.widthAnchor.constraint(equalTo: uiSwitch.heightAnchor, multiplier: 2.1).isActive = true
-        uiSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
         parameterLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -24).isActive = true
         parameterLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45).isActive = true

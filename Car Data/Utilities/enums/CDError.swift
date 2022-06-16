@@ -40,6 +40,10 @@ enum CDError: Error {
     case deletionFailed
     case pdfNoData
     
+    //Realm
+    case noRealm
+    case realmFailed
+    
     var localizedDescription: String {
         switch self {
         case .parseError:
@@ -85,6 +89,10 @@ enum CDError: Error {
             return "Could not delete file at specified URL"
         case .pdfNoData:
             return "Could not find license plate number to share"
+        case .noRealm:
+            return "Could not find database"
+        case .realmFailed:
+            return "Could not modify database"
         default:
             return "an unknown error has occured"
         }

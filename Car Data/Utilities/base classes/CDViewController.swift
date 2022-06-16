@@ -20,6 +20,10 @@ class CDViewController: UIViewController {
         return false
     }
     
+    var popsToMainVC: Bool {
+        return false
+    }
+    
     private var initialBackSwipePoint: CGPoint?
     
     private var quarterOfScreenWidth: CGFloat {
@@ -45,6 +49,10 @@ class CDViewController: UIViewController {
     }
     
     private func setupMainView() {
+        guard allowsSwipeLeftToPopViewController else {
+            return
+        }
+        
         let swipeGR = UIPanGestureRecognizer(target: self, action: #selector(screenDidSwipeToDismiss(_:)))
         view.addGestureRecognizer(swipeGR)
     }
@@ -81,6 +89,14 @@ class CDViewController: UIViewController {
     func dismiss(withDelay delay: TimeInterval = 0) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            
+            if self?.popsToMainVC == true {
+               if let mainVC = self?.navigationController?.viewControllers.first(where:  { $0 is MainViewController }) {
+                   self?.navigationController?.popToViewController(mainVC, animated: true)
+               } else {
+                   self?.navigationController?.popToRootViewController(animated: true)
+               }
+            }
             
             self?.navigationController?.popViewController(animated: true)
         }

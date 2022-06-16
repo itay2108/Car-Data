@@ -60,6 +60,9 @@
                                             </buttonConfiguration>
                                         </button>
                                     </subviews>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="header"/>
+                                    </userDefinedRuntimeAttributes>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,7 +102,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-text-dark"/>
                                         <connections>
-                                            <segue destination="WF0-Ww-2Kp" kind="show" id="IzW-3W-98W"/>
+                                            <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToPriorityData" id="IzW-3W-98W"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ilR-EE-99x" detailTextLabel="ii9-tN-AVb" style="IBUITableViewCellStyleValue1" id="DDr-Lo-n6U">
@@ -129,7 +132,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-accent-light"/>
                                         <connections>
-                                            <segue destination="WF0-Ww-2Kp" kind="show" id="LMj-kA-xiN"/>
+                                            <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToFilteredData" id="LMj-kA-xiN"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -335,16 +338,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ea-ka-X39">
-                                <rect key="frame" x="245.5" y="44" width="152.5" height="47"/>
+                                <rect key="frame" x="242" y="44" width="156" height="54"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="נתונים מועדפים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ir-UM-8f7">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="54"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nt2-w9-ffJ">
-                                        <rect key="frame" x="129" y="0.0" width="23.5" height="47"/>
+                                        <rect key="frame" x="129" y="0.0" width="27" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nt2-w9-ffJ" secondAttribute="height" multiplier="1:2" id="2Cf-X9-ZR9"/>
                                         </constraints>
@@ -357,11 +360,14 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="rSi-gS-q2n"/>
+                                    <constraint firstAttribute="height" constant="54" id="rSi-gS-q2n"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="header"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Cj-Rr-QUg">
-                                <rect key="frame" x="8" y="111" width="398" height="731"/>
+                                <rect key="frame" x="8" y="122" width="398" height="720"/>
                                 <color key="backgroundColor" name="cd-background"/>
                             </tableView>
                         </subviews>
@@ -370,7 +376,7 @@
                         <constraints>
                             <constraint firstItem="Sls-mw-hjt" firstAttribute="trailing" secondItem="4Ea-ka-X39" secondAttribute="trailing" constant="16" id="00t-L2-8ip"/>
                             <constraint firstItem="6Cj-Rr-QUg" firstAttribute="leading" secondItem="Sls-mw-hjt" secondAttribute="leading" constant="8" id="3yy-kC-hku"/>
-                            <constraint firstItem="6Cj-Rr-QUg" firstAttribute="top" secondItem="4Ea-ka-X39" secondAttribute="bottom" constant="20" id="Qsp-A9-6IT"/>
+                            <constraint firstItem="6Cj-Rr-QUg" firstAttribute="top" secondItem="4Ea-ka-X39" secondAttribute="bottom" constant="24" id="Qsp-A9-6IT"/>
                             <constraint firstAttribute="bottom" secondItem="6Cj-Rr-QUg" secondAttribute="bottom" id="RB8-zw-y8h"/>
                             <constraint firstItem="4Ea-ka-X39" firstAttribute="top" secondItem="Sls-mw-hjt" secondAttribute="top" id="wxF-jt-KNU"/>
                             <constraint firstItem="Sls-mw-hjt" firstAttribute="trailing" secondItem="6Cj-Rr-QUg" secondAttribute="trailing" constant="8" id="yRC-ET-3KK"/>

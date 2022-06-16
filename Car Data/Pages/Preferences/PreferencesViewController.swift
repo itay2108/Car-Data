@@ -19,9 +19,9 @@ class PreferencesViewController: CDTableViewController {
     }
     
     //MARK: - UI Methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .right)
     }
@@ -37,6 +37,14 @@ class PreferencesViewController: CDTableViewController {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(headerDidTap(_:)))
         
         headerStackView.addGestureRecognizer(tapGR)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? CDParameterSelectionTableViewController,
+           segue.identifier == K.segues.PreferenceStoryboard.preferencesToFilteredData {
+            
+            destination.target = .filter
+        }
     }
     
     //MARK: - Selecors

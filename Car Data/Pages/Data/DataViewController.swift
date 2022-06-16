@@ -33,6 +33,10 @@ class DataViewController: CDViewController {
         return true
     }
     
+    override var popsToMainVC: Bool {
+        return true
+    }
+    
     //MARK: - Life Cycle
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +56,12 @@ class DataViewController: CDViewController {
         
         self.navigationController?.heroNavigationAnimationType = .slide(direction: .left)
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        licensePlateLabel.heroID = nil
+        
+        super.viewWillDisappear(animated)
     }
     
     //MARK: - UI Methods
@@ -118,9 +128,9 @@ class DataViewController: CDViewController {
     }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        
         super.dismiss(animated: flag, completion: completion)
         
-        licensePlateLabel.heroID = nil
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {

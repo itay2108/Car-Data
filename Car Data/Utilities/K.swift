@@ -56,6 +56,11 @@ struct K {
             static let loadResultToData = "loadResultToData"
             static let mainToData = "mainToData"
         }
+        
+        struct PreferenceStoryboard {
+            static let preferencesToPriorityData = "preferencesToPriorityData"
+            static let preferencesToFilteredData = "preferencesToFilteredData"
+        }
     }
     
     struct URLs {
