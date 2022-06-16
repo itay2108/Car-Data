@@ -403,6 +403,7 @@
 			children = (
 				BCAEB3A1284675B300FA0981 /* Main */,
 				BCAD15762848D9CE0004A49F /* Data */,
+				BCB443312850845D00792E66 /* Vision */,
 				BCFD17422858BC8E000EAFCE /* Preferences */,
 			);
 			path = Pages;
@@ -415,7 +416,6 @@
 				BCAEB373284670A000FA0981 /* MainViewController.swift */,
 				BCAD15742848C5190004A49F /* LoadResultViewController.swift */,
 				BCB443322850846A00792E66 /* Search History */,
-				BCB443312850845D00792E66 /* Vision */,
 			);
 			path = Main;
 			sourceTree = "<group>";

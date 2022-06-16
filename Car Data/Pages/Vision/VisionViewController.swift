@@ -252,14 +252,17 @@ final class VisionViewController: CDViewController {
         
         isDetectingFromStaticImage = false
         
-        visionBlurView.fadeOut(0.1) { [weak self] finish in
+        visionBlurView.fadeOut(0.66) { [weak self] finish in
             self?.visionBlurView.removeFromSuperview()
             completion?()
         }
         
-        captureSessionQueue.async { [weak self] in
-            self?.captureSession.startRunning()
+        if !captureSession.isRunning {
+            captureSessionQueue.async { [weak self] in
+                self?.captureSession.startRunning()
+            }
         }
+
     }
     
     private func animateSuccess(_ completion: (()->Void)? = nil) {
@@ -417,11 +420,8 @@ final class VisionViewController: CDViewController {
         heroNavigationControllerDelegateCache = navigationController?.delegate
         imagePicker.delegate = self
         
-        animatePauseSession()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) { [weak self] in
-            guard let self = self else { return }
-            self.present(self.imagePicker, animated: true)
+        present(imagePicker, animated: true) { [weak self] in
+            self?.animatePauseSession()
         }
         
     }
@@ -745,9 +745,14 @@ extension VisionViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
-        picker.dismiss(animated: true)
+        captureSessionQueue.async { [weak self] in
+            self?.captureSession.startRunning()
+        }
         
-        animateResumeSession()
+        picker.dismiss(animated: true) { [weak self] in
+            self?.animateResumeSession()
+        }
+        
     }
     
 }
