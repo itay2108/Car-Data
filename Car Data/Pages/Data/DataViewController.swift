@@ -197,7 +197,7 @@ class DataViewController: CDViewController {
             let pathForPDF = try render(pdfWithName: "נתונים לרכב \(data.extraData?.manufacturer ?? "") \(data.baseData.model ?? "") - \(plateNumber)",
                        withHeader: pdfHeaderImage(with: plateNumber),
                        from: dataTableView,
-                       numberOfCells: data.sections.count)
+                       numberOfCells: data.allSections.count)
             
             return pathForPDF
         } catch {
@@ -272,13 +272,13 @@ class DataViewController: CDViewController {
 extension DataViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data?.sections.count ?? 0
+        return data?.allSections.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: DataSectionTableViewCell.reuseID) as? DataSectionTableViewCell,
-              let source = data?.sections[safe: indexPath.row] else {
+              let source = data?.allSections[safe: indexPath.row] else {
             return UITableViewCell()
         }
         

@@ -46,7 +46,7 @@ class CDParameterSelectionTableViewCell: UITableViewCell {
         setupViews()
         setupConstraints()
         
-        uiSwitch.transform = CGAffineTransform(scaleX: 0.66, y: 0.66)
+        uiSwitch.transform = CGAffineTransform(scaleX: -0.66, y: 0.66)
         uiSwitch.center = CGPoint(x: (48 * widthModifier / 2) + 16, y: frame.maxY / 2 + 8)
         
         selectionStyle = .none

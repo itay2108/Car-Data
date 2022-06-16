@@ -58,6 +58,9 @@
                                             <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="eno-mv-ex7" eventType="touchUpInside" id="U7W-i3-fXb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <userDefinedRuntimeAttributes>
@@ -73,7 +76,7 @@
                             </constraints>
                         </view>
                         <sections>
-                            <tableViewSection headerTitle="נתוני רכב" id="fcG-35-cKv">
+                            <tableViewSection headerTitle="פרטי רכב" id="fcG-35-cKv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
                                         <rect key="frame" x="20" y="103.5" width="374" height="43.5"/>
@@ -82,7 +85,7 @@
                                             <rect key="frame" x="28.5" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="נתונים מועדפים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bPU-oZ-cyv">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="פרטים מועדפים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bPU-oZ-cyv">
                                                     <rect key="frame" x="238" y="14" width="87.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
@@ -112,7 +115,7 @@
                                             <rect key="frame" x="28.5" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="הסתרת נתונים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ilR-EE-99x">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="הסתרת פרטים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ilR-EE-99x">
                                                     <rect key="frame" x="242.5" y="14" width="83" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
@@ -357,6 +360,9 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
                                             <color key="baseForegroundColor" name="cd-accent-dark"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="headerBackButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="bSO-R7-uDn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -385,6 +391,7 @@
                     <navigationItem key="navigationItem" id="J0g-PU-xkH"/>
                     <connections>
                         <outlet property="headerStackView" destination="4Ea-ka-X39" id="6ic-AV-Weq"/>
+                        <outlet property="headerTitle" destination="4ir-UM-8f7" id="nlR-Gu-adL"/>
                         <outlet property="tableView" destination="6Cj-Rr-QUg" id="Sxj-DI-QRT"/>
                     </connections>
                 </viewController>

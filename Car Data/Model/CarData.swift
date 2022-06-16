@@ -23,7 +23,32 @@ struct CarData {
     
     let numberOfVehiclesWithIdenticalModel: Int
     
-    var sections: [CDParameterSection] {
+    var allSections: [CDParameterSection] {
+        
+        var internalBaseSections = baseSections
+        var prioriteizedParameters: [CDParameter] = []
+        
+        for (index, section) in internalBaseSections.enumerated() {
+            for parameter in section.parameters {
+                
+                if parameter.type.isFiltered() {
+                    internalBaseSections[index].parameters.removeAll(where: { $0.type == parameter.type })
+                    
+                } else if parameter.type.isPrioritized() {
+                    
+                    prioriteizedParameters.append(parameter)
+                    internalBaseSections[index].parameters.removeAll(where: { $0.type == parameter.type })
+                }
+            }
+        }
+        
+        var allSections = [CDParameterSection(title: "פרטים חשובים", parameters: prioriteizedParameters)] + internalBaseSections
+        
+        return allSections.compactMap( { $0.parameters.count == 0 ? nil : $0 })
+        
+    }
+    
+    var baseSections: [CDParameterSection] {
         return [baseSection(), specSection(), motSection(), extraSection(), safetySection()].compactMap( { $0.parameters.count == 0 ? nil : $0 })
     }
     

@@ -23,7 +23,7 @@ class PreferencesViewController: CDTableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        navigationController?.heroNavigationAnimationType = .slide(direction: .right)
+        
     }
 
     override func setupViews() {
@@ -40,11 +40,22 @@ class PreferencesViewController: CDTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? CDParameterSelectionTableViewController,
-           segue.identifier == K.segues.PreferenceStoryboard.preferencesToFilteredData {
-            
-            destination.target = .filter
+        
+        navigationController?.heroNavigationAnimationType = .slide(direction: .right)
+        
+        if let destination = segue.destination as? CDParameterSelectionTableViewController {
+            if segue.identifier == K.segues.PreferenceStoryboard.preferencesToFilteredData {
+                
+                destination.target = .filter
+                destination.headerTitleText = "פרטים מוסתרים"
+                
+            } else if segue.identifier == K.segues.PreferenceStoryboard.preferencesToPriorityData {
+                
+                destination.target = .priority
+                destination.headerTitleText = "פרטים מועדפים"
+            }
         }
+           
     }
     
     //MARK: - Selecors
@@ -56,6 +67,16 @@ class PreferencesViewController: CDTableViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    override func dismiss(withDelay delay: TimeInterval = 0) {
+        navigationController?.heroNavigationAnimationType = .slide(direction: .left)
+        
+        super.dismiss(withDelay: delay)
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        dismiss(withDelay: 0)
+    }
     //MARK: - TableView Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

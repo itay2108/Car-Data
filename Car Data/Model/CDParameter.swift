@@ -10,7 +10,7 @@ import RealmSwift
 
 struct CDParameterSection {
     let title: String?
-    let parameters: [CDParameter]
+    var parameters: [CDParameter]
 }
 
 struct CDParameter {
@@ -130,7 +130,7 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
     }
     
     static private func motSection() -> [CDParameterType] {
-        return [.lastMOT, .registrationGroup, .nextMOT, .ownership, .horaatRishum, .totalLossDate]
+        return [.lastMOT, .registrationGroup, .nextMOT, .ownership, .chassis, .horaatRishum, .totalLossDate]
     }
     
     static private func extraSection() -> [CDParameterType] {
@@ -145,14 +145,12 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
         return [basicSection(), specSection(), motSection(), extraSection(), safetySection()]
     }
     
-    func isDynamic() -> Bool {
-        for section in CDParameterType.allSections() {
-            if section.contains(self) {
-                return true
-            }
-        }
-        
-        return false
+    func isPrioritized() -> Bool {
+        return RealmManager.fetch(recordsOfType: RealmSelectedParameter.self).filter( { $0.target == .priority }).contains(where:  { $0.parameter == self })
+    }
+    
+    func isFiltered() -> Bool {
+        return RealmManager.fetch(recordsOfType: RealmSelectedParameter.self).filter( { $0.target == .filter }).contains(where:  { $0.parameter == self })
     }
     
 }

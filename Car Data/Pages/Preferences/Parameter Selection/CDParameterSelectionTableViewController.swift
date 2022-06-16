@@ -11,8 +11,11 @@ import RealmSwift
 class CDParameterSelectionTableViewController: CDViewController {
     
     @IBOutlet weak var headerStackView: UIStackView!
+    @IBOutlet weak var headerTitle: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var headerTitleText: String = ""
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
@@ -34,8 +37,16 @@ class CDParameterSelectionTableViewController: CDViewController {
         return RealmManager.fetch(recordsOfType: RealmSelectedParameter.self).filter( { $0.target == target })
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.heroNavigationAnimationType = .slide(direction: .left)
+    }
+    
     override func setupViews() {
         super.setupViews()
+        
+        headerTitle.text = headerTitleText
         
         setupTableView()
         setupHeader()
@@ -62,11 +73,12 @@ class CDParameterSelectionTableViewController: CDViewController {
     
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer) {
         
-        navigationController?.heroNavigationAnimationType = .slide(direction: .left)
-        
         navigationController?.popViewController(animated: true)
     }
 
+    @IBAction func headerBackButtonPressed(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -105,6 +117,12 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
         
         if let cell = tableView.cellForRow(at: indexPath) as? CDParameterSelectionTableViewCell,
            let parameter = cell.parameterType {
+            
+            if selectedParameters.count >= 5 && target == .priority && !cell.uiSwitch.isOn {
+                
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                return
+            }
             
             
             do {
