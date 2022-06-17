@@ -16,7 +16,6 @@
 		66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB522428512FCB009CD347 /* LiveCameraView.swift */; };
 		66BA05A3285A553B00DA8DCA /* CDParameterSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA05A2285A553B00DA8DCA /* CDParameterSelectionTableViewController.swift */; };
 		66BA05A6285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA05A4285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift */; };
-		66BA05AD285A5FD000DA8DCA /* Switches in Frameworks */ = {isa = PBXBuildFile; productRef = 66BA05AC285A5FD000DA8DCA /* Switches */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
 		66CA4DD2284CCD3D00D2C21A /* FBLPromises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD1284CCD3D00D2C21A /* FBLPromises */; };
@@ -213,7 +212,6 @@
 				66CA4DD2284CCD3D00D2C21A /* FBLPromises in Frameworks */,
 				BC97D33828496ECB00D95F69 /* RealmSwift in Frameworks */,
 				BC97D33628496ECB00D95F69 /* Realm in Frameworks */,
-				66BA05AD285A5FD000DA8DCA /* Switches in Frameworks */,
 				BCC5123E28496CF800E883D0 /* Alamofire in Frameworks */,
 				66CA4DD4284CCD3D00D2C21A /* Promises in Frameworks */,
 				BC97D33D28496F0500D95F69 /* NVActivityIndicatorViewExtended in Frameworks */,
@@ -517,7 +515,6 @@
 				BC97D345284971E500D95F69 /* Hero */,
 				66CA4DD1284CCD3D00D2C21A /* FBLPromises */,
 				66CA4DD3284CCD3D00D2C21A /* Promises */,
-				66BA05AC285A5FD000DA8DCA /* Switches */,
 			);
 			productName = "Car Data";
 			productReference = BCAEB36C284670A000FA0981 /* Car Data.app */;
@@ -598,7 +595,6 @@
 				BC97D33E28496F5E00D95F69 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				BC97D344284971E500D95F69 /* XCRemoteSwiftPackageReference "Hero" */,
 				66CA4DD0284CCD3C00D2C21A /* XCRemoteSwiftPackageReference "promises" */,
-				66BA05AB285A5FD000DA8DCA /* XCRemoteSwiftPackageReference "Switch-Animations" */,
 			);
 			productRefGroup = BCAEB36D284670A000FA0981 /* Products */;
 			projectDirPath = "";
@@ -1047,14 +1043,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		66BA05AB285A5FD000DA8DCA /* XCRemoteSwiftPackageReference "Switch-Animations" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jwd-ali/Switch-Animations.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		66CA4DD0284CCD3C00D2C21A /* XCRemoteSwiftPackageReference "promises" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/promises.git";
@@ -1106,11 +1094,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		66BA05AC285A5FD000DA8DCA /* Switches */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 66BA05AB285A5FD000DA8DCA /* XCRemoteSwiftPackageReference "Switch-Animations" */;
-			productName = Switches;
-		};
 		66CA4DD1284CCD3D00D2C21A /* FBLPromises */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 66CA4DD0284CCD3C00D2C21A /* XCRemoteSwiftPackageReference "promises" */;

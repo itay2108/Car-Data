@@ -13,6 +13,8 @@ class CDParameterSelectionTableViewController: CDViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var headerTitle: UILabel!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var headerTitleText: String = ""
@@ -21,7 +23,11 @@ class CDParameterSelectionTableViewController: CDViewController {
         return true
     }
     
-    private var searchTerm: String = ""
+    private var searchTerm: String = "" {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private let allParameters: [[CDParameterType]] = CDParameterType.allSections()
 
@@ -50,6 +56,7 @@ class CDParameterSelectionTableViewController: CDViewController {
         
         setupTableView()
         setupHeader()
+        setupSearchbar()
     }
     
     private func setupTableView() {
@@ -69,6 +76,11 @@ class CDParameterSelectionTableViewController: CDViewController {
         headerStackView.addGestureRecognizer(tapGR)
     }
     
+    private func setupSearchbar() {
+        searchBar.searchTextField.textAlignment = .right
+        searchBar.delegate = self
+    }
+    
     //MARK: - Selecors
     
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer) {
@@ -86,7 +98,9 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
 
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        relevantFilters.count
+        relevantFilters.compactMap({ section in
+            return section.count == 0 ? nil : section
+        }).count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
@@ -166,4 +180,11 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
         return view.frame.height / 15
     }
 
+}
+
+extension CDParameterSelectionTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchTerm = searchText
+    }
 }

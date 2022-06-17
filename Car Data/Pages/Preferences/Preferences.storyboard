@@ -372,18 +372,28 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="header"/>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Cj-Rr-QUg">
-                                <rect key="frame" x="8" y="122" width="398" height="720"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Cj-Rr-QUg">
+                                <rect key="frame" x="8" y="165" width="398" height="677"/>
                                 <color key="backgroundColor" name="cd-background"/>
                             </tableView>
+                            <searchBar contentMode="redraw" semanticContentAttribute="forceRightToLeft" searchBarStyle="minimal" placeholder="חיפוש" translatesAutoresizingMaskIntoConstraints="NO" id="IUO-gW-cms">
+                                <rect key="frame" x="20" y="98" width="374" height="51"/>
+                                <color key="backgroundColor" name="cd-background"/>
+                                <color key="tintColor" name="cd-accent-dark"/>
+                                <color key="barTintColor" name="cd-accent-dark"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Sls-mw-hjt"/>
                         <color key="backgroundColor" name="cd-background"/>
                         <constraints>
                             <constraint firstItem="Sls-mw-hjt" firstAttribute="trailing" secondItem="4Ea-ka-X39" secondAttribute="trailing" constant="16" id="00t-L2-8ip"/>
+                            <constraint firstItem="IUO-gW-cms" firstAttribute="centerX" secondItem="vlL-RK-b48" secondAttribute="centerX" id="17d-ts-Exm"/>
                             <constraint firstItem="6Cj-Rr-QUg" firstAttribute="leading" secondItem="Sls-mw-hjt" secondAttribute="leading" constant="8" id="3yy-kC-hku"/>
-                            <constraint firstItem="6Cj-Rr-QUg" firstAttribute="top" secondItem="4Ea-ka-X39" secondAttribute="bottom" constant="24" id="Qsp-A9-6IT"/>
+                            <constraint firstItem="IUO-gW-cms" firstAttribute="top" secondItem="4Ea-ka-X39" secondAttribute="bottom" id="ALf-6l-5gz"/>
                             <constraint firstAttribute="bottom" secondItem="6Cj-Rr-QUg" secondAttribute="bottom" id="RB8-zw-y8h"/>
+                            <constraint firstItem="IUO-gW-cms" firstAttribute="leading" secondItem="Sls-mw-hjt" secondAttribute="leading" constant="20" id="T1G-lf-p8G"/>
+                            <constraint firstItem="6Cj-Rr-QUg" firstAttribute="top" secondItem="IUO-gW-cms" secondAttribute="bottom" constant="16" id="XqN-rN-ODm"/>
                             <constraint firstItem="4Ea-ka-X39" firstAttribute="top" secondItem="Sls-mw-hjt" secondAttribute="top" id="wxF-jt-KNU"/>
                             <constraint firstItem="Sls-mw-hjt" firstAttribute="trailing" secondItem="6Cj-Rr-QUg" secondAttribute="trailing" constant="8" id="yRC-ET-3KK"/>
                         </constraints>
@@ -392,6 +402,7 @@
                     <connections>
                         <outlet property="headerStackView" destination="4Ea-ka-X39" id="6ic-AV-Weq"/>
                         <outlet property="headerTitle" destination="4ir-UM-8f7" id="nlR-Gu-adL"/>
+                        <outlet property="searchBar" destination="IUO-gW-cms" id="Nvz-GZ-Pyj"/>
                         <outlet property="tableView" destination="6Cj-Rr-QUg" id="Sxj-DI-QRT"/>
                     </connections>
                 </viewController>

@@ -9,6 +9,11 @@ import Foundation
 
 public extension String {
     
+    enum StringLocation {
+        case beginning
+        case ending
+    }
+    
     func excluding(characrers charactersToExclude: String) -> String {
         
         var newString = self
@@ -26,6 +31,18 @@ public extension String {
     
     func including(only allowedCharacters: String) -> String {
         return self.filter { allowedCharacters.contains($0) }
+    }
+    
+    func trimming(character: Character, from location: StringLocation) -> String {
+        if location == .beginning, self.first == character {
+            
+            return String(self.suffix(self.count - 1))
+        } else if location == .ending, self.first == character {
+            
+            return String(self.prefix(self.count - 1))
+        }
+        
+        return self
     }
 
     //MARK: - Pattern Matching

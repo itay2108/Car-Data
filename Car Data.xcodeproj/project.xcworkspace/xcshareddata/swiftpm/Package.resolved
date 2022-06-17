@@ -62,15 +62,6 @@
         "revision" : "0762a9eb77929fdfbefa476ae62afed2b3e41bae",
         "version" : "10.27.0"
       }
-    },
-    {
-      "identity" : "switch-animations",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jwd-ali/Switch-Animations.git",
-      "state" : {
-        "revision" : "76fbe507103c88d0083d518d7486689227f514e6",
-        "version" : "3.0.0"
-      }
     }
   ],
   "version" : 2

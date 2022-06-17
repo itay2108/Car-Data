@@ -57,7 +57,7 @@ final class VisionViewController: CDViewController {
     //Static Vision Parameter
     private var isDetectingFromStaticImage: Bool = false
     
-    private lazy var imagePicker: UIImagePickerController = {
+    private var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         
@@ -116,6 +116,7 @@ final class VisionViewController: CDViewController {
         potentialPlateNumbers.removeAll()
         
         addFromDeviceButton.isEnabled = true
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -129,10 +130,6 @@ final class VisionViewController: CDViewController {
     }
     
     //MARK: - UI Methods
-    
-    override func setupUI() {
-        super.setupUI()
-    }
     
     override func setupViews() {
         super.setupViews()
@@ -417,6 +414,7 @@ final class VisionViewController: CDViewController {
     }
     
     @IBAction func addFromDeviceButtonPressed(_ sender: UIButton) {
+
         heroNavigationControllerDelegateCache = navigationController?.delegate
         imagePicker.delegate = self
         
@@ -576,7 +574,7 @@ final class VisionViewController: CDViewController {
     
     private func checkForPotentialPlateNumbers(in strings: [String]) {
         for string in strings {
-            let cleanString = string.including(only: "1234567890")
+            let cleanString = string.including(only: "1234567890").trimming(character: "0", from: .beginning)
             
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {
@@ -677,7 +675,7 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
         var potentialStaticNumbers: [String] = []
         
         for candidate in recognizedStrings {
-            let cleanString = candidate.string.including(only: "1234567890")
+            let cleanString = candidate.string.including(only: "1234567890").trimming(character: "0", from: .beginning)
             
             if  cleanString.contains(only: "1234567890"),
                 LicensePlateManager.licensePlateIsValid(cleanString) {

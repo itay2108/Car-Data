@@ -28,6 +28,7 @@ enum CDError: Error {
     case cameraFailed
     case cameraPermissions
     case genericCamera
+    case imagePickerFailed
     
     //Vision
     case noImageForRecognition
@@ -73,6 +74,8 @@ enum CDError: Error {
             return "The app is not allowed to use the camera, please allow camera usage from settings"
         case .genericCamera:
             return "Something went wrong when trying to use the camera"
+        case .imagePickerFailed:
+            return "Could not load gallery"
             
         case .noImageForRecognition:
             return "No image was provided for recognition in the correct format"
