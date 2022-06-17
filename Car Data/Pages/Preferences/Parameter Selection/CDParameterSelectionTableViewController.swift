@@ -13,6 +13,8 @@ class CDParameterSelectionTableViewController: CDViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var headerTitle: UILabel!
     
+    @IBOutlet weak var resetButton: UIButton!
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var tableView: UITableView!
@@ -42,11 +44,21 @@ class CDParameterSelectionTableViewController: CDViewController {
         return RealmManager.fetch(recordsOfType: RealmSelectedParameter.self).filter( { $0.target == target })
     }
     
+    //MARK: - Life Cycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        resetButton.fadeIn()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .left)
     }
+    
+    //MARK: - UI Methods
     
     override func setupViews() {
         super.setupViews()
@@ -84,11 +96,29 @@ class CDParameterSelectionTableViewController: CDViewController {
     
     @objc private func headerDidTap(_ sender: UITapGestureRecognizer) {
         
-        navigationController?.popViewController(animated: true)
+        if sender.location(in: headerStackView).x > headerStackView.frame.maxX * 0.75 {
+            navigationController?.popViewController(animated: true)
+        }
+        
+
     }
 
     @IBAction func headerBackButtonPressed(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
+        
+        do {
+            try RealmManager.realm?.write {
+                RealmManager.realm?.delete(selectedParameters)
+                
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                tableView.reloadData()
+            }
+        } catch {
+            presentErrorAlert(with: CDError.realmFailed)
+        }
     }
 }
 

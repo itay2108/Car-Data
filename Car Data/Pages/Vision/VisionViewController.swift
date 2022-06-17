@@ -57,7 +57,7 @@ final class VisionViewController: CDViewController {
     //Static Vision Parameter
     private var isDetectingFromStaticImage: Bool = false
     
-    private var imagePicker: UIImagePickerController = {
+    private lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         

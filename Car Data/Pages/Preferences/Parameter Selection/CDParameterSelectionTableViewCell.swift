@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Switches
 
 class CDParameterSelectionTableViewCell: UITableViewCell {
     

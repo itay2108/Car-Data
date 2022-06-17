@@ -58,14 +58,14 @@
                                             <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                                             </buttonConfiguration>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="backButton"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="eno-mv-ex7" eventType="touchUpInside" id="U7W-i3-fXb"/>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="header"/>
-                                    </userDefinedRuntimeAttributes>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -341,16 +341,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ea-ka-X39">
-                                <rect key="frame" x="242" y="44" width="156" height="54"/>
+                                <rect key="frame" x="0.0" y="44" width="398" height="54"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="נתונים מועדפים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ir-UM-8f7">
-                                        <rect key="frame" x="0.0" y="0.0" width="129" height="54"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueK-bs-D9J">
+                                        <rect key="frame" x="0.0" y="0.0" width="108" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ueK-bs-D9J" secondAttribute="height" multiplier="2:1" id="7Pe-gl-l41"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="איפוס">
+                                            <fontDescription key="titleFontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                            <color key="baseForegroundColor" name="cd-accent-light"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="awU-k9-Kgs"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="נתונים מועדפים" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ir-UM-8f7">
+                                        <rect key="frame" x="108" y="0.0" width="263" height="54"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="headerTitle"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nt2-w9-ffJ">
-                                        <rect key="frame" x="129" y="0.0" width="27" height="54"/>
+                                        <rect key="frame" x="371" y="0.0" width="27" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="nt2-w9-ffJ" secondAttribute="height" multiplier="1:2" id="2Cf-X9-ZR9"/>
                                         </constraints>
@@ -360,6 +377,9 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
                                             <color key="baseForegroundColor" name="cd-accent-dark"/>
                                         </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="backButton"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="headerBackButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="bSO-R7-uDn"/>
                                         </connections>
@@ -368,9 +388,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="rSi-gS-q2n"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="header"/>
-                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Cj-Rr-QUg">
                                 <rect key="frame" x="8" y="165" width="398" height="677"/>
@@ -391,6 +408,7 @@
                             <constraint firstItem="IUO-gW-cms" firstAttribute="centerX" secondItem="vlL-RK-b48" secondAttribute="centerX" id="17d-ts-Exm"/>
                             <constraint firstItem="6Cj-Rr-QUg" firstAttribute="leading" secondItem="Sls-mw-hjt" secondAttribute="leading" constant="8" id="3yy-kC-hku"/>
                             <constraint firstItem="IUO-gW-cms" firstAttribute="top" secondItem="4Ea-ka-X39" secondAttribute="bottom" id="ALf-6l-5gz"/>
+                            <constraint firstItem="4Ea-ka-X39" firstAttribute="width" secondItem="6Cj-Rr-QUg" secondAttribute="width" multiplier="1:1" id="ITK-uZ-yHc"/>
                             <constraint firstAttribute="bottom" secondItem="6Cj-Rr-QUg" secondAttribute="bottom" id="RB8-zw-y8h"/>
                             <constraint firstItem="IUO-gW-cms" firstAttribute="leading" secondItem="Sls-mw-hjt" secondAttribute="leading" constant="20" id="T1G-lf-p8G"/>
                             <constraint firstItem="6Cj-Rr-QUg" firstAttribute="top" secondItem="IUO-gW-cms" secondAttribute="bottom" constant="16" id="XqN-rN-ODm"/>
@@ -402,6 +420,7 @@
                     <connections>
                         <outlet property="headerStackView" destination="4Ea-ka-X39" id="6ic-AV-Weq"/>
                         <outlet property="headerTitle" destination="4ir-UM-8f7" id="nlR-Gu-adL"/>
+                        <outlet property="resetButton" destination="ueK-bs-D9J" id="skc-cf-JSW"/>
                         <outlet property="searchBar" destination="IUO-gW-cms" id="Nvz-GZ-Pyj"/>
                         <outlet property="tableView" destination="6Cj-Rr-QUg" id="Sxj-DI-QRT"/>
                     </connections>
