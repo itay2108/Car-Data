@@ -20,12 +20,6 @@ class PreferencesViewController: CDTableViewController {
     
     //MARK: - UI Methods
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
-    }
-
     override func setupViews() {
         super.setupViews()
         

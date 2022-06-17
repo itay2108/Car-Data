@@ -23,17 +23,16 @@ class CDParameterSelectionTableViewController: CDViewController {
         return true
     }
     
-    private var searchTerm: String = "" {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var searchTerm: String = ""
     
     private let allParameters: [[CDParameterType]] = CDParameterType.allSections()
 
     private var relevantFilters: [[CDParameterType]] {
-        return allParameters.map { section in
+        
+        return allParameters.map({ section in
             return searchTerm.count == 0 ? section : section.filter( {$0.rawValue.contains(searchTerm) })
+        }).compactMap { section in
+            return section.count == 0 ? nil : section
         }
     }
     
@@ -98,10 +97,9 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
 
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        relevantFilters.compactMap({ section in
-            return section.count == 0 ? nil : section
-        }).count
+        return relevantFilters.count
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         if let section = relevantFilters[safe: section] {
@@ -121,7 +119,6 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
         
         cell.configure(with: parameter)
 
-        
         cell.uiSwitch.isOn = selectedParameters.contains(where: { $0.parameter == parameter })
         
         return cell
@@ -186,5 +183,7 @@ extension CDParameterSelectionTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         searchTerm = searchText
+        
+        tableView.reloadData()
     }
 }
