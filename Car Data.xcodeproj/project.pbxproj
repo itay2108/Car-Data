@@ -18,6 +18,7 @@
 		66BA05A6285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA05A4285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
+		66C61880285E446D003FB012 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6187F285E446D003FB012 /* UIViewController+Toast.swift */; };
 		66CA4DD2284CCD3D00D2C21A /* FBLPromises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD1284CCD3D00D2C21A /* FBLPromises */; };
 		66CA4DD4284CCD3D00D2C21A /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD3284CCD3D00D2C21A /* Promises */; };
 		66CA4DD6284CCFEF00D2C21A /* CarDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CA4DD5284CCFEF00D2C21A /* CarDataManager.swift */; };
@@ -135,6 +136,7 @@
 		66BA05A4285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDParameterSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
+		66C6187F285E446D003FB012 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
 		66CA4DD5284CCFEF00D2C21A /* CarDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDataManager.swift; sourceTree = "<group>"; };
 		66CA4DD7284CD24E00D2C21A /* CDURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDURLManager.swift; sourceTree = "<group>"; };
 		66CA4DD9284CD45C00D2C21A /* CarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarData.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				BCFD173B28536556000EAFCE /* UIViewController+PDF.swift */,
 				BC8BE3EE284795EA002838AA /* UIGestureRecognizer+Extensions.swift */,
 				BCD4D77A2848EC9E000D24D0 /* Cell+ReuseIdentifier.swift */,
+				66C6187F285E446D003FB012 /* UIViewController+Toast.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				BCD3875D2852392F00AE1149 /* VNRecognitionHandler.swift in Sources */,
 				BCF32816284ACE2D003A5162 /* DataSectionTableViewCell.swift in Sources */,
 				BCAEB372284670A000FA0981 /* SceneDelegate.swift in Sources */,
+				66C61880285E446D003FB012 /* UIViewController+Toast.swift in Sources */,
 				BCAD15752848C5190004A49F /* LoadResultViewController.swift in Sources */,
 				66CA4DDA284CD45C00D2C21A /* CarData.swift in Sources */,
 				BC8BE3F52847BA50002838AA /* CDView.swift in Sources */,

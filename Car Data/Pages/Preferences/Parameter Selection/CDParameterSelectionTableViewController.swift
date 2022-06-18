@@ -161,7 +161,7 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
             
             if selectedParameters.count >= 5 && target == .priority && !cell.uiSwitch.isOn {
                 
-                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                toast(message: "ניתן לתעדף עד 5 פרמטרים", feedbackType: .warning)
                 return
             }
             
