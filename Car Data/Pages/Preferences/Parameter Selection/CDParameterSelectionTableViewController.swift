@@ -27,14 +27,14 @@ class CDParameterSelectionTableViewController: CDViewController {
     
     private var searchTerm: String = ""
     
-    private let allParameters: [[CDParameterType]] = CDParameterType.allSections()
+    private let allParameters: [(Int, [CDParameterType])] = CDParameterType.allSections()
 
-    private var relevantFilters: [[CDParameterType]] {
+    private var relevantFilters: [(Int, [CDParameterType])] {
         
-        return allParameters.map({ section in
-            return searchTerm.count == 0 ? section : section.filter( {$0.rawValue.contains(searchTerm) })
-        }).compactMap { section in
-            return section.count == 0 ? nil : section
+        return allParameters.map({ (index, section) in
+            return searchTerm.count == 0 ? (index, section) : (index, section.filter( {$0.rawValue.contains(searchTerm) }))
+        }).compactMap { (index, section) in
+            return section.count == 0 ? nil : (index, section)
         }
     }
     
@@ -132,7 +132,7 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if let section = relevantFilters[safe: section] {
+        if let section = relevantFilters[safe: section]?.1 {
             return section.count
         } else {
             return 0
@@ -142,7 +142,7 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CDParameterSelectionTableViewCell.reuseID) as? CDParameterSelectionTableViewCell,
-            let section = relevantFilters[safe: indexPath.section],
+            let section = relevantFilters[safe: indexPath.section]?.1,
             let parameter = section[safe: indexPath.row] else {
             return UITableViewCell()
         }
@@ -187,7 +187,12 @@ extension CDParameterSelectionTableViewController: UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
+        
+        guard let sectionNumber = relevantFilters[safe: section]?.0 else {
+            return nil
+        }
+        
+        switch sectionNumber {
         case 0:
             return "פרטים בסיסיים"
         case 1:

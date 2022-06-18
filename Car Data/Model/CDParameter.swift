@@ -141,8 +141,8 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
         return [.safetyScore, .airbags, .abs, .tcs, .frontDistanceMonitor, .adaptiveCruiseControl, .blintspotMonitor, .pedestrianMonitor, .aebs, .reversingCamera, .tpms, .safetyBeltSensors, .automaticHeadlights, .automaticHighBeams, .trafficSignMonitor, .motorcycleMonitor]
     }
     
-    static func allSections() -> [[CDParameterType]] {
-        return [basicSection(), specSection(), motSection(), extraSection(), safetySection()]
+    static func allSections() -> [(Int, [CDParameterType])] {
+        return [(0, basicSection()), (1, specSection()), (2, motSection()), (3, extraSection()), (4, safetySection())]
     }
     
     func isPrioritized() -> Bool {
