@@ -10,7 +10,7 @@ import UIKit
 extension UIView {
     
     func fadeIn(duration: TimeInterval = 0.3, delay: TimeInterval = 0.0, _ completion: (()->Void)? = nil) {
-        
+        self.isHidden = false
         self.alpha = 0
         
         UIView.animate(withDuration: duration, delay: delay, options: UIView.AnimationOptions.curveEaseIn, animations: {

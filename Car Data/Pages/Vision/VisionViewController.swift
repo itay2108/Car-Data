@@ -58,12 +58,7 @@ final class VisionViewController: CDViewController {
     private var isDetectingFromStaticImage: Bool = false
     
     private lazy var imagePicker: UIImagePickerController = {
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
-        
-        imagePicker.modalPresentationStyle = .fullScreen
-        
-       return imagePicker
+       return UIImagePickerController()
     }()
     
     private lazy var staticRecognitionImageView: UIImageView = {
@@ -117,6 +112,11 @@ final class VisionViewController: CDViewController {
         
         addFromDeviceButton.isEnabled = true
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            self?.imagePicker.allowsEditing = true
+            
+            self?.imagePicker.modalPresentationStyle = .fullScreen
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -244,14 +244,15 @@ final class VisionViewController: CDViewController {
     
     private func animateResumeSession(_ completion: (()->Void)? = nil) {
         
-        visionFocusView.isHidden = false
-        instructionLabel.isHidden = false
-        
         isDetectingFromStaticImage = false
         
-        visionBlurView.fadeOut(0.66) { [weak self] finish in
+        visionBlurView.fadeOut(0.4) { [weak self] finish in
             self?.visionBlurView.removeFromSuperview()
-            completion?()
+            
+            self?.visionFocusView.fadeIn() {
+                self?.instructionLabel.isHidden = false
+                completion?()
+            }
         }
         
         if !captureSession.isRunning {
@@ -745,12 +746,14 @@ extension VisionViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         captureSessionQueue.async { [weak self] in
             self?.captureSession.startRunning()
+            
+            DispatchQueue.main.async {
+                picker.dismiss(animated: true) {
+                    self?.animateResumeSession()
+                }
+            }
         }
-        
-        picker.dismiss(animated: true) { [weak self] in
-            self?.animateResumeSession()
-        }
-        
+
     }
     
 }
