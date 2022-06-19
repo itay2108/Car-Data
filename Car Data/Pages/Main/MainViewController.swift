@@ -7,6 +7,7 @@
 
 import UIKit
 import Hero
+import CoreMotion
 
 final class MainViewController: CDViewController {
     
@@ -31,7 +32,9 @@ final class MainViewController: CDViewController {
     @IBOutlet weak var searchHistoryTableView: UITableView!
     @IBOutlet weak var searchHistoryTableViewHeader: UIView!
     @IBOutlet weak var searchHistoryTableViewTitleLabel: UILabel!
+    
     @IBOutlet weak var searchHistoryTableViewBottomAnchor: NSLayoutConstraint!
+    @IBOutlet weak var searchHistoryTableViewShadowView: UIView!
     
     @IBOutlet weak var preferencesButton: UIButton!
     
@@ -69,12 +72,6 @@ final class MainViewController: CDViewController {
         super.viewDidLoad()
         
         setupObservers()
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        licensePlateTextField.attributedPlaceholder = nil
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +85,12 @@ final class MainViewController: CDViewController {
         if shouldStopPresentingLicensePlate {
             leaveSearchScene()
         }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        licensePlateTextField.attributedPlaceholder = nil
     }
     
     deinit {
@@ -185,6 +188,13 @@ final class MainViewController: CDViewController {
         searchHistoryTableView.register(UINib(nibName: SearchHistoryTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryTableViewCell.reuseID)
         
         searchHistoryTableViewTitleLabel.font = Rubik.regular.ofSize(18 * heightModifier)
+        
+        //shadow view setup
+        
+        searchHistoryTableViewShadowView.layer.shadowColor = K.colors.accents.dark.cgColor
+        searchHistoryTableViewShadowView.layer.shadowOpacity = 0.25
+        searchHistoryTableViewShadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
+        searchHistoryTableViewShadowView.layer.shadowRadius = 20 * widthModifier
     }
     
     

@@ -209,6 +209,7 @@ final class VisionViewController: CDViewController {
         instructionLabel.isHidden = true
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .down)
+        licensePlateHeroView.heroID = ""
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) { [weak self] in
             self?.visionView.fadeOut(0.1)

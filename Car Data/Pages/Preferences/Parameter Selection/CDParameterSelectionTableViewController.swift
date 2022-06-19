@@ -38,6 +38,7 @@ class CDParameterSelectionTableViewController: CDViewController {
         }
     }
     
+    ///controls whether selected parameters get saved as prioritized or filtered
     var target: CDParameterSelectionTarget = .priority
     
     private var selectedParameters: [RealmSelectedParameter] {

@@ -127,10 +127,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="85" y="4.5" width="161.5" height="77"/>
+                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="52" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="64" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -148,7 +148,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="161.5" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="185.5" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -243,6 +243,15 @@
                                             <constraint firstItem="wab-aW-vI1" firstAttribute="height" secondItem="a0j-kX-ky8" secondAttribute="height" id="kH3-GG-VBF"/>
                                         </constraints>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fil-pz-fOO">
+                                        <rect key="frame" x="30.5" y="367.5" width="353" height="480"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" name="cd-accent-dark"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bwu-qh-sI5" customClass="CDTableView" customModule="Car_Data" customModuleProvider="target">
                                         <rect key="frame" x="24" y="361" width="366" height="493"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -272,11 +281,15 @@
                                 </subviews>
                                 <color key="backgroundColor" name="cd-background"/>
                                 <constraints>
+                                    <constraint firstItem="Fil-pz-fOO" firstAttribute="width" secondItem="Bwu-qh-sI5" secondAttribute="width" constant="-13" id="2sV-aL-9a8"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="top" relation="lessThanOrEqual" secondItem="G8z-G0-2uk" secondAttribute="bottom" constant="42" id="8ke-yk-fDJ"/>
+                                    <constraint firstItem="Fil-pz-fOO" firstAttribute="height" secondItem="Bwu-qh-sI5" secondAttribute="height" constant="-13" id="BF6-S1-gB9"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="centerX" secondItem="dE0-0Z-MJA" secondAttribute="centerX" id="MZk-zB-aeh"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="top" secondItem="G8z-G0-2uk" secondAttribute="bottom" constant="24" id="Mxy-Pi-Gaf"/>
                                     <constraint firstItem="rOL-Lq-L37" firstAttribute="leading" secondItem="dE0-0Z-MJA" secondAttribute="leading" constant="24" id="PXi-2M-Itc"/>
+                                    <constraint firstItem="Fil-pz-fOO" firstAttribute="centerY" secondItem="Bwu-qh-sI5" secondAttribute="centerY" id="Pbo-43-Lky"/>
                                     <constraint firstItem="G8z-G0-2uk" firstAttribute="top" secondItem="rOL-Lq-L37" secondAttribute="bottom" constant="32" id="RJq-7i-1ct"/>
+                                    <constraint firstItem="Fil-pz-fOO" firstAttribute="centerX" secondItem="Bwu-qh-sI5" secondAttribute="centerX" id="V7l-Se-JbD"/>
                                     <constraint firstItem="eXB-Hw-PKz" firstAttribute="centerY" secondItem="rOL-Lq-L37" secondAttribute="centerY" constant="2" id="XC5-Nt-Hww"/>
                                     <constraint firstAttribute="trailing" secondItem="eXB-Hw-PKz" secondAttribute="trailing" constant="32" id="Y1m-0v-Ad4"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="leading" secondItem="dE0-0Z-MJA" secondAttribute="leading" constant="24" id="ej0-hK-oBC"/>
@@ -343,8 +356,9 @@
                         <outlet property="searchButton" destination="YcU-gF-ZIL" id="eZQ-C6-HxE"/>
                         <outlet property="searchButtonBottomAnchor" destination="ZYa-kU-Kci" id="YPi-7a-5nn"/>
                         <outlet property="searchHistoryTableView" destination="Bwu-qh-sI5" id="HRZ-dh-KWP"/>
-                        <outlet property="searchHistoryTableViewBottomAnchor" destination="hbh-SW-2la" id="rYW-XS-X2C"/>
+                        <outlet property="searchHistoryTableViewBottomAnchor" destination="hbh-SW-2la" id="Xk9-4A-nKP"/>
                         <outlet property="searchHistoryTableViewHeader" destination="Vgj-fj-CyI" id="25o-0Y-8eh"/>
+                        <outlet property="searchHistoryTableViewShadowView" destination="Fil-pz-fOO" id="bSP-ee-TQF"/>
                         <outlet property="searchHistoryTableViewTitleLabel" destination="OgI-N9-XpQ" id="nbl-Cb-pbi"/>
                         <outlet property="textFieldSearchActionView" destination="IXe-Rm-g37" id="02M-Up-52Z"/>
                         <outlet property="textFieldSearchActionViewTitleLabel" destination="IXe-Rm-g37" id="Jnh-Pp-Fg4"/>
@@ -496,11 +510,12 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aFU-Dt-bzV">
                                 <rect key="frame" x="20" y="171" width="374" height="689"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6j8-3e-ncb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="cd-background"/>
                         <constraints>
                             <constraint firstItem="aFU-Dt-bzV" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="D5e-rH-HC9"/>
                             <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="aFU-Dt-bzV" secondAttribute="trailing" constant="20" id="K4o-o4-cJ8"/>
@@ -556,7 +571,7 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="161.5" height="21.5"/>
+            <size key="intrinsicContentSize" width="185.5" height="37.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
@@ -572,6 +587,9 @@
         <image name="gear.circle.fill" catalog="system" width="128" height="121"/>
         <image name="keyboard.fill" catalog="system" width="128" height="79"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="cd-accent-dark">
+            <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="cd-accent-light">
             <color red="0.47843137254901963" green="0.58823529411764708" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
