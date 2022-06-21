@@ -98,7 +98,7 @@ final class VisionViewController: CDViewController {
     //vision detections that match plate rules get added to this array. when array contains enough samples, use the most frequent sample. if no frequent, use the longest sample.
     private var potentialPlateNumbers: [String] = []
     
-    private var licensePlateSampleThreshold: Int = 15
+    private var licensePlateSampleThreshold: Int = Def.main.visionAlgorithmType().sampleThreshold()
     
     //MARK: - Life Cycle
     

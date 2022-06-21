@@ -13,9 +13,16 @@ class PreferencesViewController: CDTableViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     
     @IBOutlet var cells: [UITableViewCell]!
+    @IBOutlet weak var visionAlgorithmTypeLabel: UILabel!
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        visionAlgorithmTypeLabel.text = Def.main.visionAlgorithmType().title()
     }
     
     //MARK: - UI Methods
@@ -74,7 +81,26 @@ class PreferencesViewController: CDTableViewController {
     //MARK: - TableView Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(tableView.cellForRow(at: indexPath)?.textLabel?.text)
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToPriorityData, sender: self)
+            case 1:
+                performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToFilteredData, sender: self)
+            default:
+                return
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                performSegue(withIdentifier: K.segues.PreferenceStoryboard.pregerencesToVisionAlgorithm, sender: self)
+            default:
+                return
+            }
+        default:
+            return
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

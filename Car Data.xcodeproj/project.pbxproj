@@ -34,6 +34,9 @@
 		BC4792492859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */; };
 		BC47924B285B100B00EF79E9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924A285B100B00EF79E9 /* RealmManager.swift */; };
 		BC47924D285B113800EF79E9 /* RealmSelectedParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */; };
+		BC4A348A2861BC1C005A32D6 /* VisionAlgorithmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A34892861BC1C005A32D6 /* VisionAlgorithmViewController.swift */; };
+		BC4A348C28620AFF005A32D6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A348B28620AFF005A32D6 /* UserDefaultsManager.swift */; };
+		BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A348D28620CA6005A32D6 /* VisionAlgorithmType.swift */; };
 		BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */; };
 		BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */; };
 		BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A46B2848985000D88267 /* LicensePlateManager.swift */; };
@@ -150,6 +153,9 @@
 		BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPreferenceTableViewCell.swift; sourceTree = "<group>"; };
 		BC47924A285B100B00EF79E9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSelectedParameter.swift; sourceTree = "<group>"; };
+		BC4A34892861BC1C005A32D6 /* VisionAlgorithmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAlgorithmViewController.swift; sourceTree = "<group>"; };
+		BC4A348B28620AFF005A32D6 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		BC4A348D28620CA6005A32D6 /* VisionAlgorithmType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAlgorithmType.swift; sourceTree = "<group>"; };
 		BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC50A46B2848985000D88267 /* LicensePlateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePlateManager.swift; sourceTree = "<group>"; };
@@ -275,6 +281,15 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		BC4A348F286218A0005A32D6 /* Algorithm Type */ = {
+			isa = PBXGroup;
+			children = (
+				BC4A348D28620CA6005A32D6 /* VisionAlgorithmType.swift */,
+				BC4A34892861BC1C005A32D6 /* VisionAlgorithmViewController.swift */,
+			);
+			path = "Algorithm Type";
+			sourceTree = "<group>";
+		};
 		BC50A46A2848982900D88267 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +297,7 @@
 				66CA4DD5284CCFEF00D2C21A /* CarDataManager.swift */,
 				66CA4DD7284CD24E00D2C21A /* CDURLManager.swift */,
 				BC47924A285B100B00EF79E9 /* RealmManager.swift */,
+				BC4A348B28620AFF005A32D6 /* UserDefaultsManager.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -487,6 +503,7 @@
 				BCFD17472858BD7C000EAFCE /* Preferences.storyboard */,
 				BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */,
 				66BA05A8285A567F00DA8DCA /* Parameter Selection */,
+				BC4A348F286218A0005A32D6 /* Algorithm Type */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -660,6 +677,7 @@
 				66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */,
 				BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */,
 				BCFD173C28536556000EAFCE /* UIViewController+PDF.swift in Sources */,
+				BC4A348C28620AFF005A32D6 /* UserDefaultsManager.swift in Sources */,
 				BCB4432F2850844C00792E66 /* VisionViewController.swift in Sources */,
 				BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */,
 				66BA05A6285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift in Sources */,
@@ -667,11 +685,13 @@
 				66CA4DD6284CCFEF00D2C21A /* CarDataManager.swift in Sources */,
 				BCF32813284AC5E0003A5162 /* CDParameter.swift in Sources */,
 				6600E17C284E468700351CAF /* UIView+Extensions.swift in Sources */,
+				BC4A348A2861BC1C005A32D6 /* VisionAlgorithmViewController.swift in Sources */,
 				BC47924B285B100B00EF79E9 /* RealmManager.swift in Sources */,
 				BCFD17452858BCB5000EAFCE /* PreferencesViewController.swift in Sources */,
 				BC8BE3F12847AB95002838AA /* UIView+Fade.swift in Sources */,
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
 				66E93ADD285901D700876464 /* CDTableViewController.swift in Sources */,
+				BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */,
 				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,
 				66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */,
 				BC47924D285B113800EF79E9 /* RealmSelectedParameter.swift in Sources */,

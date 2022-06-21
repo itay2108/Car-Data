@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -313,6 +314,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="headerStackView" destination="TzV-gi-C5R" id="owu-pB-hkb"/>
+                        <outlet property="visionAlgorithmTypeLabel" destination="rrj-ew-ExW" id="Wz3-uG-no9"/>
                         <outletCollection property="cells" destination="Ffh-b5-wpc" collectionClass="NSMutableArray" id="3vr-HK-yhx"/>
                         <outletCollection property="cells" destination="DDr-Lo-n6U" collectionClass="NSMutableArray" id="Uez-ag-RgW"/>
                         <outletCollection property="cells" destination="nph-KV-zZG" collectionClass="NSMutableArray" id="Tc1-cc-erY"/>
@@ -320,18 +322,19 @@
                         <outletCollection property="cells" destination="gH3-SR-08V" collectionClass="NSMutableArray" id="Q2Z-1p-Qs5"/>
                         <outletCollection property="cells" destination="u3T-p9-SpU" collectionClass="NSMutableArray" id="csW-xu-lcs"/>
                         <outletCollection property="cells" destination="AuG-zc-wq7" collectionClass="NSMutableArray" id="2ul-FZ-wo0"/>
-                        <segue destination="gSn-xZ-NMS" kind="show" id="2He-2V-jel"/>
-                        <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToParameterSelection" id="cCf-hB-YNc"/>
+                        <segue destination="gSn-xZ-NMS" kind="show" identifier="pregerencesToVisionAlgorithm" id="2He-2V-jel"/>
+                        <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToPriorityData" id="cCf-hB-YNc"/>
+                        <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToFilteredData" id="qzG-Ov-G5u"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBA-pE-r3o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1235" y="98"/>
         </scene>
-        <!--View Controller-->
+        <!--Vision Algorithm View Controller-->
         <scene sceneID="KWD-0v-cHS">
             <objects>
-                <viewController id="gSn-xZ-NMS" sceneMemberID="viewController">
+                <viewController id="gSn-xZ-NMS" customClass="VisionAlgorithmViewController" customModule="Car_Data" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xSr-OC-nlr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,22 +342,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14x-YQ-WF9">
                                 <rect key="frame" x="29.5" y="44" width="364.5" height="54"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6X-Zb-RUf">
-                                        <rect key="frame" x="0.0" y="0.0" width="108" height="54"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="n6X-Zb-RUf" secondAttribute="height" multiplier="2:1" id="fCZ-MI-kf3"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="איפוס">
-                                            <fontDescription key="titleFontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
-                                            <color key="baseForegroundColor" name="cd-accent-light"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="resetButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="BWS-Ck-3ce"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="אלגוריתם זיהוי" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-Jx-rbd">
-                                        <rect key="frame" x="108" y="0.0" width="229.5" height="54"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="337.5" height="54"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <nil key="highlightedColor"/>
@@ -378,6 +367,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="headerBackButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="8PW-GX-xez"/>
+                                            <action selector="headerBackButtonPressed:" destination="gSn-xZ-NMS" eventType="touchUpInside" id="ATU-G3-PrB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -385,39 +375,125 @@
                                     <constraint firstAttribute="height" constant="54" id="tSO-cw-Tki"/>
                                 </constraints>
                             </stackView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K72-KY-MAG">
-                                <rect key="frame" x="24" y="106" width="366" height="72"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K72-KY-MAG">
+                                <rect key="frame" x="28" y="118" width="358" height="84"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="ttZ-gZ-d08"/>
+                                    <constraint firstAttribute="height" constant="84" id="ttZ-gZ-d08"/>
                                 </constraints>
-                                <string key="text">קאר דאטה פותחה תוך המון מחשבה ובמטרה ליצור תהליך זיהוי מספר פשוט ומדוייק שמאזן בין מהירות לדיוק. לנוחיותך ניתנת האפשרות לשינוי תהליך הזיהוי במצלמה ליותר מהיר או יותר נוח.</string>
+                                <string key="text">קאר דאטה פותחה תוך מחשבה רבה ובמטרה ליצור תהליך זיהוי רכב פשוט שמאזן בין מהירות לדיוק. לנוחיותך ניתנת האפשרות לשינוי שיטת הזיהוי במצלמה ליותר מהירה  יותר נוחה</string>
                                 <color key="textColor" name="cd-text-light"/>
-                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="P18-Ao-U8D">
-                                <rect key="frame" x="30" y="214" width="354" height="31"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdA-ma-sVh">
+                                <rect key="frame" x="20" y="240" width="374" height="117"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="L0m-cf-ItG">
+                                <rect key="frame" x="200" y="272.5" width="14" height="13"/>
                                 <color key="tintColor" name="cd-accent-light"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="L0m-cf-ItG" secondAttribute="height" multiplier="1:1" id="cpV-CN-25i"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Znb-4R-cUh">
+                                <rect key="frame" x="44" y="273.5" width="12.5" height="11"/>
+                                <color key="tintColor" name="cd-accent-light"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Znb-4R-cUh" secondAttribute="height" multiplier="1:1" id="CJG-nU-a1U"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5U8-HQ-Jm3">
+                                <rect key="frame" x="357.5" y="273.5" width="12.5" height="11"/>
+                                <color key="tintColor" name="cd-accent-light"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5U8-HQ-Jm3" secondAttribute="height" multiplier="1:1" id="6nN-SA-klU"/>
+                                </constraints>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P18-Ao-U8D">
+                                <rect key="frame" x="42" y="264" width="330" height="29"/>
+                                <color key="tintColor" name="cd-accent-light"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="LB0-H5-9UM"/>
+                                </constraints>
                                 <color key="minimumTrackTintColor" name="cd-accent-light"/>
                                 <color key="maximumTrackTintColor" name="cd-accent-light"/>
+                                <connections>
+                                    <action selector="sliderDidChangeValue:" destination="gSn-xZ-NMS" eventType="valueChanged" id="AFS-v7-eYr"/>
+                                </connections>
                             </slider>
+                            <stackView opaque="NO" alpha="0.75" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lPn-HO-1zt">
+                                <rect key="frame" x="44" y="316" width="326" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מדויק" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Zy-Iu-AIo">
+                                        <rect key="frame" x="0.0" y="0.0" width="32.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                        <color key="textColor" name="cd-text-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="סטנדרטי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co0-Wj-34n">
+                                        <rect key="frame" x="139" y="0.0" width="50.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                        <color key="textColor" name="cd-text-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מהיר" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyW-6P-f1w">
+                                        <rect key="frame" x="297.5" y="0.0" width="28.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                        <color key="textColor" name="cd-text-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FkK-YS-EuI">
+                                <rect key="frame" x="204" y="210.5" width="6" height="5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="cd-accent-light"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="C4J-OH-G1h"/>
+                                    <constraint firstAttribute="width" secondItem="FkK-YS-EuI" secondAttribute="height" id="EGl-Vi-uCL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kwo-6K-KHv"/>
                         <color key="backgroundColor" name="cd-background"/>
                         <constraints>
-                            <constraint firstItem="K72-KY-MAG" firstAttribute="top" secondItem="14x-YQ-WF9" secondAttribute="bottom" constant="8" id="4Uf-CJ-7Bz"/>
+                            <constraint firstItem="lPn-HO-1zt" firstAttribute="centerX" secondItem="xSr-OC-nlr" secondAttribute="centerX" id="0NE-K4-Z0k"/>
+                            <constraint firstItem="rdA-ma-sVh" firstAttribute="bottom" secondItem="lPn-HO-1zt" secondAttribute="bottom" constant="24" id="1Lh-vm-Iht"/>
+                            <constraint firstItem="K72-KY-MAG" firstAttribute="top" secondItem="14x-YQ-WF9" secondAttribute="bottom" constant="20" id="4Uf-CJ-7Bz"/>
+                            <constraint firstItem="rdA-ma-sVh" firstAttribute="leading" secondItem="Kwo-6K-KHv" secondAttribute="leading" constant="20" id="4vq-A9-zqI"/>
+                            <constraint firstItem="FkK-YS-EuI" firstAttribute="top" secondItem="K72-KY-MAG" secondAttribute="bottom" constant="8" id="5uH-YJ-Qg6"/>
+                            <constraint firstItem="lPn-HO-1zt" firstAttribute="width" secondItem="P18-Ao-U8D" secondAttribute="width" id="978-hR-dmf"/>
                             <constraint firstItem="14x-YQ-WF9" firstAttribute="width" secondItem="xSr-OC-nlr" secondAttribute="width" multiplier="0.88" id="CZJ-lg-BWl"/>
+                            <constraint firstItem="5U8-HQ-Jm3" firstAttribute="centerY" secondItem="P18-Ao-U8D" secondAttribute="centerY" constant="1" id="Onv-jO-3J4"/>
+                            <constraint firstItem="5U8-HQ-Jm3" firstAttribute="height" secondItem="L0m-cf-ItG" secondAttribute="height" multiplier="0.88" id="SGs-FW-sUb"/>
                             <constraint firstItem="K72-KY-MAG" firstAttribute="centerX" secondItem="xSr-OC-nlr" secondAttribute="centerX" id="TGa-3M-32j"/>
                             <constraint firstItem="Kwo-6K-KHv" firstAttribute="top" secondItem="14x-YQ-WF9" secondAttribute="top" id="TUm-md-RwS"/>
                             <constraint firstAttribute="trailing" secondItem="14x-YQ-WF9" secondAttribute="trailing" constant="20" id="UVN-ot-v6I"/>
+                            <constraint firstItem="rdA-ma-sVh" firstAttribute="top" secondItem="P18-Ao-U8D" secondAttribute="top" constant="-24" id="YF4-hB-PGd"/>
+                            <constraint firstItem="lPn-HO-1zt" firstAttribute="top" secondItem="P18-Ao-U8D" secondAttribute="bottom" constant="24" id="Yy8-e5-SOe"/>
+                            <constraint firstItem="Znb-4R-cUh" firstAttribute="centerY" secondItem="P18-Ao-U8D" secondAttribute="centerY" constant="1" id="afd-t9-JbQ"/>
                             <constraint firstItem="P18-Ao-U8D" firstAttribute="centerX" secondItem="xSr-OC-nlr" secondAttribute="centerX" id="bLH-O5-wuN"/>
-                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="trailing" secondItem="P18-Ao-U8D" secondAttribute="trailing" constant="32" id="c65-UY-x9g"/>
-                            <constraint firstItem="P18-Ao-U8D" firstAttribute="top" secondItem="K72-KY-MAG" secondAttribute="bottom" constant="36" id="rlr-SH-qoQ"/>
-                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="trailing" secondItem="K72-KY-MAG" secondAttribute="trailing" constant="24" id="tRj-yX-8hM"/>
+                            <constraint firstItem="rdA-ma-sVh" firstAttribute="trailing" secondItem="P18-Ao-U8D" secondAttribute="trailing" constant="24" id="c65-UY-x9g"/>
+                            <constraint firstItem="5U8-HQ-Jm3" firstAttribute="trailing" secondItem="P18-Ao-U8D" secondAttribute="trailing" id="dy9-wb-KPc"/>
+                            <constraint firstItem="rdA-ma-sVh" firstAttribute="centerX" secondItem="Kwo-6K-KHv" secondAttribute="centerX" id="jMT-DK-UMq"/>
+                            <constraint firstItem="Znb-4R-cUh" firstAttribute="leading" secondItem="P18-Ao-U8D" secondAttribute="leading" id="puA-TW-IsY"/>
+                            <constraint firstItem="FkK-YS-EuI" firstAttribute="centerX" secondItem="Kwo-6K-KHv" secondAttribute="centerX" id="rPj-OG-wwG"/>
+                            <constraint firstItem="P18-Ao-U8D" firstAttribute="top" secondItem="FkK-YS-EuI" secondAttribute="bottom" constant="48" id="rlr-SH-qoQ"/>
+                            <constraint firstItem="L0m-cf-ItG" firstAttribute="height" secondItem="P18-Ao-U8D" secondAttribute="height" multiplier="0.5" id="s67-2a-sfG"/>
+                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="trailing" secondItem="K72-KY-MAG" secondAttribute="trailing" constant="28" id="tRj-yX-8hM"/>
+                            <constraint firstItem="L0m-cf-ItG" firstAttribute="centerX" secondItem="P18-Ao-U8D" secondAttribute="centerX" id="yZ2-hP-baj"/>
+                            <constraint firstItem="L0m-cf-ItG" firstAttribute="centerY" secondItem="P18-Ao-U8D" secondAttribute="centerY" constant="1" id="yrp-fX-0II"/>
+                            <constraint firstItem="Znb-4R-cUh" firstAttribute="height" secondItem="L0m-cf-ItG" secondAttribute="height" multiplier="0.88" id="zDA-nT-Lc1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Agf-J6-UcK"/>
+                    <connections>
+                        <outlet property="headerStackView" destination="14x-YQ-WF9" id="VGr-Xn-W8F"/>
+                        <outlet property="slider" destination="P18-Ao-U8D" id="hMs-He-whO"/>
+                        <outlet property="sliderCard" destination="rdA-ma-sVh" id="hWT-WD-WtL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Tr-AH-0iA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -521,8 +597,12 @@
             <point key="canvasLocation" x="2173.913043478261" y="-300"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qzG-Ov-G5u"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="cd-accent-dark">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -547,5 +627,8 @@
         <namedColor name="cd-yellow">
             <color red="0.92199999094009399" green="0.76499998569488525" blue="0.067000001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
