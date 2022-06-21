@@ -283,6 +283,7 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(with: source)
+        cell.delegate = self
         
         return cell
         
@@ -321,4 +322,21 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension DataViewController: DataSectionTableViewCellDelegate {
+  
+    func didLongPress(parameterCellOf type: CDParameter) {
+        
+        if let messageSuffix = type.asCopyMessage(),
+            let plateNumber = licensePlateNumber {
+            let prefix = "בדקתי בקאר דאטה על רכב מספר \(plateNumber), וכתוב ש"
+            
+            UIPasteboard.general.string = prefix + messageSuffix
+            
+            toast(message: "הערך הועתק בהצלחה", feedbackType: .rigid, timeoutStyle: .fast)
+        }
+    }
+    
+
 }

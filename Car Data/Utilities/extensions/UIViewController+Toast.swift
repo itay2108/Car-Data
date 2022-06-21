@@ -12,17 +12,34 @@ extension UIViewController {
     enum ToastFeedbackType {
         case normal
         case warning
+        case rigid
+        case success
+    }
+    
+    enum ToastTimeoutStyle {
+        case fast
+        case normal
     }
     
     var isPresentingToast: Bool {
         return view.subviews.contains(where: { $0.heroID == "toast" })
     }
     
-    func toast(message: String, feedbackType: ToastFeedbackType = .normal) {
+    func toast(message: String, feedbackType: ToastFeedbackType = .normal, timeoutStyle: ToastTimeoutStyle = .normal) {
         
         guard !isPresentingToast else {
             
-            feedbackType == .normal ? UIImpactFeedbackGenerator(style: .soft).impactOccurred() : UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            switch feedbackType {
+            case .normal:
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+            case .warning:
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            case .rigid:
+                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+            case .success:
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
+
             return
         }
         
@@ -71,7 +88,16 @@ extension UIViewController {
             toastContainer.alpha = 1
         } completion: { finish in
             
-            feedbackType == .normal ? UIImpactFeedbackGenerator(style: .soft).impactOccurred() : UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            switch feedbackType {
+            case .normal:
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+            case .warning:
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            case .rigid:
+                UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+            case .success:
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            }
         }
         
         UIView.animate(withDuration: 0.3) { [weak self] in
@@ -80,7 +106,7 @@ extension UIViewController {
             toastContainer.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - (36 * self.heightModifier) - self.view.safeAreaInsets.bottom)
             
         } completion: { finish in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + (timeoutStyle == .fast ? 0.6 : 3)) {
                 toastContainer.fadeOut() { _ in
                     toastContainer.removeFromSuperview()
                 }

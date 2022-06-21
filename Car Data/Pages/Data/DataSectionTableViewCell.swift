@@ -7,6 +7,16 @@
 
 import UIKit
 
+protocol DataSectionTableViewCellDelegate {
+    func didLongPress(parameterCellOf type: CDParameter)
+    func didLongPress(parameterCellWith value: Any?)
+}
+
+extension DataSectionTableViewCellDelegate {
+    func didLongPress(parameterCellOf type: CDParameter) { }
+    func didLongPress(parameterCellWith value: Any?) { }
+}
+
 class DataSectionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mainContainer: UIView!
@@ -16,11 +26,14 @@ class DataSectionTableViewCell: UITableViewCell {
     @IBOutlet weak var parameterTableView: UITableView!
     
     @IBOutlet weak var separatorView: UIView!
+    
     var parameters: [CDParameter]? {
         didSet {
             parameterTableView.reloadData()
         }
     }
+    
+    var delegate: DataSectionTableViewCellDelegate?
     
     func configure(with section: CDParameterSection) {
 
@@ -48,6 +61,24 @@ class DataSectionTableViewCell: UITableViewCell {
         parameterTableView.delegate = self
         
         parameterTableView.separatorStyle = .none
+        
+        let longPressGR:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(tableViewDidLongPress(_:)))
+        longPressGR.minimumPressDuration = 0.4
+        
+        parameterTableView.addGestureRecognizer(longPressGR)
+    }
+    
+    @objc func tableViewDidLongPress(_ gestureRecognizer: UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .began {
+            let touchPoint = gestureRecognizer.location(in: parameterTableView)
+            
+            if let indexPath = parameterTableView.indexPathForRow(at: touchPoint),
+               let cell = parameterTableView.cellForRow(at: indexPath) as? CDParameterTableViewCell,
+               let parameter = cell.parameter {
+                
+                delegate?.didLongPress(parameterCellOf: parameter)
+            }
+        }
     }
     
 }

@@ -17,7 +17,11 @@ class CDParameterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var booleanIndicator: UIImageView!
     
+    var parameter: CDParameter?
+    
     func configure(with parameter: CDParameter?) {
+        
+        self.parameter = parameter
         
         mainContainer.layer.cornerRadius = 13
         mainContainer.layer.masksToBounds = true

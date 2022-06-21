@@ -44,7 +44,7 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
     case model = "דגם"
     
     
-
+    
     case manufacturerCountry = "ארץ יצור"
     case registrationGroup = "קבוצת אגרה"
     case displacement = "נפח מנוע"
@@ -75,22 +75,22 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
     case wheelDriveTechnologyCode = "קוד טכנולוגיית הנעה"
     case wheelDriveTechnology = "טכנולוגיית הנעה"
     
-//        case kamutCO2 = "kamut_CO2"
-//        case kamutNOX = "kamut_NOX"
-//        case kamutPM10 = "kamut_PM10"
-//        case kamutHC = "kamut_HC"
-//        case kamutHCNOX = "kamut_HC_NOX"
-//        case kamutCO = "kamut_CO"
-//        case kamutCO2City = "kamut_CO2_city"
-//        case kamutNOXCity = "kamut_NOX_city"
-//        case kamutPM10City = "kamut_PM10_city"
-//        case kamutHCCity = "kamut_HC_city"
-//        case kamutCOCity = "kamut_CO_city"
-//        case kamutCO2Hway = "kamut_CO2_hway"
-//        case kamutNOXHway = "kamut_NOX_hway"
-//        case kamutPM10Hway = "kamut_PM10_hway"
-//        case kamutHCHway = "kamut_HC_hway"
-//        case kamutCOHway = "kamut_CO_hway"
+    //        case kamutCO2 = "kamut_CO2"
+    //        case kamutNOX = "kamut_NOX"
+    //        case kamutPM10 = "kamut_PM10"
+    //        case kamutHC = "kamut_HC"
+    //        case kamutHCNOX = "kamut_HC_NOX"
+    //        case kamutCO = "kamut_CO"
+    //        case kamutCO2City = "kamut_CO2_city"
+    //        case kamutNOXCity = "kamut_NOX_city"
+    //        case kamutPM10City = "kamut_PM10_city"
+    //        case kamutHCCity = "kamut_HC_city"
+    //        case kamutCOCity = "kamut_CO_city"
+    //        case kamutCO2Hway = "kamut_CO2_hway"
+    //        case kamutNOXHway = "kamut_NOX_hway"
+    //        case kamutPM10Hway = "kamut_PM10_hway"
+    //        case kamutHCHway = "kamut_HC_hway"
+    //        case kamutCOHway = "kamut_CO_hway"
     
     case madadYarok = "מדד ירוק"
     case laneKeepAssist = "בקרת סטייה מנתיב"
@@ -153,4 +153,71 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
         return RealmManager.fetch(recordsOfType: RealmSelectedParameter.self).filter( { $0.target == .filter }).contains(where:  { $0.parameter == self })
     }
     
+}
+
+extension CDParameter {
+    func asCopyMessage() -> String? {
+        guard let value = self.value else {
+            return nil
+        }
+        
+        if value is Bool,
+           let value = value as? Bool {
+            let prefix = value ? "יש" : "אין"
+            
+            return prefix + " לו " + (self.type == .isAutomatic ? "גיר " + self.type.rawValue : self.type.rawValue)
+        } else {
+            
+            var base = self.type.rawValue
+            
+            base = base.components(separatedBy: "(").first ?? base
+            
+            base = base.trimming(character: " ", from: .beginning).trimming(character: " ", from: .ending)
+            
+            if !base.containsWhitespace {
+                base = "ה" + base
+                
+                var link: String = "הוא"
+                
+                if base.last == "ה" || base.last == "ת" {
+                    link = "היא"
+                }
+                
+                base += " " + link + " "
+                let suffix = String(describing: value)
+                
+                return base + " " + suffix
+                
+            } else {
+                let words = base.components(separatedBy: " ")
+                
+                var link: String = "הוא"
+                var messagePrefix = ""
+                
+                if let firstWord = words.first,
+                   firstWord.last == "ה" || firstWord.last == "ת" {
+                    link = "היא"
+                }
+                
+                for (index, word) in words.enumerated() {
+                    
+                    if index >= 1 && words.count < 4 && word.first != "ל" {
+                        messagePrefix += "ה"
+                    }
+                    
+                    messagePrefix += (word + " ")
+                    
+                    if index == words.count - 1 {
+                        messagePrefix += (link + " ")
+                    }
+                    
+                }
+                
+                let suffix = String(describing: value)
+                
+                return messagePrefix + " " + suffix
+                
+            }
+        }
+    }
 }

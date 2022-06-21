@@ -45,6 +45,10 @@ public extension String {
         return self
     }
 
+    var containsWhitespace : Bool {
+        return(self.rangeOfCharacter(from: .whitespacesAndNewlines) != nil)
+    }
+
     //MARK: - Pattern Matching
     
         func match(_ regex: String) -> [[String]] {
