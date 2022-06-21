@@ -104,9 +104,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-text-dark"/>
-                                        <connections>
-                                            <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToPriorityData" id="IzW-3W-98W"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ilR-EE-99x" detailTextLabel="ii9-tN-AVb" style="IBUITableViewCellStyleValue1" id="DDr-Lo-n6U">
                                         <rect key="frame" x="20" y="147" width="374" height="43.5"/>
@@ -134,9 +131,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-accent-light"/>
-                                        <connections>
-                                            <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToFilteredData" id="LMj-kA-xiN"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -326,11 +320,108 @@
                         <outletCollection property="cells" destination="gH3-SR-08V" collectionClass="NSMutableArray" id="Q2Z-1p-Qs5"/>
                         <outletCollection property="cells" destination="u3T-p9-SpU" collectionClass="NSMutableArray" id="csW-xu-lcs"/>
                         <outletCollection property="cells" destination="AuG-zc-wq7" collectionClass="NSMutableArray" id="2ul-FZ-wo0"/>
+                        <segue destination="gSn-xZ-NMS" kind="show" id="2He-2V-jel"/>
+                        <segue destination="WF0-Ww-2Kp" kind="show" identifier="preferencesToParameterSelection" id="cCf-hB-YNc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBA-pE-r3o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1235" y="98"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="KWD-0v-cHS">
+            <objects>
+                <viewController id="gSn-xZ-NMS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xSr-OC-nlr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14x-YQ-WF9">
+                                <rect key="frame" x="29.5" y="44" width="364.5" height="54"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6X-Zb-RUf">
+                                        <rect key="frame" x="0.0" y="0.0" width="108" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="n6X-Zb-RUf" secondAttribute="height" multiplier="2:1" id="fCZ-MI-kf3"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="איפוס">
+                                            <fontDescription key="titleFontDescription" name="Rubik-Regular" family="Rubik" pointSize="17"/>
+                                            <color key="baseForegroundColor" name="cd-accent-light"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="BWS-Ck-3ce"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="אלגוריתם זיהוי" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-Jx-rbd">
+                                        <rect key="frame" x="108" y="0.0" width="229.5" height="54"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="20"/>
+                                        <color key="textColor" name="cd-text-dark"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="headerTitle"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-ii-JzW">
+                                        <rect key="frame" x="337.5" y="0.0" width="27" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="v9v-ii-JzW" secondAttribute="height" multiplier="1:2" id="slp-mh-b2w"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="semibold"/>
+                                            <color key="baseForegroundColor" name="cd-accent-dark"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="backButton"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="headerBackButtonPressed:" destination="WF0-Ww-2Kp" eventType="touchUpInside" id="8PW-GX-xez"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="tSO-cw-Tki"/>
+                                </constraints>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K72-KY-MAG">
+                                <rect key="frame" x="24" y="106" width="366" height="72"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="ttZ-gZ-d08"/>
+                                </constraints>
+                                <string key="text">קאר דאטה פותחה תוך המון מחשבה ובמטרה ליצור תהליך זיהוי מספר פשוט ומדוייק שמאזן בין מהירות לדיוק. לנוחיותך ניתנת האפשרות לשינוי תהליך הזיהוי במצלמה ליותר מהיר או יותר נוח.</string>
+                                <color key="textColor" name="cd-text-light"/>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="P18-Ao-U8D">
+                                <rect key="frame" x="30" y="214" width="354" height="31"/>
+                                <color key="tintColor" name="cd-accent-light"/>
+                                <color key="minimumTrackTintColor" name="cd-accent-light"/>
+                                <color key="maximumTrackTintColor" name="cd-accent-light"/>
+                            </slider>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Kwo-6K-KHv"/>
+                        <color key="backgroundColor" name="cd-background"/>
+                        <constraints>
+                            <constraint firstItem="K72-KY-MAG" firstAttribute="top" secondItem="14x-YQ-WF9" secondAttribute="bottom" constant="8" id="4Uf-CJ-7Bz"/>
+                            <constraint firstItem="14x-YQ-WF9" firstAttribute="width" secondItem="xSr-OC-nlr" secondAttribute="width" multiplier="0.88" id="CZJ-lg-BWl"/>
+                            <constraint firstItem="K72-KY-MAG" firstAttribute="centerX" secondItem="xSr-OC-nlr" secondAttribute="centerX" id="TGa-3M-32j"/>
+                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="top" secondItem="14x-YQ-WF9" secondAttribute="top" id="TUm-md-RwS"/>
+                            <constraint firstAttribute="trailing" secondItem="14x-YQ-WF9" secondAttribute="trailing" constant="20" id="UVN-ot-v6I"/>
+                            <constraint firstItem="P18-Ao-U8D" firstAttribute="centerX" secondItem="xSr-OC-nlr" secondAttribute="centerX" id="bLH-O5-wuN"/>
+                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="trailing" secondItem="P18-Ao-U8D" secondAttribute="trailing" constant="32" id="c65-UY-x9g"/>
+                            <constraint firstItem="P18-Ao-U8D" firstAttribute="top" secondItem="K72-KY-MAG" secondAttribute="bottom" constant="36" id="rlr-SH-qoQ"/>
+                            <constraint firstItem="Kwo-6K-KHv" firstAttribute="trailing" secondItem="K72-KY-MAG" secondAttribute="trailing" constant="24" id="tRj-yX-8hM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Agf-J6-UcK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Tr-AH-0iA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2173.913043478261" y="371.65178571428572"/>
         </scene>
         <!--Parameter Selection Table View Controller-->
         <scene sceneID="1fh-QR-4Tc">
@@ -430,9 +521,6 @@
             <point key="canvasLocation" x="2173.913043478261" y="-300"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="LMj-kA-xiN"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <namedColor name="cd-accent-dark">
