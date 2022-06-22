@@ -34,10 +34,11 @@ public extension String {
     }
     
     func trimming(character: Character, from location: StringLocation) -> String {
+        
         if location == .beginning, self.first == character {
             
             return String(self.suffix(self.count - 1))
-        } else if location == .ending, self.first == character {
+        } else if location == .ending, self.last == character {
             
             return String(self.prefix(self.count - 1))
         }

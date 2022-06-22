@@ -330,12 +330,18 @@ extension DataViewController: DataSectionTableViewCellDelegate {
         
         if let messageSuffix = type.asCopyMessage(),
             let plateNumber = licensePlateNumber {
-            let prefix = "בדקתי בקאר דאטה על רכב מספר \(plateNumber), וכתוב ש"
+            let prefix = "בדקתי בקאר דאטה על רכב מספר \(plateNumber), ו"
             
             UIPasteboard.general.string = prefix + messageSuffix
             
-            toast(message: "הערך הועתק בהצלחה", feedbackType: .rigid, timeoutStyle: .fast)
+            toast(message: "הערך הועתק בהצלחה", feedbackType: .success, timeoutStyle: .fast)
         }
+    }
+    
+    func didLongPress(parameterCellWith value: String) {
+        UIPasteboard.general.string = value
+        
+        toast(message: "הערך הועתק בהצלחה", feedbackType: .rigid, timeoutStyle: .fast)
     }
     
 

@@ -172,7 +172,7 @@ extension CDParameter {
             
             base = base.components(separatedBy: "(").first ?? base
             
-            base = base.trimming(character: " ", from: .beginning).trimming(character: " ", from: .ending)
+            base = base.trimming(character: " ", from: .ending)
             
             if !base.containsWhitespace {
                 base = "ה" + base
@@ -195,13 +195,17 @@ extension CDParameter {
                 var messagePrefix = ""
                 
                 if let firstWord = words.first,
-                   firstWord.last == "ה" || firstWord.last == "ת" {
+                   firstWord.last == "ה" || firstWord.last == "ת" || firstWord == "ארץ" {
                     link = "היא"
                 }
                 
                 for (index, word) in words.enumerated() {
                     
-                    if index >= 1 && words.count < 4 && word.first != "ל" {
+                    if index == 0 && (type == .curbWeight || type == .rearTireSize || type == .frontTireSize || type == .numberOfIdenticalVehicles) {
+                        messagePrefix += "ה"
+                    }
+                    
+                    if index >= 1 && words.count < 4 && word.first != "ל"{
                         messagePrefix += "ה"
                     }
                     
@@ -215,7 +219,7 @@ extension CDParameter {
                 
                 let suffix = String(describing: value)
                 
-                return messagePrefix + " " + suffix
+                return messagePrefix + suffix
                 
             }
         }

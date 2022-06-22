@@ -9,12 +9,12 @@ import UIKit
 
 protocol DataSectionTableViewCellDelegate {
     func didLongPress(parameterCellOf type: CDParameter)
-    func didLongPress(parameterCellWith value: Any?)
+    func didLongPress(parameterCellWith value: String)
 }
 
 extension DataSectionTableViewCellDelegate {
     func didLongPress(parameterCellOf type: CDParameter) { }
-    func didLongPress(parameterCellWith value: Any?) { }
+    func didLongPress(parameterCellWith value: String) { }
 }
 
 class DataSectionTableViewCell: UITableViewCell {
@@ -75,8 +75,15 @@ class DataSectionTableViewCell: UITableViewCell {
             if let indexPath = parameterTableView.indexPathForRow(at: touchPoint),
                let cell = parameterTableView.cellForRow(at: indexPath) as? CDParameterTableViewCell,
                let parameter = cell.parameter {
+                let cellTouchPointX = gestureRecognizer.location(in: cell).x
                 
-                delegate?.didLongPress(parameterCellOf: parameter)
+                if cellTouchPointX < cell.parameterValueLabel.frame.maxX + 32,
+                    let text = cell.parameterValueLabel.text {
+
+                    delegate?.didLongPress(parameterCellWith: text)
+                } else {
+                    delegate?.didLongPress(parameterCellOf: parameter)
+                }
             }
         }
     }
