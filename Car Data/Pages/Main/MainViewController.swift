@@ -48,6 +48,10 @@ final class MainViewController: CDViewController {
     private var isPresentingLicensePlate: Bool = false
     var shouldStopPresentingLicensePlate: Bool = false
     
+    var recentDataRecords: [DataRecord] {
+        return RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).suffix(5)
+    }
+    
     //MARK: - Programmatic views
     
     private lazy var focusView: UIView = {
@@ -515,6 +519,7 @@ extension MainViewController: UITextFieldDelegate {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        print(recentDataRecords.map( { $0.date }))
         return 5
     }
     
@@ -522,6 +527,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.reuseID) as! SearchHistoryTableViewCell
         
         cell.configure()
+        
         
         return cell
     }

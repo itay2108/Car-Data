@@ -38,7 +38,7 @@ struct BaseCarData: Codable {
     let motoDisplacement: Double?
     
     let totalLossDate: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case plateNumber = "mispar_rechev"
@@ -179,5 +179,40 @@ struct BaseCarData: Codable {
         self.motoHorsePower = nil
         self.motoDisplacement = nil
         self.totalLossDate = nil
+    }
+    
+    init(from realm: RealmCarData) {
+        
+        self.id = realm.id
+        self.plateNumber = realm.plateNumber
+        self.manufacturerCode = realm.manufacturerCode
+        self.modelClass = realm.modelClass
+        self.manufacturer = realm.manufacturer
+        self.modelCode = realm.modelCode
+        self.modelNumber = realm.modelNumber
+        self.trimLevel = realm.trimLevel
+        self.pollutionLevel = realm.pollutionLevel
+        self.modelYear = realm.modelYear
+        self.engineModel = realm.engineModel
+        self.lastMOT = realm.lastMOT
+        self.nextMOT = realm.nextMOT
+        self.ownership = realm.ownership
+        self.chassis = realm.chassis
+        self.colorCode = realm.colorCode
+        self.color = realm.color
+        self.frontTireSize = realm.frontTireSize
+        self.rearTireSize = realm.rearTireSize
+        self.fuelType = realm.fuelType
+        self.horaatRishum = realm.horaatRishum
+        
+        self.moedAliyaLakvish = realm.moedAliyaLakvish
+        self.model = realm.model
+        self.rank = realm.rank
+        
+        self.importType = realm.importType
+        
+        self.motoHorsePower = realm.motoHorsePower
+        self.motoDisplacement = realm.motoDisplacement
+        self.totalLossDate = realm.totalLossDate
     }
 }

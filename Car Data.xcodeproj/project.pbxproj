@@ -37,6 +37,8 @@
 		BC4A348A2861BC1C005A32D6 /* VisionAlgorithmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A34892861BC1C005A32D6 /* VisionAlgorithmViewController.swift */; };
 		BC4A348C28620AFF005A32D6 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A348B28620AFF005A32D6 /* UserDefaultsManager.swift */; };
 		BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A348D28620CA6005A32D6 /* VisionAlgorithmType.swift */; };
+		BC4A34912863180C005A32D6 /* DataRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A34902863180B005A32D6 /* DataRecord.swift */; };
+		BC4A3493286318F0005A32D6 /* RealmCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4A3492286318F0005A32D6 /* RealmCarData.swift */; };
 		BC50A4682848970900D88267 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */; };
 		BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */; };
 		BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50A46B2848985000D88267 /* LicensePlateManager.swift */; };
@@ -156,6 +158,8 @@
 		BC4A34892861BC1C005A32D6 /* VisionAlgorithmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAlgorithmViewController.swift; sourceTree = "<group>"; };
 		BC4A348B28620AFF005A32D6 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BC4A348D28620CA6005A32D6 /* VisionAlgorithmType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionAlgorithmType.swift; sourceTree = "<group>"; };
+		BC4A34902863180B005A32D6 /* DataRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRecord.swift; sourceTree = "<group>"; };
+		BC4A3492286318F0005A32D6 /* RealmCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCarData.swift; sourceTree = "<group>"; };
 		BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableViewCell.xib; sourceTree = "<group>"; };
 		BC50A46B2848985000D88267 /* LicensePlateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensePlateManager.swift; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */,
+				BC4A34902863180B005A32D6 /* DataRecord.swift */,
+				BC4A3492286318F0005A32D6 /* RealmCarData.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				BCFD17452858BCB5000EAFCE /* PreferencesViewController.swift in Sources */,
 				BC8BE3F12847AB95002838AA /* UIView+Fade.swift in Sources */,
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
+				BC4A3493286318F0005A32D6 /* RealmCarData.swift in Sources */,
 				66E93ADD285901D700876464 /* CDTableViewController.swift in Sources */,
 				BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */,
 				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,
@@ -705,6 +712,7 @@
 				BC50A46C2848985000D88267 /* LicensePlateManager.swift in Sources */,
 				66BA05A3285A553B00DA8DCA /* CDParameterSelectionTableViewController.swift in Sources */,
 				BC01BD02284F798900777C57 /* CDDateFormat.swift in Sources */,
+				BC4A34912863180C005A32D6 /* DataRecord.swift in Sources */,
 				BCC5123B28496BE500E883D0 /* PaddingLabel.swift in Sources */,
 				BCAEB374284670A000FA0981 /* MainViewController.swift in Sources */,
 				BC01BCFB284F5A2800777C57 /* Date+Extensions.swift in Sources */,

@@ -108,7 +108,20 @@ class LoadResultViewController: CDViewController {
     
     private func getCarData() {
         CarDataManager().getCarData(from: licensePlateNumber).then { [weak self] data in
+            
+            //present data
             self?.presentDataVC(using: data)
+            
+            //save to realm
+            let record = DataRecord()
+            record.data = RealmCarData(from: data)
+            record.date = Date()
+            
+            do {
+                try RealmManager.save(record: record)
+            } catch {
+                print(error)
+            }
             
         }.catch { [weak self] error in
             

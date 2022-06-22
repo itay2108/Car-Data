@@ -141,4 +141,70 @@ struct ExtraCarData: Codable {
         case model = "kinuy_mishari"
         case rank = "rank"
     }
+    
+    init(from realm: RealmCarData) {
+        self.id = realm.id
+        self.modelClass = realm.extraModelClass
+        self.manufacturerCode = realm.extraManufacturerCode
+        self.manufacturerFull = realm.manufacturerFull
+        self.manufacturerCountry = realm.manufacturerCountry
+        self.manufacturer = realm.extraManufacturer
+        self.modelCode = realm.extraModelCode
+        self.modelNumber = realm.extraModelNumber
+        self.modelYear = realm.extraModelYear
+        self.registrationGroup = realm.registrationGroup
+        self.displacement = realm.displacement
+        self.curbWeight = realm.curbWeight
+        self.height = realm.height
+        self.wheelDriveCode = realm.wheelDriveCode
+        self.wheelDrive = realm.wheelDrive
+        self.ac = realm.ac
+        self.abs = realm.abs
+        self.airbags = realm.airbags
+        self.powerSteering = realm.powerSteering
+        self.isAutomatic = realm.isAutomatic
+        self.windows = realm.windows
+        self.sunroof = realm.sunroof
+        self.hasAlloys = realm.hasAlloys
+        self.bodyType = realm.bodyType
+        self.trimLevel = realm.extraTrimLevel
+        self.fuelCode = realm.fuelCode
+        self.fuelType = realm.extraFuelType
+        self.doorCount = realm.doorCount
+        self.horsepower = realm.horsepower
+        self.seatNumber = realm.seatNumber
+        self.tcs = realm.tcs
+        self.towingCapacity = realm.towingCapacity
+        self.towingCapacityNoBrakes = realm.towingCapacityNoBrakes
+        self.marketCode = realm.marketCode
+        self.market = realm.market
+        self.catalyticConverterCode = realm.catalyticConverterCode
+        self.catalyticConverter = realm.catalyticConverter
+        self.wheelDriveTechnologyCode = realm.wheelDriveTechnologyCode
+        self.wheelDriveTechnology = realm.wheelDriveTechnology
+    
+        self.madadYarok = realm.madadYarok
+        self.pollutionLevel = realm.extraPollutionLevel
+        self.laneKeepAssist = realm.laneKeepAssist
+        self.frontDistanceMonitor = realm.frontDistanceMonitor
+        self.blintspotMonitor = realm.blintspotMonitor
+        self.adaptiveCruiseControl = realm.adaptiveCruiseControl
+        self.pedestrianMonitor = realm.pedestrianMonitor
+        self.emergencyBreakAssist = realm.emergencyBreakAssist
+        self.reversingCamera = realm.reversingCamera
+        self.tpms = realm.tpms
+        self.safetyBeltSensors = realm.safetyBeltSensors
+        self.safetyScore = realm.safetyScore
+        self.safetyEquipmentScore = realm.safetyEquipmentScore
+        self.automaticHeadlights = realm.automaticHeadlights
+        self.automaticHighBeams = realm.automaticHighBeams
+        self.aebs = realm.aebs
+        self.trafficSignMonitor = realm.trafficSignMonitor
+        self.motorcycleMonitor = realm.motorcycleMonitor
+        self.activeLaneKeepAssist = realm.activeLaneKeepAssist
+        self.rearEmergencyBreakingSystem = realm.rearEmergencyBreakingSystem
+        self.bakaratMehirutISA = realm.bakaratMehirutISA
+        self.model = realm.extraModel
+        self.rank = realm.extraRank
+    }
 }
