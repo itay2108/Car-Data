@@ -17,7 +17,8 @@ struct TotaledCarDataResult: Codable {
 }
 
 struct TotaledCarData: Codable {
-    let id, misparRechev, tozeretCD: Int?
+    let id, tozeretCD: Int?
+    let misparRechev: Int
     let tozeretNm: String?
     let degemCD: Int?
     let degemNm: String?

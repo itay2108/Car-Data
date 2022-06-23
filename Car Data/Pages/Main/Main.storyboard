@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="הקלד מספר רכב" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bt-4b-x58">
-                                        <rect key="frame" x="84" y="62" width="246" height="80"/>
+                                        <rect key="frame" x="91.5" y="62" width="231.5" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" name="cd-text-dark"/>
                                         <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="36"/>
@@ -41,7 +41,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFW-e6-Xw3">
-                                        <rect key="frame" x="345" y="75.5" width="53" height="53"/>
+                                        <rect key="frame" x="339" y="75.5" width="52.5" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FFW-e6-Xw3" secondAttribute="height" multiplier="1:1" id="TB6-3x-GrG"/>
                                         </constraints>
@@ -127,10 +127,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
+                                                        <rect key="frame" x="88" y="4.5" width="155" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="64" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="49" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -148,7 +148,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="185.5" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="155" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -196,16 +196,16 @@
                                                 <rect key="frame" x="0.0" y="118.5" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KKZ-26-z8D">
-                                                        <rect key="frame" x="94" y="16" width="143.5" height="57"/>
+                                                        <rect key="frame" x="98" y="16" width="135.5" height="57"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="זיהוי לוחית מתמונה" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVu-Fb-BGK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="143.5" height="23"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="23"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="txz-IU-YYx">
-                                                                <rect key="frame" x="44.5" y="31" width="54" height="26"/>
+                                                                <rect key="frame" x="40.5" y="31" width="54" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-down" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-qt-f9e">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17" height="26"/>
@@ -262,7 +262,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפושים אחרונים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-N9-XpQ">
-                                                    <rect key="frame" x="222.5" y="0.0" width="121.5" height="21.5"/>
+                                                    <rect key="frame" x="225.5" y="0.0" width="118.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                                                     <color key="textColor" name="cd-text-dark"/>
                                                     <nil key="highlightedColor"/>
@@ -278,12 +278,17 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="tableView"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-no-history-banner" translatesAutoresizingMaskIntoConstraints="NO" id="K7L-uB-WWU">
+                                        <rect key="frame" x="46" y="422.5" width="322" height="370"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="cd-background"/>
                                 <constraints>
+                                    <constraint firstItem="K7L-uB-WWU" firstAttribute="width" secondItem="Bwu-qh-sI5" secondAttribute="width" multiplier="0.88" id="1R3-t6-DSZ"/>
                                     <constraint firstItem="Fil-pz-fOO" firstAttribute="width" secondItem="Bwu-qh-sI5" secondAttribute="width" constant="-13" id="2sV-aL-9a8"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="top" relation="lessThanOrEqual" secondItem="G8z-G0-2uk" secondAttribute="bottom" constant="42" id="8ke-yk-fDJ"/>
                                     <constraint firstItem="Fil-pz-fOO" firstAttribute="height" secondItem="Bwu-qh-sI5" secondAttribute="height" constant="-13" id="BF6-S1-gB9"/>
+                                    <constraint firstItem="K7L-uB-WWU" firstAttribute="centerY" secondItem="Bwu-qh-sI5" secondAttribute="centerY" id="JNE-Zm-ASC"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="centerX" secondItem="dE0-0Z-MJA" secondAttribute="centerX" id="MZk-zB-aeh"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="top" secondItem="G8z-G0-2uk" secondAttribute="bottom" constant="24" id="Mxy-Pi-Gaf"/>
                                     <constraint firstItem="rOL-Lq-L37" firstAttribute="leading" secondItem="dE0-0Z-MJA" secondAttribute="leading" constant="24" id="PXi-2M-Itc"/>
@@ -292,9 +297,11 @@
                                     <constraint firstItem="Fil-pz-fOO" firstAttribute="centerX" secondItem="Bwu-qh-sI5" secondAttribute="centerX" id="V7l-Se-JbD"/>
                                     <constraint firstItem="eXB-Hw-PKz" firstAttribute="centerY" secondItem="rOL-Lq-L37" secondAttribute="centerY" constant="2" id="XC5-Nt-Hww"/>
                                     <constraint firstAttribute="trailing" secondItem="eXB-Hw-PKz" secondAttribute="trailing" constant="32" id="Y1m-0v-Ad4"/>
+                                    <constraint firstItem="K7L-uB-WWU" firstAttribute="height" secondItem="Bwu-qh-sI5" secondAttribute="height" multiplier="0.75" id="eaM-yr-Wtb"/>
                                     <constraint firstItem="Bwu-qh-sI5" firstAttribute="leading" secondItem="dE0-0Z-MJA" secondAttribute="leading" constant="24" id="ej0-hK-oBC"/>
                                     <constraint firstAttribute="bottom" secondItem="Bwu-qh-sI5" secondAttribute="bottom" constant="42" id="hbh-SW-2la"/>
                                     <constraint firstItem="eXB-Hw-PKz" firstAttribute="top" secondItem="dE0-0Z-MJA" secondAttribute="top" constant="63" id="o1n-SK-7BY"/>
+                                    <constraint firstItem="K7L-uB-WWU" firstAttribute="centerX" secondItem="Bwu-qh-sI5" secondAttribute="centerX" id="qZZ-MB-AN2"/>
                                     <constraint firstItem="G8z-G0-2uk" firstAttribute="centerX" secondItem="dE0-0Z-MJA" secondAttribute="centerX" id="rbt-gZ-pXz"/>
                                     <constraint firstItem="rOL-Lq-L37" firstAttribute="height" secondItem="eXB-Hw-PKz" secondAttribute="height" id="rjU-G5-qmi"/>
                                     <constraint firstItem="G8z-G0-2uk" firstAttribute="width" secondItem="dE0-0Z-MJA" secondAttribute="width" multiplier="0.8" id="wcA-dU-Rs9"/>
@@ -360,6 +367,7 @@
                         <outlet property="searchHistoryTableViewHeader" destination="Vgj-fj-CyI" id="25o-0Y-8eh"/>
                         <outlet property="searchHistoryTableViewShadowView" destination="Fil-pz-fOO" id="bSP-ee-TQF"/>
                         <outlet property="searchHistoryTableViewTitleLabel" destination="OgI-N9-XpQ" id="nbl-Cb-pbi"/>
+                        <outlet property="tableViewEmptyPlaceHolder" destination="K7L-uB-WWU" id="tNy-RZ-tHf"/>
                         <outlet property="textFieldSearchActionView" destination="IXe-Rm-g37" id="02M-Up-52Z"/>
                         <outlet property="textFieldSearchActionViewTitleLabel" destination="IXe-Rm-g37" id="Jnh-Pp-Fg4"/>
                         <segue destination="fHM-cQ-nuc" kind="show" identifier="mainToLoadResult" id="bqN-Ea-fIA"/>
@@ -571,15 +579,16 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="185.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="155" height="21"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="OO6-bt-LLE"/>
+        <segue reference="2gs-70-N3O"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="cd-logo-label" width="512" height="104"/>
+        <image name="cd-no-history-banner" width="889" height="725"/>
         <image name="cd-swipe-down" width="512" height="512"/>
         <image name="cd-swipe-up" width="512" height="512"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>

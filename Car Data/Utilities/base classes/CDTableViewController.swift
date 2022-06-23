@@ -21,6 +21,10 @@ class CDTableViewController: UITableViewController {
         return false
     }
     
+    var swipeableViews: [UIView] {
+        return []
+    }
+    
     private var initialBackSwipePoint: CGPoint?
     
     private var quarterOfScreenWidth: CGFloat {
@@ -48,6 +52,11 @@ class CDTableViewController: UITableViewController {
     private func setupMainView() {
         let swipeGR = UIPanGestureRecognizer(target: self, action: #selector(screenDidSwipeToDismiss(_:)))
         view.addGestureRecognizer(swipeGR)
+        
+        for view in swipeableViews {
+            let swipeGR = UIPanGestureRecognizer(target: self, action: #selector(screenDidSwipeToDismiss(_:)))
+            view.addGestureRecognizer(swipeGR)
+        }
     }
     
     @objc private func screenDidSwipeToDismiss(_ sender: UIPanGestureRecognizer) {

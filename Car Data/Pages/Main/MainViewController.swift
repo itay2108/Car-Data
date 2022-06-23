@@ -30,6 +30,7 @@ final class MainViewController: CDViewController {
     
     @IBOutlet weak var searchHistoryTableView: UITableView!
     @IBOutlet weak var searchHistoryTableViewHeader: UIView!
+    @IBOutlet weak var tableViewEmptyPlaceHolder: UIImageView!
     @IBOutlet weak var searchHistoryTableViewTitleLabel: UILabel!
     
     @IBOutlet weak var searchHistoryTableViewBottomAnchor: NSLayoutConstraint!
@@ -49,7 +50,11 @@ final class MainViewController: CDViewController {
     var shouldStopPresentingLicensePlate: Bool = false
     
     var recentDataRecords: [DataRecord] {
-        return RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).suffix(5)
+        let validRecords = RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
+        
+        tableViewEmptyPlaceHolder.isHidden = validRecords.count > 0
+        
+        return Array(validRecords.prefix(5))
     }
     
     //MARK: - Programmatic views
@@ -77,6 +82,22 @@ final class MainViewController: CDViewController {
         setupObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchHistoryTableView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 20, z: 0), .duration(0.533)]
+
+        searchHistoryTableViewShadowView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+        
+        tableViewEmptyPlaceHolder.isHidden = recentDataRecords.count > 0
+        
+        if !tableViewEmptyPlaceHolder.isHidden {
+            tableViewEmptyPlaceHolder.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+        }
+        
+        searchHistoryTableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -84,6 +105,7 @@ final class MainViewController: CDViewController {
         
         licensePlateTextField.attributedPlaceholder =
         NSAttributedString(string: "הקלד מספר רכב", attributes: [NSAttributedString.Key.foregroundColor: K.colors.text.dark.withAlphaComponent(0.33)])
+        licensePlateTextField.heroID = "licensePlate"
 
         if shouldStopPresentingLicensePlate {
             leaveSearchScene()
@@ -144,6 +166,7 @@ final class MainViewController: CDViewController {
         
         setupActionViews()
         setupSearchHistoryTableView()
+        setupTableViewEmptyPlaceHolder()
     }
     
     private func setupActionViews() {
@@ -190,6 +213,7 @@ final class MainViewController: CDViewController {
         
         searchHistoryTableView.register(UINib(nibName: SearchHistoryTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryTableViewCell.reuseID)
         
+        
         searchHistoryTableViewTitleLabel.font = Rubik.regular.ofSize(18 * heightModifier)
         
         //shadow view setup
@@ -198,6 +222,11 @@ final class MainViewController: CDViewController {
         searchHistoryTableViewShadowView.layer.shadowOpacity = 0.25
         searchHistoryTableViewShadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
         searchHistoryTableViewShadowView.layer.shadowRadius = 20 * widthModifier
+        
+    }
+    
+    private func setupTableViewEmptyPlaceHolder() {
+        tableViewEmptyPlaceHolder.isHidden = recentDataRecords.count > 0
     }
     
     
@@ -240,7 +269,6 @@ final class MainViewController: CDViewController {
                 self?.reCenterMainContainer(animated: false)
             }
         }
-
  
     }
     
@@ -274,6 +302,19 @@ final class MainViewController: CDViewController {
         return UIPanGestureRecognizer(target: self, action: #selector(mainContainerPanGRDidTrigger(_:)))
     }
     
+    private func presentDataVC(using carData: CarData) {
+        
+        guard self.isViewLoaded else { return }
+        
+        if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
+            
+            destination.licensePlateNumber = String(describing: carData.baseData.plateNumber)
+            destination.data = carData
+            
+            navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
     //MARK: - IB Methods
     
     @IBAction func licensePlateTextFieldClearButtonTapped(_ sender: UIButton) {
@@ -289,6 +330,10 @@ final class MainViewController: CDViewController {
             licensePlateTextField.resignFirstResponder()
             
             licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input)
+            
+            searchHistoryTableView.hero.modifiers = []
+            searchHistoryTableViewShadowView.hero.modifiers = []
+            tableViewEmptyPlaceHolder.hero.modifiers = []
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
 
@@ -518,22 +563,40 @@ extension MainViewController: UITextFieldDelegate {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print(recentDataRecords.map( { $0.date }))
-        return 5
+
+        return recentDataRecords.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.reuseID) as! SearchHistoryTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchHistoryTableViewCell.reuseID) as? SearchHistoryTableViewCell,
+              let record = recentDataRecords[safe: indexPath.row] else {
+            return UITableViewCell()
+        }
         
-        cell.configure()
-        
+        cell.configure(with: record)
+        cell.animationDelay = 0.06 * Double(indexPath.row + 1)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (searchHistoryTableView.frame.height - searchHistoryTableViewHeader.frame.height - searchHistoryTableView.contentInset.bottom - searchHistoryTableView.contentInset.top) / 5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard tableView == searchHistoryTableView,
+              let record = recentDataRecords[safe: indexPath.row],
+              let data = record.data?.asCarData(),
+              let cell = tableView.cellForRow(at: indexPath) as? SearchHistoryTableViewCell else {
+            return
+        }
+        
+        licensePlateTextField.heroID = nil
+        //cell.licensePlateLabel.heroID = "licensePlate"
+        
+        navigationController?.heroNavigationAnimationType = .slide(direction: .right)
+        
+        presentDataVC(using: data)
     }
     
     

@@ -15,8 +15,36 @@ class PreferencesViewController: CDTableViewController {
     @IBOutlet var cells: [UITableViewCell]!
     @IBOutlet weak var visionAlgorithmTypeLabel: UILabel!
     
+    //MARK: - Parameters
+    
+    private lazy var dataDeletionAlert: UIAlertController = {
+        let alert = UIAlertController(title: "אזהרה!", message: "פעולה זו תמחק את כל החיפושים שבוצעו עד כה ותאפס את כל ההגדרות לברירת המחדל. אין אפשרות לבטל פעולה זו!", preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "ביטול", style: .cancel)
+        
+        let deleteAction = UIAlertAction(title: "איפוס", style: .destructive) { [weak self] _ in
+            
+            do {
+                try RealmManager.resetAll(password: "I am sure")
+                
+                UserDefaultsManager.main.updateAlgorithmType(to: .standard)
+            } catch {
+                self?.presentErrorAlert(with: error)
+            }
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        return alert
+    }()
+    
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
+    }
+    
+    override var swipeableViews: [UIView] {
+        return [tableView]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +123,19 @@ class PreferencesViewController: CDTableViewController {
             switch indexPath.row {
             case 0:
                 performSegue(withIdentifier: K.segues.PreferenceStoryboard.pregerencesToVisionAlgorithm, sender: self)
+            default:
+                return
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                return
+            case 1:
+                return
+            case 2:
+                return
+            case 3:
+                present(dataDeletionAlert, animated: true)
             default:
                 return
             }

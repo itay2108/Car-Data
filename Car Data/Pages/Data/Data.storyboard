@@ -28,7 +28,7 @@
                                 <rect key="frame" x="20" y="56" width="374" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msH-tS-GDl">
-                                        <rect key="frame" x="0.0" y="0.0" width="37.5" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="33.5" height="47"/>
                                         <color key="tintColor" name="cd-text-dark"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system">
@@ -39,7 +39,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="פרטי רכב" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUM-JK-LE3">
-                                        <rect key="frame" x="37.5" y="0.0" width="318" height="47"/>
+                                        <rect key="frame" x="33.5" y="0.0" width="325.5" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="Vqy-LY-64g"/>
                                         </constraints>
@@ -48,11 +48,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5K-jn-YjN">
-                                        <rect key="frame" x="355.5" y="0.0" width="18.5" height="47"/>
+                                        <rect key="frame" x="359" y="0.0" width="15" height="47"/>
                                         <color key="tintColor" name="cd-text-dark"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ady-cT-eeV"/>
@@ -60,17 +60,17 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="msH-tS-GDl" firstAttribute="width" secondItem="C5K-jn-YjN" secondAttribute="width" multiplier="2" id="iQP-NF-YAI"/>
-                                    <constraint firstItem="C5K-jn-YjN" firstAttribute="width" secondItem="zaB-eP-dnh" secondAttribute="width" multiplier="0.05" id="ot4-Sx-5eR"/>
+                                    <constraint firstItem="msH-tS-GDl" firstAttribute="width" secondItem="C5K-jn-YjN" secondAttribute="width" multiplier="2.25" id="iQP-NF-YAI"/>
+                                    <constraint firstItem="C5K-jn-YjN" firstAttribute="width" secondItem="zaB-eP-dnh" secondAttribute="width" multiplier="0.04" id="ot4-Sx-5eR"/>
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="BBC-dg-oM6">
-                                <rect key="frame" x="20" y="269" width="374" height="627"/>
+                                <rect key="frame" x="20" y="277" width="374" height="619"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Nlz-GE-DiC">
-                                <rect key="frame" x="145.5" y="239" width="123" height="16"/>
+                                <rect key="frame" x="145.5" y="247" width="123" height="16"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="לרכב זה אין תו נכה" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmG-UZ-h7p">
                                         <rect key="frame" x="0.0" y="0.0" width="101" height="16"/>
@@ -90,7 +90,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56-600-75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLa-Jp-vt6" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                <rect key="frame" x="111" y="154" width="192.5" height="43"/>
+                                <rect key="frame" x="91" y="146" width="232.5" height="59"/>
                                 <color key="backgroundColor" name="cd-yellow"/>
                                 <fontDescription key="fontDescription" name="Rubik-SemiBold" family="Rubik" pointSize="36"/>
                                 <color key="textColor" name="cd-text-dark"/>
@@ -152,7 +152,7 @@
     </scenes>
     <designables>
         <designable name="HLa-Jp-vt6">
-            <size key="intrinsicContentSize" width="192.5" height="43"/>
+            <size key="intrinsicContentSize" width="232.5" height="59"/>
         </designable>
     </designables>
     <resources>

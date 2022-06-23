@@ -69,4 +69,18 @@ struct RealmManager {
         }
     }
     
+    static func resetAll(password: String) throws {
+        guard password == "I am sure" else {
+            return
+        }
+        
+        do {
+            try realm?.write {
+                realm?.deleteAll()
+            }
+        } catch {
+            throw CDError.realmFailed
+        }
+    }
+    
 }

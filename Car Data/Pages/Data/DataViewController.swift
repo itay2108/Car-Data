@@ -105,6 +105,7 @@ class DataViewController: CDViewController {
             disabilityLabel.isHidden = true
         }
         
+        disabilityStackView.hero.modifiers = [.delay(0.6), .fade, .translate(x: 0, y: 20, z: 0)]
     }
     
     private func setupTableView() {
@@ -118,6 +119,8 @@ class DataViewController: CDViewController {
         dataTableView.layer.masksToBounds = true
         
         dataTableView.decelerationRate = .fast
+        
+        dataTableView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 20, z: 0), .duration(0.533)]
         
     }
     

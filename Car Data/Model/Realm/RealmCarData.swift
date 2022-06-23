@@ -13,7 +13,7 @@ class RealmCarData: Object {
     
     //Base Car Data
     
-    @Persisted var plateNumber: Int? = nil
+    @Persisted var plateNumber: Int = 9999999
     @Persisted var manufacturerCode: Int? = nil
     @Persisted var modelClass: String? = nil
     @Persisted var manufacturer: String? = nil

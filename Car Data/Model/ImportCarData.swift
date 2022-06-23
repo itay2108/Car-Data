@@ -20,7 +20,8 @@ struct ImportCarDataResult: Codable {
 
 // MARK: - Record
 struct ImportCarData: Codable {
-    let id, plateNumber: Int?
+    let id: Int?
+    let plateNumber: Int
     let chassis, manufacturerCode, manufacturer, modelClass: String?
     let modelNumber, curbWeight, modelYear: String?
     let displacement, manufacturerCountry, engineModel, lastMOT: String?

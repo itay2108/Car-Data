@@ -17,7 +17,8 @@ struct BaseCarDataResult: Codable {
 }
 
 struct BaseCarData: Codable {
-    let id, plateNumber, manufacturerCode: Int?
+    let id, manufacturerCode: Int?
+    let plateNumber: Int
     let modelClass, manufacturer: String?
     let modelCode: Int?
     let modelNumber, trimLevel: String?
