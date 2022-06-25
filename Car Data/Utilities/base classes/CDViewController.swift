@@ -38,6 +38,10 @@ class CDViewController: UIViewController {
         return view.frame.height / 6
     }
     
+    //tableview
+    
+    var cdTableViewRowHeight: CGFloat = UITableView.automaticDimension
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()

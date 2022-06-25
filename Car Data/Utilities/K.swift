@@ -55,6 +55,7 @@ struct K {
             static let mainToLoadResult = "mainToLoadResult"
             static let loadResultToData = "loadResultToData"
             static let mainToData = "mainToData"
+            static let mainToSearchHistory = "mainToSearchHistory"
         }
         
         struct PreferenceStoryboard {

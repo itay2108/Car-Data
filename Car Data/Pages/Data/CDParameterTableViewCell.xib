@@ -28,7 +28,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jir-4W-hg0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ייצרן" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-GQ-PA6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="ייצרן" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-GQ-PA6">
                                 <rect key="frame" x="330" y="17.5" width="27" height="18"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="15"/>
                                 <color key="textColor" name="cd-text-dark"/>
@@ -41,7 +41,7 @@
                                     <constraint firstAttribute="width" secondItem="HyE-xE-a6K" secondAttribute="height" id="Uwp-L2-1u4"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ב.מ.וו" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFu-l3-e1t">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="ב.מ.וו" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFu-l3-e1t">
                                 <rect key="frame" x="20" y="17.5" width="34.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="15"/>
                                 <color key="textColor" name="cd-text-dark"/>
@@ -55,7 +55,7 @@
                             <constraint firstItem="L0g-GQ-PA6" firstAttribute="centerY" secondItem="Jir-4W-hg0" secondAttribute="centerY" id="OJR-uY-Xne"/>
                             <constraint firstItem="XFu-l3-e1t" firstAttribute="leading" secondItem="Jir-4W-hg0" secondAttribute="leading" constant="20" id="ZhQ-0h-KcO"/>
                             <constraint firstItem="XFu-l3-e1t" firstAttribute="centerY" secondItem="Jir-4W-hg0" secondAttribute="centerY" id="goX-aR-NlV"/>
-                            <constraint firstItem="L0g-GQ-PA6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XFu-l3-e1t" secondAttribute="trailing" constant="20" id="hVB-VA-idT"/>
+                            <constraint firstItem="L0g-GQ-PA6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XFu-l3-e1t" secondAttribute="trailing" constant="24" id="hVB-VA-idT"/>
                             <constraint firstAttribute="trailing" secondItem="L0g-GQ-PA6" secondAttribute="trailing" constant="18" id="jlc-Yf-6bn"/>
                             <constraint firstItem="HyE-xE-a6K" firstAttribute="leading" secondItem="Jir-4W-hg0" secondAttribute="leading" constant="19" id="uOm-cF-CYE"/>
                             <constraint firstItem="HyE-xE-a6K" firstAttribute="height" secondItem="Jir-4W-hg0" secondAttribute="height" multiplier="0.4" id="xD6-s1-Dce"/>

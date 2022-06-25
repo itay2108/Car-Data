@@ -86,6 +86,8 @@ class LoadResultViewController: CDViewController {
             destination.licensePlateNumber = licensePlateNumber
             destination.data = carData
             
+            destination.isPresentingNewSearch = true
+            
             delegate?.resultLoader(didReceive: carData)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in

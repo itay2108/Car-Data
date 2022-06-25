@@ -42,7 +42,7 @@ struct CarData {
             }
         }
         
-        var allSections = [CDParameterSection(title: "פרטים חשובים", parameters: prioriteizedParameters)] + internalBaseSections
+        let allSections = [CDParameterSection(title: "פרטים חשובים", parameters: prioriteizedParameters)] + internalBaseSections
         
         return allSections.compactMap( { $0.parameters.count == 0 ? nil : $0 })
         
@@ -166,6 +166,21 @@ struct CarData {
         }
         
         return CDParameterSection(title: "בטיחות", parameters: parameters)
+    }
+    
+    func contains(_ value: String) -> Bool {
+        
+        let relevantParameters: [Any?] = [id, baseData.model, baseData.manufacturer, baseData.modelYear, baseData.modelNumber, baseData.engineModel, baseData.chassis]
+        
+            for parameter in relevantParameters {
+                if let parameterValue = parameter {
+                    if String(describing: parameterValue).contains(value) {
+                        return true
+                    }
+                }
+            }
+        
+        return false
     }
     
 }

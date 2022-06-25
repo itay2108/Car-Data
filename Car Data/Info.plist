@@ -5,7 +5,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>UISupportsDocumentBrowser</key>
-	<true/>
+	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>קארדאטה משתמשת במצלמה כדי לסרוק לוחיות רישוי ולאתר מידע לפיהן</string>
 	<key>UIAppFonts</key>

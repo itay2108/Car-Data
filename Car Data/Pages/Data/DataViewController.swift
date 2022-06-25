@@ -29,12 +29,14 @@ class DataViewController: CDViewController {
     private var defaultLicensePlateTopConstant: CGFloat = 96
     private var defaultDataTableTopConstant: CGFloat = 72
     
+    var isPresentingNewSearch: Bool = false
+    
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
     }
     
     override var popsToMainVC: Bool {
-        return true
+        return isPresentingNewSearch
     }
     
     //MARK: - Life Cycle
@@ -285,7 +287,7 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with: source)
+        cell.configure(with: source, isLast: indexPath.row == data?.allSections.count)
         cell.delegate = self
         
         return cell

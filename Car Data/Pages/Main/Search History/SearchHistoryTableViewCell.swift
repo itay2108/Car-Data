@@ -13,6 +13,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var mainContainer: UIView!
     
     @IBOutlet weak var licensePlateLabel: CDLabel!
+    @IBOutlet weak var licensePlateLabelWidthAnchor: NSLayoutConstraint!
     
     @IBOutlet weak var manufacturerLabel: UILabel!
     @IBOutlet weak var modelLabel: UILabel!
@@ -63,6 +64,8 @@ class SearchHistoryTableViewCell: UITableViewCell {
         } else {
             searchTimeLabel.text = searchDate.formatted(to: .ddMMyy)
         }
+
+        licensePlateLabelWidthAnchor.constant = licensePlateLabel.intrinsicContentSize.width + 16
         
     }
     

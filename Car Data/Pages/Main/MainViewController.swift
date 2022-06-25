@@ -8,7 +8,7 @@
 import UIKit
 import Hero
 
-final class MainViewController: CDViewController {
+final class MainViewController: CDViewController, CarDataPresentable {
     
     @IBOutlet weak var licensePlateTextFieldContainer: UIView!
     @IBOutlet weak var licensePlateTextField: UITextField!
@@ -32,6 +32,7 @@ final class MainViewController: CDViewController {
     @IBOutlet weak var searchHistoryTableViewHeader: UIView!
     @IBOutlet weak var tableViewEmptyPlaceHolder: UIImageView!
     @IBOutlet weak var searchHistoryTableViewTitleLabel: UILabel!
+    @IBOutlet weak var searchHistoryShowAllButton: UIButton!
     
     @IBOutlet weak var searchHistoryTableViewBottomAnchor: NSLayoutConstraint!
     @IBOutlet weak var searchHistoryTableViewShadowView: UIView!
@@ -49,10 +50,13 @@ final class MainViewController: CDViewController {
     private var isPresentingLicensePlate: Bool = false
     var shouldStopPresentingLicensePlate: Bool = false
     
+    var isReturningFromLoadWithError: Bool = false
+    
     var recentDataRecords: [DataRecord] {
         let validRecords = RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
         
         tableViewEmptyPlaceHolder.isHidden = validRecords.count > 0
+        searchHistoryShowAllButton.isHidden = validRecords.count <= 5
         
         return Array(validRecords.prefix(5))
     }
@@ -85,15 +89,18 @@ final class MainViewController: CDViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchHistoryTableView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 20, z: 0), .duration(0.533)]
-
-        searchHistoryTableViewShadowView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
-        
         tableViewEmptyPlaceHolder.isHidden = recentDataRecords.count > 0
         
-        if !tableViewEmptyPlaceHolder.isHidden {
-            tableViewEmptyPlaceHolder.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+        if !isReturningFromLoadWithError {
+            searchHistoryTableView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 20, z: 0), .duration(0.533)]
+
+            searchHistoryTableViewShadowView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+            
+            if !tableViewEmptyPlaceHolder.isHidden {
+                tableViewEmptyPlaceHolder.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+            }
         }
+
         
         searchHistoryTableView.reloadData()
     }
@@ -215,6 +222,7 @@ final class MainViewController: CDViewController {
         
         
         searchHistoryTableViewTitleLabel.font = Rubik.regular.ofSize(18 * heightModifier)
+        searchHistoryShowAllButton.titleLabel?.font = Rubik.regular.ofSize(13 * heightModifier)
         
         //shadow view setup
         
@@ -302,19 +310,6 @@ final class MainViewController: CDViewController {
         return UIPanGestureRecognizer(target: self, action: #selector(mainContainerPanGRDidTrigger(_:)))
     }
     
-    private func presentDataVC(using carData: CarData) {
-        
-        guard self.isViewLoaded else { return }
-        
-        if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
-            
-            destination.licensePlateNumber = String(describing: carData.baseData.plateNumber)
-            destination.data = carData
-            
-            navigationController?.pushViewController(destination, animated: true)
-        }
-    }
-    
     //MARK: - IB Methods
     
     @IBAction func licensePlateTextFieldClearButtonTapped(_ sender: UIButton) {
@@ -358,6 +353,11 @@ final class MainViewController: CDViewController {
         navigationController?.pushViewController(destination, animated: true)
     }
     
+    @IBAction func searchHistoryShowAllButtonPressed(_ sender: UIButton) {
+        navigationController?.heroNavigationAnimationType = .slide(direction: .right)
+        
+        performSegue(withIdentifier: K.segues.mainStoryboard.mainToSearchHistory, sender: self)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -366,6 +366,11 @@ final class MainViewController: CDViewController {
            let licensePlateNumber = licensePlateNumber {
             destination.licensePlateNumber = licensePlateNumber
             destination.delegate = self
+        }
+        
+        if let destination = segue.destination as? SearchHistoryViewController {
+            print(cdTableViewRowHeight)
+            destination.cdTableViewRowHeight = cdTableViewRowHeight
         }
     }
     
@@ -574,25 +579,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(with: record)
-        cell.animationDelay = 0.06 * Double(indexPath.row + 1)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (searchHistoryTableView.frame.height - searchHistoryTableViewHeader.frame.height - searchHistoryTableView.contentInset.bottom - searchHistoryTableView.contentInset.top) / 5
+        cdTableViewRowHeight = (searchHistoryTableView.frame.height - searchHistoryTableViewHeader.frame.height - searchHistoryTableView.contentInset.bottom - searchHistoryTableView.contentInset.top) / 5
+        return cdTableViewRowHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard tableView == searchHistoryTableView,
               let record = recentDataRecords[safe: indexPath.row],
-              let data = record.data?.asCarData(),
-              let cell = tableView.cellForRow(at: indexPath) as? SearchHistoryTableViewCell else {
+              let data = record.data?.asCarData() else {
             return
         }
         
         licensePlateTextField.heroID = nil
-        //cell.licensePlateLabel.heroID = "licensePlate"
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .right)
         
@@ -604,6 +607,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: LoadResultDelegate {
     func resultLoader(didFailWith error: Error, for licensePlate: String?) {
+        isReturningFromLoadWithError = true
+        
+        searchHistoryTableView.hero.modifiers = []
+        searchHistoryTableViewShadowView.hero.modifiers = []
+        tableViewEmptyPlaceHolder.hero.modifiers = []
         
         if (error as? CDError) == CDError.canceled {
             licensePlateTextField.becomeFirstResponder()
@@ -617,6 +625,8 @@ extension MainViewController: LoadResultDelegate {
             self?.reCenterMainContainer(animated: true, duration: 0.5) {
                 self?.licensePlateTextField.text = nil
                 self?.isPresentingLicensePlate = false
+                
+                self?.isReturningFromLoadWithError = false
             }
 
         }
@@ -624,6 +634,7 @@ extension MainViewController: LoadResultDelegate {
         let retryAction = UIAlertAction(title: "ניסוי מחדש", style: .default) { [weak self] action in
             
             self?.licensePlateTextField.becomeFirstResponder()
+            self?.isReturningFromLoadWithError = false
         }
         
         let errorDescription: String?
@@ -635,7 +646,7 @@ extension MainViewController: LoadResultDelegate {
         }
         
         presentErrorAlert(with: error, withDescription: true, customDesription: errorDescription, actions: [retryAction, cancelAction])
-        
+
     }
     
     func resultLoader(didReceive data: CarData) {

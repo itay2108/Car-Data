@@ -19,20 +19,21 @@ struct HeavyCarDataResult: Codable {
 
 struct HeavyCarData: Codable {
     
-    let id, misparRechev: Int
-    let misparShilda, tkinaEU: String
-    let shnatYitzur, tozeretCD: Int
-    let tozeretNm, tozeretEretzNm: String
-    let sugDelekCD: Int
-    let sugDelekNm: String
-    let mishkalKolel, mishkalAzmi: Int
-    let degemNm: String
-    let nefachManoa: Int
-    let degemManoa, hanaaCD, hanaaNm: String
-    let mishkalMitanHarama: Int
-    let moedAliyaLakvish: String
-    let horaatRishum, misparMekomotLeydNahag, misparMekomot: Int
-    let rank: Double
+    let id: Int?
+    let misparRechev: Int
+    let misparShilda, tkinaEU: String?
+    let shnatYitzur, tozeretCD: Int?
+    let tozeretNm, tozeretEretzNm: String?
+    let sugDelekCD: Int?
+    let sugDelekNm: String?
+    let mishkalKolel, mishkalAzmi: Int?
+    let degemNm: String?
+    let nefachManoa: Int?
+    let degemManoa, hanaaCD, hanaaNm: String?
+    let mishkalMitanHarama: Int?
+    let moedAliyaLakvish: String?
+    let horaatRishum, misparMekomotLeydNahag, misparMekomot: Int?
+    let rank: Double?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"

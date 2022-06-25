@@ -18,6 +18,9 @@
 		66BA05A6285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BA05A4285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift */; };
 		66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297D7284B85E700AA2608 /* HTTPRequest.swift */; };
 		66C297DB284C0AEC00AA2608 /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */; };
+		66C5B86B286735E30099E243 /* SearchHistoryContainerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C5B869286735E30099E243 /* SearchHistoryContainerTableViewCell.swift */; };
+		66C5B86C286735E30099E243 /* SearchHistoryContainerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C5B86A286735E30099E243 /* SearchHistoryContainerTableViewCell.xib */; };
+		66C5B86E286762110099E243 /* CarDataPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C5B86D286762110099E243 /* CarDataPresentable.swift */; };
 		66C61880285E446D003FB012 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C6187F285E446D003FB012 /* UIViewController+Toast.swift */; };
 		66CA4DD2284CCD3D00D2C21A /* FBLPromises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD1284CCD3D00D2C21A /* FBLPromises */; };
 		66CA4DD4284CCD3D00D2C21A /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = 66CA4DD3284CCD3D00D2C21A /* Promises */; };
@@ -141,6 +144,9 @@
 		66BA05A4285A567A00DA8DCA /* CDParameterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDParameterSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		66C297D7284B85E700AA2608 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
+		66C5B869286735E30099E243 /* SearchHistoryContainerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryContainerTableViewCell.swift; sourceTree = "<group>"; };
+		66C5B86A286735E30099E243 /* SearchHistoryContainerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryContainerTableViewCell.xib; sourceTree = "<group>"; };
+		66C5B86D286762110099E243 /* CarDataPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDataPresentable.swift; sourceTree = "<group>"; };
 		66C6187F285E446D003FB012 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
 		66CA4DD5284CCFEF00D2C21A /* CarDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDataManager.swift; sourceTree = "<group>"; };
 		66CA4DD7284CD24E00D2C21A /* CDURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDURLManager.swift; sourceTree = "<group>"; };
@@ -348,6 +354,7 @@
 				BCF32815284ACE2D003A5162 /* DataSectionTableViewCell.xib */,
 				BCF32818284B46D5003A5162 /* CDParameterTableViewCell.swift */,
 				BCF32819284B46D5003A5162 /* CDParameterTableViewCell.xib */,
+				66C5B86D286762110099E243 /* CarDataPresentable.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -473,6 +480,8 @@
 				BC50A4662848970900D88267 /* SearchHistoryTableViewCell.swift */,
 				BC50A4672848970900D88267 /* SearchHistoryTableViewCell.xib */,
 				66C297DA284C0AEC00AA2608 /* SearchHistoryViewController.swift */,
+				66C5B869286735E30099E243 /* SearchHistoryContainerTableViewCell.swift */,
+				66C5B86A286735E30099E243 /* SearchHistoryContainerTableViewCell.xib */,
 			);
 			path = "Search History";
 			sourceTree = "<group>";
@@ -642,6 +651,7 @@
 				BCAEB3A92846776300FA0981 /* Rubik-Black.ttf in Resources */,
 				BCAEB37C284670A000FA0981 /* LaunchScreen.storyboard in Resources */,
 				BCAEB379284670A000FA0981 /* Assets.xcassets in Resources */,
+				66C5B86C286735E30099E243 /* SearchHistoryContainerTableViewCell.xib in Resources */,
 				BCAEB3A72846775C00FA0981 /* Rubik-ExtraBold.ttf in Resources */,
 				BCF3281B284B46D5003A5162 /* CDParameterTableViewCell.xib in Resources */,
 				BCAEB3AF2846778100FA0981 /* Rubik-Regular.ttf in Resources */,
@@ -682,6 +692,7 @@
 				6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */,
 				66CA4DD8284CD24E00D2C21A /* CDURLManager.swift in Sources */,
 				BCD52768284A2DBE00DA60FC /* DataViewController.swift in Sources */,
+				66C5B86E286762110099E243 /* CarDataPresentable.swift in Sources */,
 				BCFD173C28536556000EAFCE /* UIViewController+PDF.swift in Sources */,
 				BC4A348C28620AFF005A32D6 /* UserDefaultsManager.swift in Sources */,
 				BCB4432F2850844C00792E66 /* VisionViewController.swift in Sources */,
@@ -703,6 +714,7 @@
 				66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */,
 				BC47924D285B113800EF79E9 /* RealmSelectedParameter.swift in Sources */,
 				BCD5276C284A52F300DA60FC /* CDError.swift in Sources */,
+				66C5B86B286735E30099E243 /* SearchHistoryContainerTableViewCell.swift in Sources */,
 				66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */,
 				BC8BE3F72848124C002838AA /* K.swift in Sources */,
 				BCD5276E284A6C6400DA60FC /* CDNavigationController.swift in Sources */,

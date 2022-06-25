@@ -35,7 +35,7 @@ class DataSectionTableViewCell: UITableViewCell {
     
     var delegate: DataSectionTableViewCellDelegate?
     
-    func configure(with section: CDParameterSection) {
+    func configure(with section: CDParameterSection, isLast: Bool = false) {
 
         if let sectionName = section.title {
             sectionHeader.text = sectionName
@@ -49,6 +49,7 @@ class DataSectionTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
+        separatorView.alpha = isLast ? 0 : 1
     }
     
     private func setupTableView() {
