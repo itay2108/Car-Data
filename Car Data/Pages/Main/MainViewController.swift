@@ -118,6 +118,12 @@ final class MainViewController: CDViewController, CarDataPresentable {
             leaveSearchScene()
         }
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) { [weak self] in
+            if self?.mainContainerCenterYAnchor.constant != 0 {
+                self?.reCenterMainContainer(animated: true)
+            }
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

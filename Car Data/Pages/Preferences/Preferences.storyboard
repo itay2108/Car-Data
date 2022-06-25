@@ -202,8 +202,8 @@
                                             <rect key="frame" x="28.5" y="0.0" width="345.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="כתיבת חוות דעת" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLm-fx-N85">
-                                                    <rect key="frame" x="231.5" y="14" width="94" height="17"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="דירוג וחוות דעת" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLm-fx-N85">
+                                                    <rect key="frame" x="237" y="14" width="88.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                     <color key="textColor" name="cd-text-dark"/>
@@ -381,7 +381,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="ttZ-gZ-d08"/>
                                 </constraints>
-                                <string key="text">קאר דאטה פותחה תוך מחשבה רבה ובמטרה ליצור תהליך זיהוי רכב פשוט שמאזן בין מהירות לדיוק. לנוחיותך ניתנת האפשרות לשינוי שיטת הזיהוי במצלמה ליותר מהירה  יותר נוחה</string>
+                                <string key="text">קאר דאטה פותחה תוך מחשבה רבה ובמטרה ליצור תהליך זיהוי רכב פשוט שמאזן בין מהירות לדיוק. לנוחיותך ניתנת האפשרות לשינוי שיטת הזיהוי במצלמה ליותר מהירה או יותר נוחה</string>
                                 <color key="textColor" name="cd-text-light"/>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

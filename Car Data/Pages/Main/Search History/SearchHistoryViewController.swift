@@ -96,14 +96,14 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        
+        dismiss()
     }
 }
 
 extension SearchHistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
