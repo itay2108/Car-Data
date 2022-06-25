@@ -15,6 +15,7 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     @IBOutlet weak var headerTitleLabel: UILabel!
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var resultCountLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewShadowView: UIView!
@@ -23,7 +24,11 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
         return true
     }
     
-    private var relevantRecordsCount: Int = RealmManager.fetch(recordsOfType: DataRecord.self).filter( { $0.data != nil }).count
+    private var relevantRecordsCount: Int = RealmManager.fetch(recordsOfType: DataRecord.self).filter( { $0.data != nil }).count {
+        didSet {
+            resultCountLabel.text = "\(relevantRecordsCount) תוצאות"
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,6 +47,7 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     }
     
     private func setupHeaderView() {
+        
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(headerDidTap(_:)))
         
         headerView.addGestureRecognizer(tapGR)
@@ -49,6 +55,8 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     
     private func setupSearchbar() {
         searchBar.delegate = self
+        
+        resultCountLabel.text = "\(relevantRecordsCount) תוצאות"
     }
     
     private func setupTableView() {
