@@ -43,7 +43,6 @@ class RealmCarData: Object {
     @Persisted var motoDisplacement: Double? = nil
     @Persisted var totalLossDate: String? = nil
     
-    
     //Extra Car Data
     
     @Persisted var extraModelClass: String? = nil
@@ -135,6 +134,7 @@ class RealmCarData: Object {
     
     @Persisted var numberOfVehiclesWithIdenticalModel: Int = 0
     
+    @Persisted var lastKnownMileage: Int? = nil
     
     //Conversions
     
@@ -150,7 +150,8 @@ class RealmCarData: Object {
                        isImport: self.isImport,
                        isMotorcycle: self.isMotorcycle,
                        isHeavy: self.isHeavy,
-                       numberOfVehiclesWithIdenticalModel: self.numberOfVehiclesWithIdenticalModel)
+                       numberOfVehiclesWithIdenticalModel: self.numberOfVehiclesWithIdenticalModel,
+                       lastKnownMileage: self.lastKnownMileage)
     }
     
     convenience init(from carData: CarData) {
@@ -278,6 +279,8 @@ class RealmCarData: Object {
         self.isHeavy = carData.isHeavy
         
         self.numberOfVehiclesWithIdenticalModel = carData.numberOfVehiclesWithIdenticalModel
+        
+        self.lastKnownMileage = carData.lastKnownMileage
     }
     
 }

@@ -118,6 +118,7 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
     case numberOfIdenticalVehicles = "כמות מהדגם המדויק בכביש"
     
     case totalLossDate = "תאריך הורדה מהכביש"
+    case lastKnownMileage = "עדכון קילומטרז׳ אחרון"
     
     //MARK: - Sections
     
@@ -130,7 +131,7 @@ enum CDParameterType: String, CaseIterable, PersistableEnum {
     }
     
     static private func motSection() -> [CDParameterType] {
-        return [.lastMOT, .registrationGroup, .nextMOT, .ownership, .chassis, .horaatRishum, .totalLossDate]
+        return [.lastMOT, .registrationGroup, .nextMOT, .lastKnownMileage, .ownership, .chassis, .horaatRishum, .totalLossDate]
     }
     
     static private func extraSection() -> [CDParameterType] {

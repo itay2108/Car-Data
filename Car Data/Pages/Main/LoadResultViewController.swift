@@ -90,7 +90,7 @@ class LoadResultViewController: CDViewController {
             
             delegate?.resultLoader(didReceive: carData)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
                 self?.navigationController?.pushViewController(destination, animated: true)
                 
                 self?.navigationController?.viewControllers.removeAll(where: { $0 == self })
@@ -127,7 +127,7 @@ class LoadResultViewController: CDViewController {
             
         }.catch { [weak self] error in
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.66) {
                 self?.navigationController?.popViewController(animated: true)
                 self?.delegate?.resultLoader(didFailWith: error, for: self?.licensePlateNumber)
             }

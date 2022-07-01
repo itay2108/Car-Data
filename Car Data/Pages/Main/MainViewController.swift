@@ -103,6 +103,7 @@ final class MainViewController: CDViewController, CarDataPresentable {
 
         
         searchHistoryTableView.reloadData()
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,11 +118,9 @@ final class MainViewController: CDViewController, CarDataPresentable {
         if shouldStopPresentingLicensePlate {
             leaveSearchScene()
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) { [weak self] in
-            if self?.mainContainerCenterYAnchor.constant != 0 {
-                self?.reCenterMainContainer(animated: true)
-            }
+
+        if mainContainerCenterYAnchor.constant != 0 {
+            reCenterMainContainer(animated: false)
         }
         
     }

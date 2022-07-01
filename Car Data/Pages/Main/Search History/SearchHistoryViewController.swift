@@ -134,6 +134,7 @@ extension SearchHistoryViewController: UITableViewDelegate, UITableViewDataSourc
 extension SearchHistoryViewController: SearchHistoryContainerCellDelegate {
     
     func historyContainer(didSelectCellWith data: CarData, at indexPath: IndexPath) {
+        navigationController?.heroNavigationAnimationType = .slide(direction: .right)
         presentDataVC(using: data)
     }
     

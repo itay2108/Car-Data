@@ -11,6 +11,7 @@
 		660D591B284D67FA00795114 /* Int+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D591A284D67FA00795114 /* Int+Bool.swift */; };
 		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
+		666F548E286884E9008C1997 /* MileageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F548D286884E9008C1997 /* MileageData.swift */; };
 		66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E42855565E00C0EB88 /* TotaledCarData.swift */; };
 		66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E62855D41700C0EB88 /* HeavyCarData.swift */; };
 		66AB522528512FCB009CD347 /* LiveCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AB522428512FCB009CD347 /* LiveCameraView.swift */; };
@@ -137,6 +138,7 @@
 		660D591A284D67FA00795114 /* Int+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bool.swift"; sourceTree = "<group>"; };
 		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
+		666F548D286884E9008C1997 /* MileageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageData.swift; sourceTree = "<group>"; };
 		66A520E42855565E00C0EB88 /* TotaledCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotaledCarData.swift; sourceTree = "<group>"; };
 		66A520E62855D41700C0EB88 /* HeavyCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavyCarData.swift; sourceTree = "<group>"; };
 		66AB522428512FCB009CD347 /* LiveCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCameraView.swift; sourceTree = "<group>"; };
@@ -499,13 +501,14 @@
 			isa = PBXGroup;
 			children = (
 				66CA4DD9284CD45C00D2C21A /* CarData.swift */,
+				BCF32812284AC5E0003A5162 /* CDParameter.swift */,
 				BCC512372849644300E883D0 /* BaseCarData.swift */,
 				66CE0825284CEDC900FF7072 /* DisabilityData.swift */,
 				662CD73C284C9C430084998A /* ExtraCarData.swift */,
 				6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */,
 				66A520E42855565E00C0EB88 /* TotaledCarData.swift */,
-				BCF32812284AC5E0003A5162 /* CDParameter.swift */,
 				66A520E62855D41700C0EB88 /* HeavyCarData.swift */,
+				666F548D286884E9008C1997 /* MileageData.swift */,
 				BC47924E285B11E000EF79E9 /* Realm */,
 			);
 			path = Model;
@@ -708,6 +711,7 @@
 				BC8BE3F12847AB95002838AA /* UIView+Fade.swift in Sources */,
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
 				BC4A3493286318F0005A32D6 /* RealmCarData.swift in Sources */,
+				666F548E286884E9008C1997 /* MileageData.swift in Sources */,
 				66E93ADD285901D700876464 /* CDTableViewController.swift in Sources */,
 				BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */,
 				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,

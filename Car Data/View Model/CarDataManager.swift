@@ -34,15 +34,19 @@ struct CarDataManager {
                                     getnumberOfVehiclesWithIdenticalModel(from: baseData)
                                     
                                         .then { numberOfIdenticalVehicles in
+                                            getMileageData(from: licensePlateNumber).then { mileage in
+                                                    
+                                                fulfill(CarData(id: licensePlateAsInt,
+                                                                baseData: baseData,
+                                                                extraData: extraData,
+                                                                hasDisablity: hasDisability,
+                                                                isImport: false,
+                                                                isMotorcycle: false,
+                                                                isHeavy: false,
+                                                                numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles,
+                                                                lastKnownMileage: mileage))
+                                            }
                                             
-                                            fulfill(CarData(id: licensePlateAsInt,
-                                                            baseData: baseData,
-                                                            extraData: extraData,
-                                                            hasDisablity: hasDisability,
-                                                            isImport: false,
-                                                            isMotorcycle: false,
-                                                            isHeavy: false,
-                                                            numberOfVehiclesWithIdenticalModel: numberOfIdenticalVehicles))
                                         }
                                 }
                         }
@@ -59,15 +63,19 @@ struct CarDataManager {
                                 getDisabilityData(from: licensePlateNumber)
                                 
                                     .then { hasDisability in
-                                        
-                                        fulfill(CarData(id: licensePlateAsInt,
-                                                        baseData: BaseCarData(importData),
-                                                        extraData: nil,
-                                                        hasDisablity: hasDisability,
-                                                        isImport: true,
-                                                        isMotorcycle: false,
-                                                        isHeavy: false,
-                                                        numberOfVehiclesWithIdenticalModel: 0))
+                                        getMileageData(from: licensePlateNumber).then { mileage in
+                                            
+                                            fulfill(CarData(id: licensePlateAsInt,
+                                                            baseData: BaseCarData(importData),
+                                                            extraData: nil,
+                                                            hasDisablity: hasDisability,
+                                                            isImport: true,
+                                                            isMotorcycle: false,
+                                                            isHeavy: false,
+                                                            numberOfVehiclesWithIdenticalModel: 0,
+                                                            lastKnownMileage: mileage))
+                                        }
+
                                     }
                             }
                             .catch { error in
@@ -85,15 +93,19 @@ struct CarDataManager {
                                                     getnumberOfVehiclesWithIdenticalModel(from: data, isMotorcycle: true)
                                                         
                                                         .then { identicalVehicles in
-                                                            
-                                                            fulfill(CarData(id: licensePlateAsInt,
-                                                                            baseData: data,
-                                                                            extraData: nil,
-                                                                            hasDisablity: hasDisability,
-                                                                            isImport: false,
-                                                                            isMotorcycle: true,
-                                                                            isHeavy: false,
-                                                                            numberOfVehiclesWithIdenticalModel: identicalVehicles))
+                                                            getMileageData(from: licensePlateNumber).then { mileage in
+                                                                
+                                                                fulfill(CarData(id: licensePlateAsInt,
+                                                                                baseData: data,
+                                                                                extraData: nil,
+                                                                                hasDisablity: hasDisability,
+                                                                                isImport: false,
+                                                                                isMotorcycle: true,
+                                                                                isHeavy: false,
+                                                                                numberOfVehiclesWithIdenticalModel: identicalVehicles,
+                                                                                lastKnownMileage: mileage))
+                                                            }
+
                                                         }.catch { error in
                                                             reject(error)
                                                         }
@@ -118,15 +130,19 @@ struct CarDataManager {
                                                                 getnumberOfVehiclesWithIdenticalModel(from: baseData, isHeavy: true)
                                                                     
                                                                     .then { identicalVehicles in
-                                                                    
-                                                                    fulfill(CarData(id: licensePlateAsInt,
-                                                                                    baseData: BaseCarData(data),
-                                                                                    extraData: nil,
-                                                                                    hasDisablity: hasDisability,
-                                                                                    isImport: false,
-                                                                                    isMotorcycle: true,
-                                                                                    isHeavy: true,
-                                                                                    numberOfVehiclesWithIdenticalModel: identicalVehicles))
+                                                                        getMileageData(from: licensePlateNumber).then { mileage in
+                                                                            
+                                                                            fulfill(CarData(id: licensePlateAsInt,
+                                                                                            baseData: BaseCarData(data),
+                                                                                            extraData: nil,
+                                                                                            hasDisablity: hasDisability,
+                                                                                            isImport: false,
+                                                                                            isMotorcycle: true,
+                                                                                            isHeavy: true,
+                                                                                            numberOfVehiclesWithIdenticalModel: identicalVehicles,
+                                                                                            lastKnownMileage: mileage))
+                                                                        }
+
                                                                     }.catch { error in
                                                                         reject(error)
                                                                     }
@@ -394,6 +410,29 @@ struct CarDataManager {
             
         }
         
+    }
+    
+    private func getMileageData(from licensePlateNumber: String) -> Promise<Int?> {
+        return Promise { fulfill, reject in
+            
+            let url = urlManager.url(from: K.URLs.mileageData, query: licensePlateNumber)
+            
+            HTTPRequest.get(from: url, decodeWith: MileageDataRespone.self).then(on: DispatchQueue.global()) { data in
+                
+                guard let plateNumber = Int(licensePlateNumber),
+                      let result = data.result.records.first(where: { $0.misparRechev == plateNumber }) else {
+                    
+                    fulfill(nil)
+                    return
+                }
+                
+                fulfill(result.lastKnownMileage)
+                
+            }.catch { error in
+                fulfill(nil)
+                print(error)
+            }
+        }
     }
     
 }

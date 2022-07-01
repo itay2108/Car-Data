@@ -22,6 +22,7 @@ struct CarData {
     let isHeavy: Bool
     
     let numberOfVehiclesWithIdenticalModel: Int
+    let lastKnownMileage: Int?
     
     var allSections: [CDParameterSection] {
         
@@ -102,6 +103,7 @@ struct CarData {
         parameters.append(CDParameter(type: .lastMOT, value: baseData.lastMOT?.asDateFormat(inputFormat: .govApiFormat, outputFormat: .uiFormat)))
         parameters.append(CDParameter(type: .registrationGroup, value: extraData?.registrationGroup))
         parameters.append(CDParameter(type: .nextMOT, value: baseData.nextMOT?.asDateFormat(inputFormat: .govApiFormat, outputFormat: .uiFormat)))
+        parameters.append(CDParameter(type: .lastKnownMileage, value: lastKnownMileage))
         parameters.append(CDParameter(type: .ownership, value: baseData.ownership))
         parameters.append(CDParameter(type: .chassis, value: baseData.chassis))
         parameters.append(CDParameter(type: .horaatRishum, value: baseData.horaatRishum))
