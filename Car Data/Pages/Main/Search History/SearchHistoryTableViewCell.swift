@@ -43,7 +43,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
         let manufacturer = data.baseData.manufacturer ?? data.extraData?.manufacturer
         manufacturerLabel.text = manufacturer ?? "יצרן לא ידוע"
         
-        let model = data.baseData.model ?? data.extraData?.model
+        let model = data.baseData.model ?? data.extraData?.model ?? data.baseData.modelNumber
         modelLabel.text = model ?? "דגם לא ידוע"
         
         let modelYear = data.baseData.modelYear ?? 1970
