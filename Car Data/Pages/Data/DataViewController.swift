@@ -101,13 +101,20 @@ class DataViewController: CDViewController {
     }
     
     private func setupDisabilityLabel() {
-        if let data = data {
-            disabilityLabel.text = data.hasDisablity ? HasDisabilityLabel.yes.rawValue : HasDisabilityLabel.no.rawValue
-        } else {
-            disabilityLabel.isHidden = true
+        
+        guard let data = data else {
+            disabilityLabel.isHidden = false
+            return
         }
         
+        disabilityLabel.text = data.hasDisablity ? HasDisabilityLabel.yes.rawValue : HasDisabilityLabel.no.rawValue
+
         disabilityStackView.hero.modifiers = [.delay(0.6), .fade, .translate(x: 0, y: 20, z: 0)]
+        
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(disabilityLabelDidLongPress(_:)))
+        longPressGR.minimumPressDuration = 0.4
+        
+        disabilityStackView.addGestureRecognizer(longPressGR)
     }
     
     private func setupTableView() {
@@ -187,6 +194,21 @@ class DataViewController: CDViewController {
     @objc private func licensePlateLabelDidTap(_ sender: UITapGestureRecognizer) {
         
         dataTableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    @objc private func disabilityLabelDidLongPress(_ sender: UILongPressGestureRecognizer) {
+        
+        guard let data = data else {
+            return
+        }
+        
+        let baseMessage = "לפי קאר דאטה, לרכב מספר"
+        let licencePlate = LicensePlateManager.maskToLicensePlateFormat(String(describing:  data.baseData.plateNumber))
+        let hasDisability = data.hasDisablity ? HasDisabilityLabel.yes : HasDisabilityLabel.no
+        
+        UIPasteboard.general.string = baseMessage + " " + licencePlate + " " + hasDisability.pasteboardMessage()
+        
+        toast(message: "הערך הועתק בהצלחה", feedbackType: .rigid, timeoutStyle: .fast)
     }
     
     //MARK: - Sharing Methods

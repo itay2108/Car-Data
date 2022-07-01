@@ -33,4 +33,13 @@ struct DisabilityData: Codable {
 enum HasDisabilityLabel: String {
     case yes = "לרכב זה קיים תו נכה"
     case no = "לרכב זה אין תו נכה"
+    
+    func pasteboardMessage() -> String {
+        switch self {
+        case .yes:
+            return "יש תו נכה"
+        case .no:
+            return "אין תו נכה"
+        }
+    }
 }
