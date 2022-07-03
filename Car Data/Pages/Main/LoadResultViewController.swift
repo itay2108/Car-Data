@@ -33,21 +33,23 @@ class LoadResultViewController: CDViewController {
     
     var requestTimer: Timer?
     
-    override var licensePlateNumber: String? {
-        didSet {
-            if licensePlateNumber != nil {
-                    getCarData()
-            }
-        }
-    }
-    
     //MARK: - Lifecycle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        //timer
-        respondToLongLoadingTime(after: 6)
+        if licensePlateNumber != nil {
+            getCarData()
+            
+            //timer
+            respondToLongLoadingTime(after: 6)
+            
+        } else {
+            delegate?.resultLoader(didFailWith: CDError.noDataProvided, for: nil)
+            navigationController?.popViewController(animated: true)
+            
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

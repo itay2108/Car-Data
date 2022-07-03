@@ -119,7 +119,7 @@ final class MainViewController: CDViewController, CarDataPresentable {
             leaveSearchScene()
         }
 
-        if mainContainerCenterYAnchor.constant != 0 {
+        if mainContainerCenterYAnchor.constant != 0 && !isReturningFromLoadWithError {
             reCenterMainContainer(animated: false)
         }
         
@@ -619,6 +619,12 @@ extension MainViewController: LoadResultDelegate {
         tableViewEmptyPlaceHolder.hero.modifiers = []
         
         if (error as? CDError) == CDError.canceled {
+            
+            
+            mainContainerCenterYAnchor.constant = licensePlateTextFieldContainer.frame.height
+            updateViewConstraints()
+            beginSearchScene()
+            
             licensePlateTextField.becomeFirstResponder()
             return
         }
