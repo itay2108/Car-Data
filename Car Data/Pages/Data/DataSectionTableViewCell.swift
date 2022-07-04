@@ -35,6 +35,12 @@ class DataSectionTableViewCell: UITableViewCell {
     
     var delegate: DataSectionTableViewCellDelegate?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupTableView()
+    }
+    
     func configure(with section: CDParameterSection, isLast: Bool = false) {
 
         if let sectionName = section.title {
@@ -42,8 +48,6 @@ class DataSectionTableViewCell: UITableViewCell {
         } else {
             sectionHeader.isHidden = true
         }
-        
-        setupTableView()
         
         self.parameters = section.parameters
         
@@ -97,6 +101,9 @@ extension DataSectionTableViewCell: UITableViewDelegate, UITableViewDataSource {
         let parametersCount = parameters?.count ?? 0
         let height: CGFloat = CGFloat(parametersCount * 67)
         
+        let heightConstraints = tableView.constraints.filter( { $0.firstAttribute == .height })
+        tableView.removeConstraints(heightConstraints)
+        
         tableView.heightAnchor.constraint(equalToConstant: height).isActive = true
         
         
@@ -111,7 +118,6 @@ extension DataSectionTableViewCell: UITableViewDelegate, UITableViewDataSource {
         
         
         cell.configure(with: parameters?[safe: indexPath.row])
-        
         
         return cell
     }

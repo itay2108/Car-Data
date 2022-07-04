@@ -311,10 +311,9 @@ extension DataViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.configure(with: source, isLast: indexPath.row == data?.allSections.count)
         cell.delegate = self
+        cell.parameterTableView.reloadData()
         
         return cell
-        
-        
     }
     
     
