@@ -250,7 +250,7 @@ class DataViewController: CDViewController {
                                                 CGRect(x: 0,
                                                        y: 0,
                                                        width: view.frame.width * 0.5,
-                                                       height: view.frame.height * 0.3))
+                                                       height: view.frame.height * 0.27))
         
         licensePlateLabel.center = CGPoint(x: view.center.x, y: view.center.y + logoView.frame.height / 4)
         
@@ -259,11 +259,11 @@ class DataViewController: CDViewController {
         
         licensePlateLabel.text = LicensePlateManager.maskToLicensePlateFormat(plateNumber)
         licensePlateLabel.textAlignment = .center
-        licensePlateLabel.font = Rubik.semiBold.ofSize(view.frame.height * 0.38)
+        licensePlateLabel.font = Rubik.semiBold.ofSize(view.frame.height * 0.57)
         licensePlateLabel.adjustsFontSizeToFitWidth = true
         
-        licensePlateLabel.leftInset = 24
-        licensePlateLabel.rightInset = 24
+        licensePlateLabel.leftInset = 20
+        licensePlateLabel.rightInset = 20
         
         licensePlateLabel.layer.masksToBounds = true
         licensePlateLabel.layer.cornerRadius = 13

@@ -374,7 +374,7 @@ final class MainViewController: CDViewController, CarDataPresentable {
         }
         
         if let destination = segue.destination as? SearchHistoryViewController {
-            print(cdTableViewRowHeight)
+
             destination.cdTableViewRowHeight = cdTableViewRowHeight
         }
     }
