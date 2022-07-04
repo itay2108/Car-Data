@@ -25,9 +25,7 @@ class SearchHistoryContainerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var separatorView: UIView!
     
-    var records: [DataRecord] {
-        return RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
-    }
+    var records: [DataRecord] = RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
     
     var relevantRecords: [DataRecord] {
         return searchTerm.count == 0 ? records : records.filter( { $0.data?.asCarData().contains(searchTerm) == true })
