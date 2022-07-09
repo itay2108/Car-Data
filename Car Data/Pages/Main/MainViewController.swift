@@ -329,7 +329,7 @@ final class MainViewController: CDViewController, CarDataPresentable {
            LicensePlateManager.licensePlateIsValid(input) {
             licensePlateTextField.resignFirstResponder()
             
-            licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input)
+            licensePlateNumber = LicensePlateManager.cleanLicensePlateNumber(from: input).trimming(character: "0", from: .beginning)
             
             searchHistoryTableView.hero.modifiers = []
             searchHistoryTableViewShadowView.hero.modifiers = []

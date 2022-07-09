@@ -180,9 +180,13 @@ final class VisionViewController: CDViewController {
         
         let pinchGR = UIPinchGestureRecognizer(target: self, action: #selector(visionViewDidPinch(_:)))
         
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(visionViewDidLongPress(_:)))
+        longPressGR.minimumPressDuration = 0.33
+        
         visionFocusView.isUserInteractionEnabled = true
         visionFocusView.addGestureRecognizer(swipeGR)
         visionFocusView.addGestureRecognizer(pinchGR)
+        visionFocusView.addGestureRecognizer(longPressGR)
         
         updateVisionFocusViewCutout()
     }
@@ -359,6 +363,12 @@ final class VisionViewController: CDViewController {
         if timeSinceLastSampleDetection >= 3, instructionLabel.alpha == 0 {
             animateInstructionIn()
             visionViewActivityIndicator.stopAnimating()
+            
+            if Float(potentialPlateNumbers.count) > Float(licensePlateSampleThreshold) * 0.8 {
+                attemptMostProbablePlateNumber(ignoresMinimumThreshold: true)
+            } else {
+                potentialPlateNumbers = []
+            }
         }
     }
     
@@ -459,6 +469,26 @@ final class VisionViewController: CDViewController {
 
         }
 
+    }
+    
+    @objc func visionViewDidLongPress(_ sender: UILongPressGestureRecognizer) {
+
+        guard let senderView = sender.view else {
+            return
+        }
+        
+        senderView.becomeFirstResponder()
+
+        // Set up the shared UIMenuController
+        let pasteMenuItem = UIMenuItem(title: "Paste", action: #selector(pasteMenuItemTapped(_:)))
+
+        UIMenuController.shared.menuItems = [pasteMenuItem]
+        // Animate the menu onto view
+        UIMenuController.shared.showMenu(from: view, rect: regionOfInterest)
+    }
+    
+    @objc func pasteMenuItemTapped(_ sender: UIMenuItem) {
+        print("paste")
     }
     
     //MARK: - Vision Methods
@@ -595,8 +625,8 @@ final class VisionViewController: CDViewController {
         }
     }
     
-    private func attemptMostProbablePlateNumber() {
-        guard potentialPlateNumbers.count >= licensePlateSampleThreshold else {
+    private func attemptMostProbablePlateNumber(ignoresMinimumThreshold: Bool = false) {
+        guard potentialPlateNumbers.count >= licensePlateSampleThreshold && !ignoresMinimumThreshold else {
             return
         }
         

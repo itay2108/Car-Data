@@ -55,6 +55,8 @@ class LoadResultViewController: CDViewController {
     override func viewWillDisappear(_ animated: Bool) {
         requestTimer?.invalidate()
         requestTimer = nil
+        
+        activityIndicator.stopAnimating()
     }
     
     //MARK: - UI Methods
