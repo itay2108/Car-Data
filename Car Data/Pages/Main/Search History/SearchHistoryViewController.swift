@@ -18,7 +18,6 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     @IBOutlet weak var resultCountLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableViewShadowView: UIView!
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
@@ -34,8 +33,12 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
         super.viewWillAppear(animated)
         
         tableView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 20, z: 0), .duration(0.533)]
-
-        tableViewShadowView.hero.modifiers = [.fade, .delay(0.166), .translate(x: 0, y: 30, z: 0), .duration(0.7)]
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        searchBar.resignFirstResponder()
     }
 
     override func setupViews() {
@@ -72,14 +75,6 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
         
         tableView.register(UINib(nibName: SearchHistoryContainerTableViewCell.reuseID, bundle: nil), forCellReuseIdentifier: SearchHistoryContainerTableViewCell.reuseID)
 
-        
-        //shadow view setup
-        
-        tableViewShadowView.layer.shadowColor = K.colors.accents.dark.cgColor
-        tableViewShadowView.layer.shadowOpacity = 0.25
-        tableViewShadowView.layer.shadowOffset = CGSize(width: 0.0, height: 10.0)
-        tableViewShadowView.layer.shadowRadius = 20 * widthModifier
-        tableViewShadowView.backgroundColor = .clear
         
     }
     
@@ -152,7 +147,9 @@ extension SearchHistoryViewController: UISearchBarDelegate {
         
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SearchHistoryContainerTableViewCell {
         
-            cell.searchTerm = searchText
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                cell.searchTerm = searchText
+            }
 
         }
     }

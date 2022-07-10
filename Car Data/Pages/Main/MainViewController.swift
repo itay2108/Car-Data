@@ -52,8 +52,8 @@ final class MainViewController: CDViewController, CarDataPresentable {
     
     var isReturningFromLoadWithError: Bool = false
     
-    var recentDataRecords: [DataRecord] {
-        let validRecords = RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
+    var recentDataRecords: [DataRecordPreview] {
+        let validRecords = RealmManager.fetch(recordsOfType: DataRecordPreview.self).sorted(by: { $1.date < $0.date })
         
         tableViewEmptyPlaceHolder.isHidden = validRecords.count > 0
         searchHistoryShowAllButton.isHidden = validRecords.count <= 5
@@ -595,8 +595,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard tableView == searchHistoryTableView,
-              let record = recentDataRecords[safe: indexPath.row],
-              let data = record.data?.asCarData() else {
+              let recordKey = recentDataRecords[safe: indexPath.row]?.key,
+              let data = RealmManager.fetch(recordOfType: DataRecord.self, withPrimaryKey: recordKey)?.data?.asCarData() else {
             return
         }
         

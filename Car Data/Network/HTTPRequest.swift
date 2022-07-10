@@ -21,7 +21,7 @@ struct HTTPRequest {
                 reject(CDError.requestError)
                 return
             }
-            
+            print("get data from url: \(url)...")
             let request = AF.request(url, headers: headers).validate(statusCode: 200..<300)
             
                 .responseDecodable(of: T.self) { response in

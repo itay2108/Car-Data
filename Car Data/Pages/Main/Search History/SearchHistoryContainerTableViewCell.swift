@@ -25,10 +25,10 @@ class SearchHistoryContainerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var separatorView: UIView!
     
-    var records: [DataRecord] = RealmManager.fetch(recordsOfType: DataRecord.self).sorted(by: { $1.date < $0.date }).filter( { $0.data != nil })
+    var records: [DataRecordPreview] = RealmManager.fetch(recordsOfType: DataRecordPreview.self).sorted(by: { $1.date < $0.date })
     
-    var relevantRecords: [DataRecord] {
-        return searchTerm.count == 0 ? records : records.filter( { $0.data?.asCarData().contains(searchTerm) == true })
+    var relevantRecords: [DataRecordPreview] {
+        return searchTerm.count == 0 ? records : records.filter( { $0.contains(searchTerm) == true })
     }
     
     var searchTerm: String = "" {
@@ -88,7 +88,8 @@ extension SearchHistoryContainerTableViewCell: UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let data = relevantRecords[safe: indexPath.row]?.data?.asCarData() {
+        if let dataKey = relevantRecords[safe: indexPath.row]?.key,
+           let data = RealmManager.fetch(recordOfType: DataRecord.self, withPrimaryKey: dataKey)?.data?.asCarData()  {
             
             delegate?.historyContainer(didSelectCellWith: data, at: indexPath)
         }

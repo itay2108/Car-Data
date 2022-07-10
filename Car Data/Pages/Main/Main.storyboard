@@ -127,10 +127,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="331" height="97.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Qpq-KP-dgH">
-                                                        <rect key="frame" x="85" y="4.5" width="161.5" height="77"/>
+                                                        <rect key="frame" x="73" y="4.5" width="185.5" height="77"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6E8-Yd-i8u">
-                                                                <rect key="frame" x="52" y="0.0" width="57" height="26"/>
+                                                                <rect key="frame" x="64" y="0.0" width="57" height="26"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-swipe-up" translatesAutoresizingMaskIntoConstraints="NO" id="b4P-iy-o1b">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="26"/>
@@ -148,7 +148,7 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="חיפוש לפי מספר רישוי" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXe-Rm-g37" customClass="PaddingLabel" customModule="Car_Data" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="38" width="161.5" height="39"/>
+                                                                <rect key="frame" x="0.0" y="38" width="185.5" height="39"/>
                                                                 <color key="backgroundColor" name="cd-yellow"/>
                                                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="18"/>
                                                                 <color key="textColor" name="cd-text-dark"/>
@@ -539,16 +539,7 @@
                                     <constraint firstItem="YCx-7v-t5S" firstAttribute="width" secondItem="0kd-cN-91T" secondAttribute="width" multiplier="0.04" id="gWF-PF-72l"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsC-Bw-srT">
-                                <rect key="frame" x="26.5" y="231" width="361" height="658.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" name="cd-accent-dark"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aFU-Dt-bzV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aFU-Dt-bzV">
                                 <rect key="frame" x="20" y="224.5" width="374" height="671.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -558,7 +549,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 תוצאות" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzU-tt-e9l">
-                                <rect key="frame" x="14.5" y="202" width="361" height="14.5"/>
+                                <rect key="frame" x="329" y="202" width="53" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="12"/>
                                 <color key="textColor" name="cd-text-light"/>
                                 <nil key="highlightedColor"/>
@@ -567,17 +558,12 @@
                         <viewLayoutGuide key="safeArea" id="6j8-3e-ncb"/>
                         <color key="backgroundColor" name="cd-background"/>
                         <constraints>
-                            <constraint firstItem="IsC-Bw-srT" firstAttribute="centerY" secondItem="aFU-Dt-bzV" secondAttribute="centerY" id="AIG-uE-ETI"/>
-                            <constraint firstItem="TzU-tt-e9l" firstAttribute="width" secondItem="IsC-Bw-srT" secondAttribute="width" id="AL8-sB-fa3"/>
                             <constraint firstItem="aFU-Dt-bzV" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="D5e-rH-HC9"/>
                             <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="aFU-Dt-bzV" secondAttribute="trailing" constant="20" id="K4o-o4-cJ8"/>
                             <constraint firstItem="aFU-Dt-bzV" firstAttribute="top" secondItem="TzU-tt-e9l" secondAttribute="bottom" constant="8" id="MHL-Cz-WsQ"/>
                             <constraint firstItem="0kd-cN-91T" firstAttribute="height" secondItem="qSv-q3-Z8Q" secondAttribute="height" multiplier="0.0524554" id="Oiw-qb-0uM"/>
-                            <constraint firstItem="IsC-Bw-srT" firstAttribute="centerX" secondItem="aFU-Dt-bzV" secondAttribute="centerX" id="S29-pf-CUl"/>
-                            <constraint firstItem="IsC-Bw-srT" firstAttribute="width" secondItem="aFU-Dt-bzV" secondAttribute="width" constant="-13" id="TQ2-Qt-NVX"/>
+                            <constraint firstItem="TzU-tt-e9l" firstAttribute="trailing" secondItem="aFU-Dt-bzV" secondAttribute="trailing" constant="-12" id="a6t-lL-XEi"/>
                             <constraint firstItem="TzU-tt-e9l" firstAttribute="top" secondItem="pe6-TE-6dn" secondAttribute="bottom" constant="4" id="bjG-Pd-u0V"/>
-                            <constraint firstItem="IsC-Bw-srT" firstAttribute="height" secondItem="aFU-Dt-bzV" secondAttribute="height" constant="-13" id="cJ2-v9-WLz"/>
-                            <constraint firstItem="TzU-tt-e9l" firstAttribute="trailing" secondItem="IsC-Bw-srT" secondAttribute="trailing" constant="-12" id="fOc-Ua-t0d"/>
                             <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="0kd-cN-91T" secondAttribute="trailing" constant="20" id="fqh-nj-Xun"/>
                             <constraint firstItem="0kd-cN-91T" firstAttribute="top" secondItem="6j8-3e-ncb" secondAttribute="top" constant="12" id="opA-sW-j7B"/>
                             <constraint firstItem="0kd-cN-91T" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="qRG-vf-Vcn"/>
@@ -594,7 +580,6 @@
                         <outlet property="resultCountLabel" destination="TzU-tt-e9l" id="bcc-7M-Wjb"/>
                         <outlet property="searchBar" destination="pe6-TE-6dn" id="H0Q-im-X4R"/>
                         <outlet property="tableView" destination="aFU-Dt-bzV" id="9bG-RG-mir"/>
-                        <outlet property="tableViewShadowView" destination="IsC-Bw-srT" id="KgR-0v-cFe"/>
                         <segue destination="HLx-iu-KIc" kind="show" identifier="searchHistoryToData" id="OO6-bt-LLE"/>
                     </connections>
                 </viewController>
@@ -637,7 +622,7 @@
     </scenes>
     <designables>
         <designable name="IXe-Rm-g37">
-            <size key="intrinsicContentSize" width="161.5" height="21.5"/>
+            <size key="intrinsicContentSize" width="185.5" height="37.5"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
