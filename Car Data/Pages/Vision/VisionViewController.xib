@@ -26,7 +26,7 @@
                 <outlet property="licensePlateHeroView" destination="Ows-vM-6rA" id="92Z-Jm-bu9"/>
                 <outlet property="licensePlateLabel" destination="BxU-tx-Qdj" id="iaE-JS-QwS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="visionFocusView" destination="XpH-yO-byw" id="chD-oY-CHY"/>
+                <outlet property="visionFocusView" destination="XpH-yO-byw" id="nQV-VY-N8K"/>
                 <outlet property="visionView" destination="YXk-jV-egw" id="skn-D7-ubS"/>
                 <outlet property="visionViewActivityIndicator" destination="BKK-Q2-RHa" id="WVX-6g-fe2"/>
                 <outlet property="visionViewActivityIndicatorCenterYAnchor" destination="NDc-yi-nyc" id="RN8-dX-Xcg"/>
@@ -41,7 +41,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-yO-byw">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpH-yO-byw" customClass="RespondableView" customModule="Car_Data" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="431" height="896"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.2513075064349648" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

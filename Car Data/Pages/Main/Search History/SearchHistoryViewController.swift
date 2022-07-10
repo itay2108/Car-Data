@@ -18,6 +18,7 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
     @IBOutlet weak var resultCountLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noResultView: UIStackView!
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
@@ -54,6 +55,8 @@ class SearchHistoryViewController: CDViewController, CarDataPresentable {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(headerDidTap(_:)))
         
         headerView.addGestureRecognizer(tapGR)
+        
+        noResultView.isHidden = relevantRecordsCount > 0
     }
     
     private func setupSearchbar() {
@@ -134,6 +137,13 @@ extension SearchHistoryViewController: SearchHistoryContainerCellDelegate {
     }
     
     func historyContainer(didUpdateSearchTermTo searchTerm: String, matchingRecordsCount count: Int) {
+        
+        if relevantRecordsCount > 0 && count == 0 {
+            noResultView.fadeIn(duration: 0.2, delay: 0.16)
+        } else {
+            noResultView.isHidden = count > 0
+        }
+        
         relevantRecordsCount = count
         
         tableView.beginUpdates()
@@ -147,10 +157,7 @@ extension SearchHistoryViewController: UISearchBarDelegate {
         
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? SearchHistoryContainerTableViewCell {
         
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                cell.searchTerm = searchText
-            }
-
+            cell.searchTerm = searchText
         }
     }
 }

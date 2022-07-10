@@ -11,6 +11,7 @@
 		660D591B284D67FA00795114 /* Int+Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660D591A284D67FA00795114 /* Int+Bool.swift */; };
 		6628EBDC284E7A6B001CABF9 /* ImportCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */; };
 		662CD73D284C9C430084998A /* ExtraCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CD73C284C9C430084998A /* ExtraCarData.swift */; };
+		6663936E287B537B001FAEE6 /* RespondableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6663936D287B537B001FAEE6 /* RespondableView.swift */; };
 		666F548E286884E9008C1997 /* MileageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 666F548D286884E9008C1997 /* MileageData.swift */; };
 		66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E42855565E00C0EB88 /* TotaledCarData.swift */; };
 		66A520E72855D41700C0EB88 /* HeavyCarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A520E62855D41700C0EB88 /* HeavyCarData.swift */; };
@@ -138,6 +139,7 @@
 		660D591A284D67FA00795114 /* Int+Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bool.swift"; sourceTree = "<group>"; };
 		6628EBDB284E7A6B001CABF9 /* ImportCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCarData.swift; sourceTree = "<group>"; };
 		662CD73C284C9C430084998A /* ExtraCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraCarData.swift; sourceTree = "<group>"; };
+		6663936D287B537B001FAEE6 /* RespondableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespondableView.swift; sourceTree = "<group>"; };
 		666F548D286884E9008C1997 /* MileageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MileageData.swift; sourceTree = "<group>"; };
 		66A520E42855565E00C0EB88 /* TotaledCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotaledCarData.swift; sourceTree = "<group>"; };
 		66A520E62855D41700C0EB88 /* HeavyCarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavyCarData.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				BCB4432E2850844C00792E66 /* VisionViewController.xib */,
 				66AB522428512FCB009CD347 /* LiveCameraView.swift */,
 				BCD3875C2852392F00AE1149 /* VNRecognitionHandler.swift */,
+				6663936D287B537B001FAEE6 /* RespondableView.swift */,
 			);
 			path = Vision;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */,
 				BC01BCFF284F5EBF00777C57 /* String+Extensions.swift in Sources */,
 				66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */,
+				6663936E287B537B001FAEE6 /* RespondableView.swift in Sources */,
 				BCF3281D284B52E6003A5162 /* Collection+SafeBounds.swift in Sources */,
 				66CE0826284CEDC900FF7072 /* DisabilityData.swift in Sources */,
 				BCD4D7772848DE3B000D24D0 /* CDTableView.swift in Sources */,

@@ -548,6 +548,20 @@
                                 <rect key="frame" x="12" y="147" width="390" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Bns-PE-2sX">
+                                <rect key="frame" x="124" y="407.5" width="166" height="135"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-not-found" translatesAutoresizingMaskIntoConstraints="NO" id="VHG-bz-8qt">
+                                        <rect key="frame" x="0.0" y="0.0" width="166" height="67"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="מצטערים, אבל לא מצאנו את מה שחיפשת" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUt-cn-qHq">
+                                        <rect key="frame" x="7" y="99" width="152" height="36"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="15"/>
+                                        <color key="textColor" name="cd-accent-dark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56 תוצאות" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzU-tt-e9l">
                                 <rect key="frame" x="329" y="202" width="53" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="12"/>
@@ -565,7 +579,11 @@
                             <constraint firstItem="TzU-tt-e9l" firstAttribute="trailing" secondItem="aFU-Dt-bzV" secondAttribute="trailing" constant="-12" id="a6t-lL-XEi"/>
                             <constraint firstItem="TzU-tt-e9l" firstAttribute="top" secondItem="pe6-TE-6dn" secondAttribute="bottom" constant="4" id="bjG-Pd-u0V"/>
                             <constraint firstItem="6j8-3e-ncb" firstAttribute="trailing" secondItem="0kd-cN-91T" secondAttribute="trailing" constant="20" id="fqh-nj-Xun"/>
+                            <constraint firstItem="Bns-PE-2sX" firstAttribute="centerY" secondItem="6j8-3e-ncb" secondAttribute="centerY" id="lFj-yG-5RD"/>
+                            <constraint firstItem="Bns-PE-2sX" firstAttribute="width" secondItem="qSv-q3-Z8Q" secondAttribute="width" multiplier="0.4" id="lMD-9a-4Ef"/>
                             <constraint firstItem="0kd-cN-91T" firstAttribute="top" secondItem="6j8-3e-ncb" secondAttribute="top" constant="12" id="opA-sW-j7B"/>
+                            <constraint firstItem="Bns-PE-2sX" firstAttribute="centerX" secondItem="6j8-3e-ncb" secondAttribute="centerX" id="pb0-fy-Wcy"/>
+                            <constraint firstItem="VHG-bz-8qt" firstAttribute="height" secondItem="qSv-q3-Z8Q" secondAttribute="height" multiplier="0.075" id="q4C-ye-bvK"/>
                             <constraint firstItem="0kd-cN-91T" firstAttribute="leading" secondItem="6j8-3e-ncb" secondAttribute="leading" constant="20" id="qRG-vf-Vcn"/>
                             <constraint firstItem="pe6-TE-6dn" firstAttribute="top" secondItem="0kd-cN-91T" secondAttribute="bottom" id="s99-bx-AhN"/>
                             <constraint firstItem="pe6-TE-6dn" firstAttribute="centerX" secondItem="qSv-q3-Z8Q" secondAttribute="centerX" id="t9Z-pv-sPP"/>
@@ -577,6 +595,7 @@
                     <connections>
                         <outlet property="headerTitleLabel" destination="LDW-TI-BIa" id="1h7-Wm-Xgy"/>
                         <outlet property="headerView" destination="0kd-cN-91T" id="5zc-g3-pbL"/>
+                        <outlet property="noResultView" destination="Bns-PE-2sX" id="bxc-xX-6Xq"/>
                         <outlet property="resultCountLabel" destination="TzU-tt-e9l" id="bcc-7M-Wjb"/>
                         <outlet property="searchBar" destination="pe6-TE-6dn" id="H0Q-im-X4R"/>
                         <outlet property="tableView" destination="aFU-Dt-bzV" id="9bG-RG-mir"/>
@@ -632,6 +651,7 @@
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="cd-logo-label" width="512" height="104"/>
         <image name="cd-no-history-banner" width="889" height="725"/>
+        <image name="cd-not-found" width="753" height="616"/>
         <image name="cd-swipe-down" width="512" height="512"/>
         <image name="cd-swipe-up" width="512" height="512"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>

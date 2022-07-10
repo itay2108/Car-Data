@@ -34,6 +34,8 @@ class SearchHistoryContainerTableViewCell: UITableViewCell {
     var searchTerm: String = "" {
         didSet {
             tableView.reloadData()
+            mainContainer.backgroundColor = relevantRecords.count == 0 ? .clear : .white
+            
             delegate?.historyContainer(didUpdateSearchTermTo: searchTerm, matchingRecordsCount: relevantRecords.count)
         }
     }
@@ -49,6 +51,8 @@ class SearchHistoryContainerTableViewCell: UITableViewCell {
         self.rowHeight = rowHeight
         
         selectionStyle = .none
+        
+        mainContainer.backgroundColor = relevantRecords.count == 0 ? .clear : .white
 
     }
     
@@ -64,6 +68,7 @@ class SearchHistoryContainerTableViewCell: UITableViewCell {
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.separatorStyle = .none
+    
     }
 
 }

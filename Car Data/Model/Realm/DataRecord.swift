@@ -50,7 +50,7 @@ class DataRecordPreview: Object {
         
             for parameter in relevantParameters {
                 if let parameterValue = parameter {
-                    if String(describing: parameterValue).contains(value) {
+                    if String(describing: parameterValue).lowercased().contains(value.lowercased()) {
                         return true
                     }
                 }
