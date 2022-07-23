@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Medium.ttf">
+            <string>Rubik-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdViewController" customModule="Car_Data" customModuleProvider="target">
+            <connections>
+                <outlet property="adContainer" destination="jmE-Jd-Icr" id="cYK-fa-KdU"/>
+                <outlet property="dismissButton" destination="VXd-yW-kCP" id="mgk-5m-nAd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmE-Jd-Icr">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" name="cd-accent-light-alpha"/>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-yW-kCP">
+                    <rect key="frame" x="350" y="54" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="b9k-G2-ZUR"/>
+                        <constraint firstAttribute="width" secondItem="VXd-yW-kCP" secondAttribute="height" multiplier="1:1" id="dqZ-md-LEe"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="xmark.circle.fill" catalog="system" symbolScale="large"/>
+                        <color key="baseForegroundColor" name="cd-text-dark"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="dismissButtonPressed:" destination="-1" eventType="touchUpInside" id="hy2-GG-yXw"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7L-NM-cOR">
+                    <rect key="frame" x="356" y="60" width="36" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RdE-eq-tgW">
+                            <rect key="frame" x="13" y="8.5" width="10" height="19"/>
+                            <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                            <color key="textColor" name="cd-background"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="cd-text-dark"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="9pU-mr-BIu"/>
+                        <constraint firstAttribute="width" secondItem="D7L-NM-cOR" secondAttribute="height" id="cOp-0G-k2P"/>
+                        <constraint firstItem="RdE-eq-tgW" firstAttribute="centerX" secondItem="D7L-NM-cOR" secondAttribute="centerX" id="rLx-45-oI1"/>
+                        <constraint firstItem="RdE-eq-tgW" firstAttribute="centerY" secondItem="D7L-NM-cOR" secondAttribute="centerY" id="x7c-gV-hLG"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="D7L-NM-cOR" firstAttribute="centerX" secondItem="VXd-yW-kCP" secondAttribute="centerX" id="54T-Sb-HTV"/>
+                <constraint firstItem="D7L-NM-cOR" firstAttribute="centerY" secondItem="VXd-yW-kCP" secondAttribute="centerY" id="C0n-LM-70J"/>
+                <constraint firstItem="VXd-yW-kCP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="JMm-qp-G6O"/>
+                <constraint firstAttribute="bottom" secondItem="jmE-Jd-Icr" secondAttribute="bottom" id="Ru1-l4-9yP"/>
+                <constraint firstItem="jmE-Jd-Icr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="X66-a6-oVt"/>
+                <constraint firstItem="jmE-Jd-Icr" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ad8-Vf-LUy"/>
+                <constraint firstItem="VXd-yW-kCP" firstAttribute="width" secondItem="VXd-yW-kCP" secondAttribute="height" multiplier="1:1" id="d3w-J8-sCm"/>
+                <constraint firstItem="jmE-Jd-Icr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="uF9-Rp-pPy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VXd-yW-kCP" secondAttribute="trailing" constant="16" id="xHD-iV-vSC"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="cd-accent-light-alpha">
+            <color red="1" green="1" blue="1" alpha="0.30099999904632568" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cd-background">
+            <color red="0.92500001192092896" green="0.94099998474121094" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cd-text-dark">
+            <color red="0.23137254901960785" green="0.24313725490196078" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

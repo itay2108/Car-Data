@@ -90,6 +90,8 @@
 		BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD52769284A45E900DA60FC /* UIViewController+ErrorAlert.swift */; };
 		BCD5276C284A52F300DA60FC /* CDError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD5276B284A52F300DA60FC /* CDError.swift */; };
 		BCD5276E284A6C6400DA60FC /* CDNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD5276D284A6C6300DA60FC /* CDNavigationController.swift */; };
+		BCE73B242886E55B00F9854B /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE73B222886E55B00F9854B /* AdViewController.swift */; };
+		BCE73B252886E55B00F9854B /* AdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCE73B232886E55B00F9854B /* AdViewController.xib */; };
 		BCF32813284AC5E0003A5162 /* CDParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF32812284AC5E0003A5162 /* CDParameter.swift */; };
 		BCF32816284ACE2D003A5162 /* DataSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF32814284ACE2D003A5162 /* DataSectionTableViewCell.swift */; };
 		BCF32817284ACE2D003A5162 /* DataSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF32815284ACE2D003A5162 /* DataSectionTableViewCell.xib */; };
@@ -211,6 +213,8 @@
 		BCD52769284A45E900DA60FC /* UIViewController+ErrorAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ErrorAlert.swift"; sourceTree = "<group>"; };
 		BCD5276B284A52F300DA60FC /* CDError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDError.swift; sourceTree = "<group>"; };
 		BCD5276D284A6C6300DA60FC /* CDNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDNavigationController.swift; sourceTree = "<group>"; };
+		BCE73B222886E55B00F9854B /* AdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
+		BCE73B232886E55B00F9854B /* AdViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdViewController.xib; sourceTree = "<group>"; };
 		BCF32812284AC5E0003A5162 /* CDParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDParameter.swift; sourceTree = "<group>"; };
 		BCF32814284ACE2D003A5162 /* DataSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSectionTableViewCell.swift; sourceTree = "<group>"; };
 		BCF32815284ACE2D003A5162 /* DataSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataSectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -433,6 +437,7 @@
 		BCAEB3A0284675A300FA0981 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				BCE73B212886E53C00F9854B /* Ads */,
 				BCAEB3A1284675B300FA0981 /* Main */,
 				BCAD15762848D9CE0004A49F /* Data */,
 				BCB443312850845D00792E66 /* Vision */,
@@ -512,6 +517,15 @@
 				BC47924E285B11E000EF79E9 /* Realm */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BCE73B212886E53C00F9854B /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				BCE73B222886E55B00F9854B /* AdViewController.swift */,
+				BCE73B232886E55B00F9854B /* AdViewController.xib */,
+			);
+			path = Ads;
 			sourceTree = "<group>";
 		};
 		BCFD17422858BC8E000EAFCE /* Preferences */ = {
@@ -663,6 +677,7 @@
 				BCAEB3B12846778700FA0981 /* Rubik-SemiBold.ttf in Resources */,
 				BCF32817284ACE2D003A5162 /* DataSectionTableViewCell.xib in Resources */,
 				BCAEB3A82846776000FA0981 /* Rubik-Bold.ttf in Resources */,
+				BCE73B252886E55B00F9854B /* AdViewController.xib in Resources */,
 				BC50A4692848970900D88267 /* SearchHistoryTableViewCell.xib in Resources */,
 				BCB443302850844C00792E66 /* VisionViewController.xib in Resources */,
 				BCAEB3AD2846777A00FA0981 /* Rubik-Medium.ttf in Resources */,
@@ -712,6 +727,7 @@
 				BCD5276A284A45E900DA60FC /* UIViewController+ErrorAlert.swift in Sources */,
 				BC4A3493286318F0005A32D6 /* RealmCarData.swift in Sources */,
 				666F548E286884E9008C1997 /* MileageData.swift in Sources */,
+				BCE73B242886E55B00F9854B /* AdViewController.swift in Sources */,
 				66E93ADD285901D700876464 /* CDTableViewController.swift in Sources */,
 				BC4A348E28620CA6005A32D6 /* VisionAlgorithmType.swift in Sources */,
 				BC01BD06284F8A7300777C57 /* CDTask.swift in Sources */,
