@@ -25,6 +25,10 @@ struct RealmManager {
         return records
     }
     
+    static func fetch<T: Object>(recordOfType recordType: T.Type, withPrimaryKey key: String) -> T? {
+        return realm?.object(ofType: recordType, forPrimaryKey: key)
+    }
+    
     static func delete<T: Object>(allRecordsOfType recordType: T.Type) throws {
         
         guard let realm = realm else {

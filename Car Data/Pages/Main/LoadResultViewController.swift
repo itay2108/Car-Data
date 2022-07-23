@@ -35,6 +35,12 @@ class LoadResultViewController: CDViewController {
     
     //MARK: - Lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        activityIndicator.startAnimating()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -64,12 +70,7 @@ class LoadResultViewController: CDViewController {
     override func setupViews() {
         super.setupViews()
         
-        setupActivityIndicator()
         setupLicensePlateLabel()
-    }
-    
-    private func setupActivityIndicator() {
-        activityIndicator.startAnimating()
     }
     
     private func setupLicensePlateLabel() {
@@ -83,7 +84,9 @@ class LoadResultViewController: CDViewController {
     
     private func presentDataVC(using carData: CarData) {
         
-        guard self.isViewLoaded else { return }
+        guard self.isViewLoaded else {
+            return
+        }
         
         if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
             
@@ -113,18 +116,29 @@ class LoadResultViewController: CDViewController {
     //MARK: - Data Methods
     
     private func getCarData() {
+        
+        print("getting data...")
         CarDataManager().getCarData(from: licensePlateNumber).then { [weak self] data in
-            
+            print("received data...")
             //present data
             self?.presentDataVC(using: data)
             
             //save to realm
+            let recordDate = Date()
+            let recordKey = String(describing: data.baseData.plateNumber) + "-" + String(describing: recordDate)
+            
             let record = DataRecord()
             record.data = RealmCarData(from: data)
-            record.date = Date()
+            record.date = recordDate
+            record.key = recordKey
+            
+            let recordPreview = DataRecordPreview(from: data)
+            recordPreview.date = recordDate
+            recordPreview.key = recordKey
             
             do {
                 try RealmManager.save(record: record)
+                try RealmManager.save(record: recordPreview)
             } catch {
                 print(error)
             }

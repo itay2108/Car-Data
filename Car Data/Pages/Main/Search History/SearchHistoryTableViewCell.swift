@@ -23,7 +23,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
 
     var animationDelay: TimeInterval = 0.1
     
-    func configure(with record: DataRecord) {
+    func configure(with record: DataRecordPreview) {
         mainContainer.layer.cornerRadius = 13
         mainContainer.layer.masksToBounds = true
         
@@ -32,23 +32,22 @@ class SearchHistoryTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         
-        guard let data = record.data?.asCarData() else {
-            self.isHidden = true
-            return
-        }
         
-        let plateNumber = String(describing: data.baseData.plateNumber)
+        let plateNumber = String(describing: record.plateNumber)
         licensePlateLabel.text = LicensePlateManager.maskToLicensePlateFormat(plateNumber)
         
-        let manufacturer = data.baseData.manufacturer ?? data.extraData?.manufacturer
+        let manufacturer = record.manufacturer
         manufacturerLabel.text = manufacturer ?? "יצרן לא ידוע"
         
-        let model = data.baseData.model ?? data.extraData?.model ?? data.baseData.modelNumber
+        let model = record.model
         modelLabel.text = model ?? "דגם לא ידוע"
         
-        let modelYear = data.baseData.modelYear ?? 1970
-        modelYearLabel.text = String(describing: modelYear)
-        
+        if let modelYear = record.modelYear {
+            modelYearLabel.text = String(describing: modelYear)
+        } else {
+            modelYearLabel.text = "-"
+        }
+
         //date label setup
         
         let searchDate = record.date

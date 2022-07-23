@@ -25,7 +25,7 @@ extension VisionViewDelegate {
 final class VisionViewController: CDViewController {
 
     @IBOutlet weak var visionView: LiveCameraView!
-    @IBOutlet weak var visionFocusView: UIView!
+    @IBOutlet weak var visionFocusView: RespondableView!
     
     @IBOutlet weak var visionViewActivityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var visionViewActivityIndicatorCenterYAnchor: NSLayoutConstraint!
@@ -56,6 +56,10 @@ final class VisionViewController: CDViewController {
     
     //Static Vision Parameter
     private var isDetectingFromStaticImage: Bool = false
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any!) -> Bool {
+            return true
+    }
     
     private lazy var imagePicker: UIImagePickerController = {
        return UIImagePickerController()
@@ -477,14 +481,15 @@ final class VisionViewController: CDViewController {
             return
         }
         
-        senderView.becomeFirstResponder()
+        self.becomeFirstResponder()
 
         // Set up the shared UIMenuController
         let pasteMenuItem = UIMenuItem(title: "Paste", action: #selector(pasteMenuItemTapped(_:)))
-
+        
         UIMenuController.shared.menuItems = [pasteMenuItem]
         // Animate the menu onto view
-        UIMenuController.shared.showMenu(from: view, rect: regionOfInterest)
+        UIMenuController.shared.showMenu(from: visionFocusView, rect: regionOfInterest)
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
     }
     
     @objc func pasteMenuItemTapped(_ sender: UIMenuItem) {
