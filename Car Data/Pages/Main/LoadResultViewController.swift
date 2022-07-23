@@ -94,6 +94,7 @@ class LoadResultViewController: CDViewController {
             destination.data = carData
             
             destination.isPresentingNewSearch = true
+            destination.shouldPresentAdOnAppear = RNG.probability(of: 0) //TBC (50-70%)
             
             delegate?.resultLoader(didReceive: carData)
             

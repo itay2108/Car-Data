@@ -9,7 +9,7 @@ import UIKit
 import Hero
 import simd
 
-class DataViewController: CDViewController {
+class DataViewController: CDViewController, AdDisplayable {
     
     @IBOutlet weak var headerTitleLabel: UILabel!
     
@@ -30,6 +30,7 @@ class DataViewController: CDViewController {
     private var defaultDataTableTopConstant: CGFloat = 72
     
     var isPresentingNewSearch: Bool = false
+    var shouldPresentAdOnAppear: Bool = false
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true
@@ -58,6 +59,13 @@ class DataViewController: CDViewController {
         
         self.navigationController?.heroNavigationAnimationType = .slide(direction: .left)
         
+        if shouldPresentAdOnAppear {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
+                self?.showAdViewController()
+                self?.shouldPresentAdOnAppear = false
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
