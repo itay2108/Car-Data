@@ -220,7 +220,7 @@ class DataViewController: CDViewController, AdDisplayable {
         let licencePlate = LicensePlateManager.maskToLicensePlateFormat(String(describing:  data.baseData.plateNumber))
         let hasDisability = data.hasDisablity ? HasDisabilityLabel.yes : HasDisabilityLabel.no
         
-        UIPasteboard.general.string = baseMessage + " " + licencePlate + " " + hasDisability.pasteboardMessage()
+        UIPasteboard.general.string = baseMessage + " " + licencePlate + hasDisability.pasteboardMessage()
         
         toast(message: "הערך הועתק בהצלחה", feedbackType: .rigid, timeoutStyle: .fast)
     }
