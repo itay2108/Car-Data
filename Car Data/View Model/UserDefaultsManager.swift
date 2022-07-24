@@ -50,4 +50,5 @@ class UserDefaultsManager {
 
 enum UserDefaultKey: String {
     case visionAlgorithmStyle = "visionAlgorithmStyle"
+    case hasPremium = "hasPremium"
 }

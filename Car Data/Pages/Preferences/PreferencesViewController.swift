@@ -13,7 +13,11 @@ class PreferencesViewController: CDTableViewController {
     @IBOutlet weak var headerStackView: UIStackView!
     
     @IBOutlet var cells: [UITableViewCell]!
+    
     @IBOutlet weak var visionAlgorithmTypeLabel: UILabel!
+    
+    @IBOutlet weak var premiumCell: UITableViewCell!
+    
     
     //MARK: - Parameters
     
@@ -51,6 +55,14 @@ class PreferencesViewController: CDTableViewController {
         super.viewWillAppear(animated)
         
         visionAlgorithmTypeLabel.text = Def.main.visionAlgorithmType().title()
+        
+        if hasPremium {
+            for cell in cells {
+                cell.imageView?.image = nil
+            }
+            premiumCell.isHidden = true
+            tableView.reloadData()
+        }
     }
     
     //MARK: - UI Methods
@@ -113,9 +125,17 @@ class PreferencesViewController: CDTableViewController {
         case 0:
             switch indexPath.row {
             case 0:
-                performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToPriorityData, sender: self)
+                if !hasPremium {
+                    showPremiumViewController()
+                } else {
+                    performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToPriorityData, sender: self)
+                }
             case 1:
-                performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToFilteredData, sender: self)
+                if !hasPremium {
+                    showPremiumViewController()
+                } else {
+                    performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToFilteredData, sender: self)
+                }
             default:
                 return
             }
@@ -136,6 +156,18 @@ class PreferencesViewController: CDTableViewController {
                 return
             case 3:
                 present(dataDeletionAlert, animated: true)
+            default:
+                return
+            }
+        case 3:
+            switch indexPath.row {
+            case 0:
+                guard PurchaseManager.main.isReady else {
+                    toast(message: "אופס, קארדאטה+ לא זמין כרגע", feedbackType: .warning, timeoutStyle: .normal, additionalOffset: -34 * heightModifier)
+                    return
+                }
+                
+                showPremiumViewController()
             default:
                 return
             }

@@ -45,6 +45,10 @@ enum CDError: Error {
     case noRealm
     case realmFailed
     
+    //SK
+    case purchaseFailed
+    case purchaseCancelled
+    
     var localizedDescription: String {
         switch self {
         case .parseError:

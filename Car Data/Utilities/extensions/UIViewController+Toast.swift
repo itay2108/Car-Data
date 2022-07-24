@@ -25,7 +25,7 @@ extension UIViewController {
         return view.subviews.contains(where: { $0.heroID == "toast" })
     }
     
-    func toast(message: String, feedbackType: ToastFeedbackType = .normal, timeoutStyle: ToastTimeoutStyle = .normal) {
+    func toast(message: String, feedbackType: ToastFeedbackType = .normal, timeoutStyle: ToastTimeoutStyle = .normal, additionalOffset: CGFloat = 0) {
         
         guard !isPresentingToast else {
             
@@ -103,7 +103,7 @@ extension UIViewController {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self = self else { return }
             
-            toastContainer.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - (36 * self.heightModifier) - self.view.safeAreaInsets.bottom)
+            toastContainer.center = CGPoint(x: self.view.center.x, y: self.view.frame.maxY - (36 * self.heightModifier) - self.view.safeAreaInsets.bottom + additionalOffset)
             
         } completion: { finish in
             DispatchQueue.main.asyncAfter(deadline: .now() + (timeoutStyle == .fast ? 0.6 : 3)) {

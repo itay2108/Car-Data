@@ -79,7 +79,7 @@
                         <sections>
                             <tableViewSection headerTitle="פרטי רכב" id="fcG-35-cKv">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="bPU-oZ-cyv" detailTextLabel="2n4-N1-M45" imageView="QUM-VR-OF6" style="IBUITableViewCellStyleValue1" id="Ffh-b5-wpc" customClass="CDPreferenceTableViewCell" customModule="Car_Data" customModuleProvider="target">
                                         <rect key="frame" x="20" y="103.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ffh-b5-wpc" id="Xnf-Zz-pKv">
@@ -87,7 +87,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="תיעדוף פרטים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bPU-oZ-cyv">
-                                                    <rect key="frame" x="246" y="14" width="79.5" height="17"/>
+                                                    <rect key="frame" x="210.5" y="14" width="79.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                     <color key="textColor" name="cd-text-dark"/>
@@ -100,13 +100,24 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QUM-VR-OF6">
+                                                    <rect key="frame" x="305.5" y="12.5" width="19.5" height="17.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <imageReference key="image" image="plus.app.fill" catalog="system" renderingMode="hierarchical">
+                                                        <hierarchicalColors>
+                                                            <color name="cd-background-dark"/>
+                                                            <color name="cd-yellow"/>
+                                                            <color name="cd-yellow"/>
+                                                        </hierarchicalColors>
+                                                    </imageReference>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="cd-text-dark"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ilR-EE-99x" detailTextLabel="ii9-tN-AVb" style="IBUITableViewCellStyleValue1" id="DDr-Lo-n6U">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ilR-EE-99x" detailTextLabel="ii9-tN-AVb" imageView="eWi-85-74g" style="IBUITableViewCellStyleValue1" id="DDr-Lo-n6U">
                                         <rect key="frame" x="20" y="147" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DDr-Lo-n6U" id="sSx-1n-Na5">
@@ -114,7 +125,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="הסתרת פרטים" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ilR-EE-99x">
-                                                    <rect key="frame" x="242.5" y="14" width="83" height="17"/>
+                                                    <rect key="frame" x="207" y="14" width="83" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                                     <color key="textColor" name="cd-text-dark"/>
@@ -127,11 +138,22 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eWi-85-74g">
+                                                    <rect key="frame" x="305.5" y="12.5" width="19.5" height="17.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <imageReference key="image" image="plus.app.fill" catalog="system" symbolScale="medium" renderingMode="hierarchical">
+                                                        <hierarchicalColors>
+                                                            <color name="cd-background-dark"/>
+                                                            <color name="cd-yellow"/>
+                                                            <color name="cd-yellow"/>
+                                                        </hierarchicalColors>
+                                                    </imageReference>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" name="cd-accent-light"/>
+                                        <color key="tintColor" name="cd-yellow"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -314,6 +336,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="headerStackView" destination="TzV-gi-C5R" id="owu-pB-hkb"/>
+                        <outlet property="premiumCell" destination="haq-C9-jVW" id="yE0-dL-xOs"/>
                         <outlet property="visionAlgorithmTypeLabel" destination="rrj-ew-ExW" id="Wz3-uG-no9"/>
                         <outletCollection property="cells" destination="Ffh-b5-wpc" collectionClass="NSMutableArray" id="3vr-HK-yhx"/>
                         <outletCollection property="cells" destination="DDr-Lo-n6U" collectionClass="NSMutableArray" id="Uez-ag-RgW"/>
@@ -598,11 +621,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qzG-Ov-G5u"/>
+        <segue reference="cCf-hB-YNc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="cd-accent-dark">
             <color red="0.25882352941176473" green="0.36470588235294116" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -20,8 +20,11 @@ final class MainViewController: CDViewController, CarDataPresentable {
     @IBOutlet weak var mainContainer: UIView!
     @IBOutlet weak var mainContainerCenterYAnchor: NSLayoutConstraint!
     
+    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var logoTopAnchor: NSLayoutConstraint!
     @IBOutlet weak var logoHeightAnchor: NSLayoutConstraint!
+    
+    @IBOutlet weak var premiumLogoView: UIImageView!
     
     @IBOutlet weak var cameraSearchActionView: UIView!
     @IBOutlet weak var cameraSearchActionViewTitleLabel: UILabel!
@@ -103,6 +106,8 @@ final class MainViewController: CDViewController, CarDataPresentable {
 
         
         searchHistoryTableView.reloadData()
+        
+        updateLogoView()
     
     }
     
@@ -260,6 +265,11 @@ final class MainViewController: CDViewController, CarDataPresentable {
         
     }
     
+    private func updateLogoView() {
+        logoView.isHidden = hasPremium
+        premiumLogoView.isHidden = !hasPremium
+    }
+    
     private func beginSearchScene() {
         insertFocusView()
         
@@ -359,6 +369,12 @@ final class MainViewController: CDViewController, CarDataPresentable {
     }
     
     @IBAction func searchHistoryShowAllButtonPressed(_ sender: UIButton) {
+        
+        guard hasPremium else {
+            showPremiumViewController()
+            return
+        }
+        
         navigationController?.heroNavigationAnimationType = .slide(direction: .right)
         
         performSegue(withIdentifier: K.segues.mainStoryboard.mainToSearchHistory, sender: self)

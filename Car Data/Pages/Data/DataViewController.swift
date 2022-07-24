@@ -30,7 +30,13 @@ class DataViewController: CDViewController, AdDisplayable {
     private var defaultDataTableTopConstant: CGFloat = 72
     
     var isPresentingNewSearch: Bool = false
-    var shouldPresentAdOnAppear: Bool = false
+    var shouldPresentAdOnAppear: Bool = false {
+        didSet {
+            if hasPremium && shouldPresentAdOnAppear {
+                shouldPresentAdOnAppear = false
+            }
+        }
+    }
     
     override var allowsSwipeLeftToPopViewController: Bool {
         return true

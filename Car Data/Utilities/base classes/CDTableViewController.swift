@@ -8,7 +8,7 @@
 import UIKit
 import Hero
 
-class CDTableViewController: UITableViewController {
+class CDTableViewController: UITableViewController, PremiumDisplayable {
 
         
         var licensePlateNumber: String?
@@ -33,6 +33,12 @@ class CDTableViewController: UITableViewController {
     
     private var sixthOfScreenHeight: CGFloat {
         return view.frame.height / 6
+    }
+    
+    //premium
+    
+    var hasPremium: Bool {
+        return UserDefaultsManager.main.value(forKey: .hasPremium) as? Bool ?? false
     }
     
         

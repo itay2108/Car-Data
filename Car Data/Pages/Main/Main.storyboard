@@ -104,6 +104,13 @@
                                             <constraint firstAttribute="height" constant="28" id="dB3-e2-LyM"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cd-logo-label-premium" translatesAutoresizingMaskIntoConstraints="NO" id="o0M-1d-2oT">
+                                        <rect key="frame" x="266.5" y="63" width="115.5" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="1AC-wP-KCh"/>
+                                            <constraint firstAttribute="width" secondItem="o0M-1d-2oT" secondAttribute="height" multiplier="140:34" id="ad5-Bh-Qra"/>
+                                        </constraints>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOL-Lq-L37">
                                         <rect key="frame" x="24" y="61" width="28" height="28"/>
                                         <constraints>
@@ -311,6 +318,8 @@
                                     <constraint firstItem="Fil-pz-fOO" firstAttribute="centerY" secondItem="Bwu-qh-sI5" secondAttribute="centerY" id="Pbo-43-Lky"/>
                                     <constraint firstItem="G8z-G0-2uk" firstAttribute="top" secondItem="rOL-Lq-L37" secondAttribute="bottom" constant="32" id="RJq-7i-1ct"/>
                                     <constraint firstItem="Fil-pz-fOO" firstAttribute="centerX" secondItem="Bwu-qh-sI5" secondAttribute="centerX" id="V7l-Se-JbD"/>
+                                    <constraint firstItem="o0M-1d-2oT" firstAttribute="trailing" secondItem="eXB-Hw-PKz" secondAttribute="trailing" id="WDQ-VN-Ml8"/>
+                                    <constraint firstItem="o0M-1d-2oT" firstAttribute="top" secondItem="eXB-Hw-PKz" secondAttribute="top" id="WP0-ZS-vzI"/>
                                     <constraint firstItem="eXB-Hw-PKz" firstAttribute="centerY" secondItem="rOL-Lq-L37" secondAttribute="centerY" constant="2" id="XC5-Nt-Hww"/>
                                     <constraint firstAttribute="trailing" secondItem="eXB-Hw-PKz" secondAttribute="trailing" constant="32" id="Y1m-0v-Ad4"/>
                                     <constraint firstItem="K7L-uB-WWU" firstAttribute="height" secondItem="Bwu-qh-sI5" secondAttribute="height" multiplier="0.75" id="eaM-yr-Wtb"/>
@@ -373,9 +382,11 @@
                         <outlet property="licensePlateTextFieldContainer" destination="GMk-C2-L3T" id="ZPP-tw-SO5"/>
                         <outlet property="logoHeightAnchor" destination="dB3-e2-LyM" id="tpl-IJ-uU8"/>
                         <outlet property="logoTopAnchor" destination="o1n-SK-7BY" id="Y4b-5V-ttN"/>
+                        <outlet property="logoView" destination="eXB-Hw-PKz" id="AW2-9J-sOG"/>
                         <outlet property="mainContainer" destination="dE0-0Z-MJA" id="j2s-xI-qru"/>
                         <outlet property="mainContainerCenterYAnchor" destination="HlM-tK-BeF" id="arj-Tw-mKy"/>
                         <outlet property="preferencesButton" destination="rOL-Lq-L37" id="zvS-K1-Wi1"/>
+                        <outlet property="premiumLogoView" destination="o0M-1d-2oT" id="tDD-CY-cMU"/>
                         <outlet property="searchButton" destination="YcU-gF-ZIL" id="eZQ-C6-HxE"/>
                         <outlet property="searchButtonBottomAnchor" destination="ZYa-kU-Kci" id="YPi-7a-5nn"/>
                         <outlet property="searchHistoryShowAllButton" destination="xx4-xD-y2j" id="UTl-LC-SKg"/>
@@ -645,11 +656,12 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="76I-6M-6uO"/>
+        <segue reference="2gs-70-N3O"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="cd-logo-label" width="512" height="104"/>
+        <image name="cd-logo-label-premium" width="608" height="104"/>
         <image name="cd-no-history-banner" width="889" height="725"/>
         <image name="cd-not-found" width="753" height="616"/>
         <image name="cd-swipe-down" width="512" height="512"/>
