@@ -10,11 +10,11 @@ import StoreKit
 
 protocol PurchaseManagerDelegate {
     func purchase(didFinishWith purchaseResult: PurchaseResult)
-    func didRestorePurchases()
+    func didRestorePurchases(with purchaseResult: PurchaseResult)
 }
 
 extension PurchaseManagerDelegate {
-    func didRestorePurchases() { }
+    func didRestorePurchases(with purchaseResult: PurchaseResult) { }
 }
 
 ///Manages in app purchases. Call setup() to make purchases available.
@@ -42,7 +42,7 @@ class PurchaseManager: NSObject {
     }
     
     func restore() {
-        
+        SKPaymentQueue().restoreCompletedTransactions()
     }
     
     func localizedPrice(for product: Purchasable) -> String? {
@@ -99,6 +99,8 @@ extension PurchaseManager: SKProductsRequestDelegate {
 }
 
 extension PurchaseManager: SKPaymentTransactionObserver {
+    
+    //Purchases
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         
         for transaction in transactions {
@@ -110,19 +112,31 @@ extension PurchaseManager: SKPaymentTransactionObserver {
                     productInQueue = nil
                     return
                     
-                } else if transaction.transactionState == .failed || transaction.transactionState == .deferred {
+                } else if transaction.transactionState == .failed {
                     delegate?.purchase(didFinishWith: .failure)
                     
                     productInQueue = nil
                     return
                     
+                } else if transaction.transactionState == .deferred {
+                    delegate?.purchase(didFinishWith: .cancellation)
+                    
+                    productInQueue = nil
+                    return
                 }
             }
         }
         
     }
     
+    //Restore
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        delegate?.didRestorePurchases(with: .success)
+    }
     
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        delegate?.didRestorePurchases(with: .failure)
+    }
 }
 
 ///An enum representing available IAP Product IDs in the raw value
@@ -134,4 +148,5 @@ enum Purchasable: String, CaseIterable{
 enum PurchaseResult {
     case success
     case failure
+    case cancellation
 }

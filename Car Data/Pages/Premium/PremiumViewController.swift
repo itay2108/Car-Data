@@ -47,9 +47,11 @@ class PremiumViewController: CDViewController {
         super.setupViews()
         
         setupBenefitViews()
+        setupPriceLabel()
         
         purchaseButton.layer.masksToBounds = true
         purchaseButton.layer.cornerRadius = 13
+        
     }
     
     private func setupBenefitViews() {
@@ -63,8 +65,10 @@ class PremiumViewController: CDViewController {
         }
     }
     
-    private func setupPriveLabel() {
-        //get price
+    private func setupPriceLabel() {
+        if let price = PurchaseManager.main.localizedPrice(for: .premium) {
+            priceLabel.text = "ב- " + price
+        }
     }
     
     //MARK: - IBActions
@@ -95,6 +99,18 @@ extension PremiumViewController: PurchaseManagerDelegate {
         case .failure:
             
             presentErrorAlert(with: CDError.purchaseFailed)
+        
+        case .cancellation:
+            presentErrorAlert(with: CDError.purchaseCancelled)
+        }
+    }
+    
+    func didRestorePurchases(with purchaseResult: PurchaseResult) {
+        switch purchaseResult {
+        case .success:
+            print("success")
+        case .failure, .cancellation:
+            presentErrorAlert(with: CDError.restoreFailed)
         }
     }
     

@@ -48,6 +48,7 @@ enum CDError: Error {
     //SK
     case purchaseFailed
     case purchaseCancelled
+    case restoreFailed
     
     var localizedDescription: String {
         switch self {
@@ -100,6 +101,13 @@ enum CDError: Error {
             return "Could not find database"
         case .realmFailed:
             return "Could not modify database"
+            
+        case .purchaseFailed:
+            return "Could not complete purchase, please try again."
+        case .purchaseCancelled:
+            return "The purchase has been cancelled"
+        case .restoreFailed:
+            return "could not restore purchases"
         default:
             return "an unknown error has occured"
         }
