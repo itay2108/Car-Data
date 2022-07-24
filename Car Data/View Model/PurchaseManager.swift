@@ -10,11 +10,13 @@ import StoreKit
 
 protocol PurchaseManagerDelegate {
     func purchase(didFinishWith purchaseResult: PurchaseResult)
-    func didRestorePurchases(with purchaseResult: PurchaseResult)
+    func restorePurchasesFailed(withError error: Error)
+    func didFinishRestoringPurchases(_ restoredProducts: [Purchasable])
 }
 
 extension PurchaseManagerDelegate {
-    func didRestorePurchases(with purchaseResult: PurchaseResult) { }
+    func didFinishRestoringPurchases(_ restoredProducts: [Purchasable]) { }
+    func restorePurchasesFailed(withError error: Error) { }
 }
 
 ///Manages in app purchases. Call setup() to make purchases available.
@@ -42,7 +44,7 @@ class PurchaseManager: NSObject {
     }
     
     func restore() {
-        SKPaymentQueue().restoreCompletedTransactions()
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
     func localizedPrice(for product: Purchasable) -> String? {
@@ -130,12 +132,28 @@ extension PurchaseManager: SKPaymentTransactionObserver {
     }
     
     //Restore
+    
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        delegate?.didRestorePurchases(with: .success)
+        let transactions = queue.transactions
+        var restoredProducts = [Purchasable]()
+        
+        for transaction in transactions {
+            if  (transaction.transactionState == .restored || transaction.transactionState == .purchased),
+                let product = Purchasable(rawValue: transaction.payment.productIdentifier) {
+                
+                restoredProducts.append(product)
+            }
+        }
+        
+        if restoredProducts.count > 0 {
+            delegate?.didFinishRestoringPurchases(restoredProducts)
+        } else {
+            delegate?.restorePurchasesFailed(withError: CDError.nothingToRestore)
+        }
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        delegate?.didRestorePurchases(with: .failure)
+        delegate?.restorePurchasesFailed(withError: error)
     }
 }
 

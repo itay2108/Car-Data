@@ -56,13 +56,7 @@ class PreferencesViewController: CDTableViewController {
         
         visionAlgorithmTypeLabel.text = Def.main.visionAlgorithmType().title()
         
-        if hasPremium {
-            for cell in cells {
-                cell.imageView?.image = nil
-            }
-            premiumCell.isHidden = true
-            tableView.reloadData()
-        }
+        updateViewForPremium()
     }
     
     //MARK: - UI Methods
@@ -78,6 +72,16 @@ class PreferencesViewController: CDTableViewController {
         let tapGR = UITapGestureRecognizer(target: self, action: #selector(headerDidTap(_:)))
         
         headerStackView.addGestureRecognizer(tapGR)
+    }
+    
+    private func updateViewForPremium() {
+        if hasPremium {
+            for cell in cells {
+                cell.imageView?.image = nil
+            }
+            premiumCell.isHidden = true
+            tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -124,12 +128,14 @@ class PreferencesViewController: CDTableViewController {
         switch indexPath.section {
         case 0:
             switch indexPath.row {
+            //prioritize data
             case 0:
                 if !hasPremium {
                     showPremiumViewController()
                 } else {
                     performSegue(withIdentifier: K.segues.PreferenceStoryboard.preferencesToPriorityData, sender: self)
                 }
+            //filter data
             case 1:
                 if !hasPremium {
                     showPremiumViewController()
@@ -141,6 +147,7 @@ class PreferencesViewController: CDTableViewController {
             }
         case 1:
             switch indexPath.row {
+            //vision algorithm
             case 0:
                 performSegue(withIdentifier: K.segues.PreferenceStoryboard.pregerencesToVisionAlgorithm, sender: self)
             default:
@@ -148,12 +155,22 @@ class PreferencesViewController: CDTableViewController {
             }
         case 2:
             switch indexPath.row {
+            //restore purchases
             case 0:
-                return
+                PurchaseManager.main.delegate = self
+                
+                showLoader()
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                
+                PurchaseManager.main.restore()
+
+            //rating
             case 1:
                 return
+            //report a problem
             case 2:
                 return
+            //clear data
             case 3:
                 present(dataDeletionAlert, animated: true)
             default:
@@ -178,5 +195,37 @@ class PreferencesViewController: CDTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 15
+    }
+}
+
+extension PreferencesViewController: PurchaseManagerDelegate {
+    func purchase(didFinishWith purchaseResult: PurchaseResult) { }
+    
+    func didFinishRestoringPurchases(_ restoredProducts: [Purchasable]) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        
+        hideLoader()
+        PurchaseManager.main.delegate = nil
+        
+        if restoredProducts.contains(where: { $0 == .premium || $0 == .premiumDiscounted }) {
+            
+            UserDefaultsManager.main.setValue(true, forKey: .hasPremium)
+            
+            updateViewForPremium()
+        }
+        
+        toast(message: "הרכישות שלך שוחזרו בהצלחה!", feedbackType: .warning, timeoutStyle: .normal, additionalOffset: -34 * heightModifier)
+    }
+    
+    func restorePurchasesFailed(withError error: Error) {
+        hideLoader()
+        PurchaseManager.main.delegate = nil
+        
+        if let error = error as? CDError, error == .nothingToRestore {
+            toast(message: "לא מצאנו רכישות לשחזר", feedbackType: .warning, timeoutStyle: .normal, additionalOffset: -34 * heightModifier)
+        } else {
+            presentErrorAlert(with: (error as? CDError) ?? error)
+        }
+        
     }
 }

@@ -41,6 +41,13 @@ class CDTableViewController: UITableViewController, PremiumDisplayable {
         return UserDefaultsManager.main.value(forKey: .hasPremium) as? Bool ?? false
     }
     
+    //loader
+    
+    private lazy var loader =  {
+        return LoaderView(frame: CGRect(x: 0, y: 0, width: (view.frame.width / 3), height: (view.frame.width / 3 * 0.66)))
+    }()
+    
+    
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -99,6 +106,22 @@ class CDTableViewController: UITableViewController, PremiumDisplayable {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
             
             self?.navigationController?.popViewController(animated: true)
+        }
+        
+    }
+    
+    func showLoader() {
+        view.addSubview(loader)
+        loader.center = CGPoint(x: view.center.x, y: view.center.y - 56)
+        
+        loader.fadeIn()
+    }
+    
+    func hideLoader() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.33) { [weak self] in
+            self?.loader.fadeOut(0.2, delay: 0, completion: { finish in
+                self?.loader.dismiss()
+            })
         }
         
     }

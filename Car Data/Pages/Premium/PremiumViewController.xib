@@ -76,30 +76,30 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YAN-FF-qra">
-                    <rect key="frame" x="18" y="239.5" width="378" height="389.5"/>
+                    <rect key="frame" x="18" y="247.5" width="378" height="387.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="zxy-9D-Mfb">
-                    <rect key="frame" x="40" y="265.5" width="334" height="345.5"/>
+                    <rect key="frame" x="40" y="273.5" width="334" height="343.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  שדרגו וקבלו" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="hsR-ra-ptz">
-                            <rect key="frame" x="0.0" y="0.0" width="334" height="24"/>
-                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="20"/>
+                            <rect key="frame" x="0.0" y="0.0" width="334" height="22.5"/>
+                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                             <color key="textColor" name="cd-text-light"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-KN-CHf">
-                            <rect key="frame" x="0.0" y="40" width="334" height="56.5"/>
+                            <rect key="frame" x="0.0" y="38.5" width="334" height="56"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ADr-PJ-tax">
-                                    <rect key="frame" x="292" y="18" width="21" height="20"/>
+                                    <rect key="frame" x="21" y="18" width="21" height="20"/>
                                     <color key="tintColor" red="0.42004265627475595" green="0.81046215834818769" blue="0.48699342625537773" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="ADr-PJ-tax" secondAttribute="height" multiplier="1:1" id="zTr-MX-O7e"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="שימוש ללא פרסומות" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="azc-ui-dKv">
-                                    <rect key="frame" x="19" y="17.5" width="131" height="21.5"/>
+                                    <rect key="frame" x="184" y="17" width="131" height="22"/>
                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                     <color key="textColor" name="cd-text-dark"/>
                                     <nil key="highlightedColor"/>
@@ -108,24 +108,24 @@
                             <color key="backgroundColor" red="0.47843137254901963" green="0.58823529411764708" blue="0.75686274509803919" alpha="0.13359685430463575" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="azc-ui-dKv" firstAttribute="height" secondItem="xb8-KN-CHf" secondAttribute="height" multiplier="0.383929" id="4eZ-Ug-DhL"/>
-                                <constraint firstAttribute="trailing" secondItem="ADr-PJ-tax" secondAttribute="trailing" constant="21" id="Svz-1s-vzE"/>
+                                <constraint firstAttribute="leading" secondItem="ADr-PJ-tax" secondAttribute="leading" constant="-21" id="Svz-1s-vzE"/>
                                 <constraint firstItem="azc-ui-dKv" firstAttribute="centerY" secondItem="xb8-KN-CHf" secondAttribute="centerY" id="bGg-TV-qpQ"/>
-                                <constraint firstItem="azc-ui-dKv" firstAttribute="leading" secondItem="xb8-KN-CHf" secondAttribute="leading" constant="19" id="dxg-6M-x4r"/>
+                                <constraint firstItem="azc-ui-dKv" firstAttribute="trailing" secondItem="xb8-KN-CHf" secondAttribute="trailing" constant="-19" id="dxg-6M-x4r"/>
                                 <constraint firstItem="ADr-PJ-tax" firstAttribute="centerY" secondItem="xb8-KN-CHf" secondAttribute="centerY" id="wFy-VX-GB3"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BO6-sy-tJ4">
-                            <rect key="frame" x="0.0" y="112.5" width="334" height="56"/>
+                            <rect key="frame" x="0.0" y="110.5" width="334" height="56"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HKe-zb-qbJ">
-                                    <rect key="frame" x="292.5" y="18" width="20.5" height="19.5"/>
+                                    <rect key="frame" x="21" y="18.5" width="20.5" height="19.5"/>
                                     <color key="tintColor" red="0.42004265629999998" green="0.81046215830000001" blue="0.48699342629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="HKe-zb-qbJ" secondAttribute="height" multiplier="1:1" id="m0O-Y5-5VI"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="תעדוף נתוני רכב" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="p6K-c6-fk2">
-                                    <rect key="frame" x="19" y="17" width="107" height="21.5"/>
+                                    <rect key="frame" x="208" y="17.5" width="107" height="21.5"/>
                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                     <color key="textColor" name="cd-text-dark"/>
                                     <nil key="highlightedColor"/>
@@ -135,24 +135,24 @@
                             <constraints>
                                 <constraint firstItem="p6K-c6-fk2" firstAttribute="centerY" secondItem="BO6-sy-tJ4" secondAttribute="centerY" id="O9x-7D-vAP"/>
                                 <constraint firstItem="HKe-zb-qbJ" firstAttribute="centerY" secondItem="BO6-sy-tJ4" secondAttribute="centerY" id="SNu-Xh-IT7"/>
-                                <constraint firstAttribute="trailing" secondItem="HKe-zb-qbJ" secondAttribute="trailing" constant="21" id="ZHX-aI-YJy"/>
-                                <constraint firstItem="p6K-c6-fk2" firstAttribute="leading" secondItem="BO6-sy-tJ4" secondAttribute="leading" constant="19" id="gwB-G3-wgZ"/>
+                                <constraint firstAttribute="leading" secondItem="HKe-zb-qbJ" secondAttribute="leading" constant="-21" id="ZHX-aI-YJy"/>
+                                <constraint firstItem="p6K-c6-fk2" firstAttribute="trailing" secondItem="BO6-sy-tJ4" secondAttribute="trailing" constant="-19" id="gwB-G3-wgZ"/>
                                 <constraint firstItem="HKe-zb-qbJ" firstAttribute="height" secondItem="BO6-sy-tJ4" secondAttribute="height" multiplier="0.37" id="k9R-b8-rgS"/>
                                 <constraint firstItem="p6K-c6-fk2" firstAttribute="height" secondItem="BO6-sy-tJ4" secondAttribute="height" multiplier="0.383929" id="y2r-rv-FZf"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frv-WT-RPi">
-                            <rect key="frame" x="0.0" y="184.5" width="334" height="56"/>
+                            <rect key="frame" x="0.0" y="182.5" width="334" height="56"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3HG-Eh-aUc">
-                                    <rect key="frame" x="292.5" y="18" width="20.5" height="19.5"/>
+                                    <rect key="frame" x="21" y="18.5" width="20.5" height="19.5"/>
                                     <color key="tintColor" red="0.42004265629999998" green="0.81046215830000001" blue="0.48699342629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="3HG-Eh-aUc" secondAttribute="height" multiplier="1:1" id="zLO-a4-ayT"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="סינון נתוני רכב" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="UD4-OW-utG">
-                                    <rect key="frame" x="19" y="17" width="93.5" height="21.5"/>
+                                    <rect key="frame" x="221.5" y="17.5" width="93.5" height="21.5"/>
                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                     <color key="textColor" name="cd-text-dark"/>
                                     <nil key="highlightedColor"/>
@@ -160,8 +160,8 @@
                             </subviews>
                             <color key="backgroundColor" red="0.47843137250000001" green="0.58823529409999997" blue="0.75686274509999996" alpha="0.13359685430000001" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="3HG-Eh-aUc" secondAttribute="trailing" constant="21" id="Ceu-Z9-S76"/>
-                                <constraint firstItem="UD4-OW-utG" firstAttribute="leading" secondItem="Frv-WT-RPi" secondAttribute="leading" constant="19" id="dD8-qf-aQq"/>
+                                <constraint firstAttribute="leading" secondItem="3HG-Eh-aUc" secondAttribute="leading" constant="-21" id="Ceu-Z9-S76"/>
+                                <constraint firstItem="UD4-OW-utG" firstAttribute="trailing" secondItem="Frv-WT-RPi" secondAttribute="trailing" constant="-19" id="dD8-qf-aQq"/>
                                 <constraint firstItem="3HG-Eh-aUc" firstAttribute="centerY" secondItem="Frv-WT-RPi" secondAttribute="centerY" id="i4Q-R0-1yp"/>
                                 <constraint firstItem="UD4-OW-utG" firstAttribute="centerY" secondItem="Frv-WT-RPi" secondAttribute="centerY" id="iJQ-eM-pIG"/>
                                 <constraint firstItem="3HG-Eh-aUc" firstAttribute="height" secondItem="Frv-WT-RPi" secondAttribute="height" multiplier="0.37" id="mIU-us-PIx"/>
@@ -169,17 +169,17 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1y-Qu-gxc">
-                            <rect key="frame" x="0.0" y="256.5" width="334" height="56"/>
+                            <rect key="frame" x="0.0" y="254.5" width="334" height="56"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-AW-Dw4">
-                                    <rect key="frame" x="292.5" y="18" width="20.5" height="19.5"/>
+                                    <rect key="frame" x="21" y="18.5" width="20.5" height="19.5"/>
                                     <color key="tintColor" red="0.42004265629999998" green="0.81046215830000001" blue="0.48699342629999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Nfz-AW-Dw4" secondAttribute="height" multiplier="1:1" id="2iY-r2-b2U"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="גישה להסטוריית חיפוש" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="dIo-QC-pWp">
-                                    <rect key="frame" x="19" y="17" width="147.5" height="21.5"/>
+                                    <rect key="frame" x="167.5" y="17.5" width="147.5" height="21.5"/>
                                     <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="16"/>
                                     <color key="textColor" name="cd-text-dark"/>
                                     <nil key="highlightedColor"/>
@@ -189,14 +189,14 @@
                             <constraints>
                                 <constraint firstItem="dIo-QC-pWp" firstAttribute="centerY" secondItem="j1y-Qu-gxc" secondAttribute="centerY" id="dZ0-rL-Rjw"/>
                                 <constraint firstItem="Nfz-AW-Dw4" firstAttribute="centerY" secondItem="j1y-Qu-gxc" secondAttribute="centerY" id="keN-Tc-tvl"/>
-                                <constraint firstItem="dIo-QC-pWp" firstAttribute="leading" secondItem="j1y-Qu-gxc" secondAttribute="leading" constant="19" id="p5a-dY-1kO"/>
+                                <constraint firstItem="dIo-QC-pWp" firstAttribute="trailing" secondItem="j1y-Qu-gxc" secondAttribute="trailing" constant="-19" id="p5a-dY-1kO"/>
                                 <constraint firstItem="Nfz-AW-Dw4" firstAttribute="height" secondItem="j1y-Qu-gxc" secondAttribute="height" multiplier="0.37" id="qU0-Mh-6NV"/>
-                                <constraint firstAttribute="trailing" secondItem="Nfz-AW-Dw4" secondAttribute="trailing" constant="21" id="uuF-Wk-MVs"/>
+                                <constraint firstAttribute="leading" secondItem="Nfz-AW-Dw4" secondAttribute="leading" constant="-21" id="uuF-Wk-MVs"/>
                                 <constraint firstItem="dIo-QC-pWp" firstAttribute="height" secondItem="j1y-Qu-gxc" secondAttribute="height" multiplier="0.383929" id="uzY-UR-8t8"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ב- 32.90₪" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="LEB-Ik-txt">
-                            <rect key="frame" x="0.0" y="328.5" width="334" height="17"/>
+                            <rect key="frame" x="0.0" y="326.5" width="334" height="17"/>
                             <fontDescription key="fontDescription" name="Rubik-Light" family="Rubik" pointSize="14"/>
                             <color key="textColor" name="cd-text-light"/>
                             <nil key="highlightedColor"/>
@@ -240,7 +240,7 @@
                 <constraint firstItem="LEB-Ik-txt" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0189732" id="5i4-SJ-br7"/>
                 <constraint firstItem="YAN-FF-qra" firstAttribute="centerY" secondItem="zxy-9D-Mfb" secondAttribute="centerY" constant="-4" id="68X-Db-2ji"/>
                 <constraint firstItem="Yq2-5t-RWo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8Q0-eI-QQO"/>
-                <constraint firstItem="zxy-9D-Mfb" firstAttribute="top" secondItem="Thp-vx-X3B" secondAttribute="bottom" constant="48" id="98N-uc-smv"/>
+                <constraint firstItem="zxy-9D-Mfb" firstAttribute="top" secondItem="Thp-vx-X3B" secondAttribute="bottom" constant="56" id="98N-uc-smv"/>
                 <constraint firstItem="Yq2-5t-RWo" firstAttribute="top" secondItem="Fz7-Eg-sfy" secondAttribute="bottom" constant="16" id="9Xi-2s-jD8"/>
                 <constraint firstItem="Fz7-Eg-sfy" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.06" id="9Z5-hH-D8P"/>
                 <constraint firstItem="j1y-Qu-gxc" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0625" id="9n6-Bz-Rdi"/>
@@ -252,7 +252,7 @@
                 <constraint firstItem="a8G-Td-fgx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="J4N-Gp-L3A"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="L0k-dK-vjF" secondAttribute="trailing" constant="26" id="Krc-dY-2oS"/>
                 <constraint firstItem="tAv-JM-Tia" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="Y1Z-X1-V6z"/>
-                <constraint firstItem="hsR-ra-ptz" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0267857" id="YTl-PA-B9k"/>
+                <constraint firstItem="hsR-ra-ptz" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.025" id="YTl-PA-B9k"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fz7-Eg-sfy" secondAttribute="trailing" constant="24" id="a89-Hs-GUv"/>
                 <constraint firstItem="a8G-Td-fgx" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.035" priority="750" id="cE9-HC-J3Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zxy-9D-Mfb" secondAttribute="trailing" constant="40" id="e6u-o1-ssf"/>

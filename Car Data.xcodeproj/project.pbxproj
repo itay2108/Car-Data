@@ -41,6 +41,7 @@
 		BC383957288D716400310F58 /* PremiumDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC383956288D716400310F58 /* PremiumDisplayable.swift */; };
 		BC383959288D789200310F58 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC383958288D789200310F58 /* PurchaseManager.swift */; };
 		BC38395C288D79E100310F58 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC38395B288D79E100310F58 /* StoreKit.framework */; };
+		BC38395E288DD40500310F58 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38395D288DD40500310F58 /* LoaderView.swift */; };
 		BC4792492859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */; };
 		BC47924B285B100B00EF79E9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924A285B100B00EF79E9 /* RealmManager.swift */; };
 		BC47924D285B113800EF79E9 /* RealmSelectedParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */; };
@@ -176,6 +177,7 @@
 		BC383956288D716400310F58 /* PremiumDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumDisplayable.swift; sourceTree = "<group>"; };
 		BC383958288D789200310F58 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		BC38395B288D79E100310F58 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BC38395D288DD40500310F58 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPreferenceTableViewCell.swift; sourceTree = "<group>"; };
 		BC47924A285B100B00EF79E9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSelectedParameter.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			children = (
 				BCC5123A28496BE500E883D0 /* PaddingLabel.swift */,
 				BCD52769284A45E900DA60FC /* UIViewController+ErrorAlert.swift */,
+				BC38395D288DD40500310F58 /* LoaderView.swift */,
 			);
 			path = "reusable views";
 			sourceTree = "<group>";
@@ -809,6 +812,7 @@
 				BCC9B5B9288C607C008BB974 /* RNG.swift in Sources */,
 				BCAEB3B3284679CA00FA0981 /* Rubik.swift in Sources */,
 				BCAEB3B728467D9100FA0981 /* CDViewController.swift in Sources */,
+				BC38395E288DD40500310F58 /* LoaderView.swift in Sources */,
 				66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */,
 				BC01BCFF284F5EBF00777C57 /* String+Extensions.swift in Sources */,
 				66C297D8284B85E700AA2608 /* HTTPRequest.swift in Sources */,

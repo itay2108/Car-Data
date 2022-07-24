@@ -49,6 +49,7 @@ enum CDError: Error {
     case purchaseFailed
     case purchaseCancelled
     case restoreFailed
+    case nothingToRestore
     
     var localizedDescription: String {
         switch self {
@@ -108,6 +109,8 @@ enum CDError: Error {
             return "The purchase has been cancelled"
         case .restoreFailed:
             return "could not restore purchases"
+        case .nothingToRestore:
+            return "nothing to restore"
         default:
             return "an unknown error has occured"
         }

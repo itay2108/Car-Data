@@ -77,7 +77,11 @@ class PremiumViewController: CDViewController {
     }
     
     @IBAction func purchaseButtonPressed(_ sender: UIButton) {
+        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
         PurchaseManager.main.purchase(.premium)
+        
+        showLoader()
+        purchaseButton.isUserInteractionEnabled = false
     }
     
     @IBAction func doubtButtonPressed(_ sender: UIButton) {
@@ -87,6 +91,9 @@ class PremiumViewController: CDViewController {
 
 extension PremiumViewController: PurchaseManagerDelegate {
     func purchase(didFinishWith purchaseResult: PurchaseResult) {
+        hideLoader()
+        purchaseButton.isUserInteractionEnabled = true
+        
         switch purchaseResult {
         case .success:
             UserDefaultsManager.main.setValue(true, forKey: .hasPremium)
@@ -102,15 +109,6 @@ extension PremiumViewController: PurchaseManagerDelegate {
         
         case .cancellation:
             presentErrorAlert(with: CDError.purchaseCancelled)
-        }
-    }
-    
-    func didRestorePurchases(with purchaseResult: PurchaseResult) {
-        switch purchaseResult {
-        case .success:
-            print("success")
-        case .failure, .cancellation:
-            presentErrorAlert(with: CDError.restoreFailed)
         }
     }
     
