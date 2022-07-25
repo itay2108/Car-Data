@@ -90,14 +90,16 @@ class PremiumViewController: CDViewController {
 }
 
 extension PremiumViewController: PurchaseManagerDelegate {
-    func purchase(didFinishWith purchaseResult: PurchaseResult) {
+    func purchase(didFinishWith purchaseResult: PurchaseResult, for product: Purchasable?) {
         hideLoader()
         purchaseButton.isUserInteractionEnabled = true
         
         switch purchaseResult {
         case .success:
-            UserDefaultsManager.main.setValue(true, forKey: .hasPremium)
             
+            if product?.grantsPremiumAccess == true {
+                UserDefaultsManager.main.setValue(true, forKey: .hasPremium)
+            }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 

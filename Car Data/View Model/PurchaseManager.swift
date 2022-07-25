@@ -9,7 +9,7 @@ import Foundation
 import StoreKit
 
 protocol PurchaseManagerDelegate {
-    func purchase(didFinishWith purchaseResult: PurchaseResult)
+    func purchase(didFinishWith purchaseResult: PurchaseResult, for product: Purchasable?)
     func restorePurchasesFailed(withError error: Error)
     func didFinishRestoringPurchases(_ restoredProducts: [Purchasable])
 }
@@ -33,7 +33,7 @@ class PurchaseManager: NSObject {
     
     func purchase(_ product: Purchasable) {
         guard let skproduct = availableProducts[product] else {
-            delegate?.purchase(didFinishWith: .failure)
+            delegate?.purchase(didFinishWith: .failure, for: product)
             return
         }
         
@@ -108,20 +108,21 @@ extension PurchaseManager: SKPaymentTransactionObserver {
         for transaction in transactions {
             if transaction.payment.productIdentifier == productInQueue?.productIdentifier {
                 
+                let purchasableProduct = Purchasable(rawValue: productInQueue?.productIdentifier ?? "")
                 if transaction.transactionState == .purchased {
-                    delegate?.purchase(didFinishWith: .success)
+                    delegate?.purchase(didFinishWith: .success, for: purchasableProduct)
                     
                     productInQueue = nil
                     return
                     
                 } else if transaction.transactionState == .failed {
-                    delegate?.purchase(didFinishWith: .failure)
+                    delegate?.purchase(didFinishWith: .failure, for: purchasableProduct)
                     
                     productInQueue = nil
                     return
                     
                 } else if transaction.transactionState == .deferred {
-                    delegate?.purchase(didFinishWith: .cancellation)
+                    delegate?.purchase(didFinishWith: .cancellation, for: purchasableProduct)
                     
                     productInQueue = nil
                     return
@@ -161,6 +162,15 @@ extension PurchaseManager: SKPaymentTransactionObserver {
 enum Purchasable: String, CaseIterable{
     case premium = "cardataplus"
     case premiumDiscounted = "cardataplus-discount"
+    
+    var grantsPremiumAccess: Bool {
+        switch self {
+        case .premiumDiscounted, .premium:
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 enum PurchaseResult {
