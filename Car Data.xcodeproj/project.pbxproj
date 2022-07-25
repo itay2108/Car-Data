@@ -42,6 +42,7 @@
 		BC383959288D789200310F58 /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC383958288D789200310F58 /* PurchaseManager.swift */; };
 		BC38395C288D79E100310F58 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC38395B288D79E100310F58 /* StoreKit.framework */; };
 		BC38395E288DD40500310F58 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC38395D288DD40500310F58 /* LoaderView.swift */; };
+		BC383964288ECEB100310F58 /* UIViewController+EmailExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC383963288ECEB100310F58 /* UIViewController+EmailExtensions.swift */; };
 		BC4792492859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */; };
 		BC47924B285B100B00EF79E9 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924A285B100B00EF79E9 /* RealmManager.swift */; };
 		BC47924D285B113800EF79E9 /* RealmSelectedParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */; };
@@ -178,6 +179,7 @@
 		BC383958288D789200310F58 /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
 		BC38395B288D79E100310F58 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BC38395D288DD40500310F58 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		BC383963288ECEB100310F58 /* UIViewController+EmailExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+EmailExtensions.swift"; sourceTree = "<group>"; };
 		BC4792482859BBFB00EF79E9 /* CDPreferenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDPreferenceTableViewCell.swift; sourceTree = "<group>"; };
 		BC47924A285B100B00EF79E9 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BC47924C285B113800EF79E9 /* RealmSelectedParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSelectedParameter.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		BC8BE3F22847BA2A002838AA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC383963288ECEB100310F58 /* UIViewController+EmailExtensions.swift */,
 				660D591A284D67FA00795114 /* Int+Bool.swift */,
 				BC01BCFA284F5A2800777C57 /* Date+Extensions.swift */,
 				BC01BCFE284F5EBF00777C57 /* String+Extensions.swift */,
@@ -811,6 +814,7 @@
 				BC8BE3F52847BA50002838AA /* CDView.swift in Sources */,
 				BCC9B5B9288C607C008BB974 /* RNG.swift in Sources */,
 				BCAEB3B3284679CA00FA0981 /* Rubik.swift in Sources */,
+				BC383964288ECEB100310F58 /* UIViewController+EmailExtensions.swift in Sources */,
 				BCAEB3B728467D9100FA0981 /* CDViewController.swift in Sources */,
 				BC38395E288DD40500310F58 /* LoaderView.swift in Sources */,
 				66A520E52855565E00C0EB88 /* TotaledCarData.swift in Sources */,
@@ -990,7 +994,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DMNW5WHDHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car Data/Info.plist";
@@ -1013,7 +1017,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1024,7 +1028,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DMNW5WHDHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car Data/Info.plist";
@@ -1047,7 +1051,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

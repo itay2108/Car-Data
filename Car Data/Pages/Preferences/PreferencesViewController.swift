@@ -85,22 +85,6 @@ class PreferencesViewController: CDTableViewController {
         }
     }
     
-    private func sendProblemReportToEmail() {
-        
-        if MFMailComposeViewController.canSendMail() {
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients(["support@car-data.co.il"])
-            mail.setSubject("דיווח על בעיה בקאר דאטה")
-            
-            mail.setMessageBody("היי, רציתי לדווח על בעיה באפליקציה - \n\n", isHTML: false)
-
-            present(mail, animated: true)
-        } else {
-            presentErrorAlert(with: CDError.emailUnavailable)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         navigationController?.heroNavigationAnimationType = .slide(direction: .right)
@@ -244,26 +228,5 @@ extension PreferencesViewController: PurchaseManagerDelegate {
             presentErrorAlert(with: (error as? CDError) ?? error)
         }
         
-    }
-}
-
-extension PreferencesViewController: MFMailComposeViewControllerDelegate {
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        controller.dismiss(animated: true) { [weak self] in
-            
-            if let _ = error {
-                self?.presentErrorAlert(with: CDError.emailError)
-            } else if result == .sent {
-                let alert = UIAlertController(title: "תודה", message: "קיבלנו את הדיווח ונפעל כדי לתקן את הבעיה בהקדם האפשרי", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "הבנתי", style: .cancel)
-                alert.addAction(okAction)
-                
-                self?.present(alert, animated: true)
-            }
-        }
-    
     }
 }

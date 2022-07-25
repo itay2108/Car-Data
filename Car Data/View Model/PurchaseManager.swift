@@ -61,7 +61,11 @@ class PurchaseManager: NSObject {
     }
     
     func requestAppstoreReview() {
-        SKStoreReviewController.requestReview()
+        guard let windowScene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene  else {
+            return
+        }
+        
+        SKStoreReviewController.requestReview(in: windowScene)
     }
     
     func setup() {
@@ -165,7 +169,7 @@ extension PurchaseManager: SKPaymentTransactionObserver {
 ///An enum representing available IAP Product IDs in the raw value
 enum Purchasable: String, CaseIterable{
     case premium = "cardataplus"
-    case premiumDiscounted = "cardataplus-discount"
+    case premiumDiscounted = "cardataplus.discounted"
     
     var grantsPremiumAccess: Bool {
         switch self {

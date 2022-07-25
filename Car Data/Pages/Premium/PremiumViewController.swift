@@ -8,6 +8,11 @@
 import UIKit
 import Hero
 
+enum PremiumType {
+    case normal
+    case discounted
+}
+
 class PremiumViewController: CDViewController {
     
     //MARK: - Outlets
@@ -23,9 +28,34 @@ class PremiumViewController: CDViewController {
     
     //MARK: - Parameters
     
+    var premiumType: PremiumType = .normal
+    
     override var allowsSwipeLeftToPopViewController: Bool {
         return false
     }
+    
+    private lazy var doubtAlert: UIAlertController = {
+        let ac = UIAlertController(title: "מובן לגמרי!", message: "בנינו את קאר דאטה שתהיה הכי טובה שאפשר, ועדיין, תמיד יש מה להוסיף. נשמח לשמוע מה תרצו לראות ברגסאות עתידיות ולהשתפר בשבילכם.", preferredStyle: .alert)
+        
+        let optInAction = UIAlertAction(title: "ספרו לנו", style: .default) { action in
+            
+            ac.dismiss(animated: true) { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.66) {
+                    self?.sendSuggestionToEmail()
+                }
+            }
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "ביטול", style: .default) { action in
+            ac.dismiss(animated: true)
+        }
+        
+        ac.addAction(optInAction)
+        ac.addAction(cancelAction)
+        
+        return ac
+    }()
     
     //MARK: - LifeCycle
     
@@ -52,6 +82,8 @@ class PremiumViewController: CDViewController {
         purchaseButton.layer.masksToBounds = true
         purchaseButton.layer.cornerRadius = 13
         
+        //doubtButton.isHidden = true
+        
     }
     
     private func setupBenefitViews() {
@@ -66,9 +98,21 @@ class PremiumViewController: CDViewController {
     }
     
     private func setupPriceLabel() {
-        if let price = PurchaseManager.main.localizedPrice(for: .premium) {
-            priceLabel.text = "ב- " + price
+        
+        if premiumType == .normal {
+            if let price = PurchaseManager.main.localizedPrice(for: .premium) {
+                priceLabel.text = "ב- " + price
+            }
+        } else {
+            if let discountedprice = PurchaseManager.main.localizedPrice(for: .premiumDiscounted) {
+                priceLabel.text = "ב- " + discountedprice
+                
+                if let normalPrice = PurchaseManager.main.localizedPrice(for: .premium) {
+                    priceLabel.text?.append(" במקום ב- \(normalPrice)")
+                }
+            }
         }
+
     }
     
     //MARK: - IBActions
@@ -85,7 +129,7 @@ class PremiumViewController: CDViewController {
     }
     
     @IBAction func doubtButtonPressed(_ sender: UIButton) {
-    
+        present(doubtAlert, animated: true)
     }
 }
 

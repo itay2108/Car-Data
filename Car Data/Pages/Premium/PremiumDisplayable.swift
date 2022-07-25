@@ -18,7 +18,7 @@ extension PremiumDisplayable {
         return UserDefaultsManager.main.value(forKey: .hasPremium) as? Bool ?? false
     }
     
-    func showPremiumViewController() {
+    func showPremiumViewController(_ dealType: PremiumType = .normal) {
         guard !hasPremium else {
             return
         }
@@ -26,6 +26,7 @@ extension PremiumDisplayable {
         prepareForPremiumDisplay()
         
         let destination = PremiumViewController()
+        destination.premiumType = dealType
         
         if let nc = self.navigationController {
             nc.heroNavigationAnimationType = .cover(direction: .up)

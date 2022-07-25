@@ -125,6 +125,7 @@ class CDViewController: UIViewController, PremiumDisplayable {
             }
             
             self?.navigationController?.popViewController(animated: true)
+            
         }
         
     }

@@ -24,6 +24,10 @@ class UserDefaultsManager {
         }
     }
     
+    func updateAlgorithmType(to newType: VisionAlgorithmType) {
+        setValue(newType.rawValue, forKey: .visionAlgorithmStyle)
+    }
+    
     func numberOfSearches() -> Int {
         if let numberOfSearches = value(forKey: .numberOfSearches) as? Int {
             return numberOfSearches
@@ -33,8 +37,8 @@ class UserDefaultsManager {
         }
     }
     
-    func updateAlgorithmType(to newType: VisionAlgorithmType) {
-        setValue(newType.rawValue, forKey: .visionAlgorithmStyle)
+    func didOptinForDiscount() -> Bool {
+        return value(forKey: .didOptinForDiscount) as? Bool ?? false
     }
     
     
@@ -61,4 +65,5 @@ enum UserDefaultKey: String {
     case visionAlgorithmStyle = "visionAlgorithmStyle"
     case hasPremium = "hasPremium"
     case numberOfSearches = "numberOfSearches"
+    case didOptinForDiscount = "didOptinForDiscount"
 }
