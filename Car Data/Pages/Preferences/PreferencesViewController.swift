@@ -7,6 +7,7 @@
 
 import UIKit
 import Hero
+import MessageUI
 
 class PreferencesViewController: CDTableViewController {
 
@@ -81,6 +82,22 @@ class PreferencesViewController: CDTableViewController {
             }
             premiumCell.isHidden = true
             tableView.reloadData()
+        }
+    }
+    
+    private func sendProblemReportToEmail() {
+        
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["support@car-data.co.il"])
+            mail.setSubject("דיווח על בעיה בקאר דאטה")
+            
+            mail.setMessageBody("היי, רציתי לדווח על בעיה באפליקציה - \n\n", isHTML: false)
+
+            present(mail, animated: true)
+        } else {
+            presentErrorAlert(with: CDError.emailUnavailable)
         }
     }
     
@@ -166,10 +183,10 @@ class PreferencesViewController: CDTableViewController {
 
             //rating
             case 1:
-                return
+                toast(message: "דירוג יתאפשר כשקארדאטה תושק", additionalOffset: -34)
             //report a problem
             case 2:
-                return
+                sendProblemReportToEmail()
             //clear data
             case 3:
                 present(dataDeletionAlert, animated: true)
@@ -199,7 +216,7 @@ class PreferencesViewController: CDTableViewController {
 }
 
 extension PreferencesViewController: PurchaseManagerDelegate {
-    func purchase(didFinishWith purchaseResult: PurchaseResult) { }
+    func purchase(didFinishWith purchaseResult: PurchaseResult, for product: Purchasable?) { }
     
     func didFinishRestoringPurchases(_ restoredProducts: [Purchasable]) {
         UINotificationFeedbackGenerator().notificationOccurred(.success)
@@ -227,5 +244,26 @@ extension PreferencesViewController: PurchaseManagerDelegate {
             presentErrorAlert(with: (error as? CDError) ?? error)
         }
         
+    }
+}
+
+extension PreferencesViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true) { [weak self] in
+            
+            if let _ = error {
+                self?.presentErrorAlert(with: CDError.emailError)
+            } else if result == .sent {
+                let alert = UIAlertController(title: "תודה", message: "קיבלנו את הדיווח ונפעל כדי לתקן את הבעיה בהקדם האפשרי", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "הבנתי", style: .cancel)
+                alert.addAction(okAction)
+                
+                self?.present(alert, animated: true)
+            }
+        }
+    
     }
 }

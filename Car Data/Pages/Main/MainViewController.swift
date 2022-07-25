@@ -128,6 +128,11 @@ final class MainViewController: CDViewController, CarDataPresentable {
             reCenterMainContainer(animated: false)
         }
         
+        if UserDefaultsManager.main.numberOfSearches() > 10, RNG.probability(of: 7), !isPresentingLicensePlate {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.66) {
+                PurchaseManager.main.requestAppstoreReview()
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -347,6 +352,9 @@ final class MainViewController: CDViewController, CarDataPresentable {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
 
+                let numberOfSearches = UserDefaultsManager.main.numberOfSearches()
+                UserDefaultsManager.main.setValue(numberOfSearches + 1, forKey: .numberOfSearches)
+                
                 performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
             }
             

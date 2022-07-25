@@ -51,6 +51,10 @@ enum CDError: Error {
     case restoreFailed
     case nothingToRestore
     
+    //Mail
+    case emailError
+    case emailUnavailable
+    
     var localizedDescription: String {
         switch self {
         case .parseError:
@@ -111,6 +115,11 @@ enum CDError: Error {
             return "could not restore purchases"
         case .nothingToRestore:
             return "nothing to restore"
+            
+        case .emailError:
+            return "could not send email"
+        case .emailUnavailable:
+            return "emailing is not available"
         default:
             return "an unknown error has occured"
         }

@@ -24,6 +24,15 @@ class UserDefaultsManager {
         }
     }
     
+    func numberOfSearches() -> Int {
+        if let numberOfSearches = value(forKey: .numberOfSearches) as? Int {
+            return numberOfSearches
+        } else {
+            setValue(0, forKey: .numberOfSearches)
+            return 0
+        }
+    }
+    
     func updateAlgorithmType(to newType: VisionAlgorithmType) {
         setValue(newType.rawValue, forKey: .visionAlgorithmStyle)
     }
@@ -51,4 +60,5 @@ class UserDefaultsManager {
 enum UserDefaultKey: String {
     case visionAlgorithmStyle = "visionAlgorithmStyle"
     case hasPremium = "hasPremium"
+    case numberOfSearches = "numberOfSearches"
 }

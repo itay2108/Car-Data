@@ -60,6 +60,10 @@ class PurchaseManager: NSObject {
         return formatter.string(from: skproduct.price)
     }
     
+    func requestAppstoreReview() {
+        SKStoreReviewController.requestReview()
+    }
+    
     func setup() {
         let ids = Purchasable.allCases.map( { $0.rawValue })
         let request = SKProductsRequest(productIdentifiers: Set(ids))
