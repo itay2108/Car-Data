@@ -58,70 +58,70 @@ enum CDError: Error {
     var localizedDescription: String {
         switch self {
         case .parseError:
-            return "Could not parse data from responce with the provided decoding structure"
+            return "התשובה מהשרת חזרה בפורמט שאנחנו לא מכירים. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .noDataProvided:
-            return "No data was provided for the network request"
+            return "לא הצלחנו להמיר את המספר שהזנת לבקשת רשת. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .requestError:
-            return "Could not send request to server"
+            return "לא הצלחנו לחפש במאגרי המידע הרלוונטיים. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .notFound:
-            return "Could not find what you were looking for"
+            return "לא הצלחנו למצוא את הרכב שחיפשת. כדאי לוודא שהזנת את המספר נכון, ולקחת בחשבון שרכבים שעלו לכביש לפני פחות מחודש או יותר מ-25 שנה לא תמיד נמצאים במאגר"
         case .badData:
-            return "Some of the data is missing in the server"
+            return "השרת החזיר לנו תשובה בפורמט שאנחנו לא מכירים, אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .serverFailed:
-            return "There was an error with the remote database"
+            return "לא הצלחנו לתקשר עם מאגרי המידע הרלוונטיים. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .timeout:
-            return "The request timed out"
+            return "חיכינו וחיכינו אבל לא קיבלנו תשובה מהשרת. שווה לוודא שחיבור האינטרנט שלכם יציב."
             
         case .flashFailed:
-            return "Could not toggle flash"
+            return "לא הצלחנו להפעיל את הפלאש"
         case .noFlash:
-            return "This device doesn't have a flash"
+            return "נראה שלמכשיר שלך אין פלאש תקין"
         case .flashUnavailable:
-            return "The flash is currently unavailable"
+            return "הפלאש לא זמין, כדאי לוודא שהוא לא דולק מהאפליקציה אחרת"
         case .cameraFailed:
-            return "Could not start camera session"
+            return "לא הצלחנו להפעיל את המצלמה. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .cameraPermissions:
-            return "The app is not allowed to use the camera, please allow camera usage from settings"
+            return "לא אפשרתם לנו גישה למצלמה, כדי להשתמש במצלמה - יש לאפשר לנו גישה מההגדרות של הטלפון"
         case .genericCamera:
-            return "Something went wrong when trying to use the camera"
+            return "קרתה שגיאה שאנחנו לא מכירים עם המצלמה. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .imagePickerFailed:
-            return "Could not load gallery"
+            return "לא הצלחנו לטעון את הגלריה שלך. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
             
         case .noImageForRecognition:
-            return "No image was provided for recognition in the correct format"
+            return "לא הצלחנו להשתמש בתמונה שסופקה לזיהוי מספר רכב"
         case .noRequestForRecognition:
-            return "recognition request was not found"
+            return "נראה שיש בעיה באלגוריתם זיהוי שלנו. אם הבעיה ממשיכה כדאי ליצור קשר ממסך ההגדרות"
         case .noResultsForImageRecognition:
-            return "Could not find a license plate in this image. Try zooming in on the license plate number for better results."
+            return "לא מצאנו מספר רכב בתמונה שסיפקת. כדאי לנסות לעשות זום על מספר הרכב, או לצלם תמונה חדה יותר"
             
         case .urlFailed:
-            return "Could not initialize a write url for data"
+            return "הייתה בעיה בגישה לאחסון של הטלפון"
         case .pdfFailed:
-            return "Could not render PDF"
+            return "לא הצלחנו ליצור קובץ נתונים לשיתוף"
         case .deletionFailed:
-            return "Could not delete file at specified URL"
+            return "לא הצלחנו למחוק את הקובץ הזמני שיצרנו באחסון. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .pdfNoData:
-            return "Could not find license plate number to share"
+            return "לא מצאנו נתונים לשתף. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .noRealm:
-            return "Could not find database"
+            return "הייתה בעיה עם מבנה הנתונים שלנו. אם הבעיה ממשיכה כדאי לנסות לאפס את הנתונים או ליצור איתנו קשר ממסך ההגדרות"
         case .realmFailed:
-            return "Could not modify database"
+            return "לא הצלחנו לערוך את מבנה הנתונים שלנו. אם הבעיה ממשיכה כדאי לנסות לאפס את הנתונים או ליצור איתנו קשר ממסך ההגדרות"
             
         case .purchaseFailed:
-            return "Could not complete purchase, please try again."
+            return "הייתה בעיה בתהליך הרכישה, אנא וודאו שאמצעי התשלום פעיל ונסו שנית"
         case .purchaseCancelled:
-            return "The purchase has been cancelled"
+            return "תהליך הרכישה בוטל"
         case .restoreFailed:
-            return "could not restore purchases"
+            return "לא הצלחנו לשחזר את הרכישות. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .nothingToRestore:
-            return "nothing to restore"
+            return "לא היו רכישות לשחזר"
             
         case .emailError:
-            return "could not send email"
+            return "לא הצלחנו לשלוח את המייל שלך. אם הבעיה ממשיכה כדאי ליצור איתנו קשר ממסך ההגדרות"
         case .emailUnavailable:
-            return "emailing is not available"
+            return "שירות האימיילים לא זמין כרגע, אנא נסו שנית מאוחר יותר"
         default:
-            return "an unknown error has occured"
+            return "קרתה שגיאה שאנחנו לא מכירים. אם הבעיה ממשיכה, כדאי ליצור איתנו קשר ממסך ההגדרות"
         }
     }
 }

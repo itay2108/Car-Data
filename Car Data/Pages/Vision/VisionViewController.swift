@@ -696,6 +696,9 @@ extension VisionViewController: VNRecognitionHandler, AVCaptureVideoDataOutputSa
     func handleImage(request: VNRequest, error: Error?) {
         guard let observations =
                 request.results as? [VNRecognizedTextObservation] else {
+            animateResumeSession { [weak self] in
+                self?.presentErrorAlert(with: CDError.noResultsForImageRecognition)
+            }
             return
         }
         
