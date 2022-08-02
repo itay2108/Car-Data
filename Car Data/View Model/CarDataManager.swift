@@ -159,6 +159,8 @@ struct CarDataManager {
                                     reject(error)
                                 }
                             }
+                    } else {
+                        reject(error)
                     }
                 }
         }

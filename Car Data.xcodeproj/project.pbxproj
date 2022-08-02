@@ -994,11 +994,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = DMNW5WHDHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car Data/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "קארדאטה משתמשת במצלמה כדי לסרוק לוחיות רישוי ולאתר מידע לפיהן";
+				INFOPLIST_KEY_NSCameraUsageDescription = "קאר דאטה משתמשת במצלמה שלכם כדי לזהות לוחיות רישוי. לעולם לא נשתמש במידע שלכם בלי רשותכם המפורשת.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1029,11 +1029,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = DMNW5WHDHR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Car Data/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "קארדאטה משתמשת במצלמה כדי לסרוק לוחיות רישוי ולאתר מידע לפיהן";
+				INFOPLIST_KEY_NSCameraUsageDescription = "קאר דאטה משתמשת במצלמה שלכם כדי לזהות לוחיות רישוי. לעולם לא נשתמש במידע שלכם בלי רשותכם המפורשת.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

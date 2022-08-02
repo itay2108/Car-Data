@@ -31,7 +31,8 @@ class LoadResultViewController: CDViewController {
     
     var delegate: LoadResultDelegate?
     
-    var requestTimer: Timer?
+    var longWaitTimer: Timer?
+    var timeoutTimer: Timer?
     
     //MARK: - Lifecycle
     
@@ -47,8 +48,9 @@ class LoadResultViewController: CDViewController {
         if licensePlateNumber != nil {
             getCarData()
             
-            //timer
+            //timers
             respondToLongLoadingTime(after: 6)
+            respondToTimeout(after: 18)
             
         } else {
             delegate?.resultLoader(didFailWith: CDError.noDataProvided, for: nil)
@@ -59,8 +61,13 @@ class LoadResultViewController: CDViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        requestTimer?.invalidate()
-        requestTimer = nil
+        super.viewWillDisappear(animated)
+        
+        longWaitTimer?.invalidate()
+        longWaitTimer = nil
+        
+        timeoutTimer?.invalidate()
+        timeoutTimer = nil
         
         activityIndicator.stopAnimating()
     }
@@ -87,6 +94,10 @@ class LoadResultViewController: CDViewController {
         guard self.isViewLoaded else {
             return
         }
+        
+        //update total number of searches
+        let numberOfSearches = UserDefaultsManager.main.numberOfSearches()
+        UserDefaultsManager.main.setValue(numberOfSearches + 1, forKey: .numberOfSearches)
         
         if let destination = K.storyBoards.dataStoryBoard.instantiateViewController(withIdentifier: K.viewControllerIDs.dataVC) as? DataViewController {
             
@@ -152,15 +163,19 @@ class LoadResultViewController: CDViewController {
             }
             
         }.always { [weak self] in
-            self?.requestTimer?.invalidate()
-            self?.requestTimer = nil
+            self?.longWaitTimer?.invalidate()
+            self?.longWaitTimer = nil
         }
     }
     
     private func respondToLongLoadingTime(after timeInterval: TimeInterval) {
         
-        requestTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(refreshUIForLongLoadingTime), userInfo: nil, repeats: false)
+        longWaitTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(refreshUIForLongLoadingTime), userInfo: nil, repeats: false)
         
+    }
+    
+    private func respondToTimeout(after timeInterval: TimeInterval) {
+        timeoutTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(dismissForTimeout), userInfo: nil, repeats: false)
     }
     
     @objc func refreshUIForLongLoadingTime() {
@@ -177,6 +192,12 @@ class LoadResultViewController: CDViewController {
         }
 
 
+    }
+    
+    @objc func dismissForTimeout() {
+        
+        navigationController?.popViewController(animated: true)
+        delegate?.resultLoader(didFailWith: CDError.timeout, for: licensePlateNumber)
     }
 
 }

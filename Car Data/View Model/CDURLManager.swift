@@ -22,7 +22,11 @@ struct CDURLManager {
             base += "&limit=\(limit)"
         }
         
-        return URL(string: base)
+        guard let encodedBase = base.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else {
+            return URL(string: base)
+        }
+        
+        return URL(string: encodedBase)
     }
     
     func url(from string: String?, queries: [String] = [], limit: Int? = nil) -> URL? {
@@ -40,7 +44,11 @@ struct CDURLManager {
             base += "&limit=\(limit)"
         }
         
-        return URL(string: base)
+        guard let encodedBase = base.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) else {
+            return URL(string: base)
+        }
+        
+        return URL(string: encodedBase)
     }
     
     static func deleteFile(from url: URL) throws {

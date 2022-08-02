@@ -351,9 +351,6 @@ final class MainViewController: CDViewController, CarDataPresentable {
             tableViewEmptyPlaceHolder.hero.modifiers = []
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [unowned self] in
-
-                let numberOfSearches = UserDefaultsManager.main.numberOfSearches()
-                UserDefaultsManager.main.setValue(numberOfSearches + 1, forKey: .numberOfSearches)
                 
                 performSegue(withIdentifier: K.segues.mainStoryboard.mainToLoadResult, sender: self)
             }
