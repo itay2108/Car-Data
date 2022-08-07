@@ -129,7 +129,12 @@ final class MainViewController: CDViewController, CarDataPresentable {
         }
         
         if UserDefaultsManager.main.numberOfSearches() > 10, RNG.probability(of: 7), !isPresentingLicensePlate {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.66) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.66) { [weak self] in
+                
+                guard self?.mainContainerCenterYAnchor.constant == 0 else {
+                    return
+                }
+                
                 PurchaseManager.main.requestAppstoreReview()
             }
         }
