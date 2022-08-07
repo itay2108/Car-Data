@@ -775,6 +775,8 @@ extension VisionViewController: UIImagePickerControllerDelegate, UINavigationCon
         if let image = info[.editedImage] as? UIImage {
             
             didSelect(imageForPlateRecognition: image)
+        } else {
+            animateResumeSession()
         }
         
         picker.dismiss(animated: true)
